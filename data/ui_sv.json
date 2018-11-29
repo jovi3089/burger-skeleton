@@ -10,6 +10,7 @@
   "sum" :"Summa",
   "ordersFinished" : "Färdiga beställningar",
   "ordersInQueue" : "Beställningar att förbereda",
+  "ordersWorkingOn" : "Förbereder",
   "ordersTrending" : "Populära beställningar",
   "placeOrder" : "Beställ",
   "sideorders" : "Tillbehör",

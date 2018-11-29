@@ -13,7 +13,7 @@
       :key="key">
     </OrderItemToPrepare>
   </div>
-  <h1>wow hej</h1>
+  <h1>{{ uiLabels.ordersWorkingOn }}</h1>
   <div id="ordersWorkedOn">
   </div>
   <h1>{{ uiLabels.ordersFinished }}</h1>'
@@ -63,7 +63,7 @@ export default {
 	#orders {
     display: grid;
     justify-content: space-even;
-    grid-template-columns: 30% 30% 30%;
+    grid-template-columns: 33% 33% 33%;
     font-size: 24pt;
   }
 
