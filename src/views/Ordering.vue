@@ -7,6 +7,10 @@
     <img class="example-panel" src="@/assets/exampleImage.jpg">
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
 
+    <div v-show = "step===5">
+    </div>
+
+    <div v-show = "step===7">
     <h1>{{ uiLabels.ingredients }}</h1>
 
     <Ingredient
@@ -17,10 +21,14 @@
       :lang="lang"
       :key="item.ingredient_id">
     </Ingredient>
+    </div>
+    <button v-on:click="newPage(1)">"Switch page"</button>
 
+    <div v-show = "step===1">
     <h1>{{ uiLabels.order }}</h1>
     {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
     <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+    </div>
 
     <h1>{{ uiLabels.ordersInQueue }}</h1>
     <div>
@@ -62,6 +70,7 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
+      step: 0,
     }
   },
   created: function () {
@@ -70,6 +79,10 @@ export default {
     }.bind(this));
   },
   methods: {
+    newPage: function(toPage){
+      this.step = toPage;
+    },
+
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;
