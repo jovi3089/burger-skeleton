@@ -4,9 +4,12 @@
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
 
     <div v-show = "step===5">
+
     </div>
 
     <div v-show = "step===7">
+    <h1>Code MasterZ E and E</h1>
+      <button v-on:click="newPage(5)">"Switch to page 5"</button>
     <h1>{{ uiLabels.ingredients }}</h1>
 
     <Ingredient
