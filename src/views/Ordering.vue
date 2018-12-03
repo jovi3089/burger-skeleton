@@ -1,10 +1,19 @@
 <template>
+  <!--<div v-show="step===1"> </div>-->
+  <!--skapa en component för när man designar burgaren,
+    samt gör varje steg till komponenter, innehållande
+    css i resp komponent-->
   <div id="ordering">
     <img class="example-panel" src="@/assets/exampleImage.jpg">
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
 
     <div v-show = "step===5">
+<<<<<<< HEAD
 
+=======
+      <h2>hejsan</h2>
+      <button v-on:click="newPage(7)">Switch to page 7</button>
+>>>>>>> e6693523ed7e13ac1c292a5f97283a847196738b
     </div>
 
     <div v-show = "step===7">
