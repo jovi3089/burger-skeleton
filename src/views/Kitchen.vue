@@ -1,7 +1,7 @@
 <template>
 <div id="orders">
   <h1>{{ uiLabels.ordersInQueue }}</h1>
-  <div>
+  <div id="ordersToPrepare">
     <OrderItemToPrepare
       v-for="(order, key) in orders"
       v-if="order.status !== 'done'"
@@ -13,8 +13,11 @@
       :key="key">
     </OrderItemToPrepare>
   </div>
-  <h1>{{ uiLabels.ordersFinished }}</h1>
-  <div>
+  <h1>{{ uiLabels.ordersWorkingOn }}</h1>
+  <div id="ordersWorkedOn">
+  </div>
+  <h1>{{ uiLabels.ordersFinished }}</h1>'
+  <div id="finishedOrders">
     <OrderItem
       v-for="(order, key) in orders"
       v-if="order.status === 'done'"
@@ -55,9 +58,35 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 	#orders {
-    font-size:24pt;
+    display: grid;
+    justify-content: space-even;
+    grid-template-columns: 33% 33% 33%;
+    font-size: 24pt;
+  }
+
+  #ordersToPrepare{
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 2;
+    grid-template-columns: repeat(3,1fr);
+  }
+  #ordersWorkedOn{
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-template-columns: repeat(3,1fr);
+  }
+  #finishedOrders{
+    display: grid;
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-template-columns: repeat(3,1fr);
   }
 
   h1 {

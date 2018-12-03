@@ -90,7 +90,7 @@ export default {
 }
 </script>
 <style scoped>
-/* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
+/* CSS: scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
 #ordering {
   margin:auto;
   width: 40em;
