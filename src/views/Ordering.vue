@@ -8,6 +8,8 @@
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
 
     <div v-show = "step===5">
+      <h2>hejsan</h2>
+      <button v-on:click="newPage(7)">Switch to page 7</button>
     </div>
 
     <div v-show = "step===7">
