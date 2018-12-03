@@ -1,4 +1,8 @@
 <template>
+  <!--<div v-show="step===1"> </div>-->
+  <!--skapa en component för när man designar burgaren,
+    samt gör varje steg till komponenter, innehållande
+    css i resp komponent-->
   <div id="ordering">
     <img class="example-panel" src="@/assets/exampleImage.jpg">
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
