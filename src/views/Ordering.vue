@@ -7,14 +7,30 @@
     <img class="example-panel" src="@/assets/exampleImage.jpg">
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
 
-    <div v-show = "step===5">
-      <h2>hejsan</h2>
-      <button v-on:click="newPage(7)">Switch to page 7</button>
+    <div v-show = "step===0">
+      <h1>Page 0</h1>
+      <button v-on:click="newPage(1)">Switch to page 1</button>
     </div>
 
-    <div v-show = "step===7">
-    <h1>Code MasterZ E and E</h1>
-      <button v-on:click="newPage(5)">"Switch to page 5"</button>
+    <div v-show="step===1">
+      <h1>Page 1</h1>
+      <button v-on:click="newPage(0)">Tillbaka</button>
+      <button v-on:click="newPage(2)">Switch to page 2</button>
+    </div>
+
+    <div v-show="step===2">
+      <h1>Page 2</h1>
+      <button v-on:click="newPage(1)">Tillbaka</button>
+      <button v-on:click="newPage(3)">Switch to page 3</button>
+    </div>
+
+    <div v-show="step===3">
+      <h1>Page 3</h1>
+      <button v-on:click="newPage(2)">Tillbaka</button>
+      <button v-on:click="newPage(4)">Switch to page 4</button>
+    </div>
+
+    <div v-show = "step===8">
     <h1>{{ uiLabels.ingredients }}</h1>
 
     <Ingredient
@@ -25,14 +41,11 @@
       :lang="lang"
       :key="item.ingredient_id">
     </Ingredient>
-    </div>
-    <button v-on:click="newPage(1)">"Switch page"</button>
 
-    <div v-show = "step===1">
     <h1>{{ uiLabels.order }}</h1>
     {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
     <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
-    </div>
+
 
     <h1>{{ uiLabels.ordersInQueue }}</h1>
     <div>
@@ -45,6 +58,7 @@
         :lang="lang"
         :key="key">
       </OrderItem>
+    </div>
     </div>
   </div>
 </template>
