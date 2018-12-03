@@ -9,6 +9,8 @@
 
     <div v-show = "step===0">
       <h1>Page 0</h1>
+      <StartingPage>
+      </StartingPage>
       <button v-on:click="newPage(1)">Switch to page 1</button>
     </div>
 
@@ -69,6 +71,7 @@
 //components
 import Ingredient from '@/components/Ingredient.vue'
 import OrderItem from '@/components/OrderItem.vue'
+import StartingPage from '@/components/StartingPage.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -79,7 +82,8 @@ export default {
   name: 'Ordering',
   components: {
     Ingredient,
-    OrderItem
+    OrderItem,
+    StartingPage
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             // the ordering system and the kitchen
