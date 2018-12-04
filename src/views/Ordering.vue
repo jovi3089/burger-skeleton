@@ -32,7 +32,7 @@
       <button v-on:click="newPage(4)">Switch to page 4</button>
     </div>
 
-    <div v-show = "step===8">
+    <div v-show = "step===4">
     <h1>{{ uiLabels.ingredients }}</h1>
 
     <Ingredient
