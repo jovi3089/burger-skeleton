@@ -16,6 +16,12 @@
 
     <div v-show="step===1">
       <h1>Page 1</h1>
+<<<<<<< HEAD
+=======
+      <MenuPage
+        :step="step">
+      </MenuPage>
+>>>>>>> 63448c715c6124b2e33f1836f13303e57fdf1b3e
       <button v-on:click="newPage(0)">Tillbaka</button>
       <button v-on:click="newPage(2)">Switch to page 2</button>
     </div>
@@ -38,20 +44,23 @@
     <Ingredient
       ref="ingredient"
       v-for="item in ingredients"
+      v-if="item.category===category"
       v-on:increment="addToOrder(item)"
       :item="item"
       :lang="lang"
       :key="item.ingredient_id">
     </Ingredient>
 
-    <h1>{{ uiLabels.order }}</h1>
-    {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
-    <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
-
+    <div class="footer">
+      <h1>{{ uiLabels.order }}</h1>
+        {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
+          <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+    </div>
 
     <h1>{{ uiLabels.ordersInQueue }}</h1>
     <div>
       <OrderItem
+        class="orderItem"
         v-for="(order, key) in orders"
         v-if="order.status !== 'done'"
         :order-id="key"
@@ -93,7 +102,12 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
+<<<<<<< HEAD
       step: 0
+=======
+      step: 0,
+      category: 1
+>>>>>>> 63448c715c6124b2e33f1836f13303e57fdf1b3e
     }
   },
   created: function () {
@@ -133,7 +147,23 @@ export default {
 /* CSS: scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
 #ordering {
   margin:auto;
-  width: 40em;
+  max-width: 40em; /*sidan skalas om när fönstret minskas*/
+  padding-bottom: 20em;
+}
+
+.orderItem {
+  border: 1px solid red;
+  left: 0;
+}
+
+/*.relative {
+  position: relative;
+}*/
+
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 9em);
+  grid-gap: 1em;
 }
 
 .example-panel {
@@ -141,6 +171,15 @@ export default {
   left:0;
   top:0;
   z-index: -2;
+}
+
+.footer {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding: 1em;
+  background-color: white;
 }
 
 </style>

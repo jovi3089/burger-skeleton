@@ -34,6 +34,7 @@ export default {
 </script>
 <style scoped>
 .ingredient {
+  width: 7em;
   border: 1px solid #ccd;
   padding: 1em;
   background-image: url('~@/assets/exampleImage.jpg');
