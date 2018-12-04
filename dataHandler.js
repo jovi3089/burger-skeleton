@@ -104,6 +104,7 @@ Data.prototype.markOrderDone = function (orderId) {
 
 Data.prototype.markOrderStarted = function (orderId) {
   this.orders[orderId].status = "started";
+  console.log("hej dataHandler");
 };
 
 Data.prototype.markOrderNotStarted = function (orderId) {
@@ -111,6 +112,3 @@ Data.prototype.markOrderNotStarted = function (orderId) {
 };
 
 module.exports = Data;
-
-
-
