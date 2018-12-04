@@ -4,12 +4,10 @@
     samt gör varje steg till komponenter, innehållande
     css i resp komponent-->
   <div id="ordering">
-    <img class="example-panel" src="@/assets/exampleImage.jpg">
-    <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
-
+    <img class="example-panel" src="@/assets/background-board-spices.jpg">
     <div v-show = "step===0">
       <h1>Page 0</h1>
-      <StartingPage>
+      <StartingPage :ui-labels="uiLabels"> <!-- FRÅGA:: Vad behöver läsas in här för att användas i StartingPage-komponenten?-->
       </StartingPage>
       <button v-on:click="newPage(1)">Switch to page 1</button>
     </div>
@@ -77,6 +75,8 @@ import StartingPage from '@/components/StartingPage.vue'
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
 
+
+
 /* instead of defining a Vue instance, export default allows the only
 necessary Vue instance (found in main.js) to import your data and methods */
 export default {
@@ -93,7 +93,7 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
-      step: 8,
+      step: 0
     }
   },
   created: function () {
@@ -136,7 +136,18 @@ export default {
   width: 40em;
 }
 
+template {
+  margin: 0;
+  height: 100%;
+  overflow: hidden
+}
+
 .example-panel {
+  width: 100%;
+  height: 100%;*/
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
   position: fixed;
   left:0;
   top:0;
