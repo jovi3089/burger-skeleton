@@ -39,4 +39,5 @@ export default {
   background-image: url('~@/assets/exampleImage.jpg');
   color: white;
 }
+/*stycket ovan kan lika väl ligga i ordering.vue <style>*/
 </style>
