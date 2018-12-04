@@ -14,6 +14,7 @@
 
     <div v-show="step===1">
       <h1>Page 1</h1>
+      LOAD COMPONENT PAGE
       <button v-on:click="newPage(0)">Tillbaka</button>
       <button v-on:click="newPage(2)">Switch to page 2</button>
     </div>
@@ -88,7 +89,7 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
-      step: 0,
+      step: 8,
     }
   },
   created: function () {
@@ -137,10 +138,5 @@ export default {
   top:0;
   z-index: -2;
 }
-.ingredient {
-  border: 1px solid #ccd;
-  padding: 1em;
-  background-image: url('~@/assets/exampleImage.jpg');
-  color: white;
-}
+
 </style>
