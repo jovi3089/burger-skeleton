@@ -14,12 +14,9 @@
     </OrderItemToPrepare>
   </div>
   <h1>{{ uiLabels.ordersWorkingOn }}</h1>
-  <!--uiLabels.text - add key "text"
-   into ui_en.json and ui_sv.json with
-  following value-->
   <div id="ordersWorkedOn">
   </div>
-  <h1>{{ uiLabels.ordersFinished }}</h1>
+  <h1>{{ uiLabels.ordersFinished }}</h1>'
   <div id="finishedOrders">
     <OrderItem
       v-for="(order, key) in orders"
@@ -29,7 +26,8 @@
       :lang="lang"
       :ui-labels="uiLabels"
       :key="key">
-    </OrderItem>
+    </OrderItem> <!-- orders is found in sharedVueStuff.js -->
+
   </div>
 </div>
 </template>
