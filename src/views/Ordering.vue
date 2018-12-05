@@ -1,11 +1,4 @@
 <template>
-<<<<<<< HEAD
-<!--HTML börjar här-->
-
-  <div id="ordering">
-    <img class="example-panel" src="@/assets/exampleImage.jpg">
-    <button v-on:click="switchLang()">{{ uiLabels.language }}</button> <!-- funktionen ligger i sharedVueStuff -->
-=======
   <!--<div v-show="step===1"> </div>-->
   <!--skapa en component för när man designar burgaren,
     samt gör varje steg till komponenter, innehållande
@@ -23,12 +16,12 @@
 
     <div v-show="step===1">
       <h1>Page 1</h1>
-<<<<<<< HEAD
-=======
+       HEAD
+
       <MenuPage
         :step="step">
       </MenuPage>
->>>>>>> 63448c715c6124b2e33f1836f13303e57fdf1b3e
+
       <button v-on:click="newPage(0)">Tillbaka</button>
       <button v-on:click="newPage(2)">Switch to page 2</button>
     </div>
@@ -46,7 +39,6 @@
     </div>
 
     <div v-show = "step===4">
->>>>>>> 954f7c5fb339bd23482ef782d1268b8b892d0e1b
     <h1>{{ uiLabels.ingredients }}</h1>
 
     <Ingredient
@@ -110,12 +102,11 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
-<<<<<<< HEAD
-      step: 0
-=======
+//<<<<<<< HEAD
       step: 0,
+//=======
       category: 1
->>>>>>> 63448c715c6124b2e33f1836f13303e57fdf1b3e
+//>>>>>>> 63448c715c6124b2e33f1836f13303e57fdf1b3e
     }
   },
   created: function () {
@@ -155,9 +146,6 @@ export default {
 /* CSS: scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
 #ordering {
   margin:auto;
-<<<<<<< HEAD
-  width: 100%;
-=======
   max-width: 40em; /*sidan skalas om när fönstret minskas*/
   padding-bottom: 20em;
 }
@@ -175,7 +163,6 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, 9em);
   grid-gap: 1em;
->>>>>>> 954f7c5fb339bd23482ef782d1268b8b892d0e1b
 }
 
 .example-panel {
