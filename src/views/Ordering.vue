@@ -16,9 +16,12 @@
 
     <div v-show="step===1">
       <h1>Page 1</h1>
+<<<<<<< HEAD
+=======
       <MenuPage
         :step="step">
       </MenuPage>
+>>>>>>> 63448c715c6124b2e33f1836f13303e57fdf1b3e
       <button v-on:click="newPage(0)">Tillbaka</button>
       <button v-on:click="newPage(2)">Switch to page 2</button>
     </div>
@@ -78,7 +81,7 @@
 import Ingredient from '@/components/Ingredient.vue'
 import OrderItem from '@/components/OrderItem.vue'
 import StartingPage from '@/components/StartingPage.vue'
-import MenuPage from '@/components/MenuPage.vue'
+
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -90,8 +93,7 @@ export default {
   components: {
     Ingredient,
     OrderItem,
-    StartingPage,
-    MenuPage
+    StartingPage
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             // the ordering system and the kitchen
