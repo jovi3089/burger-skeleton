@@ -3,9 +3,15 @@
 
 
     <div v-show = "page===0">  <!--Home page for staff -->
-      hej page 0
-      <button v-on:click="changePage(1)">Go to work flow</button>
+      <StaffHomePage
+      v-on:workFlow="changePage(1)"
+      v-on:saldo="changePage(2)"
+      v-on:statistics="changePage(3)"
+      :ui-labels="uiLabels"
+      :lang="lang"
 
+      >
+      </StaffHomePage>
     </div>
     <div v-show = "page===1">  <!--Work flow for orders-->
       <div id="orders">
@@ -64,6 +70,7 @@ import OrderItem from '@/components/OrderItem.vue'
 import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
 import OrderItemBeingPrepared from '@/components/OrderItemBeingPrepared.vue'
 import OrderItemDone from '@/components/OrderItemDone.vue'
+import StaffHomePage from '@/components/StaffHomePage.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -74,7 +81,8 @@ export default {
     OrderItem,
     OrderItemToPrepare,
     OrderItemBeingPrepared,
-    OrderItemDone
+    OrderItemDone,
+    StaffHomePage
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
