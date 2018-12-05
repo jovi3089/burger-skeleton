@@ -101,7 +101,7 @@ export default {
       price: 0,
       orderNumber: "",
       step: 0,
-      category: 1
+      category: 2
     }
   },
   created: function () {
@@ -153,6 +153,8 @@ export default {
 /*.relative {
   position: relative;
 }*/
+
+
 
 .grid-wrapper {
   display: grid;
