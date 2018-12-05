@@ -16,18 +16,9 @@
 
     <div v-show="step===1">
       <h1>Page 1</h1>
-<<<<<<< HEAD
       <MenuPage
         :step="step">
       </MenuPage>
-=======
-       HEAD
-
-      <MenuPage
-        :step="step">
-      </MenuPage>
-
->>>>>>> 683e070aad7a6d0f071dd0a96d45b293bcf532e3
       <button v-on:click="newPage(0)">Tillbaka</button>
       <button v-on:click="newPage(2)">Switch to page 2</button>
     </div>
