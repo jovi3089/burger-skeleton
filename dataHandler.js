@@ -110,4 +110,8 @@ Data.prototype.markOrderNotStarted = function (orderId) {
   this.orders[orderId].status = "not-started";
 };
 
+Data.prototype.markOrderServed = function (orderId) {
+  this.orders[orderId].status = "served";
+};
+
 module.exports = Data;

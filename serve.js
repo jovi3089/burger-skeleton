@@ -69,6 +69,11 @@ io.on('connection', function (socket) {
     io.emit('currentQueue', {orders: data.getAllOrders() });
   });
 
+  socket.on('orderServed', function (orderId) {
+    data.markOrderServed(orderId);
+    io.emit('currentQueue', {orders: data.getAllOrders() });
+  });
+
   socket.on('updateStock', function (item, saldo) {
     data.changeStock(item, saldo);
     io.emit('currentQueue', {ingredients: data.getIngredients() });

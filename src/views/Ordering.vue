@@ -16,12 +16,12 @@
 
     <div v-show="step===1">
       <h1>Page 1</h1>
-<<<<<<< HEAD
-=======
+       HEAD
+
       <MenuPage
         :step="step">
       </MenuPage>
->>>>>>> 63448c715c6124b2e33f1836f13303e57fdf1b3e
+
       <button v-on:click="newPage(0)">Tillbaka</button>
       <button v-on:click="newPage(2)">Switch to page 2</button>
     </div>
@@ -59,7 +59,7 @@
 
     <h1>{{ uiLabels.ordersInQueue }}</h1>
     <div>
-      <OrderItem
+      <OrderItemDone
         class="orderItem"
         v-for="(order, key) in orders"
         v-if="order.status !== 'done'"
@@ -68,7 +68,7 @@
         :ui-labels="uiLabels"
         :lang="lang"
         :key="key">
-      </OrderItem>
+      </OrderItemDone>
     </div>
     </div>
   </div>
@@ -102,12 +102,11 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
-<<<<<<< HEAD
-      step: 0
-=======
+//<<<<<<< HEAD
       step: 0,
+//=======
       category: 1
->>>>>>> 63448c715c6124b2e33f1836f13303e57fdf1b3e
+//>>>>>>> 63448c715c6124b2e33f1836f13303e57fdf1b3e
     }
   },
   created: function () {
