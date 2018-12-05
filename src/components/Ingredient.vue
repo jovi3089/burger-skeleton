@@ -33,6 +33,7 @@ export default {
 }
 </script>
 <style scoped>
+
 .ingredient {
   width: 7em;
   border: 1px solid #ccd;

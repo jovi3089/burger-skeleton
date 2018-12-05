@@ -159,6 +159,8 @@ export default {
   position: relative;
 }*/
 
+
+
 .grid-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fit, 9em);
