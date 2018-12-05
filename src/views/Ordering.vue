@@ -1,27 +1,74 @@
 <template>
+<<<<<<< HEAD
 <!--HTML börjar här-->
 
   <div id="ordering">
     <img class="example-panel" src="@/assets/exampleImage.jpg">
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button> <!-- funktionen ligger i sharedVueStuff -->
+=======
+  <!--<div v-show="step===1"> </div>-->
+  <!--skapa en component för när man designar burgaren,
+    samt gör varje steg till komponenter, innehållande
+    css i resp komponent-->
+  <div id="ordering">
+    <img class="example-panel" src="@/assets/exampleImage.jpg">
+    <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+
+    <div v-show = "step===0">
+      <h1>Page 0</h1>
+      <StartingPage>
+      </StartingPage>
+      <button v-on:click="newPage(1)">Switch to page 1</button>
+    </div>
+
+    <div v-show="step===1">
+      <h1>Page 1</h1>
+<<<<<<< HEAD
+=======
+      <MenuPage
+        :step="step">
+      </MenuPage>
+>>>>>>> 63448c715c6124b2e33f1836f13303e57fdf1b3e
+      <button v-on:click="newPage(0)">Tillbaka</button>
+      <button v-on:click="newPage(2)">Switch to page 2</button>
+    </div>
+
+    <div v-show="step===2">
+      <h1>Page 2</h1>
+      <button v-on:click="newPage(1)">Tillbaka</button>
+      <button v-on:click="newPage(3)">Switch to page 3</button>
+    </div>
+
+    <div v-show="step===3">
+      <h1>Page 3</h1>
+      <button v-on:click="newPage(2)">Tillbaka</button>
+      <button v-on:click="newPage(4)">Switch to page 4</button>
+    </div>
+
+    <div v-show = "step===4">
+>>>>>>> 954f7c5fb339bd23482ef782d1268b8b892d0e1b
     <h1>{{ uiLabels.ingredients }}</h1>
 
     <Ingredient
       ref="ingredient"
       v-for="item in ingredients"
+      v-if="item.category===category"
       v-on:increment="addToOrder(item)"
       :item="item"
       :lang="lang"
       :key="item.ingredient_id">
     </Ingredient>
 
-    <h1>{{ uiLabels.order }}</h1>
-    {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
-    <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+    <div class="footer">
+      <h1>{{ uiLabels.order }}</h1>
+        {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
+          <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+    </div>
 
     <h1>{{ uiLabels.ordersInQueue }}</h1>
     <div>
       <OrderItem
+        class="orderItem"
         v-for="(order, key) in orders"
         v-if="order.status !== 'done'"
         :order-id="key"
@@ -30,6 +77,7 @@
         :lang="lang"
         :key="key">
       </OrderItem>
+    </div>
     </div>
   </div>
 </template>
@@ -40,6 +88,8 @@
 //components
 import Ingredient from '@/components/Ingredient.vue'
 import OrderItem from '@/components/OrderItem.vue'
+import StartingPage from '@/components/StartingPage.vue'
+
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -50,7 +100,8 @@ export default {
   name: 'Ordering',
   components: {
     Ingredient,
-    OrderItem
+    OrderItem,
+    StartingPage
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             // the ordering system and the kitchen
@@ -59,6 +110,12 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
+<<<<<<< HEAD
+      step: 0
+=======
+      step: 0,
+      category: 1
+>>>>>>> 63448c715c6124b2e33f1836f13303e57fdf1b3e
     }
   },
   created: function () {
@@ -67,6 +124,10 @@ export default {
     }.bind(this));
   },
   methods: {
+    newPage: function(toPage){
+      this.step = toPage;
+    },
+
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;
@@ -94,7 +155,27 @@ export default {
 /* CSS: scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
 #ordering {
   margin:auto;
+<<<<<<< HEAD
   width: 100%;
+=======
+  max-width: 40em; /*sidan skalas om när fönstret minskas*/
+  padding-bottom: 20em;
+}
+
+.orderItem {
+  border: 1px solid red;
+  left: 0;
+}
+
+/*.relative {
+  position: relative;
+}*/
+
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 9em);
+  grid-gap: 1em;
+>>>>>>> 954f7c5fb339bd23482ef782d1268b8b892d0e1b
 }
 
 .example-panel {
@@ -103,10 +184,14 @@ export default {
   top:0;
   z-index: -2;
 }
-.ingredient {
-  border: 1px solid #ccd;
+
+.footer {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
   padding: 1em;
-  background-image: url('~@/assets/exampleImage.jpg');
-  color: white;
+  background-color: white;
 }
+
 </style>

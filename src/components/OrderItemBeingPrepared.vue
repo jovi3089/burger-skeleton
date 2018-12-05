@@ -7,8 +7,8 @@
     :order-id="orderId"
     :order="order">
   </OrderItem>
-  <button v-on:click="orderStart">
-    {{uiLabels.started}}
+  <button v-on:click="orderDone">
+    {{uiLabels.ready}}
   </button>
 </div>
 </template>
@@ -16,7 +16,7 @@
 import OrderItem from '@/components/OrderItem.vue'
 
 export default {
-  name: 'OrderItemToPrepare',
+  name: 'OrderItemBeingPrepared',
   components: { OrderItem },
   props: {
     uiLabels: Object,
@@ -25,10 +25,10 @@ export default {
     lang: String
   },
   methods: {
-    orderStart: function () {
+    orderDone: function () {
       // sending 'done' message to parent component or view so that it
       // can catch it with v-on:done in the component declaration
-      this.$emit('started');  //change order.status to started
+      this.$emit('done'); //change order.status to done
     },
     cancelOrder: function () {
       // not implemented

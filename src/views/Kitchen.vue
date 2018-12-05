@@ -4,8 +4,8 @@
   <div id="ordersToPrepare">
     <OrderItemToPrepare
       v-for="(order, key) in orders"
-      v-if="order.status !== 'done'"
-      v-on:done="markDone(key)"
+      v-if="order.status === 'not-started' "
+      v-on:started="markStarted(key)"
       :order-id="key"
       :order="order"
       :ui-labels="uiLabels"
@@ -15,6 +15,16 @@
   </div>
   <h1>{{ uiLabels.ordersWorkingOn }}</h1>
   <div id="ordersWorkedOn">
+    <OrderItemBeingPrepared
+      v-for="(order, key) in orders"
+      v-if="order.status === 'started'"
+      v-on:done="markDone(key)"
+      :order-id="key"
+      :order="order"
+      :ui-labels="uiLabels"
+      :lang="lang"
+      :key="key">
+    </OrderItemBeingPrepared>
   </div>
   <h1>{{ uiLabels.ordersFinished }}</h1>'
   <div id="finishedOrders">
@@ -26,13 +36,15 @@
       :lang="lang"
       :ui-labels="uiLabels"
       :key="key">
-    </OrderItem>
+    </OrderItem> <!-- orders is found in sharedVueStuff.js -->
+
   </div>
 </div>
 </template>
 <script>
 import OrderItem from '@/components/OrderItem.vue'
 import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
+import OrderItemBeingPrepared from '@/components/OrderItemBeingPrepared.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -41,7 +53,8 @@ export default {
   name: 'Ordering',
   components: {
     OrderItem,
-    OrderItemToPrepare
+    OrderItemToPrepare,
+    OrderItemBeingPrepared
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
@@ -54,6 +67,9 @@ export default {
   methods: {
     markDone: function (orderid) {
       this.$store.state.socket.emit("orderDone", orderid);
+    },
+    markStarted: function (orderid) {
+      this.$store.state.socket.emit("orderStarted", orderid)
     }
   }
 }
@@ -61,10 +77,14 @@ export default {
 
 <style scoped>
 	#orders {
+
+    width: 100vw;
+    height: 100vh;
     display: grid;
     justify-content: space-even;
     grid-template-columns: 33% 33% 33%;
     font-size: 24pt;
+
   }
 
   #ordersToPrepare{
@@ -72,21 +92,32 @@ export default {
     grid-column-start: 1;
     grid-column-end: 1;
     grid-row-start: 2;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(1,1fr);
+    min-height:100%;
+    max-height:100%;
+    overflow-y: auto;
   }
   #ordersWorkedOn{
     display: grid;
     grid-column-start: 2;
     grid-column-end: 2;
     grid-row-start: 2;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(1,1fr);
+    min-height:100%;
+    max-height:100%;
+    overflow-y: auto;
+
   }
   #finishedOrders{
     display: grid;
     grid-column-start: 3;
     grid-column-end: 3;
     grid-row-start: 2;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(1,1fr);
+    min-height:100%;
+    max-height:100%;
+    overflow-y: auto;
+
   }
 
   h1 {
