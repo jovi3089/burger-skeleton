@@ -28,11 +28,7 @@
   </div>
   <h1>{{ uiLabels.ordersFinished }}</h1>
   <div id="finishedOrders">
-<<<<<<< HEAD
-    <OrderItem class="singleOrder"
-=======
-    <OrderItemDone
->>>>>>> c02fc51b8220a59c4730b5db55a899fcfe79c2be
+    <OrderItemDone class="singleOrder"
       v-for="(order, key) in orders"
       v-if="order.status === 'done'"
       v-on:served="markServed(key)"
