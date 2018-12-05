@@ -1,46 +1,63 @@
 <template>
-<div id="orders">
-  <h1>{{ uiLabels.ordersInQueue }}</h1>
-  <div id="ordersToPrepare">
-    <OrderItemToPrepare class="singleOrder"
-      v-for="(order, key) in orders"
-      v-if="order.status === 'not-started'"
-      v-on:started="markStarted(key)"
-      :order-id="key"
-      :order="order"
-      :ui-labels="uiLabels"
-      :lang="lang"
-      :key="key">
-    </OrderItemToPrepare>
-  </div>
-  <h1>{{ uiLabels.ordersWorkingOn }}</h1>
-  <div id="ordersWorkedOn">
-    <OrderItemBeingPrepared class="singleOrder"
-      v-for="(order, key) in orders"
-      v-if="order.status === 'started'"
-      v-on:done="markDone(key)"
-      :order-id="key"
-      :order="order"
-      :ui-labels="uiLabels"
-      :lang="lang"
-      :key="key">
-    </OrderItemBeingPrepared>
-  </div>
-  <h1>{{ uiLabels.ordersFinished }}</h1>
-  <div id="finishedOrders">
-    <OrderItemDone class="singleOrder"
-      v-for="(order, key) in orders"
-      v-if="order.status === 'done'"
-      v-on:served="markServed(key)"
-      :order-id="key"
-      :order="order"
-      :lang="lang"
-      :ui-labels="uiLabels"
-      :key="key">
-    </OrderItemDone> <!-- orders is found in sharedVueStuff.js -->
+  <div class="root">
+
+
+    <div v-show = "page===0">  <!--Home page for staff -->
+      hej page 0
+      <button v-on:click="changePage(1)">Go to work flow</button>
+
+    </div>
+    <div v-show = "page===1">  <!--Work flow for orders-->
+      <div id="orders">
+        <h1>{{ uiLabels.ordersInQueue }}</h1>
+        <div id="ordersToPrepare">
+          <OrderItemToPrepare class="singleOrder"
+            v-for="(order, key) in orders"
+            v-if="order.status === 'not-started'"
+            v-on:started="markStarted(key)"
+            :order-id="key"
+            :order="order"
+            :ui-labels="uiLabels"
+            :lang="lang"
+            :key="key">
+          </OrderItemToPrepare>
+        </div>
+        <h1>{{ uiLabels.ordersWorkingOn }}</h1>
+        <div id="ordersWorkedOn">
+          <OrderItemBeingPrepared class="singleOrder"
+            v-for="(order, key) in orders"
+            v-if="order.status === 'started'"
+            v-on:done="markDone(key)"
+            :order-id="key"
+            :order="order"
+            :ui-labels="uiLabels"
+            :lang="lang"
+            :key="key">
+          </OrderItemBeingPrepared>
+        </div>
+        <h1>{{ uiLabels.ordersFinished }}</h1>
+        <div id="finishedOrders">
+          <OrderItemDone class="singleOrder"
+            v-for="(order, key) in orders"
+            v-if="order.status === 'done'"
+            v-on:served="markServed(key)"
+            :order-id="key"
+            :order="order"
+            :lang="lang"
+            :ui-labels="uiLabels"
+            :key="key">
+          </OrderItemDone> <!-- orders is found in sharedVueStuff.js -->
+        </div>
+      </div>
+    </div>
+    <div v-show = "page===2">  <!--Saldo -->
+
+    </div>
+    <div v-show = "page===3">  <!--Product statistics -->
+
+    </div>
 
   </div>
-</div>
 </template>
 <script>
 import OrderItem from '@/components/OrderItem.vue'
@@ -64,7 +81,8 @@ export default {
   data: function(){
     return {
       chosenIngredients: [],
-      price: 0
+      price: 0,
+      page: 0
     }
   },
   methods: {
@@ -76,7 +94,10 @@ export default {
     },
     markServed: function (orderid) {
       this.$store.state.socket.emit("orderServed", orderid)
-    } // these communicates with serve.js
+    }, // these communicates with serve.js
+    changePage: function (pageNr) {
+      this.page = pageNr;
+    }
   }
 }
 </script>
