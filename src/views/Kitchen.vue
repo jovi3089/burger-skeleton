@@ -2,14 +2,13 @@
   <div class="root">
 
 
-    <div v-show = "page===0">  <!--Home page for staff -->
+    <div class="homePage" v-show = "page===0">  <!--Home page for staff -->
       <StaffHomePage
       v-on:workFlow="changePage(1)"
       v-on:saldo="changePage(2)"
       v-on:statistics="changePage(3)"
       :ui-labels="uiLabels"
       :lang="lang"
-
       >
       </StaffHomePage>
     </div>
@@ -137,6 +136,9 @@ export default {
     border-color: Crimson;
     border-radius: 10px;
     height: 3.5em;
+  }
+  .homePage {
+
   }
 
   #ordersWorkedOn{
