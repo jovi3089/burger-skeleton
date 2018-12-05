@@ -2,7 +2,7 @@
 <div id="orders">
   <h1>{{ uiLabels.ordersInQueue }}</h1>
   <div id="ordersToPrepare">
-    <OrderItemToPrepare id="singleOrder"
+    <OrderItemToPrepare class="singleOrder"
       v-for="(order, key) in orders"
       v-if="order.status === 'not-started'"
       v-on:started="markStarted(key)"
@@ -15,7 +15,7 @@
   </div>
   <h1>{{ uiLabels.ordersWorkingOn }}</h1>
   <div id="ordersWorkedOn">
-    <OrderItemBeingPrepared
+    <OrderItemBeingPrepared class="singleOrder"
       v-for="(order, key) in orders"
       v-if="order.status === 'started'"
       v-on:done="markDone(key)"
@@ -26,9 +26,9 @@
       :key="key">
     </OrderItemBeingPrepared>
   </div>
-  <h1>{{ uiLabels.ordersFinished }}</h1>'
+  <h1>{{ uiLabels.ordersFinished }}</h1>
   <div id="finishedOrders">
-    <OrderItemDone
+    <OrderItemDone class="singleOrder"
       v-for="(order, key) in orders"
       v-if="order.status === 'done'"
       v-on:served="markServed(key)"
@@ -83,13 +83,14 @@ export default {
 
 <style scoped>
 	#orders {
-
     width: 100vw; /*vw 100% of the page width is covered by orders*/
     height: 100vh; /*vw 100% of the page height is covered by orders*/
     display: grid;
-    justify-content: space-even;
+    justify-content: flex-start;
     grid-template-columns: 33% 33% 33%;
     font-size: 24pt;
+    grid-row-gap: 1em;
+    grid-column-gap: .5em;
   }
 
   #ordersToPrepare{
@@ -101,16 +102,13 @@ export default {
     min-height:100%;
     max-height:100%;
     overflow-y: auto;
-    grid-row-gap: 1em;
-
   }
-  #singleOrder{
+  .singleOrder{ /*Class for all orders*/
     border: 2px solid;
     border-color: Crimson;
     border-radius: 10px;
-
+    height: 3.5em;
   }
-
 
   #ordersWorkedOn{
     display: grid;
@@ -132,7 +130,6 @@ export default {
     min-height:100%;
     max-height:100%;
     overflow-y: auto;
-
   }
 
   h1 {
