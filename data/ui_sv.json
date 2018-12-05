@@ -19,5 +19,8 @@
   "ready" : "Klart",
   "served" : "Serverad",
   "order" : "Min burgare",
-  "language" : "English"
+  "language" : "English",
+  "hamburger" : "Hamburgare",
+  "sides" : "Tillbehör",
+  "beverage" : "Dryck"
 }

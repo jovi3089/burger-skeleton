@@ -19,5 +19,8 @@
   "ready" : "Done",
   "served" : "Served",
   "order" : "My burger",
-  "language" : "Svenska"
+  "language" : "Svenska",
+  "hamburger" : "Hamburger",
+  "sides" : "Sides",
+  "beverage" : "Beverage"
 }
