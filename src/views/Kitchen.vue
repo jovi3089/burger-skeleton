@@ -86,7 +86,7 @@ export default {
     width: 100vw; /*vw 100% of the page width is covered by orders*/
     height: 100vh; /*vw 100% of the page height is covered by orders*/
     display: grid;
-    justify-content: flex-start;
+    justify-content: flex-start; /*The items start at top*/
     grid-template-columns: 33% 33% 33%;
     font-size: 24pt;
     grid-row-gap: 1em;
@@ -101,7 +101,7 @@ export default {
     grid-template-columns: repeat(1,1fr);
     min-height:100%;
     max-height:100%;
-    overflow-y: auto;
+    /*overflow-y: auto;*/
   }
   .singleOrder{ /*Class for all orders*/
     border: 2px solid;
