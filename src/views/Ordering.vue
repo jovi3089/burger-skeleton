@@ -16,12 +16,24 @@
 
     <div v-show="step===1">
       <h1>Page 1</h1>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+      <MenuPage
+        :step="step">
+      </MenuPage>
+=======
+>>>>>>> cd8ecb2b9de6141f5955f0bb62c096a7439d6514
        HEAD
 
       <MenuPage
         :step="step">
       </MenuPage>
 
+<<<<<<< HEAD
+=======
+>>>>>>> 683e070aad7a6d0f071dd0a96d45b293bcf532e3
+>>>>>>> cd8ecb2b9de6141f5955f0bb62c096a7439d6514
       <button v-on:click="newPage(0)">Tillbaka</button>
       <button v-on:click="newPage(2)">Switch to page 2</button>
     </div>
@@ -59,7 +71,7 @@
 
     <h1>{{ uiLabels.ordersInQueue }}</h1>
     <div>
-      <OrderItem
+      <OrderItemDone
         class="orderItem"
         v-for="(order, key) in orders"
         v-if="order.status !== 'done'"
@@ -68,7 +80,7 @@
         :ui-labels="uiLabels"
         :lang="lang"
         :key="key">
-      </OrderItem>
+      </OrderItemDone>
     </div>
     </div>
   </div>
@@ -81,6 +93,7 @@
 import Ingredient from '@/components/Ingredient.vue'
 import OrderItem from '@/components/OrderItem.vue'
 import StartingPage from '@/components/StartingPage.vue'
+import MenuPage from '@/components/MenuPage.vue'
 
 
 //import methods and data that are shared between ordering and kitchen views
@@ -93,7 +106,8 @@ export default {
   components: {
     Ingredient,
     OrderItem,
-    StartingPage
+    StartingPage,
+    MenuPage
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             // the ordering system and the kitchen
