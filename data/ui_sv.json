@@ -15,7 +15,9 @@
   "placeOrder" : "Beställ",
   "sideorders" : "Tillbehör",
   "ingredients" : "Ingredienser",
+  "started" : "Starta",
   "ready" : "Klart",
+  "served" : "Serverad",
   "order" : "Min burgare",
   "language" : "English"
 }

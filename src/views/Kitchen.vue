@@ -4,7 +4,7 @@
   <div id="ordersToPrepare">
     <OrderItemToPrepare id="singleOrder"
       v-for="(order, key) in orders"
-      v-if="order.status === 'not-started' "
+      v-if="order.status === 'not-started'"
       v-on:started="markStarted(key)"
       :order-id="key"
       :order="order"
@@ -28,15 +28,16 @@
   </div>
   <h1>{{ uiLabels.ordersFinished }}</h1>'
   <div id="finishedOrders">
-    <OrderItem
+    <OrderItemDone
       v-for="(order, key) in orders"
       v-if="order.status === 'done'"
+      v-on:served="markServed(key)"
       :order-id="key"
       :order="order"
       :lang="lang"
       :ui-labels="uiLabels"
       :key="key">
-    </OrderItem> <!-- orders is found in sharedVueStuff.js -->
+    </OrderItemDone> <!-- orders is found in sharedVueStuff.js -->
 
   </div>
 </div>
@@ -45,6 +46,7 @@
 import OrderItem from '@/components/OrderItem.vue'
 import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
 import OrderItemBeingPrepared from '@/components/OrderItemBeingPrepared.vue'
+import OrderItemDone from '@/components/OrderItemDone.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -54,7 +56,8 @@ export default {
   components: {
     OrderItem,
     OrderItemToPrepare,
-    OrderItemBeingPrepared
+    OrderItemBeingPrepared,
+    OrderItemDone
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
@@ -70,7 +73,10 @@ export default {
     },
     markStarted: function (orderid) {
       this.$store.state.socket.emit("orderStarted", orderid)
-    }
+    },
+    markServed: function (orderid) {
+      this.$store.state.socket.emit("orderServed", orderid)
+    } // these communicates with serve.js
   }
 }
 </script>
