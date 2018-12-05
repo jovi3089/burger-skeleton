@@ -2,7 +2,7 @@
 <div id="orders">
   <h1>{{ uiLabels.ordersInQueue }}</h1>
   <div id="ordersToPrepare">
-    <OrderItemToPrepare
+    <OrderItemToPrepare id="singleOrder"
       v-for="(order, key) in orders"
       v-if="order.status === 'not-started' "
       v-on:started="markStarted(key)"
@@ -78,13 +78,12 @@ export default {
 <style scoped>
 	#orders {
 
-    width: 100vw;
-    height: 100vh;
+    width: 100vw; /*vw 100% of the page width is covered by orders*/
+    height: 100vh; /*vw 100% of the page height is covered by orders*/
     display: grid;
     justify-content: space-even;
     grid-template-columns: 33% 33% 33%;
     font-size: 24pt;
-
   }
 
   #ordersToPrepare{
@@ -96,7 +95,17 @@ export default {
     min-height:100%;
     max-height:100%;
     overflow-y: auto;
+    grid-row-gap: 1em;
+
   }
+  #singleOrder{
+    border: 2px solid;
+    border-color: Crimson;
+    border-radius: 10px;
+
+  }
+
+
   #ordersWorkedOn{
     display: grid;
     grid-column-start: 2;
