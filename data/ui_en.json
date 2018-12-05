@@ -20,8 +20,14 @@
   "served" : "Served",
   "order" : "My burger",
   "language" : "Svenska",
+<<<<<<< HEAD
   "workFlow" : "Work flow",
   "saldo" : "Products saldo",
   "statistics" : "Costumer statistics"
 
+=======
+  "hamburger" : "Hamburger",
+  "sides" : "Sides",
+  "beverage" : "Beverage"
+>>>>>>> 9ef7605a7794e340433794730923517e76f558a2
 }

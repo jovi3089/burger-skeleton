@@ -2,13 +2,13 @@
   <div class="menupage">
     <h1>Menupage</h1>
     <label>
-      <button v-on:click="burgerPush"> {{ hamburger }}</button>
+      <button class="buttonburg" v-on:click="burgerPush"> {{ hamburger }}</button>
     </label>
     <label>
-      <button v-on:click="sidesPush"> {{ sides }}</button>
+      <button class="buttonside" v-on:click="sidesPush"> {{ sides }}</button>
     </label>
     <label>
-      <button v-on:click="beveragePush"> {{ beverage }}</button>
+      <button class="buttonbev" v-on:click="beveragePush"> {{ beverage }}</button>
     </label>
   </div>
 </template>
@@ -29,23 +29,70 @@ export default {
   },
   methods: {
     burgerPush: function () {
-      this.step = 2;
+      this.$emit('burger');
     },
     sidesPush: function () {
-      this.step = 3;
+      this.$emit('side');
     },
     beveragePush: function () {
-      this.step = 4;
+      this.$emit('beverage');
     }
   }
 }
 </script>
 <style scoped>
+
 .menupage {
   border: 1px solid #ccd;
   padding: 1em;
   /*background-image: url('~@/assets/exampleImage.jpg');*/
-  background-color: #ffffff;
+  background-color: #ccc;
   color: black;
+}
+
+.buttonburg {
+    background-color: #ffab40ff; /* Green */
+    border-radius: 2em;
+    border: 1px solid #000;
+    width: 25em;
+    height: 5em;
+    color: black;
+    /*padding: 15px 32px;*/
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    font-size: 16px;
+
+}
+
+.buttonside {
+    background-color: #93c47dff; /* Green */
+    border-radius: 2em;
+    border: 1px solid #000;
+    width: 25em;
+    height: 5em;
+    color: black;
+    /*padding: 15px 32px;*/
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+}
+
+.buttonbev {
+    background-color: #c27ba0ff; /* Green */
+    border-radius: 2em;
+    border: 1px solid #000;
+    width: 25em;
+    height: 5em;
+    color: black;
+    /*padding: 15px 32px;*/
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
 }
 </style>

@@ -4,7 +4,7 @@
     samt gör varje steg till komponenter, innehållande
     css i resp komponent-->
   <div id="ordering">
-    <img class="example-panel" src="@/assets/exampleImage.jpg">
+    <img class="example-panel">
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
 
     <div v-show = "step===0">
@@ -15,9 +15,18 @@
     </div>
 
     <div v-show="step===1">
+      <MenuPage
+      :lang="lang"
+      v-on:burger="newPage(2)"
+      v-on:side="newPage(3)"
+      v-on:beverage="newPage(4)">
+      </MenuPage>
       <h1>Page 1</h1>
+
+
       <button v-on:click="newPage(0)">Tillbaka</button>
       <button v-on:click="newPage(2)">Switch to page 2</button>
+
     </div>
 
     <div v-show="step===2">
@@ -32,7 +41,13 @@
       <button v-on:click="newPage(4)">Switch to page 4</button>
     </div>
 
-    <div v-show = "step===4">
+    <div v-show="step===4">
+      <h1>Page 3</h1>
+      <button v-on:click="newPage(2)">Tillbaka</button>
+      <button v-on:click="newPage(5)">Switch to page 5</button>
+    </div>
+
+    <div v-show = "step===5">
     <h1>{{ uiLabels.ingredients }}</h1>
 
     <Ingredient
@@ -155,7 +170,13 @@ export default {
   position: relative;
 }*/
 
-
+.ingredient {
+  width: 7em;
+  border: 1px solid #ccd;
+  padding: 1em;
+  background-image: url('~@/assets/exampleImage.jpg');
+  color: white;
+}
 
 .grid-wrapper {
   display: grid;
@@ -164,6 +185,7 @@ export default {
 }
 
 .example-panel {
+  background-color: white;
   position: fixed;
   left:0;
   top:0;
@@ -176,7 +198,7 @@ export default {
   left: 0;
   bottom: 0;
   padding: 1em;
-  background-color: white;
+  background-color: #ccc;
 }
 
 </style>
