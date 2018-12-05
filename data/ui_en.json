@@ -19,5 +19,9 @@
   "ready" : "Done",
   "served" : "Served",
   "order" : "My burger",
-  "language" : "Svenska"
+  "language" : "Svenska",
+  "workFlow" : "Work flow",
+  "saldo" : "Products saldo",
+  "statistics" : "Costumer statistics"
+
 }
