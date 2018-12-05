@@ -16,6 +16,7 @@
 
     <div v-show="step===1">
       <MenuPage
+      :ui-labels="uiLabels"
       :lang="lang"
       v-on:burger="newPage(2)"
       v-on:side="newPage(3)"

@@ -2,13 +2,13 @@
   <div class="menupage">
     <h1>Menupage</h1>
     <label>
-      <button class="buttonburg" v-on:click="burgerPush"> {{ hamburger }}</button>
+      <button class="button" id="buttonburg" v-on:click="burgerPush"> {{ uiLabels.hamburger }}</button>
     </label>
     <label>
-      <button class="buttonside" v-on:click="sidesPush"> {{ sides }}</button>
+      <button class="button" id="buttonside" v-on:click="sidesPush"> {{ uiLabels.sides }}</button>
     </label>
     <label>
-      <button class="buttonbev" v-on:click="beveragePush"> {{ beverage }}</button>
+      <button class="button" id="buttonbev" v-on:click="beveragePush"> {{ uiLabels.beverage }}</button>
     </label>
   </div>
 </template>
@@ -16,6 +16,7 @@
 export default {
   name: 'MenuPage',
   props: {
+    uiLabels: Object,
     lang: String,
     step: Number
   },
@@ -48,51 +49,32 @@ export default {
   /*background-image: url('~@/assets/exampleImage.jpg');*/
   background-color: #ccc;
   color: black;
+  position: absolute;
 }
 
-.buttonburg {
+.button {
+  border-radius: 2em;
+  border: 1px solid #000;
+  width: 25em;
+  height: 5em;
+  color: black;
+  /*padding: 15px 32px;*/
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  font-size: 16px;
+}
+
+#buttonburg {
     background-color: #ffab40ff; /* Green */
-    border-radius: 2em;
-    border: 1px solid #000;
-    width: 25em;
-    height: 5em;
-    color: black;
-    /*padding: 15px 32px;*/
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-    display: block;
-    font-size: 16px;
-
 }
 
-.buttonside {
+#buttonside {
     background-color: #93c47dff; /* Green */
-    border-radius: 2em;
-    border: 1px solid #000;
-    width: 25em;
-    height: 5em;
-    color: black;
-    /*padding: 15px 32px;*/
-    text-align: center;
-    font-weight: bold;
-    text-decoration: none;
-    display: block;
-    font-size: 16px;
 }
 
-.buttonbev {
+#buttonbev {
     background-color: #c27ba0ff; /* Green */
-    border-radius: 2em;
-    border: 1px solid #000;
-    width: 25em;
-    height: 5em;
-    color: black;
-    /*padding: 15px 32px;*/
-    text-align: center;
-    font-weight: bold;
-    text-decoration: none;
-    display: block;
-    font-size: 16px;
 }
 </style>
