@@ -19,5 +19,8 @@
   "ready" : "Klart",
   "served" : "Serverad",
   "order" : "Min burgare",
-  "language" : "English"
+  "language" : "English",
+  "workFlow" : "Arbetsflöde",
+  "saldo" : "Produktsaldo",
+  "statistics" : "Kundstatistik"
 }
