@@ -29,6 +29,11 @@
     </div>
 
     <div v-show="step===2">
+      <HamburgerPage
+      class="menupage"
+      :ui-labels="uiLabels"
+      :lang="lang">
+      </HamburgerPage>
       <h1>Page 2</h1>
       <button v-on:click="newPage(1)">Tillbaka</button>
       <button v-on:click="newPage(3)">Switch to page 3</button>
@@ -90,7 +95,7 @@ import Ingredient from '@/components/Ingredient.vue'
 import OrderItem from '@/components/OrderItem.vue'
 import StartingPage from '@/components/StartingPage.vue'
 import MenuPage from '@/components/MenuPage.vue'
-
+import HamburgerPage from '@/components/HamburgerPage.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -103,7 +108,8 @@ export default {
     Ingredient,
     OrderItem,
     StartingPage,
-    MenuPage
+    MenuPage,
+    HamburgerPage
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             // the ordering system and the kitchen

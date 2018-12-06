@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Menupage</h1>
+    <h1>Burgerpage</h1>
     <label>
       <button class="button" id="buttonburg" v-on:click="menuPush(1)"> {{ uiLabels.hamburger }}</button>
     </label>
@@ -14,7 +14,7 @@
 </template>
 <script>
 export default {
-  name: 'MenuPage',
+  name: 'HamburgerPage',
   props: {
     uiLabels: Object,
     lang: String,
