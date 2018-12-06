@@ -41,7 +41,7 @@ export default {
   /*background-image: url('~@/assets/exampleImage.jpg');*/
   background-color: #ccc;
   color: black;
-    position: absolute;
+  position: absolute;
 }
 .button {
     background-color: #ffab40ff; /* Green */
