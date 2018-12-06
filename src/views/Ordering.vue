@@ -32,7 +32,8 @@
       <HamburgerPage
       class="menupage"
       :ui-labels="uiLabels"
-      :lang="lang">
+      :lang="lang"
+      v-on:designBurger="newPage(5)">
       </HamburgerPage>
       <h1>Page 2</h1>
       <button v-on:click="newPage(1)">Tillbaka</button>
@@ -59,6 +60,7 @@
       v-for="item in ingredients"
       v-if="item.category===category"
       v-on:increment="addToOrder(item)"
+      v-on:changeCategory="changeCategory(2)"
       :item="item"
       :lang="lang"
       :key="item.ingredient_id">
@@ -134,7 +136,9 @@ export default {
     newPage: function(toPage){
       this.step = toPage;
     },
-
+    changeCategory: function (toCategory) {
+      this.cateory = toCategory;
+    },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;

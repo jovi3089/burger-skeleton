@@ -2,13 +2,13 @@
   <div>
     <h1>Burgerpage</h1>
     <label>
-      <button class="button" id="buttonburg" v-on:click="menuPush(1)"> {{ uiLabels.hamburger }}</button>
+      <button class="button" id="buttondesign" v-on:click="menuPush(1)"> {{ uiLabels.designBurger }}</button>
     </label>
     <label>
-      <button class="button" id="buttonside" v-on:click="menuPush(2)"> {{ uiLabels.sides }}</button>
+      <button class="button" id="buttonpopular" v-on:click="menuPush(2)"> {{ uiLabels.popularBurger }}</button>
     </label>
     <label>
-      <button class="button" id="buttonbev" v-on:click="menuPush(3)"> {{ uiLabels.beverage }}</button>
+      <button class="button" id="buttonrandom" v-on:click="menuPush(3)"> {{ uiLabels.randomBurger }}</button>
     </label>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
   methods: {
     menuPush: function (menuChoice) {
       switch (menuChoice) {
-        case 1: this.$emit('burger')
+        case 1: this.$emit('designBurger')
         break;
         case 2: this.$emit('side')
         break;
@@ -59,15 +59,15 @@ export default {
   margin: auto auto;
 }
 
-#buttonburg {
+#buttondesign {
     background-color: #ffab40ff; /* Green */
 }
 
-#buttonside {
-    background-color: #93c47dff; /* Green */
+#buttonpopular {
+    background-color: #f9cb9cff; /* Green */
 }
 
-#buttonbev {
-    background-color: #c27ba0ff; /* Green */
+#buttonrandom {
+    background-color: #fce5cdff; /* Green */
 }
 </style>
