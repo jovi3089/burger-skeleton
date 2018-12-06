@@ -4,6 +4,10 @@
       <button v-on:click="incrementCounter">{{ counter }}</button>
       {{item["ingredient_"+ lang]}}, {{item.selling_price}}:-, {{item.stock}} pcs
     </label>
+    <!--<label>
+      <button class="button" id="buttonburg" v-on:click="categoryPush()"> {{ uiLabels.hamburger }}</button>
+    </label>-->
+    </label>
   </div>
 </template>
 <script>

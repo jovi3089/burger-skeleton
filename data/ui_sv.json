@@ -26,5 +26,8 @@
   "hamburger" : "Hamburgare",
   "sides" : "Tillbehör",
   "beverage" : "Dryck",
+  "designBurger" : "Sätt ihop egen burgare",
+  "popularBurger" : "De mest populära",
+  "randomBurger" : "Slumpa",
   "toOrderPage" : "Jag vill beställa"
 }

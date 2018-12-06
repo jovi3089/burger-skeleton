@@ -16,6 +16,7 @@
 
     <div v-show="step===1">
       <MenuPage
+      class="menupage"
       :ui-labels="uiLabels"
       :lang="lang"
       v-on:burger="newPage(2)"
@@ -23,14 +24,17 @@
       v-on:beverage="newPage(4)">
       </MenuPage>
       <h1>Page 1</h1>
-
-
       <button v-on:click="newPage(0)">Tillbaka</button>
       <button v-on:click="newPage(2)">Switch to page 2</button>
-
     </div>
 
     <div v-show="step===2">
+      <HamburgerPage
+      class="menupage"
+      :ui-labels="uiLabels"
+      :lang="lang"
+      v-on:designBurger="newPage(5)">
+      </HamburgerPage>
       <h1>Page 2</h1>
       <button v-on:click="newPage(1)">Tillbaka</button>
       <button v-on:click="newPage(3)">Switch to page 3</button>
@@ -56,6 +60,7 @@
       v-for="item in ingredients"
       v-if="item.category===category"
       v-on:increment="addToOrder(item)"
+      v-on:changeCategory="changeCategory(2)"
       :item="item"
       :lang="lang"
       :key="item.ingredient_id">
@@ -92,7 +97,7 @@ import Ingredient from '@/components/Ingredient.vue'
 import OrderItem from '@/components/OrderItem.vue'
 import StartingPage from '@/components/StartingPage.vue'
 import MenuPage from '@/components/MenuPage.vue'
-
+import HamburgerPage from '@/components/HamburgerPage.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -107,7 +112,8 @@ export default {
     Ingredient,
     OrderItem,
     StartingPage,
-    MenuPage
+    MenuPage,
+    HamburgerPage
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             // the ordering system and the kitchen
@@ -132,7 +138,9 @@ export default {
     newPage: function(toPage){
       this.step = toPage;
     },
-
+    changeCategory: function (toCategory) {
+      this.cateory = toCategory;
+    },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;
@@ -162,6 +170,8 @@ export default {
   margin:auto;
   max-width: 40em; /*sidan skalas om när fönstret minskas*/
   padding-bottom: 20em;
+  font-family: Helvetica, sans-serif;
+  text-align: center;
 }
 
 .orderItem {
@@ -179,6 +189,14 @@ export default {
   padding: 1em;
   background-image: url('~@/assets/exampleImage.jpg');
   color: white;
+}
+
+.menupage {
+  /*border: 1px solid #ccd;*/
+  padding: 1em;
+  /*background-image: url('~@/assets/exampleImage.jpg');*/
+  color: black;
+  text-align: center;
 }
 
 .grid-wrapper {
