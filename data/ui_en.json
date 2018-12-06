@@ -25,5 +25,8 @@
   "statistics" : "Costumer statistics",
   "hamburger" : "Hamburger",
   "sides" : "Sides",
-  "beverage" : "Beverage"
+  "beverage" : "Beverage",
+  "designBurger" : "Design your own burger",
+  "popularBurger" : "The most popular burgers",
+  "randomBurger" : "Randomize burger"
 }

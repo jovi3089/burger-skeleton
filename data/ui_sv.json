@@ -25,5 +25,8 @@
   "statistics" : "Kundstatistik",
   "hamburger" : "Hamburgare",
   "sides" : "Tillbehör",
-  "beverage" : "Dryck"
+  "beverage" : "Dryck",
+  "designBurger" : "Sätt ihop egen burgare",
+  "popularBurger" : "De mest populära",
+  "randomBurger" : "Slumpa"
 }
