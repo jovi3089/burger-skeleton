@@ -20,13 +20,10 @@
   "served" : "Serverad",
   "order" : "Min burgare",
   "language" : "English",
-<<<<<<< HEAD
   "workFlow" : "Arbetsflöde",
   "saldo" : "Produktsaldo",
-  "statistics" : "Kundstatistik"
-=======
+  "statistics" : "Kundstatistik",
   "hamburger" : "Hamburgare",
   "sides" : "Tillbehör",
   "beverage" : "Dryck"
->>>>>>> 9ef7605a7794e340433794730923517e76f558a2
 }

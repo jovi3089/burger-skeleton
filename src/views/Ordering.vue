@@ -16,6 +16,7 @@
 
     <div v-show="step===1">
       <MenuPage
+      class="menupage"
       :ui-labels="uiLabels"
       :lang="lang"
       v-on:burger="newPage(2)"
@@ -23,11 +24,8 @@
       v-on:beverage="newPage(4)">
       </MenuPage>
       <h1>Page 1</h1>
-
-
       <button v-on:click="newPage(0)">Tillbaka</button>
       <button v-on:click="newPage(2)">Switch to page 2</button>
-
     </div>
 
     <div v-show="step===2">
@@ -160,6 +158,8 @@ export default {
   margin:auto;
   max-width: 40em; /*sidan skalas om när fönstret minskas*/
   padding-bottom: 20em;
+  font-family: Helvetica, sans-serif;
+  text-align: center;
 }
 
 .orderItem {
@@ -177,6 +177,14 @@ export default {
   padding: 1em;
   background-image: url('~@/assets/exampleImage.jpg');
   color: white;
+}
+
+.menupage {
+  /*border: 1px solid #ccd;*/
+  padding: 1em;
+  /*background-image: url('~@/assets/exampleImage.jpg');*/
+  color: black;
+  text-align: center;
 }
 
 .grid-wrapper {

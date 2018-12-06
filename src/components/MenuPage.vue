@@ -1,5 +1,5 @@
 <template>
-  <div class="menupage">
+  <div>
     <h1>Menupage</h1>
     <label>
       <button class="button" id="buttonburg" v-on:click="burgerPush"> {{ uiLabels.hamburger }}</button>
@@ -43,15 +43,6 @@ export default {
 </script>
 <style scoped>
 
-.menupage {
-  border: 1px solid #ccd;
-  padding: 1em;
-  /*background-image: url('~@/assets/exampleImage.jpg');*/
-  background-color: #ccc;
-  color: black;
-  position: absolute;
-}
-
 .button {
   border-radius: 2em;
   border: 1px solid #000;
@@ -63,7 +54,8 @@ export default {
   text-decoration: none;
   font-weight: bold;
   display: block;
-  font-size: 16px;
+  /*font-size: 16px;*/
+  margin: auto auto;
 }
 
 #buttonburg {
