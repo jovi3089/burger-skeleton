@@ -4,18 +4,14 @@
     samt gör varje steg till komponenter, innehållande
     css i resp komponent-->
   <div id="ordering">
-<<<<<<< HEAD
     <img class="example-panel" src="@/assets/background-board-spices.jpg">
-=======
-    <img class="example-panel">
-    <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
-
->>>>>>> 9b7579a159f89c08e890961e6798f6d27d335174
     <div v-show = "step===0">
-      <h1>Page 0</h1>
-      <StartingPage :ui-labels="uiLabels"> <!-- FRÅGA:: Vad behöver läsas in här för att användas i StartingPage-komponenten?-->
+      <StartingPage
+        :ui-labels="uiLabels"
+        :lang="lang"
+        @switchLang="switchLang"
+        v-on:orderpage="newPage(1)">
       </StartingPage>
-      <button v-on:click="newPage(1)">Switch to page 1</button>
     </div>
 
     <div v-show="step===1">
@@ -120,15 +116,11 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
-<<<<<<< HEAD
-      step: 0
-=======
-//<<<<<<< HEAD
+
       step: 0,
-//=======
+
       category: 1
-//>>>>>>> 63448c715c6124b2e33f1836f13303e57fdf1b3e
->>>>>>> 9b7579a159f89c08e890961e6798f6d27d335174
+
     }
   },
   created: function () {
@@ -202,15 +194,11 @@ template {
 }
 
 .example-panel {
-<<<<<<< HEAD
   width: 100%;
-  height: 100%;*/
+  height: 100%;
   max-height: 100%;
   margin: 0;
   padding: 0;
-=======
-  background-color: white;
->>>>>>> 9b7579a159f89c08e890961e6798f6d27d335174
   position: fixed;
   left:0;
   top:0;
