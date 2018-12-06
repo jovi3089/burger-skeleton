@@ -67,7 +67,7 @@
 
     <h1>{{ uiLabels.ordersInQueue }}</h1>
     <div>
-      <OrderItemDone
+      <OrderItem
         class="orderItem"
         v-for="(order, key) in orders"
         v-if="order.status !== 'done'"
@@ -76,7 +76,7 @@
         :ui-labels="uiLabels"
         :lang="lang"
         :key="key">
-      </OrderItemDone>
+      </OrderItem>
     </div>
     </div>
   </div>
