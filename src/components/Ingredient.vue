@@ -33,10 +33,5 @@ export default {
 }
 </script>
 <style scoped>
-.ingredient {
-  border: 1px solid #ccd;
-  padding: 1em;
-  background-image: url('~@/assets/exampleImage.jpg');
-  color: white;
-}
+/*stycket ovan kan lika väl ligga i ordering.vue <style>*/
 </style>
