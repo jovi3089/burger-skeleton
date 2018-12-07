@@ -26,12 +26,9 @@
   "hamburger" : "Hamburger",
   "sides" : "Sides",
   "beverage" : "Beverage",
-<<<<<<< HEAD
-  "back" : "Back to home"
-=======
+  "back" : "Back to home",
   "designBurger" : "Design your own burger",
   "popularBurger" : "The most popular burgers",
   "randomBurger" : "Randomize burger",
   "toOrderPage" : "I want to order"
->>>>>>> 44380b17f72575abda0ed02d5256207cd4281c9c
 }
