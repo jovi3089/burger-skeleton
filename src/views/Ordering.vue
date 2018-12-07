@@ -4,23 +4,37 @@
     samt gör varje steg till komponenter, innehållande
     css i resp komponent-->
   <div id="ordering">
-    <img class="example-panel" src="@/assets/exampleImage.jpg">
-    <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
-
+    <img class="example-panel" src="@/assets/background-board-spices.jpg">
     <div v-show = "step===0">
-      <h1>Page 0</h1>
-      <StartingPage>
+      <StartingPage
+        :ui-labels="uiLabels"
+        :lang="lang"
+        @switchLang="switchLang"
+        v-on:orderpage="newPage(1)">
       </StartingPage>
-      <button v-on:click="newPage(1)">Switch to page 1</button>
     </div>
 
     <div v-show="step===1">
+      <MenuPage
+      class="menupage"
+      :ui-labels="uiLabels"
+      :lang="lang"
+      v-on:burger="newPage(2)"
+      v-on:side="newPage(3)"
+      v-on:beverage="newPage(4)">
+      </MenuPage>
       <h1>Page 1</h1>
       <button v-on:click="newPage(0)">Tillbaka</button>
       <button v-on:click="newPage(2)">Switch to page 2</button>
     </div>
 
     <div v-show="step===2">
+      <HamburgerPage
+      class="menupage"
+      :ui-labels="uiLabels"
+      :lang="lang"
+      v-on:designBurger="newPage(5)">
+      </HamburgerPage>
       <h1>Page 2</h1>
       <button v-on:click="newPage(1)">Tillbaka</button>
       <button v-on:click="newPage(3)">Switch to page 3</button>
@@ -32,7 +46,13 @@
       <button v-on:click="newPage(4)">Switch to page 4</button>
     </div>
 
-    <div v-show = "step===4">
+    <div v-show="step===4">
+      <h1>Page 3</h1>
+      <button v-on:click="newPage(2)">Tillbaka</button>
+      <button v-on:click="newPage(5)">Switch to page 5</button>
+    </div>
+
+    <div v-show = "step===5">
     <h1>{{ uiLabels.ingredients }}</h1>
 
     <Ingredient
@@ -40,6 +60,7 @@
       v-for="item in ingredients"
       v-if="item.category===category"
       v-on:increment="addToOrder(item)"
+      v-on:changeCategory="changeCategory(2)"
       :item="item"
       :lang="lang"
       :key="item.ingredient_id">
@@ -53,7 +74,7 @@
 
     <h1>{{ uiLabels.ordersInQueue }}</h1>
     <div>
-      <OrderItemDone
+      <OrderItem
         class="orderItem"
         v-for="(order, key) in orders"
         v-if="order.status !== 'done'"
@@ -62,7 +83,7 @@
         :ui-labels="uiLabels"
         :lang="lang"
         :key="key">
-      </OrderItemDone>
+      </OrderItem>
     </div>
     </div>
   </div>
@@ -76,10 +97,12 @@ import Ingredient from '@/components/Ingredient.vue'
 import OrderItem from '@/components/OrderItem.vue'
 import StartingPage from '@/components/StartingPage.vue'
 import MenuPage from '@/components/MenuPage.vue'
-
+import HamburgerPage from '@/components/HamburgerPage.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
+
+
 
 /* instead of defining a Vue instance, export default allows the only
 necessary Vue instance (found in main.js) to import your data and methods */
@@ -89,7 +112,8 @@ export default {
     Ingredient,
     OrderItem,
     StartingPage,
-    MenuPage
+    MenuPage,
+    HamburgerPage
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             // the ordering system and the kitchen
@@ -98,11 +122,11 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
-//<<<<<<< HEAD
+
       step: 0,
-//=======
+
       category: 1
-//>>>>>>> 63448c715c6124b2e33f1836f13303e57fdf1b3e
+
     }
   },
   created: function () {
@@ -114,7 +138,9 @@ export default {
     newPage: function(toPage){
       this.step = toPage;
     },
-
+    changeCategory: function (toCategory) {
+      this.cateory = toCategory;
+    },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;
@@ -144,6 +170,8 @@ export default {
   margin:auto;
   max-width: 40em; /*sidan skalas om när fönstret minskas*/
   padding-bottom: 20em;
+  font-family: Helvetica, sans-serif;
+  text-align: center;
 }
 
 .orderItem {
@@ -155,7 +183,21 @@ export default {
   position: relative;
 }*/
 
+.ingredient {
+  width: 7em;
+  border: 1px solid #ccd;
+  padding: 1em;
+  background-image: url('~@/assets/exampleImage.jpg');
+  color: white;
+}
 
+.menupage {
+  /*border: 1px solid #ccd;*/
+  padding: 1em;
+  /*background-image: url('~@/assets/exampleImage.jpg');*/
+  color: black;
+  text-align: center;
+}
 
 .grid-wrapper {
   display: grid;
@@ -163,7 +205,18 @@ export default {
   grid-gap: 1em;
 }
 
+template {
+  margin: 0;
+  height: 100%;
+  overflow: hidden
+}
+
 .example-panel {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
   position: fixed;
   left:0;
   top:0;
@@ -176,7 +229,7 @@ export default {
   left: 0;
   bottom: 0;
   padding: 1em;
-  background-color: white;
+  background-color: #ccc;
 }
 
 </style>

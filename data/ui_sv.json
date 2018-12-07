@@ -19,5 +19,19 @@
   "ready" : "Klart",
   "served" : "Serverad",
   "order" : "Min burgare",
-  "language" : "English"
+  "language" : "English",
+  "workFlow" : "Arbetsflöde",
+  "saldo" : "Produktsaldo",
+  "statistics" : "Kundstatistik",
+  "hamburger" : "Hamburgare",
+  "sides" : "Tillbehör",
+  "beverage" : "Dryck",
+<<<<<<< HEAD
+  "back" : "Tillbaka till hem"
+=======
+  "designBurger" : "Sätt ihop egen burgare",
+  "popularBurger" : "De mest populära",
+  "randomBurger" : "Slumpa",
+  "toOrderPage" : "Jag vill beställa"
+>>>>>>> 44380b17f72575abda0ed02d5256207cd4281c9c
 }

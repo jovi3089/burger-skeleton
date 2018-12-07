@@ -4,6 +4,10 @@
       <button v-on:click="incrementCounter">{{ counter }}</button>
       {{item["ingredient_"+ lang]}}, {{item.selling_price}}:-, {{item.stock}} pcs
     </label>
+    <!--<label>
+      <button class="button" id="buttonburg" v-on:click="categoryPush()"> {{ uiLabels.hamburger }}</button>
+    </label>-->
+    </label>
   </div>
 </template>
 <script>
@@ -33,13 +37,5 @@ export default {
 }
 </script>
 <style scoped>
-
-.ingredient {
-  width: 7em;
-  border: 1px solid #ccd;
-  padding: 1em;
-  background-image: url('~@/assets/exampleImage.jpg');
-  color: white;
-}
 /*stycket ovan kan lika väl ligga i ordering.vue <style>*/
 </style>

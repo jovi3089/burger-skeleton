@@ -1,14 +1,14 @@
 <template>
-  <div class="menupage">
+  <div>
     <h1>Menupage</h1>
     <label>
-      <button v-on:click="burgerPush"> {{ hamburger }}</button>
+      <button class="button" id="buttonburg" v-on:click="menuPush(1)"> {{ uiLabels.hamburger }}</button>
     </label>
     <label>
-      <button v-on:click="sidesPush"> {{ sides }}</button>
+      <button class="button" id="buttonside" v-on:click="menuPush(2)"> {{ uiLabels.sides }}</button>
     </label>
     <label>
-      <button v-on:click="beveragePush"> {{ beverage }}</button>
+      <button class="button" id="buttonbev" v-on:click="menuPush(3)"> {{ uiLabels.beverage }}</button>
     </label>
   </div>
 </template>
@@ -16,6 +16,7 @@
 export default {
   name: 'MenuPage',
   props: {
+    uiLabels: Object,
     lang: String,
     step: Number
   },
@@ -28,24 +29,45 @@ export default {
     };
   },
   methods: {
-    burgerPush: function () {
-      this.step = 2;
-    },
-    sidesPush: function () {
-      this.step = 3;
-    },
-    beveragePush: function () {
-      this.step = 4;
+    menuPush: function (menuChoice) {
+      switch (menuChoice) {
+        case 1: this.$emit('burger')
+        break;
+        case 2: this.$emit('side')
+        break;
+        case 3: this.$emit('beverage')
+        break;
+      }
     }
   }
 }
 </script>
 <style scoped>
-.menupage {
-  border: 1px solid #ccd;
-  padding: 1em;
-  /*background-image: url('~@/assets/exampleImage.jpg');*/
-  background-color: #ffffff;
+
+.button {
+  border-radius: 2em;
+  border: 1px solid #000;
+  width: 25em;
+  height: 5em;
   color: black;
+  /*padding: 15px 32px;*/
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  /*font-size: 16px;*/
+  margin: auto auto;
+}
+
+#buttonburg {
+    background-color: #ffab40ff; /* Green */
+}
+
+#buttonside {
+    background-color: #93c47dff; /* Green */
+}
+
+#buttonbev {
+    background-color: #c27ba0ff; /* Green */
 }
 </style>
