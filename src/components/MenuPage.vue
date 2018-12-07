@@ -1,14 +1,14 @@
 <template>
-  <div class="menupage">
+  <div>
     <h1>Menupage</h1>
     <label>
-      <button class="button" id="buttonburg" v-on:click="burgerPush"> {{ uiLabels.hamburger }}</button>
+      <button class="button" id="buttonburg" v-on:click="menuPush(1)"> {{ uiLabels.hamburger }}</button>
     </label>
     <label>
-      <button class="button" id="buttonside" v-on:click="sidesPush"> {{ uiLabels.sides }}</button>
+      <button class="button" id="buttonside" v-on:click="menuPush(2)"> {{ uiLabels.sides }}</button>
     </label>
     <label>
-      <button class="button" id="buttonbev" v-on:click="beveragePush"> {{ uiLabels.beverage }}</button>
+      <button class="button" id="buttonbev" v-on:click="menuPush(3)"> {{ uiLabels.beverage }}</button>
     </label>
   </div>
 </template>
@@ -29,28 +29,20 @@ export default {
     };
   },
   methods: {
-    burgerPush: function () {
-      this.$emit('burger');
-    },
-    sidesPush: function () {
-      this.$emit('side');
-    },
-    beveragePush: function () {
-      this.$emit('beverage');
+    menuPush: function (menuChoice) {
+      switch (menuChoice) {
+        case 1: this.$emit('burger')
+        break;
+        case 2: this.$emit('side')
+        break;
+        case 3: this.$emit('beverage')
+        break;
+      }
     }
   }
 }
 </script>
 <style scoped>
-
-.menupage {
-  border: 1px solid #ccd;
-  padding: 1em;
-  /*background-image: url('~@/assets/exampleImage.jpg');*/
-  background-color: #ccc;
-  color: black;
-  position: absolute;
-}
 
 .button {
   border-radius: 2em;
@@ -63,7 +55,8 @@ export default {
   text-decoration: none;
   font-weight: bold;
   display: block;
-  font-size: 16px;
+  /*font-size: 16px;*/
+  margin: auto auto;
 }
 
 #buttonburg {
