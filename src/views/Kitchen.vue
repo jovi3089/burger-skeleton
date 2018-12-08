@@ -1,6 +1,15 @@
 <template>
   <div class="root">
-
+    <div class="homePage" v-show = "page===0">  <!--Home page for staff -->
+          <StaffHomePage
+          v-on:workFlow="changePage(1)"
+          v-on:saldo="changePage(2)"
+          v-on:statistics="changePage(3)"
+          :ui-labels="uiLabels"
+          :lang="lang"
+          >
+          </StaffHomePage>
+        </div>
 
     <div v-show = "page===0">  <!--Home page for staff -->
       <StaffHomePage>
@@ -25,8 +34,12 @@
 
         <h1>{{ uiLabels.ordersWorkingOn }}</h1>
         <div id="ordersWorkedOn">
+<<<<<<< HEAD
           <OrderItemBeingPrepared ref="beingPrep" class="singleOrder"
 
+=======
+          <OrderItemBeingPrepared ref="timer" class="singleOrder"
+>>>>>>> 889a9773923549814af8e924850ae23adc97a0ca
             v-for="(order, key) in orders"
             v-if="order.status === 'started'"
             v-on:done="markDone(key)"
@@ -51,13 +64,26 @@
             :key="key">
           </OrderItemDone> <!-- orders is found in sharedVueStuff.js -->
         </div>
+        <label>
+          <button class="backButton" v-on:click="changePage(0)">
+            {{uiLabels.back}}
+          </button>
+        </label>
       </div>
     </div>
     <div v-show = "page===2">  <!--Saldo -->
-
+      <label>
+        <button class="backButton" v-on:click="changePage(0)">
+          {{uiLabels.back}}
+        </button>
+      </label>
     </div>
     <div v-show = "page===3">  <!--Product statistics -->
-
+      <label>
+             <button class="backButton" v-on:click="changePage(0)">
+               {{uiLabels.back}}
+             </button>
+           </label>
     </div>
 
   </div>
@@ -68,6 +94,10 @@ import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
 import OrderItemBeingPrepared from '@/components/OrderItemBeingPrepared.vue'
 import OrderItemDone from '@/components/OrderItemDone.vue'
 import StaffHomePage from '@/components/StaffHomePage.vue'
+<<<<<<< HEAD
+=======
+import Timer from '@/components/Timer.vue'
+>>>>>>> 889a9773923549814af8e924850ae23adc97a0ca
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -79,8 +109,13 @@ export default {
     OrderItemToPrepare,
     OrderItemBeingPrepared,
     OrderItemDone,
+<<<<<<< HEAD
     StaffHomePage
 
+=======
+   StaffHomePage,
+   Timer
+>>>>>>> 889a9773923549814af8e924850ae23adc97a0ca
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
@@ -97,7 +132,12 @@ export default {
     },
     markStarted: function (orderid) {
       this.$store.state.socket.emit("orderStarted", orderid)
+<<<<<<< HEAD
       //this.$refs.beingPrep.startTimer()
+=======
+      this.$refs.timer.startTimer();
+      //this.$store.state.socket.emit("orderStarted", orderid)
+>>>>>>> 889a9773923549814af8e924850ae23adc97a0ca
     },
     markServed: function (orderid) {
       this.$store.state.socket.emit("orderServed", orderid)
@@ -145,8 +185,16 @@ export default {
     grid-row-start: 2;
     grid-template-columns: repeat(1, minmax(1em 1fr));
     overflow-y: auto;
-
   }
+
+  .homePage {
+    }
+   .backButton {
+     position:absolute;
+     top:0;
+     right:0;
+   }
+
   #finishedOrders{
     display: grid;
     grid-column-start: 3;
