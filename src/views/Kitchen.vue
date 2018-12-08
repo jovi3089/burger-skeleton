@@ -1,6 +1,15 @@
 <template>
   <div class="root">
-
+    <div class="homePage" v-show = "page===0">  <!--Home page for staff -->
+          <StaffHomePage
+          v-on:workFlow="changePage(1)"
+          v-on:saldo="changePage(2)"
+          v-on:statistics="changePage(3)"
+          :ui-labels="uiLabels"
+          :lang="lang"
+          >
+          </StaffHomePage>
+        </div>
 
     <div v-show = "page===0">  <!--Home page for staff -->
       <button v-on:click="changePage(1)">Go to work flow</button>
@@ -24,7 +33,7 @@
 
         <h1>{{ uiLabels.ordersWorkingOn }}</h1>
         <div id="ordersWorkedOn">
-          <OrderItemBeingPrepared class="singleOrder"
+          <OrderItemBeingPrepared ref="timer" class="singleOrder"
             v-for="(order, key) in orders"
             v-if="order.status === 'started'"
             v-on:done="markDone(key)"
@@ -49,13 +58,26 @@
             :key="key">
           </OrderItemDone> <!-- orders is found in sharedVueStuff.js -->
         </div>
+        <label>
+          <button class="backButton" v-on:click="changePage(0)">
+            {{uiLabels.back}}
+          </button>
+        </label>
       </div>
     </div>
     <div v-show = "page===2">  <!--Saldo -->
-
+      <label>
+        <button class="backButton" v-on:click="changePage(0)">
+          {{uiLabels.back}}
+        </button>
+      </label>
     </div>
     <div v-show = "page===3">  <!--Product statistics -->
-
+      <label>
+             <button class="backButton" v-on:click="changePage(0)">
+               {{uiLabels.back}}
+             </button>
+           </label>
     </div>
 
   </div>
@@ -65,6 +87,8 @@ import OrderItem from '@/components/OrderItem.vue'
 import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
 import OrderItemBeingPrepared from '@/components/OrderItemBeingPrepared.vue'
 import OrderItemDone from '@/components/OrderItemDone.vue'
+import StaffHomePage from '@/components/StaffHomePage.vue'
+import Timer from '@/components/Timer.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -75,7 +99,9 @@ export default {
     OrderItem,
     OrderItemToPrepare,
     OrderItemBeingPrepared,
-    OrderItemDone
+    OrderItemDone,
+   StaffHomePage,
+   Timer
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
@@ -92,6 +118,8 @@ export default {
     },
     markStarted: function (orderid) {
       this.$store.state.socket.emit("orderStarted", orderid)
+      this.$refs.timer.startTimer();
+      //this.$store.state.socket.emit("orderStarted", orderid)
     },
     markServed: function (orderid) {
       this.$store.state.socket.emit("orderServed", orderid)
@@ -139,8 +167,16 @@ export default {
     grid-row-start: 2;
     grid-template-columns: repeat(1, minmax(1em 1fr));
     overflow-y: auto;
-
   }
+
+  .homePage {
+    }
+   .backButton {
+     position:absolute;
+     top:0;
+     right:0;
+   }
+
   #finishedOrders{
     display: grid;
     grid-column-start: 3;
