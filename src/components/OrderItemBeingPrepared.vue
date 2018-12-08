@@ -41,7 +41,7 @@ export default {
       //this.$refs.timer.startTimer();
     },
     startTimer: function () {
-      this.$refs.timer.startTimer();
+      //this.$refs.timer.startTimerr();
       this.console.log("jag ar i orderBEing");
     },
     cancelOrder: function () {

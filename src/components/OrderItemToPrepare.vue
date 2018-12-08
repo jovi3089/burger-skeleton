@@ -7,7 +7,7 @@
     :order-id="orderId"
     :order="order">
   </OrderItem>
-  
+
   <button v-on:click="orderStart">
     {{uiLabels.started}}
   </button>
@@ -35,7 +35,6 @@ export default {
       // sending 'done' message to parent component or view so that it
       // can catch it with v-on:done in the component declaration
       this.$emit('started');  //change order.status to started
-
     },
     cancelOrder: function () {
       // not implemented

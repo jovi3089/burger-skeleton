@@ -28,7 +28,7 @@ export default {
       this.minutes = 0;
       this.seconds = 0;
     },
-    startTimer: function() {
+    starttTimer: function() {
       this.timer = setInterval(() => this.countUp(), 1000);
       this.console.log("jag är i timer");
     },
