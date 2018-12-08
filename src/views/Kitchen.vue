@@ -30,7 +30,7 @@
         </div>
         <h1>{{ uiLabels.ordersWorkingOn }}</h1>
         <div id="ordersWorkedOn">
-          <OrderItemBeingPrepared ref="timer" class="singleOrder"
+          <OrderItemBeingPrepared ref="beingPrep" class="singleOrder"
             v-for="(order, key) in orders"
             v-if="order.status === 'started'"
             v-on:done="markDone(key)"
@@ -121,8 +121,8 @@ export default {
       this.$store.state.socket.emit("orderDone", orderid);
     },
     markStarted: function (orderid) {
-      this.$refs.timer.startTimer();
-      //this.$store.state.socket.emit("orderStarted", orderid)
+      this.$store.state.socket.emit("orderStarted", orderid)
+      //this.$refs.beingPrep.startTimer()
     },
     markServed: function (orderid) {
       this.$store.state.socket.emit("orderServed", orderid)
