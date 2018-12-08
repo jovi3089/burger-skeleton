@@ -3,7 +3,8 @@
 
 
     <div v-show = "page===0">  <!--Home page for staff -->
-      <button v-on:click="changePage(1)">Go to work flow</button>
+      <StaffHomePage>
+      </StaffHomePage>
 
     </div>
     <div v-show = "page===1">  <!--Work flow for orders-->
@@ -24,11 +25,8 @@
 
         <h1>{{ uiLabels.ordersWorkingOn }}</h1>
         <div id="ordersWorkedOn">
-<<<<<<< HEAD
           <OrderItemBeingPrepared ref="beingPrep" class="singleOrder"
-=======
-          <OrderItemBeingPrepared class="singleOrder"
->>>>>>> 7ab3876b54e1f9fb3c25a9c86894a184dc1d7257
+
             v-for="(order, key) in orders"
             v-if="order.status === 'started'"
             v-on:done="markDone(key)"
@@ -69,6 +67,7 @@ import OrderItem from '@/components/OrderItem.vue'
 import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
 import OrderItemBeingPrepared from '@/components/OrderItemBeingPrepared.vue'
 import OrderItemDone from '@/components/OrderItemDone.vue'
+import StaffHomePage from '@/components/StaffHomePage.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -79,7 +78,9 @@ export default {
     OrderItem,
     OrderItemToPrepare,
     OrderItemBeingPrepared,
-    OrderItemDone
+    OrderItemDone,
+    StaffHomePage
+
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
@@ -96,10 +97,7 @@ export default {
     },
     markStarted: function (orderid) {
       this.$store.state.socket.emit("orderStarted", orderid)
-<<<<<<< HEAD
       //this.$refs.beingPrep.startTimer()
-=======
->>>>>>> 7ab3876b54e1f9fb3c25a9c86894a184dc1d7257
     },
     markServed: function (orderid) {
       this.$store.state.socket.emit("orderServed", orderid)
