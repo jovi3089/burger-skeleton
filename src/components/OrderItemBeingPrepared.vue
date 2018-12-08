@@ -1,6 +1,6 @@
 <template>
   <!-- Note in this component that it is using another component -->
-<div>
+<div id="theItem">
   <OrderItem
     :ui-labels="uiLabels"
     :lang="lang"
@@ -8,11 +8,12 @@
     :order="order">
   </OrderItem>
   <button v-on:click="orderDone">
-    {{uiLabels.ready}}
+    {{uiLabels.ready}} <!-- Where is uiLabels.ready?-->
   </button>
   <Timer ref="timer">
   </Timer>
 </div>
+
 </template>
 <script>
 import OrderItem from '@/components/OrderItem.vue'
@@ -50,5 +51,7 @@ export default {
 }
 </script>
 <style scoped>
-
+#theItem{
+  background-color: Blue; /*test to see how much the div covers */
+}
 </style>
