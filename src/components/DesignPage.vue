@@ -1,18 +1,26 @@
 <template>
-  <div class="ingredient">
-    <label>
-      <button v-on:click="incrementCounter">{{ counter }}</button> <br>
-      {{item["ingredient_"+ lang]}} <br>
-      {{item.selling_price}}:-<!--, {{item.stock}} pcs-->
-    </label>
-    <!--<label>
-      <button class="button" id="buttonburg" v-on:click="categoryPush()"> {{ uiLabels.hamburger }}</button>
-    </label>-->
+  <div class="designpage">
+    <Ingredient
+    ref="ingredient"
+    v-for="item in ingredients"
+    v-if="item.category===category"
+    v-on:increment="addToOrder(item)"
+    v-on:changeCategory="changeCategory(2)"
+    :item="item"
+    :lang="lang"
+    :key="item.ingredient_id">
+    </Ingredient>
   </div>
 </template>
 <script>
+
+import Ingredient from '@/components/Ingredient.vue'
+
 export default {
-  name: 'Ingredient',
+  name: 'DesignPage',
+  components: {
+    Ingredient
+  },
   props: {
     item: Object,
     lang: String
@@ -38,25 +46,13 @@ export default {
 </script>
 <style scoped>
 
-.ingredient {
-  border: 1px solid #000;
-  background-color: #a2c4c9ff;
-  padding: 1em;
-  /*background-image: url('~@/assets/exampleImage.jpg');*/
-  color: black;
-  margin: auto;
-}
-
-.grid-wrapper {
+.designpage {
+  width: 5em;
+  border-radius: 50%;
   display: grid;
   grid-template-columns: auto auto auto auto;/*repeat(auto-fit, 9em);*/
   margin: auto auto;
   grid-gap: 1em;
 }
 
-label {
-  text-align: center;
-  margin: auto auto;
-}
-/*stycket ovan kan lika väl ligga i ordering.vue <style>*/
 </style>
