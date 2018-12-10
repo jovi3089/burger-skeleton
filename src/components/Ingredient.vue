@@ -40,11 +40,14 @@ export default {
 
 .ingredient {
   border: 1px solid #000;
+  border-radius: 50%;
   background-color: #a2c4c9ff;
   padding: 1em;
   /*background-image: url('~@/assets/exampleImage.jpg');*/
   color: black;
   margin: auto;
+  width: 5em;
+  height: 5em;
 }
 
 .grid-wrapper {

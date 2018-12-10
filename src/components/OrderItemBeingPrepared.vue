@@ -29,7 +29,8 @@ export default {
     uiLabels: Object,
     order: Object,
     orderId: String,
-    lang: String
+    lang: String,
+
   },
   mounted: function () {
     this.$nextTick(function () {

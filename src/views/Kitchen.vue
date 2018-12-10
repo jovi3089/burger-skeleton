@@ -11,6 +11,10 @@
           </StaffHomePage>
         </div>
 
+    <div v-show = "page===0">  <!--Home page for staff -->
+      <button v-on:click="changePage(1)">Go to work flow</button>
+
+    </div>
     <div v-show = "page===1">  <!--Work flow for orders-->
       <div id="orders">
         <h1>{{ uiLabels.ordersInQueue }}</h1>
@@ -29,7 +33,7 @@
 
         <h1>{{ uiLabels.ordersWorkingOn }}</h1>
         <div id="ordersWorkedOn">
-          <OrderItemBeingPrepared ref="beingPrep" class="singleOrder"
+          <OrderItemBeingPrepared ref="timer" class="singleOrder"
             v-for="(order, key) in orders"
             v-if="order.status === 'started'"
             v-on:done="markDone(key)"
@@ -61,14 +65,7 @@
         </label>
       </div>
     </div>
-
     <div v-show = "page===2">  <!--Saldo -->
-        <IngredientSaldo
-        :ingred="ingredients"
-        :lang="lang"
-        >
-        </IngredientSaldo>
-
       <label>
         <button class="backButton" v-on:click="changePage(0)">
           {{uiLabels.back}}
@@ -91,7 +88,6 @@ import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
 import OrderItemBeingPrepared from '@/components/OrderItemBeingPrepared.vue'
 import OrderItemDone from '@/components/OrderItemDone.vue'
 import StaffHomePage from '@/components/StaffHomePage.vue'
-import IngredientSaldo from '@/components/IngredientSaldo.vue'
 import Timer from '@/components/Timer.vue'
 
 //import methods and data that are shared between ordering and kitchen views
@@ -104,9 +100,8 @@ export default {
     OrderItemToPrepare,
     OrderItemBeingPrepared,
     OrderItemDone,
-    StaffHomePage,
-    IngredientSaldo,
-    Timer
+   StaffHomePage,
+   Timer
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
@@ -124,7 +119,6 @@ export default {
     markStarted: function (orderid) {
       this.$store.state.socket.emit("orderStarted", orderid)
       //this.$refs.beingPrep.startTimer()
-
     },
     markServed: function (orderid) {
       this.$store.state.socket.emit("orderServed", orderid)
