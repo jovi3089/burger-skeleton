@@ -53,14 +53,17 @@
     </div>
 
     <div v-show = "step===5">
+    <button v-on:click="changeCategory(1)">Protein</button>
+    <button v-on:click="changeCategory(2)">Pålägg</button>
+    <button v-on:click="changeCategory(3)">Sås</button>
     <h1>{{ uiLabels.ingredients }}</h1>
 
     <Ingredient
       ref="ingredient"
+      class="box"
       v-for="item in ingredients"
       v-if="item.category===category"
       v-on:increment="addToOrder(item)"
-      v-on:changeCategory="changeCategory(2)"
       :item="item"
       :lang="lang"
       :key="item.ingredient_id">
@@ -98,6 +101,7 @@ import OrderItem from '@/components/OrderItem.vue'
 import StartingPage from '@/components/StartingPage.vue'
 import MenuPage from '@/components/MenuPage.vue'
 import HamburgerPage from '@/components/HamburgerPage.vue'
+import DesignPage from '@/components/DesignPage.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -113,7 +117,8 @@ export default {
     OrderItem,
     StartingPage,
     MenuPage,
-    HamburgerPage
+    HamburgerPage,
+    DesignPage
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             // the ordering system and the kitchen
@@ -122,11 +127,9 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
-
       step: 0,
-
-      category: 1
-
+      category: 1,
+      categoryChanged: false
     }
   },
   created: function () {
@@ -139,7 +142,7 @@ export default {
       this.step = toPage;
     },
     changeCategory: function (toCategory) {
-      this.cateory = toCategory;
+      this.category = toCategory;
     },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
@@ -155,6 +158,7 @@ export default {
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
       this.$store.state.socket.emit('order', {order: order});
       //set all counters to 0. Notice the use of $refs
+
       for (i = 0; i < this.$refs.ingredient.length; i += 1) {
         this.$refs.ingredient[i].resetCounter();
       }
@@ -183,12 +187,24 @@ export default {
   position: relative;
 }*/
 
-.ingredient {
-  width: 7em;
-  border: 1px solid #ccd;
-  padding: 1em;
-  background-image: url('~@/assets/exampleImage.jpg');
-  color: white;
+.box {
+  color: #fff;
+  border-radius: 50%;
+  font-size: 100%;
+  width: 75px;
+  height: 75px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5px;
+
+  /*grid-template-columns: repeat(1, minmax(1em 1fr));*/
+}
+
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: auto auto auto auto;/*repeat(auto-fit, 9em);*/
+  margin: auto auto;
+  grid-gap: 1em;
 }
 
 .menupage {
@@ -197,12 +213,6 @@ export default {
   /*background-image: url('~@/assets/exampleImage.jpg');*/
   color: black;
   text-align: center;
-}
-
-.grid-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 9em);
-  grid-gap: 1em;
 }
 
 template {
