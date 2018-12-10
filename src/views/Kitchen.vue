@@ -123,8 +123,7 @@ export default {
     },
     markStarted: function (orderid) {
       this.$store.state.socket.emit("orderStarted", orderid)
-
-      this.$refs.beingPrep.startTimer()
+      //this.$refs.beingPrep.startTimer()
 
     },
     markServed: function (orderid) {

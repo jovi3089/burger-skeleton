@@ -10,20 +10,34 @@
   <button v-on:click="orderServed">
     {{uiLabels.served}}
   </button>
+  <Timer ref="timer">
+  </Timer>
 </div>
 </template>
 <script>
 import OrderItem from '@/components/OrderItem.vue'
+import Timer from '@/components/Timer.vue'
+
 
 export default {
   name: 'OrderItemDone',
-  components: { OrderItem },
+  components: {
+    OrderItem,
+    Timer
+  },
   props: {
     uiLabels: Object,
     order: Object,
     orderId: String,
     lang: String
   },
+
+  /*
+  mounted: function () {
+    this.$nextTick(function () {
+      this.$refs.timer.resetTimer();
+    })
+  },*/
   methods: {
     orderServed: function () {
 			// sending 'served' message to parent component or view so that it
