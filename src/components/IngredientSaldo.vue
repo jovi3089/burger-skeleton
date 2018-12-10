@@ -7,7 +7,6 @@
     >
       <br>
       {{item["ingredient_"+ lang]}}: {{item.stock}} pcs
-    </br>
     </div>
     <div id="temptwo"
     v-for="item in ingred"
