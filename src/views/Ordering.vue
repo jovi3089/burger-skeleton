@@ -58,9 +58,9 @@
     <button v-on:click="changeCategory(3)">Sås</button>
     <h1>{{ uiLabels.ingredients }}</h1>
 
+    <div class="ingredients-grid">
     <Ingredient
       ref="ingredient"
-      class="grid-wrapper"
       v-for="item in ingredients"
       v-if="item.category===category"
       v-on:increment="addToOrder(item)"
@@ -68,6 +68,7 @@
       :lang="lang"
       :key="item.ingredient_id">
     </Ingredient>
+  </div>
 
     <div class="footer">
       <h1>{{ uiLabels.order }}</h1>
@@ -188,6 +189,11 @@ export default {
   position: relative;
 }*/
 
+.ingredients-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, 7em);
+ grid-gap: 1em;
+}
 
 .grid-wrapper {
   display: inline-block;
