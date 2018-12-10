@@ -60,7 +60,7 @@
 
     <Ingredient
       ref="ingredient"
-      class="box"
+      class="grid-wrapper"
       v-for="item in ingredients"
       v-if="item.category===category"
       v-on:increment="addToOrder(item)"
@@ -179,7 +179,8 @@ export default {
 }
 
 .orderItem {
-  border: 1px solid red;
+  border: 1px solid black;
+  background-color: white;
   left: 0;
 }
 
@@ -187,24 +188,18 @@ export default {
   position: relative;
 }*/
 
-.box {
+
+.grid-wrapper {
+  display: inline-block;
+  vertical-align: top;
+  grid-template-columns: auto auto auto auto;/*repeat(auto-fit, 9em);*/
+  margin: auto auto;
+  grid-gap: 1em;
   color: #fff;
   border-radius: 50%;
   font-size: 100%;
   width: 75px;
   height: 75px;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 5px;
-
-  /*grid-template-columns: repeat(1, minmax(1em 1fr));*/
-}
-
-.grid-wrapper {
-  display: grid;
-  grid-template-columns: auto auto auto auto;/*repeat(auto-fit, 9em);*/
-  margin: auto auto;
-  grid-gap: 1em;
 }
 
 .menupage {
