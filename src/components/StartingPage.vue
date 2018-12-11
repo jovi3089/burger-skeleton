@@ -1,10 +1,11 @@
 <template>
   <div class = "startingpage">
     <label>
-      <h1 class = "title">Starting</h1>
-      <h1 class = "title">Page</h1>
+
       <button id = "langbutton" v-on:click="$emit('switchLang')">{{ uiLabels.language }}</button>
-      <button id="toorderpagebutton" v-on:click="toOrderPage"> {{ uiLabels.toOrderPage }}</button>
+      <div class ="wrapper">
+        <button id="toorderpagebutton" v-on:click="toOrderPage"> {{ uiLabels.toOrderPage }}</button>
+      </div>
     </label>
   </div>
 </template>
@@ -40,6 +41,7 @@ export default {
   padding: 0;
   margin: 0;
 }
+
 #langbutton {
   position: absolute;
   top: 10px;
@@ -47,22 +49,21 @@ export default {
   width: 140px;
   height: 100px;
   border-radius: 20px;
-  background-color: #ff5050;
+  background-color: #a2c4c9ff;
   color: black;
   opacity: 0.8;
   font-weight: bold;
   font-size: 20px;
+
 }
 
 #toorderpagebutton{
-  position: absolute;
-  text-align: center;
-  top: 300px;
-  left:50px;
+  position: relative;
+  top: 100%;
   width: 300px;
   height: 200px;
   border-radius: 20px;
-  background-color: #ff5050;
+  background-color: #a2c4c9ff;
   color: black;
   opacity: 0.8;
   font-weight: bold;

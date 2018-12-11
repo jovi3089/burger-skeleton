@@ -4,7 +4,6 @@
     samt gör varje steg till komponenter, innehållande
     css i resp komponent-->
   <div id="ordering">
-    <img class="example-panel" src="@/assets/background-board-spices.jpg">
     <div v-show = "step===0">
       <StartingPage
         :ui-labels="uiLabels"
