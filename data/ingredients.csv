@@ -1,24 +1,24 @@
 ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,selling_price,kitchen_category
 1,bönburgare,bean patty,1,1,1,1,40,1
-2,nötfärsburgare 100g,beef patty 100g,1,1,1,0,40,2
-3,nötfärsburgare 200g,beef patty 200g,1,1,1,0,60,2
-4,kycklingburgare,chicken patty,1,1,0,0,40,3
+2,nötfärsburgare 100g,beef patty 100g,1,1,1,0,40,4
+3,nötfärsburgare 200g,beef patty 200g,1,1,1,0,60,4
+4,kycklingburgare,chicken patty,1,1,0,0,40,2
 5,friterad halloumi,deep-fried halloumi,1,0,0,0,40,1
-6,fiskfilé,fish filet,1,1,0,0,40,4
+6,fiskfilé,fish filet,1,1,0,0,40,3
 7,grillad aubergine,grilled eggplant,1,1,1,1,30,1
-8,hummer,lobster,1,1,1,0,80,4
+8,hummer,lobster,1,1,1,0,80,3
 9,pulled jackfruit,pulled jackfruit,1,1,1,1,40,1
-10,pulled pork,pulled pork,1,1,1,0,40,2
+10,pulled pork,pulled pork,1,1,1,0,40,4
 11,avocado,avocado,2,1,1,1,10,1
 12,bacon,bacon,2,1,1,0,10,2
 13,banan,banana,2,1,1,1,5,1
-14,löjrom,bleak caviar,2,1,1,0,50,4
+14,löjrom,bleak caviar,2,1,1,0,50,3
 15,karamelliserad lök,candied onions,2,1,1,1,5,1
 16,cheddar,cheddar cheese,2,0,1,0,10,1
 17,koriander,cilantro,2,1,1,1,5,1
 18,coleslaw,coleslaw,2,1,1,0,5,1
 19,friterade lökringar,deep-fried onion rings,2,1,0,1,15,1
-20,stekt ägg,fried egg,2,1,1,0,10,3
+20,stekt ägg,fried egg,2,1,1,0,10,2
 21,chèvre,goat cheese,2,0,1,0,10,1
 22,jalapeño,jalapeño,2,1,1,1,5,1
 23,kimchi,kimchi,2,1,1,1,10,1

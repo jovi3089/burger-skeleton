@@ -17,6 +17,7 @@
     <div v-show = "page===1">  <!--Work flow for orders-->
       <div id="orders">
         <h1>{{ uiLabels.ordersInQueue }}</h1>
+        {{orders}}
         <div id="ordersToPrepare">
           <OrderItemToPrepare class="singleOrder"
             v-for="(order, key) in orders"
@@ -39,6 +40,7 @@
             :order-id="key"
             :order="order"
             :ui-labels="uiLabels"
+            :kitchen_category="kitchen_category"
             :lang="lang"
             :key="key">
           </OrderItemBeingPrepared>
@@ -56,6 +58,7 @@
             :ui-labels="uiLabels"
             :key="key">
           </OrderItemDone> <!-- orders is found in sharedVueStuff.js -->
+
         </div>
         <label>
           <button class="backButton" v-on:click="changePage(0)">
@@ -167,7 +170,9 @@ export default {
     border-radius: 15px;
     height: 3.5em;
   }
-
+  #vegColor{
+    background-color: Green;
+  }
 
   #ordersWorkedOn{
     display: grid;

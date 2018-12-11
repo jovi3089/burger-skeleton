@@ -11,6 +11,7 @@ function Data() {
   this.data = {};
   this.orders = {};
   this.currentOrderNumber = 0;
+  this.newKitchenCategory = 0;
 }
 
 Data.prototype.getUILabels = function (lang) {
@@ -69,7 +70,10 @@ Data.prototype.getOrderNumber = function () {
 
 Data.prototype.addOrder = function (order) {
   var orderId = this.getOrderNumber();
+  //var orderKitchenCategory = {};
+
   this.orders[orderId] = order.order;
+  this.orders[orderId].orderKitchenCategory = this.getKitchenCategory(orderId);
   this.orders[orderId].orderId = orderId;
   this.orders[orderId].status = "not-started";
   var transactions = this.data[transactionsDataName],
@@ -81,7 +85,7 @@ Data.prototype.addOrder = function (order) {
     transId += 1;
     transactions.push({transaction_id: transId,
                        ingredient_id: i[k].ingredient_id,
-                       change: - 2});
+                       change: - 1});
   }
     return orderId;
 };
@@ -113,5 +117,18 @@ Data.prototype.markOrderNotStarted = function (orderId) {
 Data.prototype.markOrderServed = function (orderId) {
   this.orders[orderId].status = "served";
 };
+
+Data.prototype.getKitchenCategory = function (orderId){
+this.newKitchenCategory = 0;
+for (var i = 0; i < this.orders[orderId].ingredients.length; i++) {
+    if (this.orders[orderId].ingredients[i].kitchen_category > this.newKitchenCategory)
+    {this.newKitchenCategory = this.orders[orderId].ingredients[i].kitchen_category;
+    }
+    else {
+    this.newKitchenCategory = 5; //should never become 5
+    }
+  }
+  return this.newKitchenCategory;
+}
 
 module.exports = Data;
