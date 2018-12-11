@@ -59,6 +59,9 @@
             :ui-labels="uiLabels"
             :key="key">
           </OrderItemDone> <!-- orders is found in sharedVueStuff.js -->
+          <div class="singleOrder meat">
+
+          </div>
         </div>
         <label>
           <button class="backButton" v-on:click="changePage(0)">
@@ -68,11 +71,17 @@
       </div>
     </div>
     <div v-show = "page===2">  <!--Saldo -->
+      <IngredientSaldo
+      :ingred="ingredients"
+      :lang="lang"
+      >
+      </IngredientSaldo>
       <label>
         <button class="backButton" v-on:click="changePage(0)">
           {{uiLabels.back}}
         </button>
       </label>
+
     </div>
     <div v-show = "page===3">  <!--Product statistics -->
       <label>
@@ -91,6 +100,9 @@ import OrderItemBeingPrepared from '@/components/OrderItemBeingPrepared.vue'
 import OrderItemDone from '@/components/OrderItemDone.vue'
 import StaffHomePage from '@/components/StaffHomePage.vue'
 import Timer from '@/components/Timer.vue'
+import IngredientSaldo from '@/components/IngredientSaldo.vue'
+
+
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -102,8 +114,9 @@ export default {
     OrderItemToPrepare,
     OrderItemBeingPrepared,
     OrderItemDone,
-   StaffHomePage,
-   Timer
+    StaffHomePage,
+    Timer,
+    IngredientSaldo
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
@@ -120,8 +133,7 @@ export default {
     },
     markStarted: function (orderid) {
       this.$store.state.socket.emit("orderStarted", orderid)
-      this.$refs.timer.startTimer();
-      //this.$store.state.socket.emit("orderStarted", orderid)
+      //this.$refs.beingPrep.startTimer()
     },
     markServed: function (orderid) {
       this.$store.state.socket.emit("orderServed", orderid)
@@ -161,6 +173,7 @@ export default {
     border-radius: 15px;
     height: 3.5em;
   }
+
 
   #ordersWorkedOn{
     display: grid;
