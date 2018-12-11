@@ -57,9 +57,6 @@
             :ui-labels="uiLabels"
             :key="key">
           </OrderItemDone> <!-- orders is found in sharedVueStuff.js -->
-          <div class="singleOrder meat">
-
-          </div>
         </div>
         <label>
           <button class="backButton" v-on:click="changePage(0)">
@@ -83,10 +80,10 @@
     </div>
     <div v-show = "page===3">  <!--Product statistics -->
       <label>
-             <button class="backButton" v-on:click="changePage(0)">
-               {{uiLabels.back}}
-             </button>
-           </label>
+          <button class="backButton" v-on:click="changePage(0)">
+            {{uiLabels.back}}
+          </button>
+        </label>
     </div>
 
   </div>
