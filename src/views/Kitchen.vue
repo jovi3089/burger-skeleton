@@ -13,7 +13,6 @@
 
     <div v-show = "page===0">  <!--Home page for staff -->
       <button v-on:click="changePage(1)">Go to work flow</button>
-
     </div>
     <div v-show = "page===1">  <!--Work flow for orders-->
       <div id="orders">
