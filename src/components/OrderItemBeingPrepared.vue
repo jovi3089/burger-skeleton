@@ -31,6 +31,7 @@ export default {
     orderId: String,
     lang: String,
 
+
   },
   mounted: function () {
     this.$nextTick(function () {
