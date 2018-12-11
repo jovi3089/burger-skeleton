@@ -11,6 +11,8 @@
   <button v-on:click="orderStart">
     {{uiLabels.started}}
   </button>
+  <Timer ref="timer">
+  </Timer>
 </div>
 </template>
 <script>
@@ -30,11 +32,17 @@ export default {
     orderId: String,
     lang: String
   },
+  mounted: function () {
+    this.$nextTick(function () {
+      this.$refs.timer.startTimer();
+    })
+  },
   methods: {
     orderStart: function () {
       // sending 'done' message to parent component or view so that it
       // can catch it with v-on:done in the component declaration
       this.$emit('started');  //change order.status to started
+      this.$refs.timer.resetTimer();
     },
     cancelOrder: function () {
       // not implemented

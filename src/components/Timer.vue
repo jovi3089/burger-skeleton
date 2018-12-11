@@ -19,9 +19,9 @@ export default {
       seconds: 0
     }
   },
-  created: function () {
+  /*created: function () {
     this.startTimer();
-},
+},*/
   methods: {
     resetTimer: function () {
       clearInterval(this.timer);
@@ -29,6 +29,7 @@ export default {
       this.totalTime = 0;
       this.minutes = 0;
       this.seconds = 0;
+      console.log("reset");
     },
     startTimer: function() {
       this.timer = setInterval(() => this.countUp(), 1000);
@@ -36,7 +37,6 @@ export default {
     },
     stopTimer: function () {
       clearInterval(this.timer);
-
     },
     countUp: function() {
       this.totalTime++;

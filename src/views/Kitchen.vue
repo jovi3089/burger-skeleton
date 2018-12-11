@@ -18,6 +18,7 @@
     <div v-show = "page===1">  <!--Work flow for orders-->
       <div id="orders">
         <h1>{{ uiLabels.ordersInQueue }}</h1>
+        {{orders}}
         <div id="ordersToPrepare">
           <OrderItemToPrepare class="singleOrder"
             v-for="(order, key) in orders"
@@ -82,10 +83,10 @@
     </div>
     <div v-show = "page===3">  <!--Product statistics -->
       <label>
-             <button class="backButton" v-on:click="changePage(0)">
-               {{uiLabels.back}}
-             </button>
-           </label>
+          <button class="backButton" v-on:click="changePage(0)">
+            {{uiLabels.back}}
+          </button>
+        </label>
     </div>
 
   </div>
