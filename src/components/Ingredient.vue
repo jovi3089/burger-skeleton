@@ -1,9 +1,11 @@
 <template>
   <div class="ingredient">
     <label>
-      <button v-on:click="incrementCounter">{{ counter }}</button> <br>
+      <button v-on:click="incrementCounter">+</button> <br>
       {{item["ingredient_"+ lang]}} <br>
-      {{item.selling_price}}:-<!--, {{item.stock}} pcs-->
+      {{item.selling_price}}:- <br>
+      <button v-on:click="decreaseCounter">-</button>
+      <!--, {{item.stock}} pcs-->
     </label>
     <!--<label>
       <button class="button" id="buttonburg" v-on:click="categoryPush()"> {{ uiLabels.hamburger }}</button>
@@ -29,6 +31,11 @@ export default {
       // can catch it with v-on:increment in the component declaration
       this.$emit('increment'); //$emit sends a message which ordering.vue
                               //is listening to
+      this.$emit('highlight');
+    },
+    decreaseCounter: function () {
+      this.counter -= 1;
+      this.$emit('decrease');
     },
     resetCounter: function () {
       this.counter = 0;

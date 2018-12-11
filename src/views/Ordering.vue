@@ -61,9 +61,12 @@
     <div class="ingredients-grid">
     <Ingredient
       ref="ingredient"
+      v-bind:class="{ active: isActive}"
       v-for="item in ingredients"
       v-if="item.category===category"
       v-on:increment="addToOrder(item)"
+      v-on:decrease="deleteFromOrder(item)"
+      v-on:highlight="activateDesign()"
       :item="item"
       :lang="lang"
       :key="item.ingredient_id">
@@ -73,7 +76,8 @@
     <div class="footer">
       <h1>{{ uiLabels.order }}</h1>
         {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
-          <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+          <button v-on:click="addToCart()">DETHÄR ÄR EN STRING</button>
+          <button v-on:click="placeOrder()"> {{uiLabels.placeOrder}}  </button>
     </div>
 
     <h1>{{ uiLabels.ordersInQueue }}</h1>
@@ -126,11 +130,15 @@ export default {
   data: function() { //Not that data is a function!
     return {
       chosenIngredients: [],
+      shoppingCart: [],
+      totalPrice: 0,
       price: 0,
       orderNumber: "",
       step: 0,
       category: 1,
-      categoryChanged: false
+      categoryChanged: false,
+      isActive: false,
+      indexChosenIngredients: 0
     }
   },
   created: function () {
@@ -145,16 +153,32 @@ export default {
     changeCategory: function (toCategory) {
       this.category = toCategory;
     },
+    activateDesign: function () {
+      this.isActive = true;
+      console.log('hej');
+    },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;
+    },
+    deleteFromOrder: function (item) {
+      if (this.price > 0) {
+      console.log('i funktionen');
+      var i;
+        for (i = 0; i < this.chosenIngredients.length; i += 1) {
+          if (this.chosenIngredients[i] === item) {
+            this.price -= item.selling_price;
+            this.chosenIngredients.splice(i,1);
+          }
+        }
+      }
     },
     placeOrder: function () {
       var i,
       //Wrap the order in an object
         order = {
-          ingredients: this.chosenIngredients,
-          price: this.price
+          ingredients: this.shoppingCart,
+          price:       this.price
         };
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
       this.$store.state.socket.emit('order', {order: order});
@@ -164,7 +188,29 @@ export default {
         this.$refs.ingredient[i].resetCounter();
       }
       this.price = 0;
+      this.shoppingCart = [];
+    },
+
+    addToCart: function () {
+      //Wrap the order in an object
+
+      for(var i=0; i<this.chosenIngredients.length; i++){
+          this.shoppingCart.push(this.chosenIngredients[i]);
+      };
+      // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
+      //this.$store.state.socket.emit('order', {order: order});
+      //set all counters to 0. Notice the use of $refs
+
+      for (var i = 0; i < this.$refs.ingredient.length; i += 1) {
+        this.$refs.ingredient[i].resetCounter();
+      }
+      //this.price = 0; kanske vill ha mer ju
       this.chosenIngredients = [];
+      this.totalPrice += this.price;
+      console.log(this.price);
+      this.price = 0;
+      console.log(this.totalPrice);
+      console.log(this.shoppingCart[0]);
     }
   }
 }
@@ -183,6 +229,17 @@ export default {
   border: 1px solid black;
   background-color: white;
   left: 0;
+}
+
+.ingredient active {
+  border: 1px solid #000;
+  border-radius: 50%;
+  padding: 1em;
+  /*background-image: url('~@/assets/exampleImage.jpg');*/
+  color: black;
+  margin: auto;
+  width: 5em;
+  height: 5em;
 }
 
 /*.relative {
