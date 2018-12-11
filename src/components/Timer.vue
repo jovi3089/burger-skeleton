@@ -42,7 +42,7 @@ export default {
       this.totalTime++;
       this.minutes = parseInt(this.totalTime/60, 10)
       this.seconds = parseInt(this.totalTime%60, 10);
-      console.log(this.totalTime);
+      //console.log(this.totalTime);
     },
     helpDisplay: function(time) {
       if (time < 10) {

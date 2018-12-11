@@ -25,7 +25,6 @@
             v-on:started="markStarted(key)"
             :order-id="key"
             :order="order"
-            :kitchen_category="kitchen_category"
             :ui-labels="uiLabels"
             :lang="lang"
             :key="key">
@@ -59,9 +58,7 @@
             :ui-labels="uiLabels"
             :key="key">
           </OrderItemDone> <!-- orders is found in sharedVueStuff.js -->
-          <div class="singleOrder meat">
 
-          </div>
         </div>
         <label>
           <button class="backButton" v-on:click="changePage(0)">
@@ -173,7 +170,9 @@ export default {
     border-radius: 15px;
     height: 3.5em;
   }
-
+  #vegColor{
+    background-color: Green;
+  }
 
   #ordersWorkedOn{
     display: grid;

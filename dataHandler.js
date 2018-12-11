@@ -72,8 +72,6 @@ Data.prototype.addOrder = function (order) {
   this.orders[orderId] = order.order;
   this.orders[orderId].orderId = orderId;
   this.orders[orderId].status = "not-started";
-  /*this.orders[orderID].kitchen_category = kitchen_category;*/
-  console.log(kitchen_category);
   var transactions = this.data[transactionsDataName],
     //find out the currently highest transaction id
     transId =  transactions[transactions.length - 1].transaction_id,
@@ -115,9 +113,5 @@ Data.prototype.markOrderNotStarted = function (orderId) {
 Data.prototype.markOrderServed = function (orderId) {
   this.orders[orderId].status = "served";
 };
-
-/*Data.prototype.getKitchenCategory = function (orderId) {
-  this.orders[orderId].kitchen_category = this.data.kitchen_category;
-}*/
 
 module.exports = Data;
