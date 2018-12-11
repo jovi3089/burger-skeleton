@@ -17,10 +17,13 @@
     <div v-show = "page===1">  <!--Work flow for orders-->
       <div id="orders">
         <h1>{{ uiLabels.ordersInQueue }}</h1>
-        {{orders}}
+
         <div id="ordersToPrepare">
-          <OrderItemToPrepare class="singleOrder"
+          <OrderItemToPrepare
+
             v-for="(order, key) in orders"
+            class="singleOrder"
+            v-bind:class= "order.orderKitchenCategory"
             v-if="order.status === 'not-started'"
             v-on:started="markStarted(key)"
             :order-id="key"
@@ -29,6 +32,7 @@
             :lang="lang"
             :key="key">
           </OrderItemToPrepare>
+
         </div>
 
         <h1>{{ uiLabels.ordersWorkingOn }}</h1>
@@ -40,7 +44,6 @@
             :order-id="key"
             :order="order"
             :ui-labels="uiLabels"
-            :kitchen_category="kitchen_category"
             :lang="lang"
             :key="key">
           </OrderItemBeingPrepared>
@@ -82,10 +85,10 @@
     </div>
     <div v-show = "page===3">  <!--Product statistics -->
       <label>
-          <button class="backButton" v-on:click="changePage(0)">
-            {{uiLabels.back}}
-          </button>
-        </label>
+        <button class="backButton" v-on:click="changePage(0)">
+          {{uiLabels.back}}
+        </button>
+      </label>
     </div>
 
   </div>
@@ -127,6 +130,7 @@ export default {
   methods: {
     markDone: function (orderid) {
       this.$store.state.socket.emit("orderDone", orderid);
+
     },
     markStarted: function (orderid) {
       this.$store.state.socket.emit("orderStarted", orderid)
@@ -169,9 +173,19 @@ export default {
     border-color: Crimson;
     border-radius: 15px;
     height: 3.5em;
+
   }
-  #vegColor{
-    background-color: Green;
+  .veg{
+    background-color: green;
+  }
+  .fish{
+    background-color: blue;
+  }
+  .chicken{
+    background-color: yellow;
+  }
+  .meat{
+    background-color: red;
   }
 
   #ordersWorkedOn{

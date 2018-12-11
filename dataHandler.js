@@ -11,7 +11,6 @@ function Data() {
   this.data = {};
   this.orders = {};
   this.currentOrderNumber = 0;
-  this.newKitchenCategory = 0;
 }
 
 Data.prototype.getUILabels = function (lang) {
@@ -119,16 +118,25 @@ Data.prototype.markOrderServed = function (orderId) {
 };
 
 Data.prototype.getKitchenCategory = function (orderId){
-this.newKitchenCategory = 0;
-for (var i = 0; i < this.orders[orderId].ingredients.length; i++) {
-    if (this.orders[orderId].ingredients[i].kitchen_category > this.newKitchenCategory)
-    {this.newKitchenCategory = this.orders[orderId].ingredients[i].kitchen_category;
+  var temp = 0;
+  for (var i = 0; i < this.orders[orderId].ingredients.length; i++) {
+    var kitchenCategory = this.orders[orderId].ingredients[i].kitchenCategory
+      if (kitchenCategory > temp){
+        temp = kitchenCategory;
+      }
     }
-    else {
-    this.newKitchenCategory = 5; //should never become 5
+    var result = temp;
+    console.log(result);
+    switch (result) {
+      case 1: return "veg"
+      break;
+      case 2: return "fish"
+      break;
+      case 3: return "chicken"
+      break;
+      case 4: return "meat"
+      break;
     }
-  }
-  return this.newKitchenCategory;
 }
 
 module.exports = Data;
