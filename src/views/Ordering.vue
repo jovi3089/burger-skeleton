@@ -61,9 +61,12 @@
     <div class="ingredients-grid">
     <Ingredient
       ref="ingredient"
+      v-bind:class="{ active: isActive}"
       v-for="item in ingredients"
       v-if="item.category===category"
       v-on:increment="addToOrder(item)"
+      v-on:decrease="deleteFromOrder(item)"
+      v-on:highlight="activateDesign()"
       :item="item"
       :lang="lang"
       :key="item.ingredient_id">
@@ -133,7 +136,9 @@ export default {
       orderNumber: "",
       step: 0,
       category: 1,
-      categoryChanged: false
+      categoryChanged: false,
+      isActive: false,
+      indexChosenIngredients: 0
     }
   },
   created: function () {
@@ -148,9 +153,25 @@ export default {
     changeCategory: function (toCategory) {
       this.category = toCategory;
     },
+    activateDesign: function () {
+      this.isActive = true;
+      console.log('hej');
+    },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;
+    },
+    deleteFromOrder: function (item) {
+      if (this.price > 0) {
+      console.log('i funktionen');
+      var i;
+        for (i = 0; i < this.chosenIngredients.length; i += 1) {
+          if (this.chosenIngredients[i] === item) {
+            this.price -= item.selling_price;
+            this.chosenIngredients.splice(i,1);
+          }
+        }
+      }
     },
     placeOrder: function () {
       var i,
@@ -208,6 +229,17 @@ export default {
   border: 1px solid black;
   background-color: white;
   left: 0;
+}
+
+.ingredient active {
+  border: 1px solid #000;
+  border-radius: 50%;
+  padding: 1em;
+  /*background-image: url('~@/assets/exampleImage.jpg');*/
+  color: black;
+  margin: auto;
+  width: 5em;
+  height: 5em;
 }
 
 /*.relative {

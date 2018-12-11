@@ -65,18 +65,24 @@
       </div>
     </div>
     <div v-show = "page===2">  <!--Saldo -->
+      <IngredientSaldo
+      :ingred="ingredients"
+      :lang="lang"
+      >
+      </IngredientSaldo>
       <label>
         <button class="backButton" v-on:click="changePage(0)">
           {{uiLabels.back}}
         </button>
       </label>
+
     </div>
     <div v-show = "page===3">  <!--Product statistics -->
       <label>
-             <button class="backButton" v-on:click="changePage(0)">
-               {{uiLabels.back}}
-             </button>
-           </label>
+          <button class="backButton" v-on:click="changePage(0)">
+            {{uiLabels.back}}
+          </button>
+        </label>
     </div>
 
   </div>
@@ -88,6 +94,9 @@ import OrderItemBeingPrepared from '@/components/OrderItemBeingPrepared.vue'
 import OrderItemDone from '@/components/OrderItemDone.vue'
 import StaffHomePage from '@/components/StaffHomePage.vue'
 import Timer from '@/components/Timer.vue'
+import IngredientSaldo from '@/components/IngredientSaldo.vue'
+
+
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -99,8 +108,9 @@ export default {
     OrderItemToPrepare,
     OrderItemBeingPrepared,
     OrderItemDone,
-   StaffHomePage,
-   Timer
+    StaffHomePage,
+    Timer,
+    IngredientSaldo
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
@@ -157,6 +167,7 @@ export default {
     border-radius: 15px;
     height: 3.5em;
   }
+
 
   #ordersWorkedOn{
     display: grid;

@@ -12,7 +12,6 @@
             {{item["ingredient_"+ lang]}}: {{item.stock}} pcs
           </p>
 
-
         </div>
         <div class="cat b"
         v-if="item.category===2"
@@ -109,52 +108,6 @@ export default {
   grid-column: 3;
   grid-row: 2;
 }
-/*
-#tempone {
-  display: grid;
-  grid-column-start: 1;
-  grid-column-end: 1;
-  grid-row-start: 1;
-  /*grid-template-columns: repeat(1, minmax(1em 1fr));*/
-/*}
-/*
-#temptwo {
-  display: grid;
-  grid-column-start: 2;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  /*grid-template-columns: repeat(1, minmax(1em 1fr));*/
-/*}
-/*
-#tempthree {
-  display: grid;
-  grid-column-start: 3;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-template-columns: repeat(1, minmax(1em 1fr));
-}
-#tempfour {
-  display: grid;
-  grid-column-start: 1;
-  grid-column-end: 1;
-  grid-row-start: 2;
-  /*grid-template-columns: repeat(1, minmax(1em 1fr));*/
-/*}
-/*
-#tempfive {
-  display: grid;
-  grid-column-start: 2;
-  grid-column-end: 2;
-  grid-row-start: 2;
-  grid-template-columns: repeat(1, minmax(1em 1fr));
-}
-#tempsix {
-  display: grid;
-  grid-column-start: 3;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  /*grid-template-columns: repeat(1, minmax(1em 1fr));*/
 
-/*}*/
 
 </style>
