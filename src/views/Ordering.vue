@@ -73,7 +73,8 @@
     <div class="footer">
       <h1>{{ uiLabels.order }}</h1>
         {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
-          <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+          <button v-on:click="addToCart()">DETHÄR ÄR EN STRING</button>
+          <button v-on:click="placeOrder()"> {{uiLabels.placeOrder}}  </button>
     </div>
 
     <h1>{{ uiLabels.ordersInQueue }}</h1>
@@ -126,6 +127,8 @@ export default {
   data: function() { //Not that data is a function!
     return {
       chosenIngredients: [],
+      shoppingCart: [],
+      totalPrice: 0,
       price: 0,
       orderNumber: "",
       step: 0,
@@ -153,8 +156,8 @@ export default {
       var i,
       //Wrap the order in an object
         order = {
-          ingredients: this.chosenIngredients,
-          price: this.price
+          ingredients: this.shoppingCart,
+          price:       this.price
         };
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
       this.$store.state.socket.emit('order', {order: order});
@@ -164,7 +167,29 @@ export default {
         this.$refs.ingredient[i].resetCounter();
       }
       this.price = 0;
+      this.shoppingCart = [];
+    },
+
+    addToCart: function () {
+      //Wrap the order in an object
+
+      for(var i=0; i<this.chosenIngredients.length; i++){
+          this.shoppingCart.push(this.chosenIngredients[i]);
+      };
+      // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
+      //this.$store.state.socket.emit('order', {order: order});
+      //set all counters to 0. Notice the use of $refs
+
+      for (var i = 0; i < this.$refs.ingredient.length; i += 1) {
+        this.$refs.ingredient[i].resetCounter();
+      }
+      //this.price = 0; kanske vill ha mer ju
       this.chosenIngredients = [];
+      this.totalPrice += this.price;
+      console.log(this.price);
+      this.price = 0;
+      console.log(this.totalPrice);
+      console.log(this.shoppingCart[0]);
     }
   }
 }
