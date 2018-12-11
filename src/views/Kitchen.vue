@@ -25,6 +25,7 @@
             v-on:started="markStarted(key)"
             :order-id="key"
             :order="order"
+            :kitchen_category="kitchen_category"
             :ui-labels="uiLabels"
             :lang="lang"
             :key="key">
@@ -40,6 +41,7 @@
             :order-id="key"
             :order="order"
             :ui-labels="uiLabels"
+            :kitchen_category="kitchen_category"
             :lang="lang"
             :key="key">
           </OrderItemBeingPrepared>
