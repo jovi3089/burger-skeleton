@@ -14,10 +14,10 @@
     <div v-show = "page===0">  <!--Home page for staff -->
       <button v-on:click="changePage(1)">Go to work flow</button>
     </div>
+
     <div v-show = "page===1">  <!--Work flow for orders-->
       <div id="orders">
         <h1>{{ uiLabels.ordersInQueue }}</h1>
-
         <div id="ordersToPrepare">
           <OrderItemToPrepare
             v-for="(order, key) in orders"
@@ -30,14 +30,11 @@
             :key="key">
           </OrderItemToPrepare>
         </div>
-
         <h1>{{ uiLabels.ordersWorkingOn }}</h1>
         <div id="ordersWorkedOn">
           <OrderItemBeingPrepared
             ref="timer"
             v-for="(order, key) in orders"
-            class="singleOrder"
-            v-bind:class= "order.orderKitchenCategory"
             v-if="order.status === 'started'"
             v-on:done="markDone(key)"
             :order-id="key"
@@ -47,13 +44,10 @@
             :key="key">
           </OrderItemBeingPrepared>
         </div>
-
         <h1>{{ uiLabels.ordersFinished }}</h1>
         <div id="finishedOrders">
           <OrderItemDone
             v-for="(order, key) in orders"
-            class="singleOrder"
-            v-bind:class= "order.orderKitchenCategory"
             v-if="order.status === 'done'"
             v-on:served="markServed(key)"
             :order-id="key"
@@ -71,6 +65,7 @@
         </label>
       </div>
     </div>
+
     <div v-show = "page===2">  <!--Saldo -->
       <IngredientSaldo
       :ingred="ingredients"
@@ -82,8 +77,8 @@
           {{uiLabels.back}}
         </button>
       </label>
-
     </div>
+
     <div v-show = "page===3">  <!--Product statistics -->
       <label>
         <button class="backButton" v-on:click="changePage(0)">
@@ -148,18 +143,19 @@ export default {
 </script>
 
 <style scoped>
-	#orders {
-    width: 100vw; /*vw 100% of the page width is covered by orders*/
-    height: 100vh; /*vw 100% of the page height is covered by orders*/
-    display: grid;
-    justify-content: flex-start; /*The items start at top*/
-    grid-template-columns: 33% 33% 33%;
-    font-size: 24pt;
-    grid-row-gap: 1em;
-    grid-column-gap: .5em;
-    min-height:100%;
-    max-height:100%;
-  }
+#orders {
+  width: 100vw; /*vw 100% of the page width is covered by orders*/
+  height: 100vh; /*vw 100% of the page height is covered by orders*/
+  display: grid;
+  justify-content: flex-start; /*The items start at top*/
+  grid-template-columns: 33% 33% 33%;
+  font-size: 24pt;
+  grid-row-gap: 1px;
+  grid-column-gap: .5em;
+  min-height:100%;
+  max-height:100%;
+  
+}
 
   #ordersToPrepare{
     display: grid;
@@ -167,27 +163,10 @@ export default {
     grid-column-end: 1;
     grid-row-start: 2;
     grid-template-columns: repeat(1, minmax(1em 1fr));
+    grid-template-rows: auto;
     /*overflow-y: auto;*/
   }
-  .singleOrder{ /*Class for all orders*/
-    border: 2px solid;
-    border-color: Crimson;
-    border-radius: 15px;
-    height: 3.5em;
 
-  }
-  .veg{
-    background-color: green;
-  }
-  .fish{
-    background-color: blue;
-  }
-  .chicken{
-    background-color: yellow;
-  }
-  .meat{
-    background-color: red;
-  }
 
   #ordersWorkedOn{
     display: grid;

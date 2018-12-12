@@ -3,18 +3,15 @@
 <div>
   <label>
     <button
-    v-on:click="orderStart"
     class="singleOrder"
     v-bind:class= "order.orderKitchenCategory"
-    >
+    v-on:click="orderStart">
       <OrderItem
         :ui-labels="uiLabels"
         :lang="lang"
         :order-id="orderId"
         :order="order">
       </OrderItem>
-      <!-- {{uiLabels.started}}  -->
-
       <Timer ref="timer">
       </Timer>
     </button>
