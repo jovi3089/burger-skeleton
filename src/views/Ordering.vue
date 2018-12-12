@@ -52,15 +52,15 @@
     </div>
 
     <div v-show = "step===5">
-    <button v-on:click="changeCategory(1)">Protein</button>
-    <button v-on:click="changeCategory(2)">Pålägg</button>
-    <button v-on:click="changeCategory(3)">Sås</button>
+    <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory1()">Bröd</button>
+    <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory2()">Protein</button>
+    <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory3()">Pålägg</button>
+    <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory4()">Sås</button>
     <h1>{{ uiLabels.ingredients }}</h1>
 
     <div class="ingredients-grid">
     <Ingredient
       ref="ingredient"
-      v-bind:class="{ active: isActive}"
       v-for="item in ingredients"
       v-if="item.category===category"
       v-on:increment="addToOrder(item)"
@@ -134,10 +134,14 @@ export default {
       price: 0,
       orderNumber: "",
       step: 0,
-      category: 1,
+      category: 4,
       categoryChanged: false,
       isActive: false,
-      indexChosenIngredients: 0
+      indexChosenIngredients: 0,
+      clickedOn1: "orangeBorder",
+      clickedOn2: '',
+      clickedOn3: '',
+      clickedOn4: ''
     }
   },
   created: function () {
@@ -149,8 +153,33 @@ export default {
     newPage: function(toPage){
       this.step = toPage;
     },
-    changeCategory: function (toCategory) {
-      this.category = toCategory;
+    changeCategory1: function () {
+      this.category = 4;
+      this.clickedOn1 = "orangeBorder";
+      this.clickedOn2 = '';
+      this.clickedOn3 = '';
+      this.clickedOn4 = '';
+    },
+    changeCategory2: function () {
+      this.category = 1;
+      this.clickedOn1 = '';
+      this.clickedOn2 = "orangeBorder";
+      this.clickedOn3 = '';
+      this.clickedOn4 = '';
+    },
+    changeCategory3: function () {
+      this.category = 2;
+      this.clickedOn1 = '';
+      this.clickedOn2 = '';
+      this.clickedOn3 = "orangeBorder";
+      this.clickedOn4 = '';
+    },
+    changeCategory4: function () {
+      this.category = 3;
+      this.clickedOn1 = '';
+      this.clickedOn2 = '';
+      this.clickedOn3 = '';
+      this.clickedOn4 = "orangeBorder";
     },
     activateDesign: function () {
       this.isActive = true;
@@ -230,16 +259,6 @@ export default {
   left: 0;
 }
 
-.ingredient active {
-  border: 1px solid #000;
-  border-radius: 50%;
-  padding: 1em;
-  /*background-image: url('~@/assets/exampleImage.jpg');*/
-  color: black;
-  margin: auto;
-  width: 5em;
-  height: 5em;
-}
 
 /*.relative {
   position: relative;
@@ -288,6 +307,18 @@ template {
   left:0;
   top:0;
   z-index: -2;
+}
+
+.buttonmenu {
+  width: 5em;
+  height: 5em;
+  border-radius: 1em;
+  border: 1px solid #000;
+  margin: 0.5em;
+}
+
+.orangeBorder {
+  border: 2px solid #ffab40;
 }
 
 .footer {
