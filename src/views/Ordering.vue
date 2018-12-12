@@ -52,10 +52,10 @@
     </div>
 
     <div v-show = "step===5">
-    <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory1()">Bröd</button>
-    <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory2()">Protein</button>
-    <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory3()">Pålägg</button>
-    <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory4()">Sås</button>
+    <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory4()">{{ uiLabels.burgerBread }}</button>
+    <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory1()">{{ uiLabels.burgerPatty }}</button>
+    <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory2()">{{ uiLabels.burgerTopping }}</button>
+    <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory3()">{{ uiLabels.burgerSauce }}</button>
     <h1>{{ uiLabels.ingredients }}</h1>
 
     <div class="ingredients-grid">
@@ -153,28 +153,28 @@ export default {
     newPage: function(toPage){
       this.step = toPage;
     },
-    changeCategory1: function () {
+    changeCategory4: function () {
       this.category = 4;
       this.clickedOn1 = "orangeBorder";
       this.clickedOn2 = '';
       this.clickedOn3 = '';
       this.clickedOn4 = '';
     },
-    changeCategory2: function () {
+    changeCategory1: function () {
       this.category = 1;
       this.clickedOn1 = '';
       this.clickedOn2 = "orangeBorder";
       this.clickedOn3 = '';
       this.clickedOn4 = '';
     },
-    changeCategory3: function () {
+    changeCategory2: function () {
       this.category = 2;
       this.clickedOn1 = '';
       this.clickedOn2 = '';
       this.clickedOn3 = "orangeBorder";
       this.clickedOn4 = '';
     },
-    changeCategory4: function () {
+    changeCategory3: function () {
       this.category = 3;
       this.clickedOn1 = '';
       this.clickedOn2 = '';

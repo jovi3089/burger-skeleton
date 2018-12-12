@@ -30,5 +30,13 @@
   "designBurger" : "Sätt ihop egen burgare",
   "popularBurger" : "De mest populära",
   "randomBurger" : "Slumpa",
-  "toOrderPage" : "Jag vill beställa"
+  "toOrderPage" : "Jag vill beställa",
+  "chooseBread" : "Välj bröd",
+  "choosePatty" : "Välj protein",
+  "chooseTopping" : "Välj pålägg",
+  "chooseSauce" : "Välj sås",
+  "burgerBread" : "Bröd",
+  "burgerPatty" : "Protein",
+  "burgerTopping" : "Pålägg",
+  "burgerSauce" : "Sås"
 }
