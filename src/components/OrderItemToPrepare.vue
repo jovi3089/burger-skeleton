@@ -48,7 +48,7 @@ export default {
       this.$refs.timer.resetTimer();
     },
     cancelOrder: function () {
-      // not implemented
+      // not implemented yet
     }
   }
 }
