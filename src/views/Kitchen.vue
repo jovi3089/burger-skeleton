@@ -9,17 +9,16 @@
           :lang="lang"
           >
           </StaffHomePage>
-    </div>
+        </div>
 
     <div v-show = "page===0">  <!--Home page for staff -->
       <button v-on:click="changePage(1)">Go to work flow</button>
     </div>
-
     <div v-show = "page===1">  <!--Work flow for orders-->
       <div id="orders">
         <h1>{{ uiLabels.ordersInQueue }}</h1>
         <div id="ordersToPrepare">
-          <OrderItemToPrepare
+          <OrderItemToPrepare class="singleOrder"
             v-for="(order, key) in orders"
             v-if="order.status === 'not-started'"
             v-on:started="markStarted(key)"
@@ -30,10 +29,10 @@
             :key="key">
           </OrderItemToPrepare>
         </div>
+
         <h1>{{ uiLabels.ordersWorkingOn }}</h1>
         <div id="ordersWorkedOn">
-          <OrderItemBeingPrepared
-            ref="timer"
+          <OrderItemBeingPrepared ref="timer" class="singleOrder"
             v-for="(order, key) in orders"
             v-if="order.status === 'started'"
             v-on:done="markDone(key)"
@@ -44,9 +43,10 @@
             :key="key">
           </OrderItemBeingPrepared>
         </div>
+
         <h1>{{ uiLabels.ordersFinished }}</h1>
         <div id="finishedOrders">
-          <OrderItemDone
+          <OrderItemDone class="singleOrder"
             v-for="(order, key) in orders"
             v-if="order.status === 'done'"
             v-on:served="markServed(key)"
@@ -56,7 +56,6 @@
             :ui-labels="uiLabels"
             :key="key">
           </OrderItemDone> <!-- orders is found in sharedVueStuff.js -->
-
         </div>
         <label>
           <button class="backButton" v-on:click="changePage(0)">
@@ -65,7 +64,6 @@
         </label>
       </div>
     </div>
-
     <div v-show = "page===2">  <!--Saldo -->
       <IngredientSaldo
       :ingred="ingredients"
@@ -77,14 +75,14 @@
           {{uiLabels.back}}
         </button>
       </label>
-    </div>
 
+    </div>
     <div v-show = "page===3">  <!--Product statistics -->
       <label>
-        <button class="backButton" v-on:click="changePage(0)">
-          {{uiLabels.back}}
-        </button>
-      </label>
+          <button class="backButton" v-on:click="changePage(0)">
+            {{uiLabels.back}}
+          </button>
+        </label>
     </div>
 
   </div>
@@ -126,7 +124,6 @@ export default {
   methods: {
     markDone: function (orderid) {
       this.$store.state.socket.emit("orderDone", orderid);
-
     },
     markStarted: function (orderid) {
       this.$store.state.socket.emit("orderStarted", orderid)
@@ -143,19 +140,18 @@ export default {
 </script>
 
 <style scoped>
-#orders {
-  width: 100vw; /*vw 100% of the page width is covered by orders*/
-  height: 100vh; /*vw 100% of the page height is covered by orders*/
-  display: grid;
-  justify-content: flex-start; /*The items start at top*/
-  grid-template-columns: 33% 33% 33%;
-  font-size: 24pt;
-  grid-row-gap: 1px;
-  grid-column-gap: .5em;
-  min-height:100%;
-  max-height:100%;
-  
-}
+	#orders {
+    width: 100vw; /*vw 100% of the page width is covered by orders*/
+    height: 100vh; /*vw 100% of the page height is covered by orders*/
+    display: grid;
+    justify-content: flex-start; /*The items start at top*/
+    grid-template-columns: 33% 33% 33%;
+    font-size: 24pt;
+    grid-row-gap: 1em;
+    grid-column-gap: .5em;
+    min-height:100%;
+    max-height:100%;
+  }
 
   #ordersToPrepare{
     display: grid;
@@ -163,8 +159,13 @@ export default {
     grid-column-end: 1;
     grid-row-start: 2;
     grid-template-columns: repeat(1, minmax(1em 1fr));
-    grid-template-rows: auto;
     /*overflow-y: auto;*/
+  }
+  .singleOrder{ /*Class for all orders*/
+    border: 2px solid;
+    border-color: Crimson;
+    border-radius: 15px;
+    height: 3.5em;
   }
 
 
@@ -178,7 +179,7 @@ export default {
   }
 
   .homePage {
-  }
+    }
    .backButton {
      position:absolute;
      top:0;

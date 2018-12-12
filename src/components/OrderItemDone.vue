@@ -1,21 +1,18 @@
 <template>
-  <div>
-    <label>
-      <button
-      class="singleOrder"
-      v-bind:class= "order.orderKitchenCategory"
-      v-on:click="orderServed">
-        <OrderItem
-          :ui-labels="uiLabels"
-          :lang="lang"
-          :order-id="orderId"
-          :order="order">
-        </OrderItem>
-        <Timer ref="timer">
-        </Timer>
-      </button>
-    </label>
-  </div>
+  <!-- Note in this component that it is using another component -->
+<div>
+  <OrderItem
+    :ui-labels="uiLabels"
+    :lang="lang"
+    :order-id="orderId"
+    :order="order">
+  </OrderItem>
+  <button v-on:click="orderServed">
+    {{uiLabels.served}}
+  </button>
+  <Timer ref="timer">
+  </Timer>
+</div>
 </template>
 <script>
 import OrderItem from '@/components/OrderItem.vue'
@@ -60,25 +57,5 @@ export default {
 }
 </script>
 <style scoped>
-button {
-  display: inline-flex;
-}
-.singleOrder{ /*Class for all orders*/
-  border: 2px solid;
-  border-color: Crimson;
-  border-radius: 15px;
-  height: 3.5em;
-}
-.veg{
-  background-color: green;
-}
-.fish{
-  background-color: blue;
-}
-.chicken{
-  background-color: yellow;
-}
-.meat{
-  background-color: red;
-}
+
 </style>

@@ -29,9 +29,11 @@ export default {
       this.totalTime = 0;
       this.minutes = 0;
       this.seconds = 0;
+      console.log("reset");
     },
     startTimer: function() {
       this.timer = setInterval(() => this.countUp(), 1000);
+      this.console.log("jag är i timer");
     },
     stopTimer: function () {
       clearInterval(this.timer);
@@ -40,7 +42,7 @@ export default {
       this.totalTime++;
       this.minutes = parseInt(this.totalTime/60, 10)
       this.seconds = parseInt(this.totalTime%60, 10);
-      //console.log(this.totalTime);
+      console.log(this.totalTime);
     },
     helpDisplay: function(time) {
       if (time < 10) {
@@ -52,6 +54,9 @@ export default {
     }
   },
 }
+
+
+
 </script>
 
 <style scoped>

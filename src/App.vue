@@ -20,6 +20,7 @@ body {
   background: radial-gradient(white, lightblue);
   background-size: 200% 200%;
   animation: Gradient 20s linear infinite;
+  margin: 0;
 }
 
 @keyframes Gradient {

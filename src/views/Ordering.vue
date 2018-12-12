@@ -58,19 +58,19 @@
     <h1>{{ uiLabels.ingredients }}</h1>
 
     <div class="ingredients-grid">
-    <Ingredient
-      ref="ingredient"
-      v-bind:class="{ active: isActive}"
-      v-for="item in ingredients"
-      v-if="item.category===category"
-      v-on:increment="addToOrder(item)"
-      v-on:decrease="deleteFromOrder(item)"
-      v-on:highlight="activateDesign()"
-      :item="item"
-      :lang="lang"
-      :key="item.ingredient_id">
-    </Ingredient>
-  </div>
+      <Ingredient
+        ref="ingredient"
+        v-bind:class="{ active: isActive}"
+        v-for="item in ingredients"
+        v-if="item.category===category"
+        v-on:increment="addToOrder(item)"
+        v-on:decrease="deleteFromOrder(item)"
+        v-on:highlight="activateDesign()"
+        :item="item"
+        :lang="lang"
+        :key="item.ingredient_id">
+      </Ingredient>
+    </div>
 
     <div class="footer">
       <h1>{{ uiLabels.order }}</h1>
@@ -219,7 +219,6 @@ export default {
 #ordering {
   margin:auto;
   max-width: 40em; /*sidan skalas om när fönstret minskas*/
-  padding-bottom: 20em;
   font-family: Helvetica, sans-serif;
   text-align: center;
 }

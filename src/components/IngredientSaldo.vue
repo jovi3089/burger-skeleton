@@ -1,53 +1,50 @@
 <template>
   <div class="root">
     <div class="wrapper">
+      <div
+      v-for="item in ingred"
+      >
         <div class="cat a"
-        v-for="item in ingred"
+        v-if="item.category===1"
         :key="item.ingredient_id"
-        v-if="item.category===1">
-          hej
+        >
+          <p>
+            {{item["ingredient_"+ lang]}}: {{item.stock}} pcs
+          </p>
+
         </div>
         <div class="cat b"
-        v-for="item in ingred"
         v-if="item.category===2"
         :key="item.ingredient_id"
         >
           {{item["ingredient_"+ lang]}}: {{item.stock}} pcs
-          <br>
+
         </div>
         <div class="cat c"
-        v-for="item in ingred"
         v-if="item.category===3"
         :key="item.ingredient_id"
         >
           {{item["ingredient_"+ lang]}}: {{item.stock}} pcs
-          <br>
         </div>
         <div class="cat d"
-        v-for="item in ingred"
         v-if="item.category===4"
         :key="item.ingredient_id"
         >
           {{item["ingredient_"+ lang]}}: {{item.stock}} pcs
-          <br>
         </div>
         <div class="cat e"
-        v-for="item in ingred"
         v-if="item.category===5"
         :key="item.ingredient_id"
         >
           {{item["ingredient_"+ lang]}}: {{item.stock}} pcs
-          <br>
         </div>
         <div class="cat f"
-        v-for="item in ingred"
         v-if="item.category===6"
         :key="item.ingredient_id"
         >
           {{item["ingredient_"+ lang]}}: {{item.stock}} pcs
-          <br>
         </div>
-
+      </div>
     </div>
   </div>
 </template>
@@ -62,7 +59,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="css">
 .wrapper {
   /*width: 100vw; vw 100% of the page width is covered by saldo*/
   /*height: 100vh; vw 100% of the page height is covered by saldo*/
@@ -80,36 +77,34 @@ export default {
   width: 200px;
   display: inline-grid;
   color: black;
-
 }
 .a {
   background-color: #D2691E;
   grid-column: 1;
   grid-row: 1;
-
 }
 .b {
-  background-color: white;
+  color: #fff;
   grid-column: 2;
   grid-row: 1;
 }
 .c {
-  background-color: black;
+  color: #fff;
   grid-column: 3;
   grid-row: 1;
 }
 .d {
-  background-color: yellow;
+  color: #fff;
   grid-column: 1;
   grid-row: 2;
 }
 .e {
-  background-color: blue;
+  color: #fff;
   grid-column: 2;
   grid-row: 2;
 }
 .f {
-  background-color: green;
+  color: #fff;
   grid-column: 3;
   grid-row: 2;
 }

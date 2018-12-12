@@ -69,10 +69,7 @@ Data.prototype.getOrderNumber = function () {
 
 Data.prototype.addOrder = function (order) {
   var orderId = this.getOrderNumber();
-  //var orderKitchenCategory = {};
-
   this.orders[orderId] = order.order;
-  this.orders[orderId].orderKitchenCategory = this.getKitchenCategory(orderId);
   this.orders[orderId].orderId = orderId;
   this.orders[orderId].status = "not-started";
   var transactions = this.data[transactionsDataName],
@@ -84,7 +81,7 @@ Data.prototype.addOrder = function (order) {
     transId += 1;
     transactions.push({transaction_id: transId,
                        ingredient_id: i[k].ingredient_id,
-                       change: - 1});
+                       change: - 2});
   }
     return orderId;
 };
@@ -116,26 +113,5 @@ Data.prototype.markOrderNotStarted = function (orderId) {
 Data.prototype.markOrderServed = function (orderId) {
   this.orders[orderId].status = "served";
 };
-
-Data.prototype.getKitchenCategory = function (orderId){
-  var temp = 0;
-  for (var i = 0; i < this.orders[orderId].ingredients.length; i++) {
-    var kitchenCategory = this.orders[orderId].ingredients[i].kitchenCategory
-      if (kitchenCategory > temp){
-        temp = kitchenCategory;
-      }
-    }
-    var result = temp;
-    switch (result) {
-      case 1: return "veg"
-      break;
-      case 2: return "fish"
-      break;
-      case 3: return "chicken"
-      break;
-      case 4: return "meat"
-      break;
-    }
-}
 
 module.exports = Data;
