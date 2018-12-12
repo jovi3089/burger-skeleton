@@ -126,7 +126,6 @@ Data.prototype.getKitchenCategory = function (orderId){
       }
     }
     var result = temp;
-    console.log(result);
     switch (result) {
       case 1: return "veg"
       break;

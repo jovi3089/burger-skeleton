@@ -1,18 +1,24 @@
 <template>
   <!-- Note in this component that it is using another component -->
 <div>
-  <OrderItem
-    :ui-labels="uiLabels"
-    :lang="lang"
-    :order-id="orderId"
-    :order="order">
-  </OrderItem>
+  <label>
+    <button
+    v-on:click="orderStart"
+    class="singleOrder"
+    v-bind:class= "order.orderKitchenCategory"
+    >
+      <OrderItem
+        :ui-labels="uiLabels"
+        :lang="lang"
+        :order-id="orderId"
+        :order="order">
+      </OrderItem>
+      <!-- {{uiLabels.started}}  -->
 
-  <button v-on:click="orderStart">
-    {{uiLabels.started}}
-  </button>
-  <Timer ref="timer">
-  </Timer>
+      <Timer ref="timer">
+      </Timer>
+    </button>
+  </label>
 </div>
 </template>
 <script>
@@ -51,5 +57,25 @@ export default {
 }
 </script>
 <style scoped>
-
+button {
+  display: inline-flex;
+}
+.singleOrder{ /*Class for all orders*/
+  border: 2px solid;
+  border-color: Crimson;
+  border-radius: 15px;
+  height: 3.5em;
+}
+.veg{
+  background-color: green;
+}
+.fish{
+  background-color: blue;
+}
+.chicken{
+  background-color: yellow;
+}
+.meat{
+  background-color: red;
+}
 </style>

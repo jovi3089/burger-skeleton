@@ -57,7 +57,5 @@ export default {
 }
 </script>
 <style scoped>
-#theItem{
-  background-color: Blue; /*test to see how much the div covers */
-}
+
 </style>

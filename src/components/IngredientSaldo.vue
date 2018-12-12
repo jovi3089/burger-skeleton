@@ -1,14 +1,11 @@
 <template>
   <div class="root">
     <div class="wrapper">
-
         <div class="cat a"
         v-for="item in ingred"
         :key="item.ingredient_id"
-        v-if="item.category===1"
-        >
+        v-if="item.category===1">
           hej
-          <br>
         </div>
         <div class="cat b"
         v-for="item in ingred"
@@ -83,11 +80,13 @@ export default {
   width: 200px;
   display: inline-grid;
   color: black;
+
 }
 .a {
   background-color: #D2691E;
   grid-column: 1;
   grid-row: 1;
+
 }
 .b {
   background-color: white;

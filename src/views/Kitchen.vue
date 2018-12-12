@@ -9,7 +9,7 @@
           :lang="lang"
           >
           </StaffHomePage>
-        </div>
+    </div>
 
     <div v-show = "page===0">  <!--Home page for staff -->
       <button v-on:click="changePage(1)">Go to work flow</button>
@@ -20,10 +20,7 @@
 
         <div id="ordersToPrepare">
           <OrderItemToPrepare
-
             v-for="(order, key) in orders"
-            class="singleOrder"
-            v-bind:class= "order.orderKitchenCategory"
             v-if="order.status === 'not-started'"
             v-on:started="markStarted(key)"
             :order-id="key"
@@ -32,13 +29,15 @@
             :lang="lang"
             :key="key">
           </OrderItemToPrepare>
-
         </div>
 
         <h1>{{ uiLabels.ordersWorkingOn }}</h1>
         <div id="ordersWorkedOn">
-          <OrderItemBeingPrepared ref="timer" class="singleOrder"
+          <OrderItemBeingPrepared
+            ref="timer"
             v-for="(order, key) in orders"
+            class="singleOrder"
+            v-bind:class= "order.orderKitchenCategory"
             v-if="order.status === 'started'"
             v-on:done="markDone(key)"
             :order-id="key"
@@ -51,8 +50,10 @@
 
         <h1>{{ uiLabels.ordersFinished }}</h1>
         <div id="finishedOrders">
-          <OrderItemDone class="singleOrder"
+          <OrderItemDone
             v-for="(order, key) in orders"
+            class="singleOrder"
+            v-bind:class= "order.orderKitchenCategory"
             v-if="order.status === 'done'"
             v-on:served="markServed(key)"
             :order-id="key"
@@ -198,7 +199,7 @@ export default {
   }
 
   .homePage {
-    }
+  }
    .backButton {
      position:absolute;
      top:0;
