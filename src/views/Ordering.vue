@@ -23,7 +23,7 @@
       v-on:beverage="newPage(4)">
       </MenuPage>
       <h1>Page 1</h1>
-      <button v-on:click="newPage(0)">Tillbaka</button>
+      <button v-on:click="newPage(0)">{{uiLabels.back}}</button>
       <button v-on:click="newPage(2)">Switch to page 2</button>
     </div>
 
@@ -35,26 +35,26 @@
       v-on:designBurger="newPage(5)">
       </HamburgerPage>
       <h1>Page 2</h1>
-      <button v-on:click="newPage(1)">Tillbaka</button>
+      <button v-on:click="newPage(1)">{{uiLabels.back}}</button>
       <button v-on:click="newPage(3)">Switch to page 3</button>
     </div>
 
     <div v-show="step===3">
       <h1>Page 3</h1>
-      <button v-on:click="newPage(2)">Tillbaka</button>
+      <button v-on:click="newPage(2)">{{uiLabels.back}}</button>
       <button v-on:click="newPage(4)">Switch to page 4</button>
     </div>
 
     <div v-show="step===4">
       <h1>Page 3</h1>
-      <button v-on:click="newPage(2)">Tillbaka</button>
+      <button v-on:click="newPage(2)">{{uiLabels.back}}</button>
       <button v-on:click="newPage(5)">Switch to page 5</button>
     </div>
 
     <div v-show = "step===5">
-    <button v-on:click="changeCategory(1)">Protein</button>
-    <button v-on:click="changeCategory(2)">Pålägg</button>
-    <button v-on:click="changeCategory(3)">Sås</button>
+    <button v-on:click="changeCategory(1)">{{uiLabels.protein}}</button>
+    <button v-on:click="changeCategory(2)">{{uiLabels.topping}}</button>
+    <button v-on:click="changeCategory(3)">{{uiLabels.sauce}}</button>
     <h1>{{ uiLabels.ingredients }}</h1>
 
     <div class="ingredients-grid">
@@ -75,8 +75,8 @@
     <div class="footer">
       <h1>{{ uiLabels.order }}</h1>
         {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
-          <button v-on:click="addToCart()">DETHÄR ÄR EN STRING</button>
-          <button v-on:click="placeOrder()"> {{uiLabels.placeOrder}}  </button>
+          <button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button>
+          <button v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>
     </div>
 
     <h1>{{ uiLabels.ordersInQueue }}</h1>

@@ -1,5 +1,6 @@
 {
   "cancelOrder" : "Avbryt köp",
+  "back" : "Tillbaka",
   "next" : "Nästa",
   "changeIng" : "Byt ut ingrediens",
   "content": "Innehåll",
@@ -15,6 +16,9 @@
   "placeOrder" : "Beställ",
   "sideorders" : "Tillbehör",
   "ingredients" : "Ingredienser",
+  "protein" : "Protein",
+  "topping" : "Topping",
+  "sauce" : "Sås",
   "started" : "Starta",
   "ready" : "Klart",
   "served" : "Serverad",
@@ -30,5 +34,6 @@
   "designBurger" : "Sätt ihop egen burgare",
   "popularBurger" : "De mest populära",
   "randomBurger" : "Slumpa",
-  "toOrderPage" : "Jag vill beställa"
+  "toOrderPage" : "Jag vill beställa",
+  "addToCart" : "Lägg till i korgen"
 }
