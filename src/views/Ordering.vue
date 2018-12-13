@@ -4,6 +4,7 @@
     samt gör varje steg till komponenter, innehållande
     css i resp komponent-->
   <div id="ordering">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div v-show = "step===0">
       <StartingPage
         :ui-labels="uiLabels"
@@ -56,6 +57,7 @@
     <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory(3)">{{ uiLabels.burgerSauce }}</button>
+    <button class="buttonmenu" id="shoppingCart"><i class="fa fa-shopping-cart" style="font-size:18px;"></i></button>
     <p class="categoryText" v-if="category===4">{{ uiLabels.chooseBread }}</p>
     <p class="categoryText" v-if="category===1">{{ uiLabels.choosePatty }}</p>
     <p class="categoryText" v-if="category===2">{{ uiLabels.chooseTopping }}</p>
@@ -317,6 +319,11 @@ template {
   border-radius: 1em;
   border: 1px solid #000;
   margin: 0.5em;
+  cursor: pointer;
+}
+
+.buttonmenu:hover {
+  background-color: #f9cb9c;
 }
 
 .orangeBorder {

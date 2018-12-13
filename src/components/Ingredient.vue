@@ -57,8 +57,7 @@ export default {
  }
 
  .textdesign {
-   font-size: 1.5vw;
-   font-weight: bold;
+   font-size: 0.8em;
    word-wrap: break-word;
    text-align: center;
    margin: auto;
@@ -68,8 +67,8 @@ export default {
  }
 
  button {
-   width: 2vw;
-   height: 2.1vh;
+   width: 1.5em;
+   height: 1.5em;
    border: 1px solid black;
    background-color: #d0e0e3ff;
    border-radius: 50%;
