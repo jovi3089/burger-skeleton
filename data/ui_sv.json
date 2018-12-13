@@ -40,5 +40,6 @@
   "burgerPatty" : "Protein",
   "burgerTopping" : "Pålägg",
   "burgerSauce" : "Sås",
-  "totalPrice" : "Totalt pris: "
+  "totalPrice" : "Totalt pris:",
+  "addToCart" : "Lägg till kundkorg"
 }

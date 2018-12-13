@@ -40,5 +40,6 @@
   "burgerTopping" : "Topping",
   "burgerSauce" : "Sauce",
   "welcomeStaff": "Dear employee, welcome back to Krafty Burgers!",
-  "totalPrice" : "Total price: "
+  "totalPrice" : "Total price:",
+  "addToCart" : "Add to shopping cart"
 }

@@ -73,6 +73,11 @@ export default {
    background-color: #d0e0e3ff;
    border-radius: 50%;
    padding: 0px;
+   cursor: pointer;
+ }
+
+ button:hover {
+   background-color: #ccc;
  }
 
 /*stycket ovan kan lika väl ligga i ordering.vue <style>*/

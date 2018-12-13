@@ -78,11 +78,10 @@
   </div>
 
     <div class="footer">
-      <h1>{{ uiLabels.order }}</h1>
-      <span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}</span><br>
-      <span>{{ price }} kr</span><br>
-          <br><button v-on:click="addToCart()">DETHÄR ÄR EN STRING</button>
-          <button v-on:click="placeOrder()"> {{uiLabels.placeOrder}}  </button>
+      <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
+      <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
+          <br><button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
+          <button v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>
     </div>
 
     <h1>{{ uiLabels.ordersInQueue }}</h1>
