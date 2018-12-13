@@ -52,10 +52,10 @@
     </div>
 
     <div v-show = "step===5">
-    <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory4()">{{ uiLabels.burgerBread }}</button>
-    <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory1()">{{ uiLabels.burgerPatty }}</button>
-    <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory2()">{{ uiLabels.burgerTopping }}</button>
-    <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory3()">{{ uiLabels.burgerSauce }}</button>
+    <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
+    <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
+    <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
+    <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory(3)">{{ uiLabels.burgerSauce }}</button>
     <p class="categoryText" v-if="category===4">{{ uiLabels.chooseBread }}</p>
     <p class="categoryText" v-if="category===1">{{ uiLabels.choosePatty }}</p>
     <p class="categoryText" v-if="category===2">{{ uiLabels.chooseTopping }}</p>
@@ -156,33 +156,28 @@ export default {
     newPage: function(toPage){
       this.step = toPage;
     },
-    changeCategory4: function () {
-      this.category = 4;
-      this.clickedOn1 = "orangeBorder";
-      this.clickedOn2 = '';
-      this.clickedOn3 = '';
-      this.clickedOn4 = '';
+    changeCategory: function (toCategory) {
+      this.resetCategory();
+      switch (toCategory) {
+        case 4: this.clickedOn1 = "orangeBorder"
+        this.category = 4
+        break;
+        case 1: this.clickedOn2 = "orangeBorder"
+        this.category = 1
+        break;
+        case 2: this.clickedOn3 = "orangeBorder"
+        this.category = 2
+        break;
+        case 3: this.clickedOn4 = "orangeBorder"
+        this.category = 3
+        break;
+      }
     },
-    changeCategory1: function () {
-      this.category = 1;
-      this.clickedOn1 = '';
-      this.clickedOn2 = "orangeBorder";
-      this.clickedOn3 = '';
-      this.clickedOn4 = '';
-    },
-    changeCategory2: function () {
-      this.category = 2;
-      this.clickedOn1 = '';
-      this.clickedOn2 = '';
-      this.clickedOn3 = "orangeBorder";
-      this.clickedOn4 = '';
-    },
-    changeCategory3: function () {
-      this.category = 3;
+    resetCategory: function () {
       this.clickedOn1 = '';
       this.clickedOn2 = '';
       this.clickedOn3 = '';
-      this.clickedOn4 = "orangeBorder";
+      this.clickedOn4 = '';
     },
     activateDesign: function () {
       this.isActive = true;
@@ -263,7 +258,7 @@ export default {
 }
 
 .categoryText {
-  font-size: 3vw;
+  font-size: 2.5vw;
   font-style: italic;
   font-weight: bold;
 }

@@ -52,12 +52,12 @@ export default {
    height: 5em;
    display: flex;
    flex-wrap: wrap;
+   flex-direction: column;
    justify-content: center;
-   align-items: center;
  }
 
  .textdesign {
-   font-size: 75%;
+   font-size: 1.5vw;
    font-weight: bold;
    word-wrap: break-word;
    text-align: center;
@@ -67,8 +67,13 @@ export default {
  .ingredientdesign {
  }
 
- .buttondesign {
-
+ button {
+   width: 2vw;
+   height: 2.1vh;
+   border: 1px solid black;
+   background-color: #d0e0e3ff;
+   border-radius: 50%;
+   padding: 0px;
  }
 
 /*stycket ovan kan lika väl ligga i ordering.vue <style>*/
