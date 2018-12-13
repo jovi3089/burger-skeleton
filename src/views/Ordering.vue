@@ -56,7 +56,10 @@
     <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory1()">{{ uiLabels.burgerPatty }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory2()">{{ uiLabels.burgerTopping }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory3()">{{ uiLabels.burgerSauce }}</button>
-    <h1>{{ uiLabels.ingredients }}</h1>
+    <p class="categoryText" v-if="category===4">{{ uiLabels.chooseBread }}</p>
+    <p class="categoryText" v-if="category===1">{{ uiLabels.choosePatty }}</p>
+    <p class="categoryText" v-if="category===2">{{ uiLabels.chooseTopping }}</p>
+    <p class="categoryText" v-if="category===3">{{ uiLabels.chooseSauce }}</p>
 
     <div class="ingredients-grid">
     <Ingredient
@@ -135,7 +138,7 @@ export default {
       orderNumber: "",
       step: 0,
       category: 4,
-      categoryChanged: false,
+      categoryChanged: '',
       isActive: false,
       indexChosenIngredients: 0,
       clickedOn1: "orangeBorder",
@@ -259,6 +262,11 @@ export default {
   left: 0;
 }
 
+.categoryText {
+  font-size: 3vw;
+  font-style: italic;
+  font-weight: bold;
+}
 
 /*.relative {
   position: relative;
