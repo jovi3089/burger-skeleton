@@ -246,7 +246,6 @@ export default {
 #ordering {
   margin:auto;
   max-width: 40em; /*sidan skalas om när fönstret minskas*/
-  padding-bottom: 20em;
   font-family: Helvetica, sans-serif;
   text-align: center;
 }
