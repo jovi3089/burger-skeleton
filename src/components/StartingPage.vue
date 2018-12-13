@@ -1,12 +1,12 @@
 <template>
-  <div class = "startingpage">
-    <label>
-
-      <button id = "langbutton" v-on:click="$emit('switchLang')">{{ uiLabels.language }}</button>
-      <div class ="wrapper">
-        <button id="toorderpagebutton" v-on:click="toOrderPage"> {{ uiLabels.toOrderPage }}</button>
+  <div>
+      <div class = "langwrapper">
+        <button class = "langbutton" v-on:click="$emit('switchLang')">Svenska</button>
+        <button class = "langbutton" v-on:click="$emit('switchLang')">English</button>
       </div>
-    </label>
+      <div class = "wrapper">
+        <button id = "toorderpagebutton" v-on:click="toOrderPage"> {{ uiLabels.toOrderPage }}</button>
+      </div>
   </div>
 </template>
 
@@ -34,40 +34,40 @@ export default {
 </script>
 
 <style scoped>
-.title {
-  color: white;
-  font-weight: bold;
-  font-size: 70px;
-  padding: 0;
-  margin: 0;
+
+.langwrapper{
+  display: flex;
+  flex-direction: row-reverse;
 }
 
-#langbutton {
-  position: absolute;
-  top: 10px;
-  right:10px;
-  width: 140px;
-  height: 100px;
+.wrapper{
+  display: flex;
+  justify-content: center;
+}
+
+.langbutton {
+  position: relative;
+  width: 30vw;
+  height: 10vh;
   border-radius: 20px;
   background-color: #a2c4c9ff;
   color: black;
   opacity: 0.8;
   font-weight: bold;
-  font-size: 20px;
-
+  font-size: 1em;
 }
 
 #toorderpagebutton{
   position: relative;
-  top: 100%;
-  width: 300px;
-  height: 200px;
+  width: 98vw;
+  height: 30vh;
   border-radius: 20px;
   background-color: #a2c4c9ff;
   color: black;
   opacity: 0.8;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 2em;
+  margin-top: 50%;
 }
 
   /*transition: 0.5s ease;
