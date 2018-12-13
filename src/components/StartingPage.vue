@@ -46,7 +46,7 @@ export default {
 }
 
 .langbutton {
-  position: relative;
+  position: absolute;
   width: 30vw;
   height: 10vh;
   border-radius: 20px;
