@@ -22,7 +22,7 @@
   "language" : "Svenska",
   "workFlow" : "Work flow",
   "saldo" : "Products saldo",
-  "statistics" : "Costumer statistics",
+  "statistics" : "Customer statistics",
   "hamburger" : "Hamburger",
   "sides" : "Sides",
   "beverage" : "Beverage",
@@ -30,5 +30,6 @@
   "designBurger" : "Design your own burger",
   "popularBurger" : "The most popular burgers",
   "randomBurger" : "Randomize burger",
-  "toOrderPage" : "I want to order"
+  "toOrderPage" : "I want to order",
+  "welcomeStaff": "Dear employee, welcome back to Krafty Burgers!"
 }
