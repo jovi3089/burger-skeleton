@@ -31,9 +31,7 @@
   "popularBurger" : "De mest populära",
   "randomBurger" : "Slumpa",
   "toOrderPage" : "Jag vill beställa",
-<<<<<<< HEAD
-  "welcomeStaff" : "Kära anställda, väkommen tillbaka till Krafty Burgers!"
-=======
+  "welcomeStaff" : "Kära anställda, väkommen tillbaka till Krafty Burgers!",
   "chooseBread" : "Välj bröd",
   "choosePatty" : "Välj protein",
   "chooseTopping" : "Välj pålägg",
@@ -42,5 +40,4 @@
   "burgerPatty" : "Protein",
   "burgerTopping" : "Pålägg",
   "burgerSauce" : "Sås"
->>>>>>> e458c180cc9c1e53935951a06dfe28c5ce088897
 }
