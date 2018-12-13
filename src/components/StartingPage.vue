@@ -1,8 +1,10 @@
 <template>
   <div>
       <div class = "langwrapper">
-        <button class = "langbutton" v-on:click="$emit('switchLang')">Svenska</button>
-        <button class = "langbutton" v-on:click="$emit('switchLang')">English</button>
+        <button class = "langbutton" v-on:click="$emit('switchLang')"
+        :disabled = "isSwe(lang)" v-bind:style="{borderColor: computedSweBorderColor}" >Svenska</button>
+        <button class = "langbutton" v-on:click="$emit('switchLang')"
+        :disabled = "isEng(lang)" v-bind:style="{borderColor: computedEngBorderColor}" >English</button>
       </div>
       <div class = "wrapper">
         <button id = "toorderpagebutton" v-on:click="toOrderPage"> {{ uiLabels.toOrderPage }}</button>
@@ -18,38 +20,81 @@ export default {
   props: {
     uiLabels: Object,
     lang: String,
-    step: Number
+    step: Number,
   },
+
   data: function () {
     return {
-
+      isSwedish: false,
+      isEnglish: false,
+      sweBorderColor: "#a2c4c9ff",
+      engBorderColor: "#00FF00"
     };
   },
+
+  computed: {
+    computedSweBorderColor: function(){
+        if (this.isSwedish){
+          this.sweBorderColor = "#00FF00";
+        }
+        else {
+          this.sweBorderColor = "#a2c4c9ff";
+        }
+        return this.sweBorderColor
+      },
+
+    computedEngBorderColor: function(){
+      if (this.isEnglish){
+        this.engBorderColor = "#00FF00";
+      }
+      else {
+        this.engBorderColor = "#a2c4c9ff";
+      }
+      return this.engBorderColor
+    }
+  },
+
   methods: {
     toOrderPage: function () {
       this.$emit('orderpage');
+    },
+
+    isSwe: function(lang) {
+      if (lang === "sv"){
+        this.isSwedish = true;
+        this.isEnglish = false;
+      }
+      return this.isSwedish;
+    },
+
+    isEng: function(lang) {
+      if (lang === "en"){
+        this.isEnglish = true;
+        this.isSwedish = false;
+      }
+      return this.isEnglish;
     }
   }
 }
 </script>
 
 <style scoped>
+.wrapper{
+  display: flex;
+  justify-content: center;
+}
 
 .langwrapper{
   display: flex;
   flex-direction: row-reverse;
 }
 
-.wrapper{
-  display: flex;
-  justify-content: center;
-}
-
 .langbutton {
-  position: absolute;
+  position: relative;
   width: 30vw;
   height: 10vh;
   border-radius: 20px;
+  border-width: 5px;
   background-color: #a2c4c9ff;
   color: black;
   opacity: 0.8;
