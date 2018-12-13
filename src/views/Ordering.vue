@@ -79,8 +79,9 @@
 
     <div class="footer">
       <h1>{{ uiLabels.order }}</h1>
-        {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
-          <button v-on:click="addToCart()">DETHÄR ÄR EN STRING</button>
+      <span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}</span><br>
+      <span>{{ price }} kr</span><br>
+          <br><button v-on:click="addToCart()">DETHÄR ÄR EN STRING</button>
           <button v-on:click="placeOrder()"> {{uiLabels.placeOrder}}  </button>
     </div>
 
