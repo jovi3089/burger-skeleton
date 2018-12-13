@@ -31,5 +31,13 @@
   "popularBurger" : "The most popular burgers",
   "randomBurger" : "Randomize burger",
   "toOrderPage" : "I want to order",
+  "chooseBread" : "Choose bread",
+  "choosePatty" : "Choose patty",
+  "chooseTopping" : "Choose Topping",
+  "chooseSauce" : "Choose sauce",
+  "burgerBread" : "Bread",
+  "burgerPatty" : "Patty",
+  "burgerTopping" : "Topping",
+  "burgerSauce" : "Sauce",
   "welcomeStaff": "Dear employee, welcome back to Krafty Burgers!"
 }

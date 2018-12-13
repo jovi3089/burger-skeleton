@@ -6,19 +6,25 @@
           v-on:saldo="changePage(2)"
           v-on:statistics="changePage(3)"
           :ui-labels="uiLabels"
-          :lang="lang"
-          >
+          :lang="lang">
           </StaffHomePage>
     </div>
 
-    <div v-show = "page===0">  <!--Home page for staff -->
-      <button v-on:click="changePage(1)">Go to work flow</button>
-    </div>
 
-    <div v-show = "page===1">  <!--Work flow for orders-->
-      <div id="orders">
-        <h1>{{ uiLabels.ordersInQueue }}</h1>
-        <div id="ordersToPrepare">
+
+    <div class="container" v-show = "page===1">  <!--Work flow for orders-->
+      <div class="wrapper">
+        <div class="itemA">
+          <h1>{{ uiLabels.ordersInQueue }}</h1>
+        </div>
+        <div class="itemB">
+          <h1>{{ uiLabels.ordersWorkingOn }}</h1>
+        </div>
+        <div class="itemC">
+          <h1>{{ uiLabels.ordersFinished }}</h1>
+        </div>
+
+        <div class="ordersToPrepare">
           <OrderItemToPrepare
             v-for="(order, key) in orders"
             v-if="order.status === 'not-started'"
@@ -30,8 +36,7 @@
             :key="key">
           </OrderItemToPrepare>
         </div>
-        <h1>{{ uiLabels.ordersWorkingOn }}</h1>
-        <div id="ordersWorkedOn">
+        <div class="ordersWorkedOn">
           <OrderItemBeingPrepared
             ref="timer"
             v-for="(order, key) in orders"
@@ -44,8 +49,7 @@
             :key="key">
           </OrderItemBeingPrepared>
         </div>
-        <h1>{{ uiLabels.ordersFinished }}</h1>
-        <div id="finishedOrders">
+        <div class="finishedOrders">
           <OrderItemDone
             v-for="(order, key) in orders"
             v-if="order.status === 'done'"
@@ -55,14 +59,15 @@
             :lang="lang"
             :ui-labels="uiLabels"
             :key="key">
-          </OrderItemDone> <!-- orders is found in sharedVueStuff.js -->
-
+          </OrderItemDone>
         </div>
-        <label>
-          <button class="backButton" v-on:click="changePage(0)">
-            {{uiLabels.back}}
-          </button>
-        </label>
+        <div class="backButton">
+          <label>
+            <button v-on:click="changePage(0)">
+              {{uiLabels.back}}
+            </button>
+          </label>
+        </div>
       </div>
     </div>
 
@@ -143,59 +148,82 @@ export default {
 </script>
 
 <style scoped>
-#orders {
-  width: 100vw; /*vw 100% of the page width is covered by orders*/
-  height: 100vh; /*vw 100% of the page height is covered by orders*/
-  display: grid;
-  justify-content: flex-start; /*The items start at top*/
-  grid-template-columns: 33% 33% 33%;
-  font-size: 24pt;
-  grid-row-gap: 1px;
-  grid-column-gap: .5em;
-  min-height:100%;
-  max-height:100%;
-  
+.container {
+  /*position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;*/
 }
 
-  #ordersToPrepare{
-    display: grid;
-    grid-column-start: 1;
-    grid-column-end: 1;
-    grid-row-start: 2;
-    grid-template-columns: repeat(1, minmax(1em 1fr));
-    grid-template-rows: auto;
-    /*overflow-y: auto;*/
+.wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 31% 31% 31% 7%;
+  grid-template-rows: 5% auto 5%;
+  grid-gap: 0.5em;
+  border: 4px solid black;
+  /*
+  justify-content: stretch;
+  align-items: start;*/
+}
+.itemA {
+  grid-column: 1;
+  grid-row: 1;
+  border: 5px solid grey;
+  border-radius: 15px;
+}
+
+.itemB {
+  grid-column: 2;
+  grid-row: 1;
+  border: 5px solid grey;
+  border-radius: 15px;
+}
+
+.itemC {
+  grid-column: 3;
+  grid-row: 1;
+  border: 5px solid grey;
+  border-radius: 15px;
+}
+
+ .ordersToPrepare{
+    grid-column: 1;
+    grid-row: 2;
+    border: 5px solid grey;
+    border-radius: 15px;
+    overflow: scroll;
   }
 
+  .ordersWorkedOn{
+    grid-column: 2;
+    grid-row: 2;
+    border: 5px solid grey;
+    border-radius: 15px;
+    overflow: scroll;
 
-  #ordersWorkedOn{
-    display: grid;
-    grid-column-start: 2;
-    grid-column-end: 2;
-    grid-row-start: 2;
-    grid-template-columns: repeat(1, minmax(1em 1fr));
-    overflow-y: auto;
   }
 
-  .homePage {
-  }
-   .backButton {
-     position:absolute;
-     top:0;
-     right:0;
-   }
-
-  #finishedOrders{
-    display: grid;
-    grid-column-start: 3;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-template-columns: repeat(1, minmax(1em 1fr));
-    overflow-y: auto;
+  .finishedOrders{
+    grid-column: 3;
+    grid-row: 2;
+    border: 5px solid grey;
+    border-radius: 15px;
+    overflow: scroll;
   }
 
   h1 {
     text-transform: uppercase;
     font-size: 1.4em;
+  }
+
+  .backButton {
+    grid-column: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
   }
 </style>

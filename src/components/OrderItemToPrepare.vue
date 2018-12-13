@@ -3,16 +3,16 @@
 <div>
   <label>
     <button
-    class="singleOrder"
+    class="container"
     v-bind:class= "order.orderKitchenCategory"
     v-on:click="orderStart">
-      <OrderItem
+      <OrderItem id="item"
         :ui-labels="uiLabels"
         :lang="lang"
         :order-id="orderId"
         :order="order">
       </OrderItem>
-      <Timer ref="timer">
+      <Timer id="timer" ref="timer">
       </Timer>
     </button>
   </label>
@@ -54,14 +54,8 @@ export default {
 }
 </script>
 <style scoped>
-button {
-  display: inline-flex;
-}
-.singleOrder{ /*Class for all orders*/
-  border: 2px solid;
-  border-color: Crimson;
-  border-radius: 15px;
-  height: 3.5em;
+.container{ 
+  height: auto;
 }
 .veg{
   background-color: green;
@@ -74,5 +68,11 @@ button {
 }
 .meat{
   background-color: red;
+}
+#item {
+  background-color: black;
+}
+#timer {
+  background-color: white;
 }
 </style>
