@@ -1,10 +1,10 @@
 <template>
   <div>
       <div class = "langwrapper">
-        <button class = "langbutton" v-on:click="$emit('switchLang')"
-        :disabled = "isSwe(lang)" v-bind:style="{borderColor: computedSweBorderColor}" >Svenska</button>
-        <button class = "langbutton" v-on:click="$emit('switchLang')"
-        :disabled = "isEng(lang)" v-bind:style="{borderColor: computedEngBorderColor}" >English</button>
+        <button id = "sweButton" class = "langbutton" v-on:click="$emit('switchLang')"
+        :disabled = "isSwe(lang)" v-bind:style="{borderColor: computedSweBorderColor}" ><img src = "@/assets/SvenskaFlaggan.jpg"></button>
+        <button id = "engButton" class = "langbutton" v-on:click="$emit('switchLang')"
+        :disabled = "isEng(lang)" v-bind:style="{borderColor: computedEngBorderColor}"><img src = "@/assets/UnionJack.jpg"></button>
       </div>
       <div class = "wrapper">
         <button id = "toorderpagebutton" v-on:click="toOrderPage"> {{ uiLabels.toOrderPage }}</button>
@@ -89,12 +89,34 @@ export default {
   flex-direction: row-reverse;
 }
 
+
+#sweButton img{
+  display: block;
+  position: relative;
+  height: 8.5vh;
+  width: 27vw;
+  left: -20px;
+  top: -15px;
+  border-radius: 20px;
+}
+
+#engButton img{
+  display: block;
+  position: relative;
+  height: 8.5vh;
+  width: 27vw;
+  left: -20px;
+  top: -15px;
+  border-radius: 20px;
+}
+
 .langbutton {
+  display: inline-block;
   position: relative;
   width: 30vw;
   height: 10vh;
   border-radius: 20px;
-  border-width: 5px;
+  border-width: 20px;
   background-color: #a2c4c9ff;
   color: black;
   opacity: 0.8;
