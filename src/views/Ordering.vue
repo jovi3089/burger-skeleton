@@ -4,6 +4,7 @@
     samt gör varje steg till komponenter, innehållande
     css i resp komponent-->
   <div id="ordering">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div v-show = "step===0">
       <StartingPage
         :ui-labels="uiLabels"
@@ -52,10 +53,11 @@
     </div>
 
     <div v-show = "step===5">
-    <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory4()">{{ uiLabels.burgerBread }}</button>
-    <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory1()">{{ uiLabels.burgerPatty }}</button>
-    <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory2()">{{ uiLabels.burgerTopping }}</button>
-    <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory3()">{{ uiLabels.burgerSauce }}</button>
+    <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
+    <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
+    <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
+    <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory(3)">{{ uiLabels.burgerSauce }}</button>
+    <button class="buttonmenu" id="shoppingCart"><i class="fa fa-shopping-cart" style="font-size:18px;"></i></button>
     <p class="categoryText" v-if="category===4">{{ uiLabels.chooseBread }}</p>
     <p class="categoryText" v-if="category===1">{{ uiLabels.choosePatty }}</p>
     <p class="categoryText" v-if="category===2">{{ uiLabels.chooseTopping }}</p>
@@ -76,10 +78,10 @@
   </div>
 
     <div class="footer">
-      <h1>{{ uiLabels.order }}</h1>
-        {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
-          <button v-on:click="addToCart()">DETHÄR ÄR EN STRING</button>
-          <button v-on:click="placeOrder()"> {{uiLabels.placeOrder}}  </button>
+      <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
+      <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
+          <br><button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
+          <button v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>
     </div>
 
     <h1>{{ uiLabels.ordersInQueue }}</h1>
@@ -156,33 +158,28 @@ export default {
     newPage: function(toPage){
       this.step = toPage;
     },
-    changeCategory4: function () {
-      this.category = 4;
-      this.clickedOn1 = "orangeBorder";
-      this.clickedOn2 = '';
-      this.clickedOn3 = '';
-      this.clickedOn4 = '';
+    changeCategory: function (toCategory) {
+      this.resetCategory();
+      switch (toCategory) {
+        case 4: this.clickedOn1 = "orangeBorder"
+        this.category = 4
+        break;
+        case 1: this.clickedOn2 = "orangeBorder"
+        this.category = 1
+        break;
+        case 2: this.clickedOn3 = "orangeBorder"
+        this.category = 2
+        break;
+        case 3: this.clickedOn4 = "orangeBorder"
+        this.category = 3
+        break;
+      }
     },
-    changeCategory1: function () {
-      this.category = 1;
-      this.clickedOn1 = '';
-      this.clickedOn2 = "orangeBorder";
-      this.clickedOn3 = '';
-      this.clickedOn4 = '';
-    },
-    changeCategory2: function () {
-      this.category = 2;
-      this.clickedOn1 = '';
-      this.clickedOn2 = '';
-      this.clickedOn3 = "orangeBorder";
-      this.clickedOn4 = '';
-    },
-    changeCategory3: function () {
-      this.category = 3;
+    resetCategory: function () {
       this.clickedOn1 = '';
       this.clickedOn2 = '';
       this.clickedOn3 = '';
-      this.clickedOn4 = "orangeBorder";
+      this.clickedOn4 = '';
     },
     activateDesign: function () {
       this.isActive = true;
@@ -262,7 +259,7 @@ export default {
 }
 
 .categoryText {
-  font-size: 3vw;
+  font-size: 2.5vw;
   font-style: italic;
   font-weight: bold;
 }
@@ -322,6 +319,11 @@ template {
   border-radius: 1em;
   border: 1px solid #000;
   margin: 0.5em;
+  cursor: pointer;
+}
+
+.buttonmenu:hover {
+  background-color: #f9cb9c;
 }
 
 .orangeBorder {

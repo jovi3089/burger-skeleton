@@ -39,5 +39,7 @@
   "burgerBread" : "Bröd",
   "burgerPatty" : "Protein",
   "burgerTopping" : "Pålägg",
-  "burgerSauce" : "Sås"
+  "burgerSauce" : "Sås",
+  "totalPrice" : "Totalt pris:",
+  "addToCart" : "Lägg till kundkorg"
 }
