@@ -163,7 +163,6 @@ export default {
   right: 0;
   width: 100%;
   height: 100%;*/
-  padding: 0px;
 }
 
 .wrapper {
@@ -174,7 +173,8 @@ export default {
   grid-template-rows: 5% auto 5%;
   grid-gap: 0.5em;
   border: 4px solid black;
-  padding: 1em 1em 1em 1em;
+  padding: 2% 2% 2% 2%;
+
   /*
   justify-content: stretch;
   align-items: start;*/
@@ -244,6 +244,7 @@ export default {
 
 .backButton{
   grid-column: 3;
+  padding-right: 1em;
 }
 
 
