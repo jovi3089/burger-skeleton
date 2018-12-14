@@ -1,10 +1,11 @@
 <template>
   <div class="ingredient">
-    <label>
-      <button v-on:click="incrementCounter">+</button> <br>
-      {{item["ingredient_"+ lang]}}, {{item.selling_price}}:- <br><!--, {{item.stock}} pcs-->
+    <div class="ingredientdesign">
+      <button class="buttondesign" v-on:click="incrementCounter">+</button><br>
+      <span class="textdesign"> {{item["ingredient_"+ lang]}}, {{item.selling_price}}:- </span><br>
+    <!--, {{item.stock}} pcs-->
       <button v-on:click="decreaseCounter">-</button>
-    </label>
+    </div>
   </div>
 </template>
 <script>
@@ -46,9 +47,38 @@ export default {
    padding: 1em;
    /*background-image: url('~@/assets/exampleImage.jpg');*/
    color: black;
-   margin: auto;
+   margin: auto auto;
    width: 5em;
    height: 5em;
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: column;
+   justify-content: center;
  }
+
+ .textdesign {
+   font-size: 0.8em;
+   word-wrap: break-word;
+   text-align: center;
+   margin: auto;
+ }
+
+ .ingredientdesign {
+ }
+
+ button {
+   width: 1.5em;
+   height: 1.5em;
+   border: 1px solid black;
+   background-color: #d0e0e3ff;
+   border-radius: 50%;
+   padding: 0px;
+   cursor: pointer;
+ }
+
+ button:hover {
+   background-color: #ccc;
+ }
+
 /*stycket ovan kan lika väl ligga i ordering.vue <style>*/
 </style>

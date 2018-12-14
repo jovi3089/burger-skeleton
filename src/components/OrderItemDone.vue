@@ -2,7 +2,7 @@
   <div>
     <label>
       <button
-      class="singleOrder"
+      class="container"
       v-bind:class= "order.orderKitchenCategory"
       v-on:click="orderServed">
         <OrderItem
@@ -60,14 +60,16 @@ export default {
 }
 </script>
 <style scoped>
-button {
-  display: inline-flex;
+button:hover {
+  background-color: lightgreen;
 }
-.singleOrder{ /*Class for all orders*/
+.container{ /*Class for all orders*/
+  display: block;
+  width: 100%;
+  height: auto;
   border: 2px solid;
   border-color: Crimson;
   border-radius: 15px;
-  height: 3.5em;
 }
 .veg{
   background-color: green;

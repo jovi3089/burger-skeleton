@@ -4,6 +4,7 @@
     samt gör varje steg till komponenter, innehållande
     css i resp komponent-->
   <div id="ordering">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div v-show = "step===0">
       <StartingPage
         :ui-labels="uiLabels"
@@ -52,15 +53,26 @@
     </div>
 
     <div v-show = "step===5">
+<<<<<<< HEAD
     <button v-on:click="changeCategory(1)">{{uiLabels.protein}}</button>
     <button v-on:click="changeCategory(2)">{{uiLabels.topping}}</button>
     <button v-on:click="changeCategory(3)">{{uiLabels.sauce}}</button>
     <h1>{{ uiLabels.ingredients }}</h1>
+=======
+    <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
+    <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
+    <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
+    <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory(3)">{{ uiLabels.burgerSauce }}</button>
+    <button class="buttonmenu" id="shoppingCart"><i class="fa fa-shopping-cart" style="font-size:18px;"></i></button>
+    <p class="categoryText" v-if="category===4">{{ uiLabels.chooseBread }}</p>
+    <p class="categoryText" v-if="category===1">{{ uiLabels.choosePatty }}</p>
+    <p class="categoryText" v-if="category===2">{{ uiLabels.chooseTopping }}</p>
+    <p class="categoryText" v-if="category===3">{{ uiLabels.chooseSauce }}</p>
+>>>>>>> 40ed48e4f00ff263d8641c03ee1e81fe702bf523
 
     <div class="ingredients-grid">
     <Ingredient
       ref="ingredient"
-      v-bind:class="{ active: isActive}"
       v-for="item in ingredients"
       v-if="item.category===category"
       v-on:increment="addToOrder(item)"
@@ -77,9 +89,15 @@
   </div>
 
     <div class="footer">
+<<<<<<< HEAD
       <h1>{{ uiLabels.order }}</h1>
         {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
           <button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button>
+=======
+      <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
+      <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
+          <br><button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
+>>>>>>> 40ed48e4f00ff263d8641c03ee1e81fe702bf523
           <button v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>
     </div>
 
@@ -138,10 +156,14 @@ export default {
       price: 0,
       orderNumber: "",
       step: 0,
-      category: 1,
-      categoryChanged: false,
+      category: 4,
+      categoryChanged: '',
       isActive: false,
-      indexChosenIngredients: 0
+      indexChosenIngredients: 0,
+      clickedOn1: "orangeBorder",
+      clickedOn2: '',
+      clickedOn3: '',
+      clickedOn4: ''
     }
   },
   created: function () {
@@ -154,7 +176,27 @@ export default {
       this.step = toPage;
     },
     changeCategory: function (toCategory) {
-      this.category = toCategory;
+      this.resetCategory();
+      switch (toCategory) {
+        case 4: this.clickedOn1 = "orangeBorder"
+        this.category = 4
+        break;
+        case 1: this.clickedOn2 = "orangeBorder"
+        this.category = 1
+        break;
+        case 2: this.clickedOn3 = "orangeBorder"
+        this.category = 2
+        break;
+        case 3: this.clickedOn4 = "orangeBorder"
+        this.category = 3
+        break;
+      }
+    },
+    resetCategory: function () {
+      this.clickedOn1 = '';
+      this.clickedOn2 = '';
+      this.clickedOn3 = '';
+      this.clickedOn4 = '';
     },
     activateDesign: function () {
       this.isActive = true;
@@ -223,7 +265,6 @@ export default {
 #ordering {
   margin:auto;
   max-width: 40em; /*sidan skalas om när fönstret minskas*/
-  padding-bottom: 20em;
   font-family: Helvetica, sans-serif;
   text-align: center;
 }
@@ -234,15 +275,10 @@ export default {
   left: 0;
 }
 
-.ingredient active {
-  border: 1px solid #000;
-  border-radius: 50%;
-  padding: 1em;
-  /*background-image: url('~@/assets/exampleImage.jpg');*/
-  color: black;
-  margin: auto;
-  width: 5em;
-  height: 5em;
+.categoryText {
+  font-size: 2.5vw;
+  font-style: italic;
+  font-weight: bold;
 }
 
 /*.relative {
@@ -292,6 +328,23 @@ template {
   left:0;
   top:0;
   z-index: -2;
+}
+
+.buttonmenu {
+  width: 5em;
+  height: 5em;
+  border-radius: 1em;
+  border: 1px solid #000;
+  margin: 0.5em;
+  cursor: pointer;
+}
+
+.buttonmenu:hover {
+  background-color: #f9cb9c;
+}
+
+.orangeBorder {
+  border: 2px solid #ffab40;
 }
 
 .footer {
