@@ -54,9 +54,19 @@ export default {
 }
 </script>
 <style scoped>
-.container{ 
-  height: auto;
+button:hover {
+  background-color: lightgreen;
 }
+.container{
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 2px solid;
+  border-color: Crimson;
+  border-radius: 15px;
+
+}
+
 .veg{
   background-color: green;
 }
@@ -69,10 +79,6 @@ export default {
 .meat{
   background-color: red;
 }
-#item {
-  background-color: black;
-}
-#timer {
-  background-color: white;
-}
+
+
 </style>
