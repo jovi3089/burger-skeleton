@@ -64,7 +64,7 @@ button:hover {
   border: 2px solid;
   border-color: Crimson;
   border-radius: 15px;
-
+  font-size: 12px;
 }
 
 .veg{
@@ -79,6 +79,11 @@ button:hover {
 .meat{
   background-color: red;
 }
-
+#item {
+  background-color: black;
+}
+#timer {
+  background-color: white;
+}
 
 </style>
