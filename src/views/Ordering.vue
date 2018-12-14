@@ -72,6 +72,10 @@
     </Ingredient>
   </div>
 
+  <div id="cart">
+    
+  </div>
+
     <div class="footer">
       <h1>{{ uiLabels.order }}</h1>
         {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
