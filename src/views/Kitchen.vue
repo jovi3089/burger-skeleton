@@ -15,13 +15,19 @@
     <div class="container" v-show = "page===1">  <!--Work flow for orders-->
       <div class="wrapper">
         <div class="itemA">
-          <h1>{{ uiLabels.ordersInQueue }}</h1>
+          <div class="title">
+            <p>{{ uiLabels.ordersInQueue }}</p>
+          </div>
         </div>
         <div class="itemB">
-          <h1>{{ uiLabels.ordersWorkingOn }}</h1>
+          <div class="title">
+            {{ uiLabels.ordersWorkingOn }}
+          </div>
         </div>
         <div class="itemC">
-          <h1>{{ uiLabels.ordersFinished }}</h1>
+          <div class="title">
+            {{ uiLabels.ordersFinished }}
+          </div>
         </div>
 
         <div class="ordersToPrepare">
@@ -61,13 +67,14 @@
             :key="key">
           </OrderItemDone>
         </div>
-        <div class="backButton">
+          <div class="backButton">
           <label>
             <button v-on:click="changePage(0)">
               {{uiLabels.back}}
             </button>
           </label>
         </div>
+
       </div>
     </div>
 
@@ -162,10 +169,12 @@ export default {
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 31% 31% 31% 7%;
+  grid-template-columns: 33% 33% 33%;
   grid-template-rows: 5% auto 5%;
   grid-gap: 0.5em;
   border: 4px solid black;
+  padding: 2% 2% 2% 2%;
+
   /*
   justify-content: stretch;
   align-items: start;*/
@@ -175,6 +184,9 @@ export default {
   grid-row: 1;
   border: 5px solid grey;
   border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .itemB {
@@ -182,6 +194,9 @@ export default {
   grid-row: 1;
   border: 5px solid grey;
   border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .itemC {
@@ -189,6 +204,9 @@ export default {
   grid-row: 1;
   border: 5px solid grey;
   border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
  .ordersToPrepare{
@@ -196,7 +214,7 @@ export default {
     grid-row: 2;
     border: 5px solid grey;
     border-radius: 15px;
-    overflow: scroll;
+    overflow-y: scroll;
   }
 
   .ordersWorkedOn{
@@ -204,8 +222,7 @@ export default {
     grid-row: 2;
     border: 5px solid grey;
     border-radius: 15px;
-    overflow: scroll;
-
+    overflow-y: scroll;
   }
 
   .finishedOrders{
@@ -213,17 +230,28 @@ export default {
     grid-row: 2;
     border: 5px solid grey;
     border-radius: 15px;
-    overflow: scroll;
+    overflow-y: scroll;
   }
 
-  h1 {
+.title {
+    display: block;
     text-transform: uppercase;
-    font-size: 1.4em;
+    padding-left: 1em;
+    font-size: 2vw;
+    font-style: italic;
+    font-weight: bold;
   }
 
-  .backButton {
-    grid-column: 4;
-    grid-row-start: 1;
-    grid-row-end: 2;
+.backButton{
+  grid-column: 3;
+  padding-right: 1em;
+}
+
+
+  button {
+
+    float: right;
+
   }
+
 </style>
