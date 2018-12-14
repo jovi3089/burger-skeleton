@@ -89,5 +89,4 @@ export default {
   background-size: 9em;
   background-position: center;
 }
-
 </style>
