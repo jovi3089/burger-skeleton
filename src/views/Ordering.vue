@@ -68,8 +68,10 @@
     <shoppingCart
     v-show="showCartState"
     v-on:closeCart="showCart()"
-    :shoppingCart="this.shoppingCart"
+    :shoppingCart="this.shoppingCart.items"
+    :cartId="this.shoppingCart.id"
     :lang="this.lang"
+    id = "shopping-cart"
     ></shoppingCart>
     <div v-show="!showCartState">
       <div v-show ="step===5">
@@ -166,8 +168,12 @@ export default {
     return {
       chosenIngredients: [],
   //=====Shopping cart===========
-      shoppingCart: [],
+      shoppingCart: {
+        items: [],
+        id: 0
+      },
       showCartState: false,
+
   //=============================
       totalPrice: 0,
       price: 0,
@@ -238,7 +244,7 @@ export default {
       var i,
       //Wrap the order in an object
         order = {
-          ingredients: this.shoppingCart,
+          ingredients: this.shoppingCart.items,
           price:       this.price
         };
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
@@ -249,14 +255,14 @@ export default {
         this.$refs.ingredient[i].resetCounter();
       }
       this.price = 0;
-      this.shoppingCart = [];
+      this.shoppingCart.items = [];
     },
 
     addToCart: function () {
       //Wrap the order in an object
 
       for(var i=0; i<this.chosenIngredients.length; i++){
-          this.shoppingCart.push(this.chosenIngredients[i]);
+          this.shoppingCart.items.push(this.chosenIngredients[i]);
       }
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
       //this.$store.state.socket.emit('order', {order: order});
@@ -268,11 +274,12 @@ export default {
       //this.price = 0; kanske vill ha mer ju
       this.chosenIngredients = [];
       this.totalPrice += this.price;
-      console.log(this.price);
       this.price = 0;
-      console.log(this.totalPrice);
-      console.log(this.shoppingCart[0]);
-    },
+      this.shoppingCart.id++;
+      //console.log(this.price);
+      //console.log(this.totalPrice);
+      //console.log(this.shoppingCart[0]);
+     },
 
     showCart: function(){
         if(this.showCartState === false){
@@ -293,6 +300,10 @@ export default {
   max-width: 40em; /*sidan skalas om när fönstret minskas*/
   font-family: Helvetica, sans-serif;
   text-align: center;
+}
+
+#shopping-cart{
+  
 }
 
 .orderItem {
