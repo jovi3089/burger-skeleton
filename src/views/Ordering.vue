@@ -56,16 +56,26 @@
       <button v-on:click="newPage(5)">Switch to page 5</button>
     </div>
 
-    <div v-show="showCartState" id="cart">
+<!--    <div v-show="showCartState" id="cart">
       <img src="http://www.cutestpaw.com/wp-content/uploads/2011/11/OIo.jpg">
+      <div v-for="shoppingCartItem in shoppingCart">
+        {{ shoppingCartItem }}
+      </div>
       <button v-on:click="showCart()">close</button>
     </div>
-
-    <div v-show ="step===5">
-    <button v-on:click="changeCategory(1)">{{uiLabels.protein}}</button>
-    <button v-on:click="changeCategory(2)">{{uiLabels.topping}}</button>
-    <button v-on:click="changeCategory(3)">{{uiLabels.sauce}}</button>
+  -->
+                  <!--    lägg till styling på shoppingcart      -->
+    <shoppingCart
+    v-show="showCartState"
+    v-on:closeCart="showCart()"
+    :shoppingCart="this.shoppingCart"
+    :lang="this.lang"
+    ></shoppingCart>
     <div v-show="!showCartState">
+      <div v-show ="step===5">
+        <button v-on:click="changeCategory(1)">{{uiLabels.protein}}</button>
+        <button v-on:click="changeCategory(2)">{{uiLabels.topping}}</button>
+        <button v-on:click="changeCategory(3)">{{uiLabels.sauce}}</button>
     <h1>{{ uiLabels.ingredients }}</h1>
     <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
@@ -81,7 +91,6 @@
     <div class="ingredients-grid">
         <Ingredient
           ref="ingredient"
-          v-show="!showCartState"
           v-for="item in ingredients"
           v-if="item.category===category"
           v-on:increment="addToOrder(item)"
@@ -131,6 +140,7 @@ import StartingPage from '@/components/StartingPage.vue'
 import MenuPage from '@/components/MenuPage.vue'
 import HamburgerPage from '@/components/HamburgerPage.vue'
 import DesignPage from '@/components/DesignPage.vue'
+import shoppingCart from '@/components/shoppingCart.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -147,7 +157,8 @@ export default {
     StartingPage,
     MenuPage,
     HamburgerPage,
-    DesignPage
+    DesignPage,
+    shoppingCart,
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             // the ordering system and the kitchen
