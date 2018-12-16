@@ -53,22 +53,21 @@
     </div>
 
     <div v-show = "step===5">
-<<<<<<< HEAD
     <button v-on:click="changeCategory(1)">{{uiLabels.protein}}</button>
     <button v-on:click="changeCategory(2)">{{uiLabels.topping}}</button>
     <button v-on:click="changeCategory(3)">{{uiLabels.sauce}}</button>
     <h1>{{ uiLabels.ingredients }}</h1>
-=======
     <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory(3)">{{ uiLabels.burgerSauce }}</button>
-    <button class="buttonmenu" id="shoppingCart"><i class="fa fa-shopping-cart" style="font-size:18px;"></i></button>
+    <button class="buttonmenu" v-bind:class="clickedOn5" v-on:click="changeCategory(5)" id="shoppingCart">
+      <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
+    </button>
     <p class="categoryText" v-if="category===4">{{ uiLabels.chooseBread }}</p>
     <p class="categoryText" v-if="category===1">{{ uiLabels.choosePatty }}</p>
     <p class="categoryText" v-if="category===2">{{ uiLabels.chooseTopping }}</p>
     <p class="categoryText" v-if="category===3">{{ uiLabels.chooseSauce }}</p>
->>>>>>> 40ed48e4f00ff263d8641c03ee1e81fe702bf523
 
     <div class="ingredients-grid">
     <Ingredient
@@ -85,19 +84,16 @@
   </div>
 
   <div id="cart">
-    
+
   </div>
 
     <div class="footer">
-<<<<<<< HEAD
       <h1>{{ uiLabels.order }}</h1>
         {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
           <button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button>
-=======
       <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
       <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
           <br><button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
->>>>>>> 40ed48e4f00ff263d8641c03ee1e81fe702bf523
           <button v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>
     </div>
 
@@ -163,7 +159,8 @@ export default {
       clickedOn1: "orangeBorder",
       clickedOn2: '',
       clickedOn3: '',
-      clickedOn4: ''
+      clickedOn4: '',
+      clickedOn5: '',
     }
   },
   created: function () {
@@ -189,6 +186,8 @@ export default {
         break;
         case 3: this.clickedOn4 = "orangeBorder"
         this.category = 3
+        case 5: this.clickedOn5 = "orangeBorder"
+        this.category = 3
         break;
       }
     },
@@ -208,7 +207,7 @@ export default {
     },
     deleteFromOrder: function (item) {
       if (this.price > 0) {
-      console.log('i funktionen');
+      //console.log('i funktionen');
       var i;
         for (i = 0; i < this.chosenIngredients.length; i += 1) {
           if (this.chosenIngredients[i] === item) {
@@ -246,8 +245,8 @@ export default {
       //this.$store.state.socket.emit('order', {order: order});
       //set all counters to 0. Notice the use of $refs
 
-      for (var i = 0; i < this.$refs.ingredient.length; i += 1) {
-        this.$refs.ingredient[i].resetCounter();
+      for (var j = 0; j < this.$refs.ingredient.length; j += 1) {
+        this.$refs.ingredient[j].resetCounter();
       }
       //this.price = 0; kanske vill ha mer ju
       this.chosenIngredients = [];

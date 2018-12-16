@@ -35,9 +35,7 @@
   "popularBurger" : "The most popular burgers",
   "randomBurger" : "Randomize burger",
   "toOrderPage" : "I want to order",
-<<<<<<< HEAD
-  "addToCart" : "Add to cart"
-=======
+  "addToCart" : "Add to cart",
   "chooseBread" : "Choose bread",
   "choosePatty" : "Choose patty",
   "chooseTopping" : "Choose Topping",
@@ -49,5 +47,4 @@
   "welcomeStaff": "Dear employee, welcome back to Krafty Burgers!",
   "totalPrice" : "Total price:",
   "addToCart" : "Add to shopping cart"
->>>>>>> 40ed48e4f00ff263d8641c03ee1e81fe702bf523
 }
