@@ -3,6 +3,10 @@
   <!--skapa en component för när man designar burgaren,
     samt gör varje steg till komponenter, innehållande
     css i resp komponent-->
+
+<!-- ===========================================================================================================================-->
+<!-- ===========================================================================================================================-->
+
   <div id="ordering">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div v-show = "step===0">
@@ -52,41 +56,41 @@
       <button v-on:click="newPage(5)">Switch to page 5</button>
     </div>
 
-    <div v-show = "step===5">
+    <div v-show="showCartState" id="cart">
+      <img src="http://www.cutestpaw.com/wp-content/uploads/2011/11/OIo.jpg">
+      <button v-on:click="showCart()">close</button>
+    </div>
+
+    <div v-show ="step===5">
     <button v-on:click="changeCategory(1)">{{uiLabels.protein}}</button>
     <button v-on:click="changeCategory(2)">{{uiLabels.topping}}</button>
     <button v-on:click="changeCategory(3)">{{uiLabels.sauce}}</button>
+    <div v-show="!showCartState">
     <h1>{{ uiLabels.ingredients }}</h1>
     <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory(3)">{{ uiLabels.burgerSauce }}</button>
-<!-- ===========================================================================================================================-->
-    <button class="buttonmenu" v-on:click="" id="shoppingCart">
-<!-- ==================================!CLICK!====================================================================================-->
+    <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
       <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
     </button>
-    <p class="categoryText" v-if="category===4">{{ uiLabels.chooseBread }}</p>
-    <p class="categoryText" v-if="category===1">{{ uiLabels.choosePatty }}</p>
-    <p class="categoryText" v-if="category===2">{{ uiLabels.chooseTopping }}</p>
-    <p class="categoryText" v-if="category===3">{{ uiLabels.chooseSauce }}</p>
-
+    <p class="categoryText" v-show="!showCartState" v-if="category===1">{{ uiLabels.choosePatty }}</p>
+    <p class="categoryText" v-show="!showCartState" v-if="category===2">{{ uiLabels.chooseTopping }}</p>
+    <p class="categoryText" v-show="!showCartState" v-if="category===4">{{ uiLabels.chooseBread }}</p>
+    <p class="categoryText" v-show="!showCartState" v-if="category===3">{{ uiLabels.chooseSauce }}</p>
     <div class="ingredients-grid">
-    <Ingredient
-      ref="ingredient"
-      v-for="item in ingredients"
-      v-if="item.category===category"
-      v-on:increment="addToOrder(item)"
-      v-on:decrease="deleteFromOrder(item)"
-      v-on:highlight="activateDesign()"
-      :item="item"
-      :lang="lang"
-      :key="item.ingredient_id">
-    </Ingredient>
-  </div>
-
-  <div id="cart">
-
+        <Ingredient
+          ref="ingredient"
+          v-show="!showCartState"
+          v-for="item in ingredients"
+          v-if="item.category===category"
+          v-on:increment="addToOrder(item)"
+          v-on:decrease="deleteFromOrder(item)"
+          v-on:highlight="activateDesign()"
+          :item="item"
+          :lang="lang"
+          :key="item.ingredient_id">
+        </Ingredient>
   </div>
 
     <div class="footer">
@@ -112,6 +116,7 @@
         :key="key">
       </OrderItem>
     </div>
+  </div>
     </div>
   </div>
 </template>
@@ -149,7 +154,10 @@ export default {
   data: function() { //Not that data is a function!
     return {
       chosenIngredients: [],
+  //=====Shopping cart===========
       shoppingCart: [],
+      showCartState: false,
+  //=============================
       totalPrice: 0,
       price: 0,
       orderNumber: "",
@@ -207,8 +215,7 @@ export default {
     deleteFromOrder: function (item) {
       if (this.price > 0) {
       //console.log('i funktionen');
-      var i;
-        for (i = 0; i < this.chosenIngredients.length; i += 1) {
+        for (var i = 0; i < this.chosenIngredients.length; i += 1) {
           if (this.chosenIngredients[i] === item) {
             this.price -= item.selling_price;
             this.chosenIngredients.splice(i,1);
@@ -254,7 +261,17 @@ export default {
       this.price = 0;
       console.log(this.totalPrice);
       console.log(this.shoppingCart[0]);
-    }
+    },
+
+    showCart: function(){
+        if(this.showCartState === false){
+            this.showCartState = true;
+          }
+        else{
+            this.showCartState = false;
+        }
+        //console.log("click! i'm showing: "+this.showCartState)
+    },
   }
 }
 </script>
