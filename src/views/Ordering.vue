@@ -61,7 +61,9 @@
     <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory(3)">{{ uiLabels.burgerSauce }}</button>
-    <button class="buttonmenu" v-bind:class="clickedOn5" v-on:click="changeCategory(5)" id="shoppingCart">
+<!-- ===========================================================================================================================-->
+    <button class="buttonmenu" v-on:click="" id="shoppingCart">
+<!-- ==================================!CLICK!====================================================================================-->
       <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
     </button>
     <p class="categoryText" v-if="category===4">{{ uiLabels.chooseBread }}</p>
@@ -160,7 +162,6 @@ export default {
       clickedOn2: '',
       clickedOn3: '',
       clickedOn4: '',
-      clickedOn5: '',
     }
   },
   created: function () {
@@ -185,8 +186,6 @@ export default {
         this.category = 2
         break;
         case 3: this.clickedOn4 = "orangeBorder"
-        this.category = 3
-        case 5: this.clickedOn5 = "orangeBorder"
         this.category = 3
         break;
       }
@@ -240,7 +239,7 @@ export default {
 
       for(var i=0; i<this.chosenIngredients.length; i++){
           this.shoppingCart.push(this.chosenIngredients[i]);
-      };
+      }
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
       //this.$store.state.socket.emit('order', {order: order});
       //set all counters to 0. Notice the use of $refs
