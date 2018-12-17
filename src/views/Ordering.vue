@@ -75,10 +75,6 @@
     ></shoppingCart>
     <div v-show="!showCartState">
       <div v-show ="step===5">
-        <button v-on:click="changeCategory(1)">{{uiLabels.protein}}</button>
-        <button v-on:click="changeCategory(2)">{{uiLabels.topping}}</button>
-        <button v-on:click="changeCategory(3)">{{uiLabels.sauce}}</button>
-    <h1>{{ uiLabels.ingredients }}</h1>
     <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
@@ -107,7 +103,6 @@
     <div class="footer">
       <h1>{{ uiLabels.order }}</h1>
         {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
-          <button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button>
       <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
       <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
           <br><button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
@@ -303,7 +298,7 @@ export default {
 }
 
 #shopping-cart{
-  
+
 }
 
 .orderItem {
