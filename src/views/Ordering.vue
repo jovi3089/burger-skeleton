@@ -55,22 +55,15 @@
       <button v-on:click="newPage(2)">{{uiLabels.back}}</button>
       <button v-on:click="newPage(5)">Switch to page 5</button>
     </div>
-
-<!--    <div v-show="showCartState" id="cart">
-      <img src="http://www.cutestpaw.com/wp-content/uploads/2011/11/OIo.jpg">
-      <div v-for="shoppingCartItem in shoppingCart">
-        {{ shoppingCartItem }}
-      </div>
-      <button v-on:click="showCart()">close</button>
-    </div>
-  -->
                   <!--    lägg till styling på shoppingcart      -->
     <shoppingCart
+    ref="shoppingCart"
     v-show="showCartState"
     v-on:closeCart="showCart()"
     :shoppingCart="this.shoppingCart.items"
-    :cartId="this.shoppingCart.id"
     :lang="this.lang"
+    :orders="orders"
+    :ui-labels="uiLabels"
     id = "shopping-cart"
     ></shoppingCart>
     <div v-show="!showCartState">
@@ -98,17 +91,18 @@
           :lang="lang"
           :key="item.ingredient_id">
         </Ingredient>
-  </div>
+    </div>
 
     <div class="footer">
       <h1>{{ uiLabels.order }}</h1>
-        {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
+        {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr  u
       <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
       <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
           <br><button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
           <button v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>
     </div>
 
+    <!--
     <h1>{{ uiLabels.ordersInQueue }}</h1>
     <div>
       <OrderItem
@@ -121,8 +115,8 @@
         :lang="lang"
         :key="key">
       </OrderItem>
-    </div>
-  </div>
+    </div>-->
+      </div>
     </div>
   </div>
 </template>
@@ -218,7 +212,7 @@ export default {
     },
     activateDesign: function () {
       this.isActive = true;
-      console.log('hej');
+      //console.log('hej');
     },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
@@ -236,14 +230,14 @@ export default {
       }
     },
     placeOrder: function () {
-      var i,
+      var i;
       //Wrap the order in an object
-        order = {
+        /*order = {
           ingredients: this.shoppingCart.items,
           price:       this.price
-        };
+        };*/
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-      this.$store.state.socket.emit('order', {order: order});
+      //this.$store.state.socket.emit('order', {order: order});
       //set all counters to 0. Notice the use of $refs
 
       for (i = 0; i < this.$refs.ingredient.length; i += 1) {
@@ -254,26 +248,33 @@ export default {
     },
 
     addToCart: function () {
+      if(this.chosenIngredients.length > 0){
       //Wrap the order in an object
 
-      for(var i=0; i<this.chosenIngredients.length; i++){
-          this.shoppingCart.items.push(this.chosenIngredients[i]);
-      }
-      // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-      //this.$store.state.socket.emit('order', {order: order});
-      //set all counters to 0. Notice the use of $refs
+        for(var i=0; i<this.chosenIngredients.length; i++){
+            this.shoppingCart.items.push(this.chosenIngredients[i]);
+        }
+        var order = {
+          ingredients: this.shoppingCart.items,
+          price:       this.price
+        };
+        this.$store.state.socket.emit('order', {order: order});
+        // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
+        //this.$store.state.socket.emit('order', {order: order});
+        //set all counters to 0. Notice the use of $refs
 
-      for (var j = 0; j < this.$refs.ingredient.length; j += 1) {
-        this.$refs.ingredient[j].resetCounter();
+        for (var j = 0; j < this.$refs.ingredient.length; j += 1) {
+          this.$refs.ingredient[j].resetCounter();
+        }
+        //this.price = 0; kanske vill ha mer ju
+        this.chosenIngredients = [];
+        this.totalPrice += this.price;
+        this.price = 0;
+        //this.shoppingCart.id++;
+        //console.log(this.price);
+        //console.log(this.totalPrice);
+        //console.log(this.shoppingCart[0]);
       }
-      //this.price = 0; kanske vill ha mer ju
-      this.chosenIngredients = [];
-      this.totalPrice += this.price;
-      this.price = 0;
-      this.shoppingCart.id++;
-      //console.log(this.price);
-      //console.log(this.totalPrice);
-      //console.log(this.shoppingCart[0]);
      },
 
     showCart: function(){

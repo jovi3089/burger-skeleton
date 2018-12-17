@@ -47,5 +47,8 @@
   "burgerSauce" : "Sås",
   "totalPrice" : "Totalt pris:",
   "shoppingCart" : "Din beställning",
-  "addToCart" : "Lägg till kundkorg"
+  "addToCart" : "Lägg till kundkorg",
+  "shoppingCartContent" : "Din beställning",
+  "shoppingCartFooter" : "Fortsätt",
+  "shoppingCartTitle" : "Kundkorg"
 }
