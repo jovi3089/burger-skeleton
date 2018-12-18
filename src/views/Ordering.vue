@@ -95,7 +95,7 @@
 
     <div class="footer">
       <h1>{{ uiLabels.order }}</h1>
-        {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr  u
+        {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
       <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
       <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
           <br><button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
