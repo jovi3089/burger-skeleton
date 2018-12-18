@@ -50,6 +50,9 @@
           :key="item.ingredient_id"
           v-if="item.category===6">
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+          <div v-if="data.containsInfo===true">
+            <p>descendCategories();</p></div>
+              {{descArray}}
           </div>
         </div>
     </div>
@@ -62,7 +65,33 @@ export default {
   props: {
     ingred: Object,
     lang: String
-  }
+  },
+
+  data: function () {
+    return {
+      containsInfo: false,
+    };
+  },
+
+  methods:{
+    descendCategories: function(){
+      var descArray = [];
+      for (var i=0; i < ingred.length; i++){
+        descArray = ingred[i].stock;
+      }
+    },
+    /*isFilled: function(lang) {
+      for(var prop in ingred) {
+              if(obj.hasOwnProperty(prop))
+                  return false;
+      if (lang === "sv"){
+        this.isSwedish = true;
+        this.isEnglish = false;
+      }
+      return this.isSwedish;
+    }
+  }*/
+}
 }
 </script>
 

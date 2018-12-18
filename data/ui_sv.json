@@ -31,10 +31,6 @@
   "popularBurger" : "De mest populära",
   "randomBurger" : "Slumpa",
   "toOrderPage" : "Jag vill beställa",
-<<<<<<< HEAD
-=======
-  "welcomeStaff" : "Kära anställda, väkommen tillbaka till Krafty Burgers!",
->>>>>>> 0ae69decb3eb64dfcbc1d17c10c4b75e91fbd84d
   "chooseBread" : "Välj bröd",
   "choosePatty" : "Välj protein",
   "chooseTopping" : "Välj pålägg",
@@ -43,10 +39,7 @@
   "burgerPatty" : "Protein",
   "burgerTopping" : "Pålägg",
   "burgerSauce" : "Sås",
-<<<<<<< HEAD
-  "welcomeStaff" : "Kära anställda, väkommen tillbaka till Krafty Burgers!"
-=======
+  "welcomeStaff" : "Kära anställda, väkommen tillbaka till Krafty Burgers!",
   "totalPrice" : "Totalt pris:",
   "addToCart" : "Lägg till kundkorg"
->>>>>>> 0ae69decb3eb64dfcbc1d17c10c4b75e91fbd84d
 }

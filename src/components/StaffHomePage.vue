@@ -72,21 +72,21 @@ export default {
 #workFlowButton{
   background: #ffab40ff url(https://1001freedownloads.s3.amazonaws.com/vector/thumb/82752/kitchen-knife_spoon_fork.png)
   10px 10px no-repeat;
-  background-size: 9em;
+  background-size: 70%;
   background-position: center;
 }
 
 #saldoButton{
   background: #ffab40ff url(https://openclipart.org/download/304217/1531719574.svg)
   10px 10px no-repeat;
-  background-size: 9em;
+  background-size: 70%;
   background-position: center;
 }
 
 #statisticsButton{
   background: #ffab40ff url(https://1001freedownloads.s3.amazonaws.com/vector/thumb/115092/stockup.png)
   10px 10px no-repeat;
-  background-size: 9em;
+  background-size: 70%;
   background-position: center;
 }
 </style>
