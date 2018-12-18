@@ -95,7 +95,15 @@
 
     <div class="footer">
       <h1>{{ uiLabels.order }}</h1>
+<<<<<<< HEAD
         {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
+=======
+<<<<<<< HEAD
+
+=======
+        {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr  u
+>>>>>>> 04a431d25f7ba99f9cf6b53e687a9528ac51cb2b
+>>>>>>> d83f1a50b136a8e173327633f68cd71c2aa51251
       <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
       <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
           <br><button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
@@ -149,7 +157,7 @@ export default {
     MenuPage,
     HamburgerPage,
     DesignPage,
-    shoppingCart,
+    shoppingCart
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             // the ordering system and the kitchen
