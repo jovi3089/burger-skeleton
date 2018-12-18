@@ -47,5 +47,8 @@
   "welcomeStaff": "Dear employee, welcome back to Krafty Burgers!",
   "totalPrice" : "Total price:",
   "shoppingCart" : "Your current order",
-  "addToCart" : "Add to shopping cart"
+  "addToCart" : "Add to shopping cart",
+  "shoppingCartContent" : "Your order",
+  "shoppingCartFooter" : "Continue",
+  "shoppingCartTitle" : "Shopping cart"
 }

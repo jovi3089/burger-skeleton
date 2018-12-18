@@ -1,28 +1,41 @@
 <template> <!--sätter massa ### för ord som inte ännu är i ui_lang-->
   <div>
     <div id="header"><!--header typ "kundkorg"-->
-      <h1>###header###</h1>
+      <h1>{{uiLabels.shoppingCartTitle}}</h1>
       <button v-on:click="close()">###close the cart###</button>
     </div>
     <div id="orders"><!--innehållet-->
-      <h1>###inhl###</h1>
-      <p v-for="shoppingCartItem in shoppingCart">
-          {{cartId}}: {{shoppingCartItem["ingredient_"+ lang]}}
-      </p>
+      <h1>{{uiLabels.shoppingCartContent}}</h1>
+        <OrderItem
+          class="orderItem"
+          v-for="(order, key) in orders"
+          v-if="order.status !== 'done'"
+          :order-id="key"
+          :order="order"
+          :ui-labels="uiLabels"
+          :lang="lang"
+          :key="key">
+        </OrderItem>
     </div>
     <div id="footer"><!--footer med beställknapp-->
-      <h1>###footer###</h1>
+      <h1>{{uiLabels.shoppingCartFooter}}</h1>
     </div>
   </div>
 </template>
 <script>
+import OrderItem from '@/components/OrderItem.vue'
 export default{
     name: "shoppingCart",
+    components:{
+      OrderItem
+    },
     props: {
       shoppingCart: Array,
-      cartId: Number,
       uiLabels: Object,
-      lang: String
+      order: Object,
+      lang: String,
+      orderId: String,
+      orders: Object
     },
     methods: {
       close: function(){
