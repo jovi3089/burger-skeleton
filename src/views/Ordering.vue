@@ -9,6 +9,16 @@
 
   <div id="ordering">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <shoppingCart
+    ref="shoppingCart"
+    v-show="showCartState"
+    v-on:closeCart="showCart()"
+    :shoppingCart="this.shoppingCart.items"
+    :lang="this.lang"
+    :orders="orders"
+    :ui-labels="uiLabels"
+    id = "shopping-cart"
+    ></shoppingCart>
     <div v-show = "step===0">
       <StartingPage
         :ui-labels="uiLabels"
@@ -45,7 +55,21 @@
     </div>
 
     <div v-show="step===3">
-      <h1>Page 3</h1>
+      <button class="buttonmenu" v-bind:class="clickedOn5" v-on:click="changeCategory(5)">{{ uiLabels.sideOptions }}</button>
+      <p class="categoryText" v-show="!showCartState" v-if="sideCategory===5">{{ uiLabels.chooseSide }}</p>
+      <div class="ingredients-grid">
+          <Ingredient
+            ref="ingredient"
+            v-for="item in ingredients"
+            v-if="item.category===sideCategory"
+            v-on:increment="addToOrder(item)"
+            v-on:decrease="deleteFromOrder(item)"
+            v-on:highlight="activateDesign()"
+            :item="item"
+            :lang="lang"
+            :key="item.ingredient_id">
+          </Ingredient>
+      </div>
       <button v-on:click="newPage(2)">{{uiLabels.back}}</button>
       <button v-on:click="newPage(4)">Switch to page 4</button>
     </div>
@@ -56,16 +80,12 @@
       <button v-on:click="newPage(5)">Switch to page 5</button>
     </div>
                   <!--    lägg till styling på shoppingcart      -->
-    <shoppingCart
-    ref="shoppingCart"
-    v-show="showCartState"
-    v-on:closeCart="showCart()"
-    :shoppingCart="this.shoppingCart.items"
-    :lang="this.lang"
-    :orders="orders"
-    :ui-labels="uiLabels"
-    id = "shopping-cart"
-    ></shoppingCart>
+
+
+
+
+
+
     <div v-show="!showCartState">
       <div v-show ="step===5">
     <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
@@ -75,15 +95,15 @@
     <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
       <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
     </button>
-    <p class="categoryText" v-show="!showCartState" v-if="category===1">{{ uiLabels.choosePatty }}</p>
-    <p class="categoryText" v-show="!showCartState" v-if="category===2">{{ uiLabels.chooseTopping }}</p>
-    <p class="categoryText" v-show="!showCartState" v-if="category===4">{{ uiLabels.chooseBread }}</p>
-    <p class="categoryText" v-show="!showCartState" v-if="category===3">{{ uiLabels.chooseSauce }}</p>
+    <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===1">{{ uiLabels.choosePatty }}</p>
+    <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===2">{{ uiLabels.chooseTopping }}</p>
+    <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===4">{{ uiLabels.chooseBread }}</p>
+    <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===3">{{ uiLabels.chooseSauce }}</p>
     <div class="ingredients-grid">
         <Ingredient
           ref="ingredient"
           v-for="item in ingredients"
-          v-if="item.category===category"
+          v-if="item.category===burgerCategory"
           v-on:increment="addToOrder(item)"
           v-on:decrease="deleteFromOrder(item)"
           v-on:highlight="activateDesign()"
@@ -91,14 +111,6 @@
           :lang="lang"
           :key="item.ingredient_id">
         </Ingredient>
-    </div>
-
-    <div class="footer">
-      <h1>{{ uiLabels.order }}</h1>
-      <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
-      <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
-          <br><button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
-          <button v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>
     </div>
 
     <!--
@@ -116,6 +128,16 @@
       </OrderItem>
     </div>-->
       </div>
+
+
+    <div class="footer" v-show="step != 0">
+      <h1>{{ uiLabels.order }}</h1>
+
+      <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
+      <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
+          <br><button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
+          <button v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>
+    </div>
     </div>
   </div>
 </template>
@@ -167,7 +189,8 @@ export default {
       price: 0,
       orderNumber: "",
       step: 0,
-      category: 4,
+      burgerCategory: 4,
+      sideCategory: 5,
       categoryChanged: '',
       isActive: false,
       indexChosenIngredients: 0,
@@ -175,6 +198,7 @@ export default {
       clickedOn2: '',
       clickedOn3: '',
       clickedOn4: '',
+      clickedOn5: "greenBorder"
     }
   },
   created: function () {
@@ -190,16 +214,19 @@ export default {
       this.resetCategory();
       switch (toCategory) {
         case 4: this.clickedOn1 = "orangeBorder"
-        this.category = 4
+        this.burgerCategory = 4
         break;
         case 1: this.clickedOn2 = "orangeBorder"
-        this.category = 1
+        this.burgerCategory = 1
         break;
         case 2: this.clickedOn3 = "orangeBorder"
-        this.category = 2
+        this.burgerCategory = 2
         break;
         case 3: this.clickedOn4 = "orangeBorder"
-        this.category = 3
+        this.burgerCategory = 3
+        break;
+        case 5: this.clickedOn5 = "greenBorder"
+        this.sideCategory = 5
         break;
       }
     },
@@ -208,6 +235,7 @@ export default {
       this.clickedOn2 = '';
       this.clickedOn3 = '';
       this.clickedOn4 = '';
+      this.clickedOn5 = '';
     },
     activateDesign: function () {
       this.isActive = true;
@@ -269,6 +297,7 @@ export default {
         this.chosenIngredients = [];
         this.totalPrice += this.price;
         this.price = 0;
+        this.newPage(1);
         //this.shoppingCart.id++;
         //console.log(this.price);
         //console.log(this.totalPrice);
@@ -372,11 +401,15 @@ template {
 }
 
 .buttonmenu:hover {
-  background-color: #f9cb9c;
+  background-color: #d0e0e3ff;
 }
 
 .orangeBorder {
   border: 2px solid #ffab40;
+}
+
+.greenBorder {
+  border: 2px solid #93c47dff;
 }
 
 .footer {
