@@ -1,13 +1,13 @@
 <template> <!--sätter massa ### för ord som inte ännu är i ui_lang-->
-  <div>
+  <div id="orders">
     <div id="header"><!--header typ "kundkorg"-->
       <h1>{{uiLabels.shoppingCartTitle}}</h1>
       <button v-on:click="close()">###close the cart###</button>
     </div>
-    <div id="orders"><!--innehållet-->
       <h1>{{uiLabels.shoppingCartContent}}</h1>
+      <div class="order-item-grid"><!--innehållet-->
         <OrderItem
-          class="orderItem"
+          class="order-item"
           v-for="(order, key) in orders"
           v-if="order.status !== 'done'"
           :order-id="key"
@@ -46,6 +46,18 @@ export default{
 </script>
 <style scoped>
   #orders {
-    background-color: #a2c4c9ff;
+  }
+  .order-item-grid{
+     display: grid;
+     grid-template-rows: repeat(auto-fit, 2em);
+     grid-gap: 1em;
+  }
+  .order-item{
+    border: 5px solid grey;
+    border-radius: 15px;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center ;
   }
 </style>

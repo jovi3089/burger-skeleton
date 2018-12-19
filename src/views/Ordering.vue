@@ -112,12 +112,6 @@
         </Ingredient>
     </div>
 
-
-
-
-
-
-
     <!--
     <h1>{{ uiLabels.ordersInQueue }}</h1>
     <div>

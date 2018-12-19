@@ -1,7 +1,7 @@
 <template>
 
-	<div>
-			{{orderId}} {{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}
+	<div v-on:click="changeIngredients()" class="bubble">
+ 			<span id="ingred">{{uiLabels.ingredients}}:</span> {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}
 	</div>
 
 
@@ -14,19 +14,19 @@ export default {
     order: Object,
     orderId: String,
     lang: String
-  }
+  },
+	methods:{
+		changeIngredients: function(){
+			//console.log(this.order.ingredients.map(item=>item["ingredient_"+ this.lang]).join(", "));
+			//do the thing in here
+		}
+	}
 }
 </script>
 <style scoped>
-/*
-.wrapper {
-	display: grid;
-	grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
-	grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+#ingred{
+	font-weight: bold;
+
 }
-.a{
-	grid-column: 1 \ 3;
-	grid-row: 1;
-}
-*/
+
 </style>
