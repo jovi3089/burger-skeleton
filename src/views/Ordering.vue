@@ -112,6 +112,16 @@
         </Ingredient>
     </div>
 
+    <!--<IngredientPage
+      ref="ingredient"
+      v-on:addtoorder="addToOrder"
+      v-on:deletefromorder="deleteFromOrder"
+      :category="burgerCategory"
+      :ingredients="ingredients"
+      :lang="lang"
+      :ui-labels="uiLabels">
+    </IngredientPage>-->
+
     <!--
     <h1>{{ uiLabels.ordersInQueue }}</h1>
     <div>
@@ -144,6 +154,7 @@
 //use for importing will be used in the template above and also below in
 //components
 import Ingredient from '@/components/Ingredient.vue'
+import IngredientPage from '@/components/IngredientPage.vue'
 import OrderItem from '@/components/OrderItem.vue'
 import StartingPage from '@/components/StartingPage.vue'
 import MenuPage from '@/components/MenuPage.vue'
@@ -162,6 +173,7 @@ export default {
   name: 'Ordering',
   components: {
     Ingredient,
+    IngredientPage,
     OrderItem,
     StartingPage,
     MenuPage,
@@ -259,11 +271,11 @@ export default {
       this.newPage(1);
       this.footerBoolean = false;
     },
-    addToOrder: function (item) {
+    addToOrder (item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;
     },
-    deleteFromOrder: function (item) {
+    deleteFromOrder (item) {
       if (this.price > 0) {
       //console.log('i funktionen');
         for (var i = 0; i < this.chosenIngredients.length; i += 1) {
