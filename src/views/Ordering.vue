@@ -37,9 +37,7 @@
       v-on:side="newPage(3)"
       v-on:beverage="newPage(4)">
       </MenuPage>
-      <h1>Page 1</h1>
-      <button v-on:click="newPage(0)">{{uiLabels.back}}</button>
-      <button v-on:click="newPage(2)">Switch to page 2</button>
+      <button v-on:click="newPage(0)">Cancel order</button>
     </div>
 
     <div v-show="step===2">
@@ -49,13 +47,15 @@
       :lang="lang"
       v-on:designBurger="newPage(5)">
       </HamburgerPage>
-      <h1>Page 2</h1>
-      <button v-on:click="newPage(1)">{{uiLabels.back}}</button>
-      <button v-on:click="newPage(3)">Switch to page 3</button>
+      <button v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
     </div>
 
+<div v-show="!showCartState">
     <div v-show="step===3">
       <button class="buttonmenu" v-bind:class="clickedOn5" v-on:click="changeCategory(5)">{{ uiLabels.sideOptions }}</button>
+      <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
+        <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
+      </button>
       <p class="categoryText" v-show="!showCartState" v-if="sideCategory===5">{{ uiLabels.chooseSide }}</p>
       <div class="ingredients-grid">
           <Ingredient
@@ -70,8 +70,7 @@
             :key="item.ingredient_id">
           </Ingredient>
       </div>
-      <button v-on:click="newPage(2)">{{uiLabels.back}}</button>
-      <button v-on:click="newPage(4)">Switch to page 4</button>
+      <!--<button v-on:click="newPage(4)">Switch to page 4</button>-->
     </div>
 
     <div v-show="step===4">
@@ -86,7 +85,7 @@
 
 
 
-    <div v-show="!showCartState">
+
       <div v-show ="step===5">
     <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
@@ -113,6 +112,16 @@
         </Ingredient>
     </div>
 
+    <!--<IngredientPage
+      ref="ingredient"
+      v-on:addtoorder="addToOrder"
+      v-on:deletefromorder="deleteFromOrder"
+      :category="burgerCategory"
+      :ingredients="ingredients"
+      :lang="lang"
+      :ui-labels="uiLabels">
+    </IngredientPage>-->
+
     <!--
     <h1>{{ uiLabels.ordersInQueue }}</h1>
     <div>
@@ -128,16 +137,14 @@
       </OrderItem>
     </div>-->
       </div>
-
-
-    <div class="footer" v-show="step != 0">
-      <h1>{{ uiLabels.order }}</h1>
-
+    </div>
+    <div class="footer" v-show="footerBoolean">
+      <button class="footerbutton" v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
+      <br><br>
       <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
       <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
-          <br><button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
-          <button v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>
-    </div>
+          <br><button class="footerbutton" v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
+          <button class="footerbutton" v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>
     </div>
   </div>
 </template>
@@ -147,6 +154,7 @@
 //use for importing will be used in the template above and also below in
 //components
 import Ingredient from '@/components/Ingredient.vue'
+import IngredientPage from '@/components/IngredientPage.vue'
 import OrderItem from '@/components/OrderItem.vue'
 import StartingPage from '@/components/StartingPage.vue'
 import MenuPage from '@/components/MenuPage.vue'
@@ -165,6 +173,7 @@ export default {
   name: 'Ordering',
   components: {
     Ingredient,
+    IngredientPage,
     OrderItem,
     StartingPage,
     MenuPage,
@@ -198,7 +207,8 @@ export default {
       clickedOn2: '',
       clickedOn3: '',
       clickedOn4: '',
-      clickedOn5: "greenBorder"
+      clickedOn5: "greenBorder",
+      footerBoolean: false
     }
   },
   created: function () {
@@ -209,6 +219,7 @@ export default {
   methods: {
     newPage: function(toPage){
       this.step = toPage;
+      this.showFooter();
     },
     changeCategory: function (toCategory) {
       this.resetCategory();
@@ -241,11 +252,30 @@ export default {
       this.isActive = true;
       //console.log('hej');
     },
-    addToOrder: function (item) {
+    showFooter: function () {
+      if (!this.showCartState && (this.step === 5 || this.step === 3)) {
+        this.footerBoolean = true;
+      }
+    },
+    setToZero: function () {
+      var i;
+      for (i = 0; i < this.$refs.ingredient.length; i += 1) {
+        this.$refs.ingredient[i].resetCounter();
+      }
+      this.price = 0;
+      this.chosenIngredients = [];
+      this.shoppingCart.items = [];
+    },
+    cancelOrder: function () {
+      this.setToZero();
+      this.newPage(1);
+      this.footerBoolean = false;
+    },
+    addToOrder (item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;
     },
-    deleteFromOrder: function (item) {
+    deleteFromOrder (item) {
       if (this.price > 0) {
       //console.log('i funktionen');
         for (var i = 0; i < this.chosenIngredients.length; i += 1) {
@@ -298,6 +328,7 @@ export default {
         this.totalPrice += this.price;
         this.price = 0;
         this.newPage(1);
+        this.footerBoolean = false;
         //this.shoppingCart.id++;
         //console.log(this.price);
         //console.log(this.totalPrice);
@@ -305,15 +336,17 @@ export default {
       }
      },
 
-    showCart: function(){
-        if(this.showCartState === false){
+    showCart: function() {
+        if (this.showCartState === false) {
             this.showCartState = true;
+            this.footerBoolean = false;
           }
-        else{
+        else {
             this.showCartState = false;
+            this.footerBoolean = true;
         }
         //console.log("click! i'm showing: "+this.showCartState)
-    },
+    }
   }
 }
 </script>
@@ -400,6 +433,15 @@ template {
   cursor: pointer;
 }
 
+.footerbutton {
+  width: 12em;
+  height: 2em;
+  border-radius: 0.5em;
+  border: 1px solid #000;
+  margin: 0.5em;
+  cursor: pointer;
+}
+
 .buttonmenu:hover {
   background-color: #d0e0e3ff;
 }
@@ -410,6 +452,12 @@ template {
 
 .greenBorder {
   border: 2px solid #93c47dff;
+}
+
+.cancelButton {
+  position: relative;
+  width: 100%;
+  left: 0;
 }
 
 .footer {

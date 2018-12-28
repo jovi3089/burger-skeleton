@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Burgerpage</h1>
     <label>
       <button class="button" id="buttondesign" v-on:click="menuPush(1)"> {{ uiLabels.designBurger }}</button>
     </label>

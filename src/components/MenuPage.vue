@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Menupage</h1>
     <label>
       <button class="button" id="buttonburg" v-on:click="menuPush(1)"> {{ uiLabels.hamburger }}</button>
     </label>
