@@ -79,11 +79,6 @@ button:hover {
 .meat{
   background-color: red;
 }
-#item {
-  background-color: black;
-}
-#timer {
-  background-color: white;
-}
+
 
 </style>
