@@ -45,7 +45,7 @@
         <div class="ordersWorkedOn">
           <OrderItemBeingPrepared
             ref="timer"
-            v-for="(order, key) in orders"
+            li v-for="(order, key) in orders"
             v-if="order.status === 'started'"
             v-on:done="markDone(key)"
             :order-id="key"

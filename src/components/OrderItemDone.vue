@@ -32,7 +32,7 @@ export default {
     uiLabels: Object,
     order: Object,
     orderId: String,
-    lang: String
+    lang: String,
   },
   mounted: function () {
     this.$nextTick(function () {
@@ -75,7 +75,7 @@ button:hover {
   background-color: green;
 }
 .fish{
-  background-color: blue;
+  background-color: CornFlowerBlue;
 }
 .chicken{
   background-color: yellow;

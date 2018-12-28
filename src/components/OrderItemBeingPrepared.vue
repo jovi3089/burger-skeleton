@@ -74,7 +74,7 @@ button:hover {
   background-color: green;
 }
 .fish{
-  background-color: blue;
+  background-color: CornFlowerBlue;
 }
 .chicken{
   background-color: yellow;

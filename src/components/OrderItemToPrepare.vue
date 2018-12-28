@@ -12,7 +12,7 @@
         :order-id="orderId"
         :order="order">
       </OrderItem>
-      <Timer id="timer" ref="timer">
+      <Timer ref="timer">
       </Timer>
     </button>
   </label>
@@ -71,7 +71,7 @@ button:hover {
   background-color: green;
 }
 .fish{
-  background-color: blue;
+  background-color: CornFlowerBlue;
 }
 .chicken{
   background-color: yellow;
@@ -79,6 +79,8 @@ button:hover {
 .meat{
   background-color: red;
 }
+#item{
 
+}
 
 </style>

@@ -129,9 +129,9 @@ Data.prototype.getKitchenCategory = function (orderId){
     switch (result) {
       case 1: return "veg"
       break;
-      case 2: return "fish"
+      case 2: return "chicken"
       break;
-      case 3: return "chicken"
+      case 3: return "fish"
       break;
       case 4: return "meat"
       break;
