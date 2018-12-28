@@ -3,8 +3,22 @@
   <!--skapa en component för när man designar burgaren,
     samt gör varje steg till komponenter, innehållande
     css i resp komponent-->
+
+<!-- ===========================================================================================================================-->
+<!-- ===========================================================================================================================-->
+
   <div id="ordering">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <shoppingCart
+    ref="shoppingCart"
+    v-show="showCartState"
+    v-on:closeCart="showCart()"
+    :shoppingCart="this.shoppingCart.items"
+    :lang="this.lang"
+    :orders="orders"
+    :ui-labels="uiLabels"
+    id = "shopping-cart"
+    ></shoppingCart>
     <div v-show = "step===0">
       <StartingPage
         :ui-labels="uiLabels"
@@ -24,7 +38,7 @@
       v-on:beverage="newPage(4)">
       </MenuPage>
       <h1>Page 1</h1>
-      <button v-on:click="newPage(0)">Tillbaka</button>
+      <button v-on:click="newPage(0)">{{uiLabels.back}}</button>
       <button v-on:click="newPage(2)">Switch to page 2</button>
     </div>
 
@@ -36,54 +50,70 @@
       v-on:designBurger="newPage(5)">
       </HamburgerPage>
       <h1>Page 2</h1>
-      <button v-on:click="newPage(1)">Tillbaka</button>
+      <button v-on:click="newPage(1)">{{uiLabels.back}}</button>
       <button v-on:click="newPage(3)">Switch to page 3</button>
     </div>
 
     <div v-show="step===3">
-      <h1>Page 3</h1>
-      <button v-on:click="newPage(2)">Tillbaka</button>
+      <button class="buttonmenu" v-bind:class="clickedOn5" v-on:click="changeCategory(5)">{{ uiLabels.sideOptions }}</button>
+      <p class="categoryText" v-show="!showCartState" v-if="sideCategory===5">{{ uiLabels.chooseSide }}</p>
+      <div class="ingredients-grid">
+          <Ingredient
+            ref="ingredient"
+            v-for="item in ingredients"
+            v-if="item.category===sideCategory"
+            v-on:increment="addToOrder(item)"
+            v-on:decrease="deleteFromOrder(item)"
+            v-on:highlight="activateDesign()"
+            :item="item"
+            :lang="lang"
+            :key="item.ingredient_id">
+          </Ingredient>
+      </div>
+      <button v-on:click="newPage(2)">{{uiLabels.back}}</button>
       <button v-on:click="newPage(4)">Switch to page 4</button>
     </div>
 
     <div v-show="step===4">
       <h1>Page 3</h1>
-      <button v-on:click="newPage(2)">Tillbaka</button>
+      <button v-on:click="newPage(2)">{{uiLabels.back}}</button>
       <button v-on:click="newPage(5)">Switch to page 5</button>
     </div>
+                  <!--    lägg till styling på shoppingcart      -->
 
-    <div v-show = "step===5">
+
+
+
+
+
+    <div v-show="!showCartState">
+      <div v-show ="step===5">
     <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory(3)">{{ uiLabels.burgerSauce }}</button>
-    <button class="buttonmenu" id="shoppingCart"><i class="fa fa-shopping-cart" style="font-size:18px;"></i></button>
-    <p class="categoryText" v-if="category===4">{{ uiLabels.chooseBread }}</p>
-    <p class="categoryText" v-if="category===1">{{ uiLabels.choosePatty }}</p>
-    <p class="categoryText" v-if="category===2">{{ uiLabels.chooseTopping }}</p>
-    <p class="categoryText" v-if="category===3">{{ uiLabels.chooseSauce }}</p>
-
+    <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
+      <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
+    </button>
+    <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===1">{{ uiLabels.choosePatty }}</p>
+    <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===2">{{ uiLabels.chooseTopping }}</p>
+    <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===4">{{ uiLabels.chooseBread }}</p>
+    <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===3">{{ uiLabels.chooseSauce }}</p>
     <div class="ingredients-grid">
-    <Ingredient
-      ref="ingredient"
-      v-for="item in ingredients"
-      v-if="item.category===category"
-      v-on:increment="addToOrder(item)"
-      v-on:decrease="deleteFromOrder(item)"
-      v-on:highlight="activateDesign()"
-      :item="item"
-      :lang="lang"
-      :key="item.ingredient_id">
-    </Ingredient>
-  </div>
-
-    <div class="footer">
-      <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
-      <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
-          <br><button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
-          <button v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>
+        <Ingredient
+          ref="ingredient"
+          v-for="item in ingredients"
+          v-if="item.category===burgerCategory"
+          v-on:increment="addToOrder(item)"
+          v-on:decrease="deleteFromOrder(item)"
+          v-on:highlight="activateDesign()"
+          :item="item"
+          :lang="lang"
+          :key="item.ingredient_id">
+        </Ingredient>
     </div>
 
+    <!--
     <h1>{{ uiLabels.ordersInQueue }}</h1>
     <div>
       <OrderItem
@@ -96,6 +126,17 @@
         :lang="lang"
         :key="key">
       </OrderItem>
+    </div>-->
+      </div>
+
+
+    <div class="footer" v-show="step != 0">
+      <h1>{{ uiLabels.order }}</h1>
+
+      <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
+      <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
+          <br><button v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
+          <button v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>
     </div>
     </div>
   </div>
@@ -111,6 +152,7 @@ import StartingPage from '@/components/StartingPage.vue'
 import MenuPage from '@/components/MenuPage.vue'
 import HamburgerPage from '@/components/HamburgerPage.vue'
 import DesignPage from '@/components/DesignPage.vue'
+import shoppingCart from '@/components/shoppingCart.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -127,26 +169,36 @@ export default {
     StartingPage,
     MenuPage,
     HamburgerPage,
-    DesignPage
+    DesignPage,
+    shoppingCart
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             // the ordering system and the kitchen
   data: function() { //Not that data is a function!
     return {
       chosenIngredients: [],
-      shoppingCart: [],
+  //=====Shopping cart===========
+      shoppingCart: {
+        items: [],
+        id: 0
+      },
+      showCartState: false,
+
+  //=============================
       totalPrice: 0,
       price: 0,
       orderNumber: "",
       step: 0,
-      category: 4,
+      burgerCategory: 4,
+      sideCategory: 5,
       categoryChanged: '',
       isActive: false,
       indexChosenIngredients: 0,
       clickedOn1: "orangeBorder",
       clickedOn2: '',
       clickedOn3: '',
-      clickedOn4: ''
+      clickedOn4: '',
+      clickedOn5: "greenBorder"
     }
   },
   created: function () {
@@ -162,16 +214,19 @@ export default {
       this.resetCategory();
       switch (toCategory) {
         case 4: this.clickedOn1 = "orangeBorder"
-        this.category = 4
+        this.burgerCategory = 4
         break;
         case 1: this.clickedOn2 = "orangeBorder"
-        this.category = 1
+        this.burgerCategory = 1
         break;
         case 2: this.clickedOn3 = "orangeBorder"
-        this.category = 2
+        this.burgerCategory = 2
         break;
         case 3: this.clickedOn4 = "orangeBorder"
-        this.category = 3
+        this.burgerCategory = 3
+        break;
+        case 5: this.clickedOn5 = "greenBorder"
+        this.sideCategory = 5
         break;
       }
     },
@@ -180,10 +235,11 @@ export default {
       this.clickedOn2 = '';
       this.clickedOn3 = '';
       this.clickedOn4 = '';
+      this.clickedOn5 = '';
     },
     activateDesign: function () {
       this.isActive = true;
-      console.log('hej');
+      //console.log('hej');
     },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
@@ -191,9 +247,8 @@ export default {
     },
     deleteFromOrder: function (item) {
       if (this.price > 0) {
-      console.log('i funktionen');
-      var i;
-        for (i = 0; i < this.chosenIngredients.length; i += 1) {
+      //console.log('i funktionen');
+        for (var i = 0; i < this.chosenIngredients.length; i += 1) {
           if (this.chosenIngredients[i] === item) {
             this.price -= item.selling_price;
             this.chosenIngredients.splice(i,1);
@@ -202,44 +257,63 @@ export default {
       }
     },
     placeOrder: function () {
-      var i,
+      var i;
       //Wrap the order in an object
-        order = {
-          ingredients: this.shoppingCart,
+        /*order = {
+          ingredients: this.shoppingCart.items,
           price:       this.price
-        };
+        };*/
       // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-      this.$store.state.socket.emit('order', {order: order});
+      //this.$store.state.socket.emit('order', {order: order});
       //set all counters to 0. Notice the use of $refs
 
       for (i = 0; i < this.$refs.ingredient.length; i += 1) {
         this.$refs.ingredient[i].resetCounter();
       }
       this.price = 0;
-      this.shoppingCart = [];
+      this.shoppingCart.items = [];
     },
 
     addToCart: function () {
+      if(this.chosenIngredients.length > 0){
       //Wrap the order in an object
 
-      for(var i=0; i<this.chosenIngredients.length; i++){
-          this.shoppingCart.push(this.chosenIngredients[i]);
-      };
-      // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-      //this.$store.state.socket.emit('order', {order: order});
-      //set all counters to 0. Notice the use of $refs
+        for(var i=0; i<this.chosenIngredients.length; i++){
+            this.shoppingCart.items.push(this.chosenIngredients[i]);
+        }
+        var order = {
+          ingredients: this.shoppingCart.items,
+          price:       this.price
+        };
+        this.$store.state.socket.emit('order', {order: order});
+        // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
+        //this.$store.state.socket.emit('order', {order: order});
+        //set all counters to 0. Notice the use of $refs
 
-      for (var i = 0; i < this.$refs.ingredient.length; i += 1) {
-        this.$refs.ingredient[i].resetCounter();
+        for (var j = 0; j < this.$refs.ingredient.length; j += 1) {
+          this.$refs.ingredient[j].resetCounter();
+        }
+        //this.price = 0; kanske vill ha mer ju
+        this.chosenIngredients = [];
+        this.totalPrice += this.price;
+        this.price = 0;
+        this.newPage(1);
+        //this.shoppingCart.id++;
+        //console.log(this.price);
+        //console.log(this.totalPrice);
+        //console.log(this.shoppingCart[0]);
       }
-      //this.price = 0; kanske vill ha mer ju
-      this.chosenIngredients = [];
-      this.totalPrice += this.price;
-      console.log(this.price);
-      this.price = 0;
-      console.log(this.totalPrice);
-      console.log(this.shoppingCart[0]);
-    }
+     },
+
+    showCart: function(){
+        if(this.showCartState === false){
+            this.showCartState = true;
+          }
+        else{
+            this.showCartState = false;
+        }
+        //console.log("click! i'm showing: "+this.showCartState)
+    },
   }
 }
 </script>
@@ -250,6 +324,10 @@ export default {
   max-width: 40em; /*sidan skalas om när fönstret minskas*/
   font-family: Helvetica, sans-serif;
   text-align: center;
+}
+
+#shopping-cart{
+
 }
 
 .orderItem {
@@ -323,11 +401,15 @@ template {
 }
 
 .buttonmenu:hover {
-  background-color: #f9cb9c;
+  background-color: #d0e0e3ff;
 }
 
 .orangeBorder {
   border: 2px solid #ffab40;
+}
+
+.greenBorder {
+  border: 2px solid #93c47dff;
 }
 
 .footer {
