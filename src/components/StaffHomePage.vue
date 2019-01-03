@@ -38,13 +38,13 @@ export default {
 <style scoped>
 .home {
   /*border: 1px solid #ccd;*/
-  padding: 1em;
   /*background-image: url('~@/assets/exampleImage.jpg');*/
   background-color: white;
   color: black;
   position: absolute;
   width:100%;
   height:100%;
+
 }
 .button {
     background-color: #ffab40ff; /* Green */
@@ -54,6 +54,7 @@ export default {
     border: 1px solid #000;
     width: 32%;
     height: 70%;
+    margin-left: 1%;
     color: white;
     /*padding: 15px 32px;*/
     text-align: center;
