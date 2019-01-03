@@ -96,7 +96,7 @@ export default {
     descendFunction: function(){
       var descendArray = [];
       for (var i=0; i < ingred.length; i++){
-    
+
 
        this.ingred[i].stock;
 
@@ -144,6 +144,11 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .headerCategory {
+    font-size: 1.5em;
+    font-weight: bold;
   }
 
 .a {
