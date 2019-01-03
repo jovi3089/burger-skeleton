@@ -10,27 +10,25 @@
           </StaffHomePage>
     </div>
 
-
-
-    <div class="container" v-show = "page===1">  <!--Work flow for orders-->
+    <div class="work" v-show = "page===1">  <!--Work flow for orders-->
       <div class="wrapper">
-        <div class="itemA">
+        <div class="row1 A">
           <div class="title">
             <p>{{ uiLabels.ordersInQueue }}</p>
           </div>
         </div>
-        <div class="itemB">
+        <div class="row1 B">
           <div class="title">
             {{ uiLabels.ordersWorkingOn }}
           </div>
         </div>
-        <div class="itemC">
+        <div class="row1 C">
           <div class="title">
             {{ uiLabels.ordersFinished }}
           </div>
         </div>
 
-        <div class="ordersToPrepare">
+        <div class="row2 ordersToPrepare">
           <OrderItemToPrepare
             v-for="(order, key) in orders"
             v-if="order.status === 'not-started'"
@@ -42,7 +40,7 @@
             :key="key">
           </OrderItemToPrepare>
         </div>
-        <div class="ordersWorkedOn">
+        <div class="row2 ordersWorkedOn">
           <OrderItemBeingPrepared
             ref="timer"
             li v-for="(order, key) in orders"
@@ -55,7 +53,7 @@
             :key="key">
           </OrderItemBeingPrepared>
         </div>
-        <div class="finishedOrders">
+        <div class="row2 finishedOrders">
           <OrderItemDone
             v-for="(order, key) in orders"
             v-if="order.status === 'done'"
@@ -67,15 +65,13 @@
             :key="key">
           </OrderItemDone>
         </div>
-          <div class="backButton">
-          <label>
-            <button v-on:click="changePage(0)">
-              {{uiLabels.back}}
-            </button>
-          </label>
-        </div>
-
       </div>
+      <label>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <button id="backButton" v-on:click="changePage(0)">
+          <i class="fa fa-arrow-left" style="font-size:1em;"> </i>    Back
+        </button>
+      </label>
     </div>
 
     <div v-show = "page===2">  <!--Saldo -->
@@ -85,19 +81,23 @@
       >
       </IngredientSaldo>
       <label>
-        <button class="backButton" v-on:click="changePage(0)">
-          {{uiLabels.back}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <button id="backButton" v-on:click="changePage(0)">
+          <i class="fa fa-arrow-left" style="font-size:1em;"> </i>    Back
         </button>
       </label>
     </div>
 
     <div v-show = "page===3">  <!--Product statistics -->
       <label>
-        <button class="backButton" v-on:click="changePage(0)">
-          {{uiLabels.back}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <button id="backButton" v-on:click="changePage(0)">
+          <i class="fa fa-arrow-left" style="font-size:1em;"> </i>    Back
         </button>
       </label>
     </div>
+
+
 
   </div>
 </template>
@@ -155,83 +155,50 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  /*position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;*/
-}
 
 .wrapper {
-  height: 100vh;
-  width: 100vw;
+  height: 92vh;
+  width: 100%;
   display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 5% auto 5%;
+  grid-template-rows: 5% auto;
   grid-gap: 0.5em;
-  border: 4px solid black;
-  padding: 2% 2% 2% 2%;
-
-  /*
-  justify-content: stretch;
-  align-items: start;*/
+  /*border: 4px solid black;*/
+  padding: 0 0 0 0;
 }
-.itemA {
+
+.row1{
+  grid-row: 1;
+  border: 5px solid grey;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.A {
   grid-column: 1;
-  grid-row: 1;
-  border: 5px solid grey;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-
-.itemB {
+.B {
   grid-column: 2;
-  grid-row: 1;
-  border: 5px solid grey;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-
-.itemC {
+.C {
   grid-column: 3;
-  grid-row: 1;
-  border: 5px solid grey;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
- .ordersToPrepare{
+.row2{
+  grid-row: 2;
+  border: 5px solid grey;
+  border-radius: 15px;
+  overflow-y: scroll;
+}
+.ordersToPrepare{
     grid-column: 1;
-    grid-row: 2;
-    border: 5px solid grey;
-    border-radius: 15px;
-    overflow-y: scroll;
-  }
-
-  .ordersWorkedOn{
+}
+.ordersWorkedOn{
     grid-column: 2;
-    grid-row: 2;
-    border: 5px solid grey;
-    border-radius: 15px;
-    overflow-y: scroll;
-  }
-
-  .finishedOrders{
+}
+.finishedOrders{
     grid-column: 3;
-    grid-row: 2;
-    border: 5px solid grey;
-    border-radius: 15px;
-    overflow-y: scroll;
-  }
+}
 
 .title {
     display: block;
@@ -240,11 +207,15 @@ export default {
     font-size: 2vw;
     font-style: italic;
     font-weight: bold;
-  }
+}
 
-.backButton{
-  grid-column: 3;
-  padding-right: 1em;
+#backButton{
+  background-color: #a2c4c9ff;
+  border-radius: 20px;
+  font-size: 5vh;
+  padding: 0 1em 0 0.5em;
+  left: 5px;
+  position: absolute;
 }
 
 
