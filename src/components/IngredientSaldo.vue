@@ -2,7 +2,7 @@
   <div class="root">
     <div class="wrapper">
       <div class="header">
-        <p class="title">Saldo</p>
+        <p class="title">Inventory Balance</p>
       </div>
         <div class="a">
           <p class="headerCategory">Protein</p>
@@ -13,44 +13,49 @@
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
           </div>
         </div>
-        <div class="b" >
+        <div class="b">
+          <p class="headerCategory"> Toppings</p>
           <div
           v-for="item in ingred"
           :key="item.ingredient_id"
           v-if="item.category===2">
-            <p>Pålägg: {{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+            <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
           </div>
         </div>
         <div class="c">
+          <p class="headerCategory">Sauce</p>
           <div
           v-for="item in ingred"
           :key="item.ingredient_id"
           v-if="item.category===3">
-            <p>Sås: {{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+            <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
           </div>
         </div>
         <div class="d">
+          <p class="headerCategory">Bread</p>
           <div
           v-for="item in ingred"
           :key="item.ingredient_id"
           v-if="item.category===4">
-            <p>Bröd: {{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+            <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
           </div>
         </div>
         <div class="e">
+          <p class="headerCategory">Side orders</p>
           <div
           v-for="item in ingred"
           :key="item.ingredient_id"
           v-if="item.category===5">
-            <p>Tillbehör: {{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+            <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
           </div>
         </div>
         <div class="f">
+          <p class="headerCategory">Drinks</p>
           <div
           v-for="item in ingred"
           :key="item.ingredient_id"
           v-if="item.category===6">
-            <p>Dryck: {{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+            <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
           <!--<div v-if="this.containsInfo===true">
             <p>descendCategories();</p></div>
               {{descArray}}-->
@@ -125,6 +130,7 @@ export default {
 
   .headerCategory{
     font-weight: bold;
+    font-size: 1.5em;
   }
 
 
@@ -136,13 +142,13 @@ export default {
 
 }
 .b {
-  background-color: white;
+  background-color: pink;
   grid-column: 2;
   grid-row: 2;
   overflow-y: scroll;
 }
 .c {
-  background-color: black;
+  background-color: orange;
   grid-column: 3;
   grid-row: 2;
   overflow-y: scroll;
