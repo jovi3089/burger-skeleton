@@ -83,9 +83,27 @@ export default {
     descendCategories: function(){
       var descArray = [];
       for (var i=0; i < ingred.length; i++){
+      /*  if (this.ingred[i].stock < this.ingred[i+1]){
+          descArray = this.ingred[i]
+        }
+        else {
+          descArray = this.ingred[i+1
+        }*/
         descArray = this.ingred[i].stock;
       }
     },
+
+    descendFunction: function(){
+      var descendArray = [];
+      for (var i=0; i < ingred.length; i++){
+    
+
+       this.ingred[i].stock;
+
+      }
+      descendArray.reverse();
+    }
+
     /*isFilled: function(lang) {
       for(var prop in ingred) {
               if(obj.hasOwnProperty(prop))
