@@ -65,15 +65,13 @@
             :key="key">
           </OrderItemDone>
         </div>
-          <div class="backButton workie">
-          <label>
-            <button v-on:click="changePage(0)">
-              {{uiLabels.back}}
-            </button>
-          </label>
-        </div>
-
       </div>
+      <label>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <button id="backButton" v-on:click="changePage(0)">
+          <i class="fa fa-arrow-left" style="font-size:1em;"> </i>    Back
+        </button>
+      </label>
     </div>
 
     <div v-show = "page===2">  <!--Saldo -->
@@ -83,19 +81,23 @@
       >
       </IngredientSaldo>
       <label>
-        <button class="backButton" v-on:click="changePage(0)">
-          {{uiLabels.back}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <button id="backButton" v-on:click="changePage(0)">
+          <i class="fa fa-arrow-left" style="font-size:1em;"> </i>    Back
         </button>
       </label>
     </div>
 
     <div v-show = "page===3">  <!--Product statistics -->
       <label>
-        <button class="backButton" v-on:click="changePage(0)">
-          {{uiLabels.back}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <button id="backButton" v-on:click="changePage(0)">
+          <i class="fa fa-arrow-left" style="font-size:1em;"> </i>    Back
         </button>
       </label>
     </div>
+
+
 
   </div>
 </template>
@@ -153,15 +155,15 @@ export default {
 </script>
 
 <style scoped>
+
 .wrapper {
-  height: 100vh;
+  height: 92vh;
   width: 100%;
   display: grid;
-  grid-template-rows: 5% auto 5%;
+  grid-template-rows: 5% auto;
   grid-gap: 0.5em;
   /*border: 4px solid black;*/
-  padding: 0% 0% 0% 0%;
-
+  padding: 0 0 0 0;
 }
 
 .row1{
@@ -207,9 +209,13 @@ export default {
     font-weight: bold;
 }
 
-.backButton{
-  grid-column: 3;
-  padding-right: 1em;
+#backButton{
+  background-color: #a2c4c9ff;
+  border-radius: 20px;
+  font-size: 5vh;
+  padding: 0 1em 0 0.5em;
+  left: 5px;
+  position: absolute;
 }
 
 

@@ -99,16 +99,16 @@ export default {
 .wrapper {
   /*width: 100vw; vw 100% of the page width is covered by saldo*/
   /*height: 100vh; vw 100% of the page height is covered by saldo*/
-  height: 100vh;
+  height: 93vh;
   width: 100vw;
   display: grid;
   /*justify-content: flex-start; /*The items start at top*/
   grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 10% 45% 45%;
+  grid-template-rows: 10% 43% 43%;
   font-size: 12pt;
   grid-row-gap: 1em;
   grid-column-gap: .5em;
-  padding: 2% 2% 2% 2%;
+  padding: 0 0 0 0;
 
 }
 .header {
@@ -121,7 +121,6 @@ export default {
     align-items: center;
     justify-content: center;
   }
-
 
 .a {
   background-color: #D2691E;
@@ -164,7 +163,7 @@ export default {
     display: block;
     text-transform: uppercase;
     padding-left: 1em;
-    font-size: 2vw;
+    font-size: 3vw;
     font-style: italic;
     font-weight: bold;
   }
