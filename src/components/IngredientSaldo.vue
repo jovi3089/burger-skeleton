@@ -5,6 +5,7 @@
         <p class="title">Saldo</p>
       </div>
         <div class="a">
+          <p class="headerCategory">Protein</p>
           <div
           v-for="item in ingred"
           :key="item.ingredient_id"
@@ -17,7 +18,7 @@
           v-for="item in ingred"
           :key="item.ingredient_id"
           v-if="item.category===2">
-            <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+            <p>Pålägg: {{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
           </div>
         </div>
         <div class="c">
@@ -25,7 +26,7 @@
           v-for="item in ingred"
           :key="item.ingredient_id"
           v-if="item.category===3">
-            <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+            <p>Sås: {{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
           </div>
         </div>
         <div class="d">
@@ -33,7 +34,7 @@
           v-for="item in ingred"
           :key="item.ingredient_id"
           v-if="item.category===4">
-            <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+            <p>Bröd: {{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
           </div>
         </div>
         <div class="e">
@@ -41,7 +42,7 @@
           v-for="item in ingred"
           :key="item.ingredient_id"
           v-if="item.category===5">
-            <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+            <p>Tillbehör: {{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
           </div>
         </div>
         <div class="f">
@@ -49,10 +50,10 @@
           v-for="item in ingred"
           :key="item.ingredient_id"
           v-if="item.category===6">
-            <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
-          <div v-if="data.containsInfo===true">
+            <p>Dryck: {{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+          <!--<div v-if="this.containsInfo===true">
             <p>descendCategories();</p></div>
-              {{descArray}}
+              {{descArray}}-->
           </div>
         </div>
     </div>
@@ -77,7 +78,7 @@ export default {
     descendCategories: function(){
       var descArray = [];
       for (var i=0; i < ingred.length; i++){
-        descArray = ingred[i].stock;
+        descArray = this.ingred[i].stock;
       }
     },
     /*isFilled: function(lang) {
@@ -120,6 +121,10 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .headerCategory{
+    font-weight: bold;
   }
 
 
