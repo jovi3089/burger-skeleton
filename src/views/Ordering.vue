@@ -300,8 +300,8 @@ export default {
         price:       this.price
       };
 
-      this.$store.state.socket.emit('order', {order: order});
-      console.log("tjena");
+      this.$store.state.socket.emit('order', order);
+      console.log("emitting 'order' object");
 
       //for (i = 0; i < this.$refs.ingredient.length; i += 1) {
       //  this.$refs.ingredient[i].resetCounter();
@@ -316,7 +316,7 @@ export default {
 
 
         this.shoppingCart.push(this.chosenIngredients);
-        console.log(this.shoppingCart);
+        //console.log(this.shoppingCart);
 
 
 

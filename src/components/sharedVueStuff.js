@@ -23,6 +23,10 @@ var sharedVueStuff = {
     }.bind(this));
 
     this.$store.state.socket.on('currentQueue', function (data) {
+      console.log("===============================================")
+      console.log("================== i mixin: ===================")
+      console.log("===============================================")
+      console.log("data.orders: " + data.orders.splice(0))
       this.orders = data.orders;
       if (typeof data.ingredients !== 'undefined') {
         this.ingredients = data.ingredients;

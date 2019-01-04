@@ -76,7 +76,7 @@
 
     <div v-show = "page===2">  <!--Saldo -->
       <IngredientSaldo
-      :ingred="ingredients"
+      :ingredients="ingredients"
       :lang="lang"
       >
       </IngredientSaldo>

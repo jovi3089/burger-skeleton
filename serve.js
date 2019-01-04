@@ -45,17 +45,23 @@ io.on('connection', function (socket) {
   // When someone orders something
   socket.on('order', function (order) {
     var burgerIdAndName = [];
-    console.log("glass");
-    console.log(order.order.ingredients.length);
-    for (var i = 0; i < order.order.ingredients.length; i++) {
-      console.log("hej");
-      burgerIdAndName[i] = data.addOrder(order.order.ingredients[i]);
+    console.log("the 'order' emit was recieved");
+    //console.log(order.order.ingredients.length);
+    for (var i = 0; i < order.ingredients.length; i++) {
+      console.log("####inside the for loop of on order###### serve line ~46");
+      burgerIdAndName[i] = data.addOrder(order.ingredients[i]);
     }
     //var orderIdAndName = data.addOrder(order);
     // send updated info to all connected clients, note the use of io instead of socket
+    console.log("===============================================")
+    console.log("================== i serve.js: ================")
+    console.log("===============================================")
+    console.log("burgeridandname: "+burgerIdAndName);
     socket.emit('orderNumber', burgerIdAndName);
+    console.log("orders: getallorders(): "+data.getAllOrders());
+    console.log("orders: getIngredients(): "+data.getIngredients());
     io.emit('currentQueue', { orders: data.getAllOrders(),
-                          ingredients: data.getIngredients() });
+                         ingredients: data.getIngredients() });
   });
   // send UI labels in the chosen language
   socket.on('switchLang', function (lang) {

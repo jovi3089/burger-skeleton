@@ -72,20 +72,23 @@ Data.prototype.addOrder = function (order) {
   //var orderKitchenCategory = {};
 
   this.orders[orderId] = order;
-  console.log(this.orders);
+  //console.log(this.orders);
   this.orders[orderId].orderKitchenCategory = this.getKitchenCategory(orderId);
   this.orders[orderId].orderId = orderId;
   this.orders[orderId].status = "not-started";
-  var transactions = this.data[transactionsDataName],
+  console.log("here we go")
+  var transactions = this.data[transactionsDataName];
+  for (let j = 0; j < order.length; j += 1) {
+    console.log("waaaaah")
     //find out the currently highest transaction id
-    transId =  transactions[transactions.length - 1].transaction_id,
-    i = order.splice(0),
-    k;
-  for (k = 0; k < i.length; k += 1) {
-    transId += 1;
-    transactions.push({transaction_id: transId,
-                       ingredient_id: i[k].ingredient_id,
-                       change: - 1});
+    let transId =  transactions[transactions.length - 1].transaction_id;
+    let i = order[j];
+    for (let k = 0; k < i.length; k += 1) {
+      transId += 1;
+      transactions.push({transaction_id: transId,
+                         ingredient_id: i[k].ingredient_id,
+                         change: - 2});
+    }
   }
     return orderId;
 };

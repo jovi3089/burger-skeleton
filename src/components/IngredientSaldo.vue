@@ -9,7 +9,7 @@
       </div>
         <div class="list a">
           <div
-          v-for="item in ingred"
+          v-for="item in ingredients"
           :key="item.ingredient_id"
           v-if="item.category===1">
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
@@ -20,7 +20,7 @@
         </div>
         <div class="list b">
           <div
-          v-for="item in ingred"
+          v-for="item in ingredients"
           :key="item.ingredient_id"
           v-if="item.category===2">
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
@@ -31,7 +31,7 @@
         </div>
         <div class="list c">
           <div
-          v-for="item in ingred"
+          v-for="item in ingredients"
           :key="item.ingredient_id"
           v-if="item.category===3">
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
@@ -42,7 +42,7 @@
         </div>
         <div class="list d">
           <div
-          v-for="item in ingred"
+          v-for="item in ingredients"
           :key="item.ingredient_id"
           v-if="item.category===4">
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
@@ -53,7 +53,7 @@
         </div>
         <div class="list e">
           <div
-          v-for="item in ingred"
+          v-for="item in ingredients"
           :key="item.ingredient_id"
           v-if="item.category===5">
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
@@ -64,7 +64,7 @@
         </div>
         <div class="list f">
           <div
-          v-for="item in ingred"
+          v-for="item in ingredients"
           :key="item.ingredient_id"
           v-if="item.category===6">
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
@@ -81,7 +81,7 @@
 export default {
   name: 'IngredientSaldo',
   props: {
-    ingred: Object,
+    ingredients: Object,
     lang: String
   },
 
