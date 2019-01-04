@@ -71,14 +71,15 @@ Data.prototype.addOrder = function (order) {
   var orderId = this.getOrderNumber();
   //var orderKitchenCategory = {};
 
-  this.orders[orderId] = order.order;
+  this.orders[orderId] = order;
+  console.log(this.orders);
   this.orders[orderId].orderKitchenCategory = this.getKitchenCategory(orderId);
   this.orders[orderId].orderId = orderId;
   this.orders[orderId].status = "not-started";
   var transactions = this.data[transactionsDataName],
     //find out the currently highest transaction id
     transId =  transactions[transactions.length - 1].transaction_id,
-    i = order.order.ingredients,
+    i = order.splice(0),
     k;
   for (k = 0; k < i.length; k += 1) {
     transId += 1;
@@ -119,8 +120,11 @@ Data.prototype.markOrderServed = function (orderId) {
 
 Data.prototype.getKitchenCategory = function (orderId){
   var temp = 0;
-  for (var i = 0; i < this.orders[orderId].ingredients.length; i++) {
-    var kitchenCategory = this.orders[orderId].ingredients[i].kitchenCategory
+  //console.log(this.orders);
+  //console.log(this.orders[orderId]);
+  //console.log(this.orders[orderId].ingredients);
+  for (var i = 0; i < this.orders[orderId].length; i++) {
+    var kitchenCategory = this.orders[orderId].kitchenCategory
       if (kitchenCategory > temp){
         temp = kitchenCategory;
       }

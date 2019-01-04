@@ -44,9 +44,16 @@ io.on('connection', function (socket) {
   });
   // When someone orders something
   socket.on('order', function (order) {
-    var orderIdAndName = data.addOrder(order);
+    var burgerIdAndName = [];
+    console.log("glass");
+    console.log(order.order.ingredients.length);
+    for (var i = 0; i < order.order.ingredients.length; i++) {
+      console.log("hej");
+      burgerIdAndName[i] = data.addOrder(order.order.ingredients[i]);
+    }
+    //var orderIdAndName = data.addOrder(order);
     // send updated info to all connected clients, note the use of io instead of socket
-    socket.emit('orderNumber', orderIdAndName);
+    socket.emit('orderNumber', burgerIdAndName);
     io.emit('currentQueue', { orders: data.getAllOrders(),
                           ingredients: data.getIngredients() });
   });

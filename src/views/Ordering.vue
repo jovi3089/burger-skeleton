@@ -13,9 +13,8 @@
     ref="shoppingCart"
     v-show="showCartState"
     v-on:closeCart="showCart()"
-    :shoppingCart="this.shoppingCart.items"
     :lang="this.lang"
-    :orders="orders"
+    :orders="this.shoppingCart"
     :ui-labels="uiLabels"
     id = "shopping-cart"
     ></shoppingCart>
@@ -187,16 +186,13 @@ export default {
     return {
       chosenIngredients: [],
   //=====Shopping cart===========
-      shoppingCart: {
-        items: [],
-        id: 0
-      },
+      shoppingCart: [],
       showCartState: false,
 
   //=============================
       totalPrice: 0,
       price: 0,
-      orderNumber: "",
+      orderNumber: [],
       step: 0,
       burgerCategory: 4,
       sideCategory: 5,
@@ -297,25 +293,34 @@ export default {
       //this.$store.state.socket.emit('order', {order: order});
       //set all counters to 0. Notice the use of $refs
 
-      for (i = 0; i < this.$refs.ingredient.length; i += 1) {
-        this.$refs.ingredient[i].resetCounter();
-      }
+
+
+      var order = {
+        ingredients: this.shoppingCart,
+        price:       this.price
+      };
+
+      this.$store.state.socket.emit('order', {order: order});
+      console.log("tjena");
+
+      //for (i = 0; i < this.$refs.ingredient.length; i += 1) {
+      //  this.$refs.ingredient[i].resetCounter();
+      //}
       this.price = 0;
-      this.shoppingCart.items = [];
+      this.shoppingCart = [];
     },
 
     addToCart: function () {
       if(this.chosenIngredients.length > 0){
       //Wrap the order in an object
 
-        for(var i=0; i<this.chosenIngredients.length; i++){
-            this.shoppingCart.items.push(this.chosenIngredients[i]);
-        }
-        var order = {
-          ingredients: this.shoppingCart.items,
-          price:       this.price
-        };
-        this.$store.state.socket.emit('order', {order: order});
+
+        this.shoppingCart.push(this.chosenIngredients);
+        console.log(this.shoppingCart);
+
+
+
+
         // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
         //this.$store.state.socket.emit('order', {order: order});
         //set all counters to 0. Notice the use of $refs

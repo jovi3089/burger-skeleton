@@ -6,7 +6,7 @@
     </div>
       <h1>{{uiLabels.shoppingCartContent}}</h1>
       <div class="order-item-grid"><!--innehållet-->
-        <OrderItem
+          <!--<OrderItem
           class="order-item"
           v-for="(order, key) in orders"
           v-if="order.status !== 'done'"
@@ -15,8 +15,8 @@
           :ui-labels="uiLabels"
           :lang="lang"
           :key="key">
-        </OrderItem>
-    </div>
+        </OrderItem>-->
+      </div>
     <div id="footer"><!--footer med beställknapp-->
       <h1>{{uiLabels.shoppingCartFooter}}</h1>
     </div>
@@ -30,12 +30,10 @@ export default{
       OrderItem
     },
     props: {
-      shoppingCart: Array,
       uiLabels: Object,
-      order: Object,
       lang: String,
       orderId: String,
-      orders: Object
+      orders: Array
     },
     methods: {
       close: function(){

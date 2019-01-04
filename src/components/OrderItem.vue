@@ -11,7 +11,7 @@ export default {
   name: 'OrderItem',
   props: {
     uiLabels: Object,
-    order: Object,
+    order: Array,
     orderId: String,
     lang: String
   },
