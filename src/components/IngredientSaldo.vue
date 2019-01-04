@@ -7,58 +7,56 @@
         <div class="a">
           <p class="headerCategory">Protein</p>
           <div
-          v-for="item in ingred"
+          v-for="item in descendStock"
           :key="item.ingredient_id"
-          v-if="item.category===1">
-            <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+          v-if="item[2]===1">
+          <p>{{ item[0] }}: {{item[1]}} pieces</p>
           </div>
+
         </div>
         <div class="b">
           <p class="headerCategory"> Toppings</p>
           <div
-          v-for="item in ingred"
+          v-for="item in descendStock"
           :key="item.ingredient_id"
-          v-if="item.category===2">
-            <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+          v-if="item[2]===2">
+          <p>{{ item[0] }}: {{item[1]}} pieces</p>
           </div>
         </div>
         <div class="c">
           <p class="headerCategory">Sauce</p>
           <div
-          v-for="item in ingred"
+          v-for="item in descendStock"
           :key="item.ingredient_id"
-          v-if="item.category===3">
-            <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+          v-if="item[2]===3">
+          <p>{{ item[0] }}: {{item[1]}} pieces</p>
           </div>
         </div>
         <div class="d">
           <p class="headerCategory">Bread</p>
           <div
-          v-for="item in ingred"
+          v-for="item in descendStock"
           :key="item.ingredient_id"
-          v-if="item.category===4">
-            <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+          v-if="item[2]===4">
+          <p>{{ item[0] }}: {{item[1]}} pieces</p>
           </div>
         </div>
         <div class="e">
           <p class="headerCategory">Side orders</p>
           <div
-          v-for="item in ingred"
+          v-for="item in descendStock"
           :key="item.ingredient_id"
-          v-if="item.category===5">
-            <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+          v-if="item[2]===5">
+          <p>{{ item[0] }}: {{item[1]}} pieces</p>
           </div>
         </div>
         <div class="f">
           <p class="headerCategory">Drinks</p>
           <div
-          v-for="item in ingred"
+          v-for="item in descendStock"
           :key="item.ingredient_id"
-          v-if="item.category===6">
-            <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
-          <!--<div v-if="this.containsInfo===true">
-            <p>descendCategories();</p></div>
-              {{descArray}}-->
+          v-if="item[2]===6">
+          <p>{{ item[0] }}: {{item[1]}} pieces</p>
           </div>
         </div>
     </div>
@@ -76,46 +74,26 @@ export default {
   data: function () {
     return {
       containsInfo: false,
+      descendingArray: new Array(this.ingred.length),
     };
   },
 
-  methods:{
-    descendCategories: function(){
-      var descArray = [];
-      for (var i=0; i < ingred.length; i++){
-      /*  if (this.ingred[i].stock < this.ingred[i+1]){
-          descArray = this.ingred[i]
+  computed: {
+  		descendStock: function() {
+        for (var i=0; i < this.ingred.length; i++){
+          this.descendingArray[i] = new Array(2);
+          this.descendingArray[i][0] = this.ingred[i].ingredient_en;
+          this.descendingArray[i][1] = this.ingred[i].stock;
+          this.descendingArray[i][2] = this.ingred[i].category;
         }
-        else {
-          descArray = this.ingred[i+1
-        }*/
-        descArray = this.ingred[i].stock;
-      }
-    },
+    		function compare(a, b) {
+      	return a[1] - b[1];
+    		}
+    		return this.descendingArray.sort(compare);
+  		}
+  },
 
-    descendFunction: function(){
-      var descendArray = [];
-      for (var i=0; i < ingred.length; i++){
-
-
-       this.ingred[i].stock;
-
-      }
-      descendArray.reverse();
-    }
-
-    /*isFilled: function(lang) {
-      for(var prop in ingred) {
-              if(obj.hasOwnProperty(prop))
-                  return false;
-      if (lang === "sv"){
-        this.isSwedish = true;
-        this.isEnglish = false;
-      }
-      return this.isSwedish;
-    }
-  }*/
-}
+  methods:{}
 }
 </script>
 
@@ -156,37 +134,42 @@ export default {
   grid-column: 1;
   grid-row: 2;
   overflow-y: scroll;
-
+  padding-left: 1em;
 }
 .b {
   background-color: pink;
   grid-column: 2;
   grid-row: 2;
   overflow-y: scroll;
+  padding-left: 1em;
 }
 .c {
   background-color: orange;
   grid-column: 3;
   grid-row: 2;
   overflow-y: scroll;
+  padding-left: 1em;
 }
 .d {
   background-color: yellow;
   grid-column: 1;
   grid-row: 3;
   overflow-y: scroll;
+  padding-left: 1em;
 }
 .e {
   background-color: blue;
   grid-column: 2;
   grid-row: 3;
   overflow-y: scroll;
+  padding-left: 1em;
 }
 .f {
   background-color: green;
   grid-column: 3;
   grid-row: 3;
   overflow-y: scroll;
+  padding-left: 1em;
 }
 .title {
     display: block;
