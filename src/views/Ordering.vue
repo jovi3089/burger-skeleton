@@ -10,14 +10,13 @@
   <div id="ordering">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <shoppingCart
-    ref="shoppingCart"
     v-show="showCartState"
     v-on:closeCart="showCart()"
     :lang="this.lang"
     :orders="this.shoppingCart"
-    :ui-labels="uiLabels"
-    id = "shopping-cart"
-    ></shoppingCart>
+    :ui-labels="uiLabels">
+    </shoppingCart>
+
     <div v-show = "step===0">
       <StartingPage
         :ui-labels="uiLabels"
@@ -364,9 +363,7 @@ export default {
   text-align: center;
 }
 
-#shopping-cart{
 
-}
 
 .orderItem {
   border: 1px solid black;
