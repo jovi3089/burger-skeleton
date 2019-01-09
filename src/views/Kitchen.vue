@@ -1,6 +1,9 @@
 <template>
   <div class="root">
     <div class="homePage" v-show = "page===0">  <!--Home page for staff -->
+      <div>
+        {{ingredients}}
+      </div>
           <StaffHomePage
           v-on:workFlow="changePage(1)"
           v-on:saldo="changePage(2)"
