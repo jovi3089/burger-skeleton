@@ -49,7 +49,7 @@
         v-on:popularBurger="newPage(6)"
         v-on:randomBurger="newPage(7)">
       </HamburgerPage>
-      <button v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
+      <button v-on:click="cancelOrder()">{{ uiLabels.backToHome }}</button>
     </div>
 
 <div v-show="!showCartState">
@@ -142,7 +142,7 @@
         :lang="lang"
         >
       </popularBurgerPage>
-      <button v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
+      <button v-on:click="newPage(2)">{{uiLabels.back}}</button>
     </div>
 
     <div v-show="step===7">
@@ -152,11 +152,11 @@
         :lang="lang"
         >
       </randomBurgerPage>
-      <button v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
+      <button v-on:click="newPage(2)">{{uiLabels.back}}</button>
     </div>
 
     <div class="footer" v-show="footerBoolean">
-      <button class="footerbutton" v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
+      <button class="footerbutton" v-on:click="cancelOrder()">{{ uiLabels.backToHome}}</button>
       <br><br>
       <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
       <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>

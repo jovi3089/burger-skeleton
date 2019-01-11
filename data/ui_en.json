@@ -1,6 +1,7 @@
 {
   "cancelOrder" : "Cancel order",
   "back" : "Back",
+  "backToHome" : "Back to home",
   "next" : "Next",
   "changeIng" : "Change ingredient",
   "content" : "Content",
@@ -30,7 +31,6 @@
   "hamburger" : "Hamburger",
   "sides" : "Sides",
   "beverage" : "Beverage",
-  "back" : "Back to home",
   "designBurger" : "Design your own burger",
   "popularBurger" : "The most popular burgers",
   "randomBurger" : "Randomize burger",
@@ -53,5 +53,6 @@
   "addToCart" : "Add to shopping cart",
   "shoppingCartContent" : "Your order",
   "shoppingCartFooter" : "Continue",
-  "shoppingCartTitle" : "Shopping cart"
+  "shoppingCartTitle" : "Shopping cart",
+  "ourMostPopularBurgers" : "Our most popular burgers"
 }

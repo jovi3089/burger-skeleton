@@ -1,6 +1,7 @@
 {
   "cancelOrder" : "Avbryt köp",
   "back" : "Tillbaka",
+  "backToHome" : "Tillbaka till hem",
   "next" : "Nästa",
   "changeIng" : "Byt ut ingrediens",
   "content": "Innehåll",
@@ -30,7 +31,6 @@
   "hamburger" : "Hamburgare",
   "sides" : "Tillbehör",
   "beverage" : "Dryck",
-  "back" : "Tillbaka till hem",
   "designBurger" : "Sätt ihop egen burgare",
   "popularBurger" : "De mest populära",
   "randomBurger" : "Slumpa",
@@ -53,5 +53,6 @@
   "addToCart" : "Lägg till kundkorg",
   "shoppingCartContent" : "Din beställning",
   "shoppingCartFooter" : "Fortsätt",
-  "shoppingCartTitle" : "Kundkorg"
+  "shoppingCartTitle" : "Kundkorg",
+  "ourMostPopularBurgers" : "Våra mest populära burgare"
 }
