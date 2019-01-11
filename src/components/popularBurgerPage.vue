@@ -12,6 +12,7 @@
       <p class = "displayPopularBurger third">(third most popular burger)<p/>
       <button class = "burgerButton thirdButton">select/order</button>
     </div>
+    <p>(footer här?)<p/>
 
   </div>
 </template>
@@ -81,14 +82,14 @@ export default {
   display: flex;
   border-radius: 15px;
 }
-.oneButton{
-  grid-row: 1; /*placeringen ändras inte när värdet ändras på dessa. Vet ej varför /Erik*/
+.firstButton{
+  grid-row: 2;
 }
-.twoButton{
-  grid-row: 3;
+.secondButton{
+  grid-row: 4;
 }
-.threeButton{
-  grid-row: 5;
+.thirdButton{
+  grid-row: 6;
 }
 
 </style>
