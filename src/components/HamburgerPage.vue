@@ -32,9 +32,9 @@ export default {
       switch (menuChoice) {
         case 1: this.$emit('designBurger')
         break;
-        case 2: this.$emit('side')
+        case 2: this.$emit('popularBurger')
         break;
-        case 3: this.$emit('beverage')
+        case 3: this.$emit('randomBurger')
         break;
       }
     }

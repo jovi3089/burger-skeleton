@@ -89,6 +89,12 @@
     </div>
 
     <div v-show = "page===3">  <!--Product statistics -->
+      <StatisticsPage
+      :ingred="ingredients"
+      :lang="lang"
+      >
+    </StatisticsPage>
+
       <label>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <button id="backButton" v-on:click="changePage(0)">
@@ -96,8 +102,6 @@
         </button>
       </label>
     </div>
-
-
 
   </div>
 </template>

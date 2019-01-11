@@ -30,22 +30,24 @@
 
     <div v-show="step===1">
       <MenuPage
-      class="menupage"
-      :ui-labels="uiLabels"
-      :lang="lang"
-      v-on:burger="newPage(2)"
-      v-on:side="newPage(3)"
-      v-on:beverage="newPage(4)">
+        class="menupage"
+        :ui-labels="uiLabels"
+        :lang="lang"
+        v-on:burger="newPage(2)"
+        v-on:side="newPage(3)"
+        v-on:beverage="newPage(4)">
       </MenuPage>
       <button v-on:click="newPage(0)">Cancel order</button>
     </div>
 
     <div v-show="step===2">
       <HamburgerPage
-      class="menupage"
-      :ui-labels="uiLabels"
-      :lang="lang"
-      v-on:designBurger="newPage(5)">
+        class="menupage"
+        :ui-labels="uiLabels"
+        :lang="lang"
+        v-on:designBurger="newPage(5)"
+        v-on:popularBurger="newPage(6)"
+        v-on:randomBurger="newPage(7)">
       </HamburgerPage>
       <button v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
     </div>
@@ -80,36 +82,30 @@
     </div>
                   <!--    lägg till styling på shoppingcart      -->
 
-
-
-
-
-
-
-      <div v-show ="step===5">
-    <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
-    <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
-    <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
-    <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory(3)">{{ uiLabels.burgerSauce }}</button>
-    <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
-      <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
-    </button>
-    <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===1">{{ uiLabels.choosePatty }}</p>
-    <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===2">{{ uiLabels.chooseTopping }}</p>
-    <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===4">{{ uiLabels.chooseBread }}</p>
-    <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===3">{{ uiLabels.chooseSauce }}</p>
-    <div class="ingredients-grid">
-        <Ingredient
-          ref="ingredient"
-          v-for="item in ingredients"
-          v-if="item.category===burgerCategory"
-          v-on:increment="addToOrder(item)"
-          v-on:decrease="deleteFromOrder(item)"
-          v-on:highlight="activateDesign()"
-          :item="item"
-          :lang="lang"
-          :key="item.ingredient_id">
-        </Ingredient>
+    <div v-show ="step===5">
+      <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
+      <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
+      <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
+      <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory(3)">{{ uiLabels.burgerSauce }}</button>
+      <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
+        <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
+      </button>
+      <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===1">{{ uiLabels.choosePatty }}</p>
+      <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===2">{{ uiLabels.chooseTopping }}</p>
+      <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===4">{{ uiLabels.chooseBread }}</p>
+      <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===3">{{ uiLabels.chooseSauce }}</p>
+      <div class="ingredients-grid">
+          <Ingredient
+            ref="ingredient"
+            v-for="item in ingredients"
+            v-if="item.category===burgerCategory"
+            v-on:increment="addToOrder(item)"
+            v-on:decrease="deleteFromOrder(item)"
+            v-on:highlight="activateDesign()"
+            :item="item"
+            :lang="lang"
+            :key="item.ingredient_id">
+          </Ingredient>
     </div>
 
     <!--<IngredientPage
@@ -138,6 +134,27 @@
     </div>-->
       </div>
     </div>
+
+    <div v-show="step===6">
+      <popularBurgerPage
+        class="menupage"
+        :ui-labels="uiLabels"
+        :lang="lang"
+        >
+      </popularBurgerPage>
+      <button v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
+    </div>
+
+    <div v-show="step===7">
+      <randomBurgerPage
+        class="menupage"
+        :ui-labels="uiLabels"
+        :lang="lang"
+        >
+      </randomBurgerPage>
+      <button v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
+    </div>
+
     <div class="footer" v-show="footerBoolean">
       <button class="footerbutton" v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
       <br><br>
@@ -161,6 +178,8 @@ import MenuPage from '@/components/MenuPage.vue'
 import HamburgerPage from '@/components/HamburgerPage.vue'
 import DesignPage from '@/components/DesignPage.vue'
 import shoppingCart from '@/components/shoppingCart.vue'
+import popularBurgerPage from '@/components/popularBurgerPage.vue'
+import randomBurgerPage from '@/components/randomBurgerPage.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -179,7 +198,9 @@ export default {
     MenuPage,
     HamburgerPage,
     DesignPage,
-    shoppingCart
+    shoppingCart,
+    popularBurgerPage,
+    randomBurgerPage
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             // the ordering system and the kitchen
