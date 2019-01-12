@@ -51,7 +51,6 @@
       v-on:designBurger="newPage(5)"
       v-on:cartClick="showCart()">
       </HamburgerPage>
-      <button v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
     </div>
 
 <div v-show="!showCartState">
@@ -135,7 +134,7 @@
     </div>-->
       </div>
     </div>
-    <div class="footer" v-show="footerBoolean && step!==1 && step!==2">
+    <div class="footer" v-show="footerBoolean">
       <button class="footerbutton" v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
       <br><br>
       <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>

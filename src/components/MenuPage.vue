@@ -4,7 +4,7 @@
       <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
     </button>
     <button v-on:click="menuPush(4)" class="buttonmenu" id="cancel">
-      <i class="fa fa-arrow-left" style="font-size:18px;"></i>
+      <span style="font-size:28px;"> X </span>
     </button>
     <label>
       <button class="button" id="buttonburg" v-on:click="menuPush(1)"> {{ uiLabels.hamburger }}</button>
@@ -93,5 +93,6 @@ export default {
 
 #cancel {
   float: left;
+  font-weight: normal;
 }
 </style>
