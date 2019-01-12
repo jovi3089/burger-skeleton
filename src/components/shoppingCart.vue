@@ -36,8 +36,7 @@ export default{
     },
     data: function () {
     return {
-      orderDisplay: [],
-
+      orderDisplay: []
     };
   },
     methods: {
