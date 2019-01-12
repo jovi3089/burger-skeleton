@@ -1,7 +1,9 @@
 <template>
 
 	<div v-on:click="changeIngredients()" class="bubble">
- 			<span id="ingred">{{uiLabels.ingredients}}:</span> {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}
+			<!--All the ingredients should go here-->
+ 			<span id="ingred">{{uiLabels.ingredients}}:</span>
+			{{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}
 	</div>
 
 
@@ -11,9 +13,9 @@ export default {
   name: 'OrderItem',
   props: {
     uiLabels: Object,
-    order: Array,
-    orderId: String,
-    lang: String
+		lang: String,
+		orderId: String,
+    order: Object
   },
 	methods:{
 		changeIngredients: function(){

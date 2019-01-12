@@ -126,7 +126,7 @@ export default {
 
 #toorderpagebutton{
   position: relative;
-  width: 98vw;
+  width: 78vw;
   height: 30vh;
   border-radius: 20px;
   background-color: #a2c4c9ff;

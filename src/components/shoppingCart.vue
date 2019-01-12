@@ -14,10 +14,13 @@
       </div>
       <div class="shopc">
 
-        <button class="footerbutton">
+        <button class="footerbutton" v-on:click="placeOrder()">
           {{uiLabels.placeOrder}}
         </button>
-
+        <br>
+        <button id="the-close-button" v-on:click="close()">
+          {{uiLabels.closeCart}}
+        </button>
       </div>
     </div>
   </div>
@@ -43,17 +46,25 @@ export default{
       close: function(){
         this.$emit('closeCart');
       },
+      placeOrder: function(){
+        this.$emit('placeOrder');
+      },
       getOrder: function(ind) {
         var numOfItems = this.orders[ind-1].length;
         console.log(numOfItems);
         var order = this.orders[ind-1];
         var ans = "";
         for (var i = 0; i < numOfItems; i++) {
-          ans = ans + ", " + order[i].ingredient_sv
+          if (ans===""){
+            ans = ans + order[i].ingredient_sv + " hjälp jag kan inte språk"
+          }
+          else{
+            ans = ans + ", " + order[i].ingredient_sv + " hjälp jag kan inte språk"
+          }
         }
 
         return ans;
-      }
+      },
     },
 }
 </script>
@@ -102,7 +113,17 @@ export default{
 }
 .footerbutton {
   width: 12em;
-  height: 2em;
+  height: 4em;
+  border-radius: 0.5em;
+  border: 1px solid #000;
+  margin: 0.5em;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#the-close-button{
+  width: 12em;
+  height: 4em;
   border-radius: 0.5em;
   border: 1px solid #000;
   margin: 0.5em;

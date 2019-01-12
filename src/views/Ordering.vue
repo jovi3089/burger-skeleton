@@ -12,6 +12,7 @@
     <shoppingCart
     v-show="showCartState"
     v-on:closeCart="showCart()"
+    v-on:placeOrder="placeOrder()"
     :lang="this.lang"
     :orders="this.shoppingCart"
     :ui-labels="uiLabels">
@@ -33,9 +34,10 @@
       :lang="lang"
       v-on:burger="newPage(2)"
       v-on:side="newPage(3)"
-      v-on:beverage="newPage(4)">
+      v-on:beverage="newPage(4)"
+      v-on:newPageZero="newPage(0)">
       </MenuPage>
-      <button v-on:click="newPage(0)">Cancel order</button>
+
     </div>
 
     <div v-show="step===2">
@@ -215,6 +217,9 @@ export default {
     newPage: function(toPage){
       this.step = toPage;
       this.showFooter();
+      if(toPage === 0){
+        this.setToZero();
+      }
     },
     changeCategory: function (toCategory) {
       this.resetCategory();
@@ -282,17 +287,6 @@ export default {
       }
     },
     placeOrder: function () {
-      var i;
-      //Wrap the order in an object
-        /*order = {
-          ingredients: this.shoppingCart.items,
-          price:       this.price
-        };*/
-      // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-      //this.$store.state.socket.emit('order', {order: order});
-      //set all counters to 0. Notice the use of $refs
-
-
 
       var order = {
         ingredients: this.shoppingCart,
@@ -302,24 +296,13 @@ export default {
       this.$store.state.socket.emit('order', order);
       console.log("emitting 'order' object");
 
-      //for (i = 0; i < this.$refs.ingredient.length; i += 1) {
-      //  this.$refs.ingredient[i].resetCounter();
-      //}
       this.price = 0;
       this.shoppingCart = [];
     },
 
     addToCart: function () {
       if(this.chosenIngredients.length > 0){
-      //Wrap the order in an object
-
-
         this.shoppingCart.push(this.chosenIngredients);
-        //console.log(this.shoppingCart);
-
-
-
-
         // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
         //this.$store.state.socket.emit('order', {order: order});
         //set all counters to 0. Notice the use of $refs
@@ -327,16 +310,11 @@ export default {
         for (var j = 0; j < this.$refs.ingredient.length; j += 1) {
           this.$refs.ingredient[j].resetCounter();
         }
-        //this.price = 0; kanske vill ha mer ju
         this.chosenIngredients = [];
         this.totalPrice += this.price;
         this.price = 0;
         this.newPage(1);
         this.footerBoolean = false;
-        //this.shoppingCart.id++;
-        //console.log(this.price);
-        //console.log(this.totalPrice);
-        //console.log(this.shoppingCart[0]);
       }
      },
 
@@ -431,16 +409,16 @@ template {
   height: 5em;
   border-radius: 1em;
   border: 1px solid #000;
-  margin: 0.5em;
+  margin: 0.2em;
   cursor: pointer;
 }
 
 .footerbutton {
-  width: 12em;
-  height: 2em;
+  width: 90%;
+  height: 4em;
   border-radius: 0.5em;
   border: 1px solid #000;
-  margin: 0.5em;
+  margin: 0.1em;
   cursor: pointer;
 }
 
@@ -467,7 +445,7 @@ template {
   width: 100%;
   left: 0;
   bottom: 0;
-  padding: 1em;
+  padding: 0.1em;
   background-color: #ccc;
 }
 

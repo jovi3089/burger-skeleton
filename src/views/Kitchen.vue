@@ -1,6 +1,7 @@
 <template>
   <div class="root">
     <div class="homePage" v-show = "page===0">  <!--Home page for staff -->
+
           <StaffHomePage
           v-on:workFlow="changePage(1)"
           v-on:saldo="changePage(2)"
@@ -28,8 +29,8 @@
           </div>
         </div>
 
-        <div class="row2 ordersToPrepare">
-          <OrderItemToPrepare
+        <div class="row2 ordersToPrepare"> <!-- here's where all the new orders go -->
+          <OrderItemToPrepare                
             v-for="(order, key) in orders"
             v-if="order.status === 'not-started'"
             v-on:started="markStarted(key)"

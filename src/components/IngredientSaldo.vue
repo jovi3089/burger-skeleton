@@ -81,7 +81,7 @@
 export default {
   name: 'IngredientSaldo',
   props: {
-    ingredients: Object,
+    ingredients: Array,
     lang: String
   },
 
@@ -93,28 +93,28 @@ export default {
 
   methods:{
     descendCategories: function(){
-      var descArray = [];
-      for (var i=0; i < ingred.length; i++){
+      //var descArray = [];
+      for (var i=0; i < ingredients.length; i++){
       /*  if (this.ingred[i].stock < this.ingred[i+1]){
           descArray = this.ingred[i]
         }
         else {
           descArray = this.ingred[i+1
         }*/
-        descArray = this.ingred[i].stock;
+        descArray = this.ingredients[i].stock;
       }
     },
 
     descendFunction: function(){
       var descendArray = [];
-      for (var i=0; i < ingred.length; i++){
+      for (var i=0; i < ingredients.length; i++){
 
 
-       this.ingred[i].stock;
+       this.ingredients[i].stock;
 
       }
       descendArray.reverse();
-    }
+    },
 
     /*isFilled: function(lang) {
       for(var prop in ingred) {
@@ -127,7 +127,7 @@ export default {
       return this.isSwedish;
     }
   }*/
-}
+  }, 
 }
 </script>
 
