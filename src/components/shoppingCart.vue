@@ -13,7 +13,10 @@
         </li>
       </div>
       <div class="shopc">
-
+        <div>
+          {{uiLabels.totalPrice}} {{totalPrice}} kr
+        </div>
+        <br>
         <button class="footerbutton" v-on:click="placeOrder()">
           {{uiLabels.placeOrder}}
         </button>
@@ -35,6 +38,7 @@ export default{
       uiLabels: Object,
       lang: String,
       orderId: String,
+      totalPrice: Number,
       orders: Array
     },
     data: function () {
@@ -56,13 +60,26 @@ export default{
         var ans = "";
         for (var i = 0; i < numOfItems; i++) {
           if (ans===""){
-            ans = ans + order[i].ingredient_sv + " hjälp jag kan inte språk"
+            switch(this.lang){
+              case "en":
+                ans = ans + order[i].ingredient_en
+              break;
+              case "sv":
+                ans = ans + order[i].ingredient_sv
+              break;
+            }
           }
           else{
-            ans = ans + ", " + order[i].ingredient_sv + " hjälp jag kan inte språk"
+            switch(this.lang){
+              case "en":
+                ans = ans + ", " + order[i].ingredient_en
+              break;
+              case "sv":
+                ans = ans + ", " + order[i].ingredient_sv
+              break;
+            }
           }
         }
-
         return ans;
       },
     },
