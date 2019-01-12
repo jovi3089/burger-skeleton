@@ -12,6 +12,7 @@
     <shoppingCart
     v-show="showCartState"
     v-on:closeCart="showCart()"
+    v-on:placeOrder="placeOrder()"
     :lang="this.lang"
     :orders="this.shoppingCart"
     :ui-labels="uiLabels">
