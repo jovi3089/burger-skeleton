@@ -9,6 +9,7 @@
     <label>
       <button class="button" id="buttonbev" v-on:click="menuPush(3)"> {{ uiLabels.beverage }}</button>
     </label>
+    <button v-on:click="menuPush(4)">Cancel order</button>
   </div>
 </template>
 <script>
@@ -35,6 +36,8 @@ export default {
         case 2: this.$emit('side')
         break;
         case 3: this.$emit('beverage')
+        break;
+        case 4: this.$emit('newPageZero')
         break;
       }
     }
