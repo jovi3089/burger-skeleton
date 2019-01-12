@@ -76,7 +76,11 @@
     </div>
 
     <div v-show="step===4">
-      <h1>Page 3</h1>
+      <button class="buttonmenu" v-bind:class="clickedOn5" v-on:click="changeCategory(5)">{{ uiLabels.sideOptions }}</button>
+      <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
+        <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
+      </button>
+      <p class="categoryText" v-show="!showCartState" v-if="sideCategory===5">{{ uiLabels.chooseSide }}</p>
       <button v-on:click="newPage(2)">{{uiLabels.back}}</button>
       <button v-on:click="newPage(5)">Switch to page 5</button>
     </div>
@@ -411,6 +415,7 @@ template {
 }
 
 .footerbutton {
+  font-weight: bold;
   width: 90%;
   height: 4em;
   border-radius: 0.5em;

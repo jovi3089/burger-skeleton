@@ -128,7 +128,8 @@ export default {
   position: relative;
   width: 78vw;
   height: 30vh;
-  border-radius: 20px;
+  border: 1px solid #000;
+  border-radius: 1em;
   background-color: #a2c4c9ff;
   color: black;
   opacity: 0.8;
