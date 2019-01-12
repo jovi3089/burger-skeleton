@@ -49,7 +49,7 @@ io.on('connection', function (socket) {
     //console.log(order.order.ingredients.length);
     //for (var i = 0; i < order.ingredients.length; i++) {
     //  console.log("####inside the for loop of on order###### serve line ~46");
-      var burgerIdAndName = data.addOrder(order.ingredients);
+      var burgerIdAndName = data.addOrder(order);
     //}
     //var orderIdAndName = data.addOrder(order);
     // send updated info to all connected clients, note the use of io instead of socket

@@ -4,9 +4,6 @@
       <div class="header">
         <p id="maintitle">Inventory Balance</p>
       </div>
-      <div v-for="items in ingredients">
-        {{items}}
-      </div>
       <div class="title A">
         <p class="headerCategory">Protein</p>
       </div>

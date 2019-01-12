@@ -6,7 +6,7 @@ var sharedVueStuff = {
     return {
       orders: {},
       uiLabels: {},
-      ingredients: {},
+      ingredients: [],
       lang: "en"
     }
   },
@@ -26,7 +26,7 @@ var sharedVueStuff = {
       console.log("===============================================");
       console.log("================== i mixin: ===================");
       console.log("===============================================");
-      console.log("data.orders: " + data);
+      console.log("data is of type: " + typeof data);
       this.orders = data.orders;
       if (typeof data.ingredients !== 'undefined') {
         this.ingredients = data.ingredients;
