@@ -16,6 +16,7 @@ export default {
 </script>
 
 <style>
+/*
 body {
   background: white;
   background-size: 200% 200%;
@@ -42,5 +43,5 @@ body {
   100% {
     background-position: 10% 10%
   }
-}
+}*/
 </style>

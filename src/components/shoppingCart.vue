@@ -1,61 +1,151 @@
 <template> <!--sätter massa ### för ord som inte ännu är i ui_lang-->
-  <div id="orders">
-    <div id="header"><!--header typ "kundkorg"-->
-      <h1>{{uiLabels.shoppingCartTitle}}</h1>
-      <button v-on:click="close()">###close the cart###</button>
-    </div>
-      <h1>{{uiLabels.shoppingCartContent}}</h1>
-      <div class="order-item-grid"><!--innehållet-->
-          <!--<OrderItem
-          class="order-item"
-          v-for="(order, key) in orders"
-          v-if="order.status !== 'done'"
-          :order-id="key"
-          :order="order"
-          :ui-labels="uiLabels"
-          :lang="lang"
-          :key="key">
-        </OrderItem>-->
+  <div class="root">
+    <div class="shopwrapper">
+      <div class="shopa">
+          {{uiLabels.shoppingCartContent}}
       </div>
-    <div id="footer"><!--footer med beställknapp-->
-      <h1>{{uiLabels.shoppingCartFooter}}</h1>
+
+      <div class="shopb">
+        <li
+        v-for="index in orders.length"
+        :key="index">
+          {{getOrder(index)}}
+        </li>
+      </div>
+      <div class="shopc">
+        <div>
+          {{uiLabels.totalPrice}} {{totalPrice}} kr
+        </div>
+        <br>
+        <button class="footerbutton" v-on:click="placeOrder()">
+          {{uiLabels.placeOrder}}
+        </button>
+        <br>
+        <button id="the-close-button" v-on:click="close()">
+          {{uiLabels.closeCart}}
+        </button>
+      </div>
     </div>
   </div>
+
 </template>
 <script>
-import OrderItem from '@/components/OrderItem.vue'
 export default{
     name: "shoppingCart",
     components:{
-      OrderItem
     },
     props: {
       uiLabels: Object,
       lang: String,
       orderId: String,
+      totalPrice: Number,
       orders: Array
     },
+    data: function () {
+    return {
+      orderDisplay: [],
+
+    };
+  },
     methods: {
       close: function(){
         this.$emit('closeCart');
-      }
+      },
+      placeOrder: function(){
+        this.$emit('placeOrder');
+      },
+      getOrder: function(ind) {
+        var numOfItems = this.orders[ind-1].length;
+        console.log(numOfItems);
+        var order = this.orders[ind-1];
+        var ans = "";
+        for (var i = 0; i < numOfItems; i++) {
+          if (ans===""){
+            switch(this.lang){
+              case "en":
+                ans = ans + order[i].ingredient_en
+              break;
+              case "sv":
+                ans = ans + order[i].ingredient_sv
+              break;
+            }
+          }
+          else{
+            switch(this.lang){
+              case "en":
+                ans = ans + ", " + order[i].ingredient_en
+              break;
+              case "sv":
+                ans = ans + ", " + order[i].ingredient_sv
+              break;
+            }
+          }
+        }
+        return ans;
+      },
     },
 }
 </script>
 <style scoped>
-  #orders {
-  }
-  .order-item-grid{
-     display: grid;
-     grid-template-rows: repeat(auto-fit, 2em);
-     grid-gap: 1em;
-  }
-  .order-item{
-    border: 5px solid grey;
-    border-radius: 15px;
-    width: 70%;
-    display: flex;
-    align-items: center;
-    justify-content: center ;
-  }
+.root{
+  height: 92vh;
+  width: 100%;
+}
+.shopwrapper {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto 80% auto;
+  padding: 0 0 0 0;
+}
+.shopa{
+  grid-column: 1;
+  grid-row: 1;
+  border: 2px solid #a2c4c9ff;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+.shopb{
+  grid-column: 1;
+  grid-row: 2;
+  border: 2px solid #a2c4c9ff;
+  border-radius: 15px;
+  display: block;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow-y: scroll;
+}
+.shopc{
+  grid-column: 1;
+  grid-row: 3;
+  border: 2px solid #a2c4c9ff;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.footerbutton {
+  width: 12em;
+  height: 4em;
+  border-radius: 0.5em;
+  border: 1px solid #000;
+  margin: 0.5em;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#the-close-button{
+  width: 12em;
+  height: 4em;
+  border-radius: 0.5em;
+  border: 1px solid #000;
+  margin: 0.5em;
+  cursor: pointer;
+  font-weight: bold;
+}
 </style>

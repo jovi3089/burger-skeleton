@@ -10,14 +10,14 @@
   <div id="ordering">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <shoppingCart
-    ref="shoppingCart"
     v-show="showCartState"
     v-on:closeCart="showCart()"
-    :lang="this.lang"
+    v-on:placeOrder="placeOrder()"
+    :lang="lang"
     :orders="this.shoppingCart"
-    :ui-labels="uiLabels"
-    id = "shopping-cart"
-    ></shoppingCart>
+    :ui-labels="uiLabels">
+    </shoppingCart>
+
     <div v-show = "step===0">
       <StartingPage
         :ui-labels="uiLabels"
@@ -27,16 +27,19 @@
       </StartingPage>
     </div>
 
-    <div v-show="step===1">
+    <div v-show="step===1 && !showCartState">
       <MenuPage
       class="menupage"
       :ui-labels="uiLabels"
       :lang="lang"
+      :totalPrice="totalPrice"
       v-on:burger="newPage(2)"
       v-on:side="newPage(3)"
-      v-on:beverage="newPage(4)">
+      v-on:beverage="newPage(4)"
+      v-on:newPageZero="newPage(0)"
+      v-on:cartClick="showCart()">
       </MenuPage>
-      <button v-on:click="newPage(0)">Cancel order</button>
+
     </div>
 
     <div v-show="step===2">
@@ -49,7 +52,7 @@
       <button v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
     </div>
 
-<div v-show="!showCartState">
+<div v-show="!showCartState && step!==1">
     <div v-show="step===3">
       <button class="buttonmenu" v-bind:class="clickedOn5" v-on:click="changeCategory(5)">{{ uiLabels.sideOptions }}</button>
       <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
@@ -78,13 +81,6 @@
       <button v-on:click="newPage(5)">Switch to page 5</button>
     </div>
                   <!--    lägg till styling på shoppingcart      -->
-
-
-
-
-
-
-
       <div v-show ="step===5">
     <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
@@ -216,6 +212,9 @@ export default {
     newPage: function(toPage){
       this.step = toPage;
       this.showFooter();
+      if(toPage === 0){
+        this.setToZero();
+      }
     },
     changeCategory: function (toCategory) {
       this.resetCategory();
@@ -237,6 +236,7 @@ export default {
         break;
       }
     },
+
     resetCategory: function () {
       this.clickedOn1 = '';
       this.clickedOn2 = '';
@@ -283,44 +283,22 @@ export default {
       }
     },
     placeOrder: function () {
-      var i;
-      //Wrap the order in an object
-        /*order = {
-          ingredients: this.shoppingCart.items,
-          price:       this.price
-        };*/
-      // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-      //this.$store.state.socket.emit('order', {order: order});
-      //set all counters to 0. Notice the use of $refs
-
-
 
       var order = {
         ingredients: this.shoppingCart,
         price:       this.price
       };
 
-      this.$store.state.socket.emit('order', {order: order});
-      console.log("tjena");
+      this.$store.state.socket.emit('order', order);
+      console.log("emitting 'order' object");
 
-      //for (i = 0; i < this.$refs.ingredient.length; i += 1) {
-      //  this.$refs.ingredient[i].resetCounter();
-      //}
       this.price = 0;
       this.shoppingCart = [];
     },
 
     addToCart: function () {
       if(this.chosenIngredients.length > 0){
-      //Wrap the order in an object
-
-
         this.shoppingCart.push(this.chosenIngredients);
-        console.log(this.shoppingCart);
-
-
-
-
         // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
         //this.$store.state.socket.emit('order', {order: order});
         //set all counters to 0. Notice the use of $refs
@@ -328,16 +306,11 @@ export default {
         for (var j = 0; j < this.$refs.ingredient.length; j += 1) {
           this.$refs.ingredient[j].resetCounter();
         }
-        //this.price = 0; kanske vill ha mer ju
         this.chosenIngredients = [];
         this.totalPrice += this.price;
         this.price = 0;
         this.newPage(1);
         this.footerBoolean = false;
-        //this.shoppingCart.id++;
-        //console.log(this.price);
-        //console.log(this.totalPrice);
-        //console.log(this.shoppingCart[0]);
       }
      },
 
@@ -365,9 +338,7 @@ export default {
   margin-bottom: 20em;
 }
 
-#shopping-cart{
 
-}
 
 .orderItem {
   border: 1px solid black;
@@ -435,16 +406,16 @@ template {
   height: 5em;
   border-radius: 1em;
   border: 1px solid #000;
-  margin: 0.5em;
+  margin: 0.2em;
   cursor: pointer;
 }
 
 .footerbutton {
-  width: 12em;
-  height: 2em;
+  width: 90%;
+  height: 4em;
   border-radius: 0.5em;
   border: 1px solid #000;
-  margin: 0.5em;
+  margin: 0.1em;
   cursor: pointer;
 }
 
@@ -471,7 +442,7 @@ template {
   width: 100%;
   left: 0;
   bottom: 0;
-  padding: 1em;
+  padding: 0.1em;
   background-color: #ccc;
 }
 

@@ -9,7 +9,7 @@
       </div>
         <div class="list a">
           <div
-          v-for="item in ingred"
+          v-for="item in ingredients"
           :key="item.ingredient_id"
           v-if="item.category===1">
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
@@ -20,7 +20,7 @@
         </div>
         <div class="list b">
           <div
-          v-for="item in ingred"
+          v-for="item in ingredients"
           :key="item.ingredient_id"
           v-if="item.category===2">
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
@@ -31,7 +31,7 @@
         </div>
         <div class="list c">
           <div
-          v-for="item in ingred"
+          v-for="item in ingredients"
           :key="item.ingredient_id"
           v-if="item.category===3">
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
@@ -42,7 +42,7 @@
         </div>
         <div class="list d">
           <div
-          v-for="item in ingred"
+          v-for="item in ingredients"
           :key="item.ingredient_id"
           v-if="item.category===4">
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
@@ -53,7 +53,7 @@
         </div>
         <div class="list e">
           <div
-          v-for="item in ingred"
+          v-for="item in ingredients"
           :key="item.ingredient_id"
           v-if="item.category===5">
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
@@ -64,7 +64,7 @@
         </div>
         <div class="list f">
           <div
-          v-for="item in ingred"
+          v-for="item in ingredients"
           :key="item.ingredient_id"
           v-if="item.category===6">
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
@@ -81,7 +81,7 @@
 export default {
   name: 'IngredientSaldo',
   props: {
-    ingred: Object,
+    ingredients: Array,
     lang: String
   },
 
@@ -93,28 +93,28 @@ export default {
 
   methods:{
     descendCategories: function(){
-      var descArray = [];
-      for (var i=0; i < ingred.length; i++){
+      //var descArray = [];
+      for (var i=0; i < ingredients.length; i++){
       /*  if (this.ingred[i].stock < this.ingred[i+1]){
           descArray = this.ingred[i]
         }
         else {
           descArray = this.ingred[i+1
         }*/
-        descArray = this.ingred[i].stock;
+        descArray = this.ingredients[i].stock;
       }
     },
 
     descendFunction: function(){
       var descendArray = [];
-      for (var i=0; i < ingred.length; i++){
+      for (var i=0; i < ingredients.length; i++){
 
 
-       this.ingred[i].stock;
+       this.ingredients[i].stock;
 
       }
       descendArray.reverse();
-    }
+    },
 
     /*isFilled: function(lang) {
       for(var prop in ingred) {
@@ -127,7 +127,7 @@ export default {
       return this.isSwedish;
     }
   }*/
-}
+  }, 
 }
 </script>
 
