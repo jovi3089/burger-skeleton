@@ -13,7 +13,10 @@
         </li>
       </div>
       <div class="shopc">
-
+        <div>
+          {{uiLabels.totalPrice}} {{totalPrice}} kr
+        </div>
+        <br>
         <button class="footerbutton" v-on:click="placeOrder()">
           {{uiLabels.placeOrder}}
         </button>
@@ -35,6 +38,7 @@ export default{
       uiLabels: Object,
       lang: String,
       orderId: String,
+      totalPrice: Number,
       orders: Array
     },
     data: function () {

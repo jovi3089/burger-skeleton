@@ -32,6 +32,7 @@
       class="menupage"
       :ui-labels="uiLabels"
       :lang="lang"
+      :totalPrice="totalPrice"
       v-on:burger="newPage(2)"
       v-on:side="newPage(3)"
       v-on:beverage="newPage(4)"

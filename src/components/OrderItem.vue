@@ -3,7 +3,7 @@
 	<div v-on:click="changeIngredients()" class="bubble">
 			<!--All the ingredients should go here-->
  			<span id="ingred">{{uiLabels.ingredients}}:</span>
-			{{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}
+			{{ order.ingredients }}
 	</div>
 
 
