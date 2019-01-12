@@ -102,7 +102,7 @@ export default{
   grid-column: 1;
   grid-row: 1;
   border: 2px solid #a2c4c9ff;
-  border-radius: 15px;
+  border-radius: 0.5em;
   display: flex;
   align-items: center;
   justify-content: center;

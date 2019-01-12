@@ -1,5 +1,11 @@
 <template>
   <div>
+    <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
+      <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
+    </button>
+    <button v-on:click="menuPush(4)" class="buttonmenu" id="cancel">
+      <span style="font-size:28px;"> X </span>
+    </button>
     <label>
       <button class="button" id="buttonburg" v-on:click="menuPush(1)"> {{ uiLabels.hamburger }}</button>
     </label>
@@ -9,10 +15,6 @@
     <label>
       <button class="button" id="buttonbev" v-on:click="menuPush(3)"> {{ uiLabels.beverage }}</button>
     </label>
-    <button v-on:click="menuPush(4)">Cancel order</button>
-    <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
-      <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
-    </button>
   </div>
 </template>
 <script>
@@ -67,15 +69,30 @@ export default {
   margin: auto auto;
 }
 
+.buttonmenu {
+  width: 5em;
+  height: 5em;
+  border-radius: 1em;
+  border: 1px solid #000;
+  margin: 0.2em;
+  float: right;
+  cursor: pointer;
+}
+
 #buttonburg {
-    background-color: #ffab40ff; /* Green */
+  background-color: #ffab40ff; /* Green */
 }
 
 #buttonside {
-    background-color: #93c47dff; /* Green */
+  background-color: #93c47dff; /* Green */
 }
 
 #buttonbev {
-    background-color: #c27ba0ff; /* Green */
+  background-color: #c27ba0ff; /* Green */
+}
+
+#cancel {
+  float: left;
+  font-weight: normal;
 }
 </style>
