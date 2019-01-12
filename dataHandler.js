@@ -123,15 +123,15 @@ Data.prototype.markOrderServed = function (orderId) {
 
 Data.prototype.getKitchenCategory = function (orderId){
   var temp = 0;
-  //console.log(this.orders);
-  //console.log(this.orders[orderId]);
-  //console.log(this.orders[orderId].ingredients);
-  for (var i = 0; i < this.orders[orderId].length; i++) {
-    var kitchenCategory = this.orders[orderId].kitchenCategory
+  var order = this.orders[orderId].ingredients;
+  var numOfOrder = this.orders[orderId].ingredients.length;  for (var i = 0; i < numOfOrder; i++) {
+    for (var j = 0; j < order[i].length; j++) {
+      var kitchenCategory = order[i][j].kitchenCategory;
       if (kitchenCategory > temp){
         temp = kitchenCategory;
       }
     }
+  }
     var result = temp;
     switch (result) {
       case 1: return "veg"
