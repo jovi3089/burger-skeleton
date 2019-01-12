@@ -8,6 +8,7 @@
 <!-- ===========================================================================================================================-->
 
   <div id="ordering">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <shoppingCart
     ref="shoppingCart"
@@ -59,7 +60,8 @@
         <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
       </button>
       <p class="categoryText" v-show="!showCartState" v-if="sideCategory===5">{{ uiLabels.chooseSide }}</p>
-      <div class="ingredients-grid">
+      <div class="ingredients-scroll">
+        <div class="ingredients-grid">
           <Ingredient
             ref="ingredient"
             v-for="item in ingredients"
@@ -72,6 +74,7 @@
             :key="item.ingredient_id">
           </Ingredient>
       </div>
+    </div>
       <!--<button v-on:click="newPage(4)">Switch to page 4</button>-->
     </div>
 
@@ -94,7 +97,8 @@
       <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===2">{{ uiLabels.chooseTopping }}</p>
       <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===4">{{ uiLabels.chooseBread }}</p>
       <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===3">{{ uiLabels.chooseSauce }}</p>
-      <div class="ingredients-grid">
+
+        <div class="ingredients-grid">
           <Ingredient
             ref="ingredient"
             v-for="item in ingredients"
@@ -106,7 +110,7 @@
             :lang="lang"
             :key="item.ingredient_id">
           </Ingredient>
-    </div>
+        </div>
 
     <!--<IngredientPage
       ref="ingredient"
@@ -163,6 +167,7 @@
           <br><button class="footerbutton" v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
           <button class="footerbutton" v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>
     </div>
+
   </div>
 </template>
 <script>
@@ -378,6 +383,18 @@ export default {
   max-width: 40em; /*sidan skalas om när fönstret minskas*/
   font-family: Helvetica, sans-serif;
   text-align: center;
+  overflow-y: scroll;
+  padding-left: 2em;
+  position: relative;
+  height: 100%;
+  position: relative;
+  margin-bottom: 20em;
+}
+
+.ordering-wrapper {
+  height: 92vh;
+  width: 100vw;
+  display: grid;
 }
 
 #shopping-cart{
@@ -404,6 +421,13 @@ export default {
  display: grid;
  grid-template-columns: repeat(auto-fit, 7em);
  grid-gap: 1em;
+ overflow: hidden;
+ overflow-y: scroll;
+}
+
+.ingredients-scroll {
+  overflow-y: scroll;
+  padding-left: 2em;
 }
 
 .grid-wrapper {
@@ -483,6 +507,8 @@ template {
 
 .footer {
   position: fixed;
+  background-attachment: scroll;
+  background-position: 0% 0%;
   width: 100%;
   left: 0;
   bottom: 0;

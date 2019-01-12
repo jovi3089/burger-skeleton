@@ -10,8 +10,8 @@
         <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
       </button>
     </div>
-    <div v-show="category===5">
-    </div>
+    <!--<div v-show="category===5">
+    </div>-->
     <div class="ingredients-grid">
       <Ingredient
         ref="ingredient"
@@ -25,6 +25,7 @@
       </Ingredient>
     </div>
   </div>
+
 </template>
 <script>
 
@@ -94,6 +95,11 @@ export default {
  display: grid;
  grid-template-columns: repeat(auto-fit, 7em);
  grid-gap: 1em;
+}
+
+.ingredients-scroll {
+  overflow-y: scroll;
+  padding-left: 2em;
 }
 
 .buttonmenu {
