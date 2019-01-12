@@ -42,17 +42,19 @@
 
     </div>
 
-    <div v-show="step===2">
+    <div v-show="step===2 && !showCartState">
       <HamburgerPage
       class="menupage"
       :ui-labels="uiLabels"
       :lang="lang"
-      v-on:designBurger="newPage(5)">
+      v-on:menuPage="newPage(1)"
+      v-on:designBurger="newPage(5)"
+      v-on:cartClick="showCart()">
       </HamburgerPage>
       <button v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
     </div>
 
-<div v-show="!showCartState && step!==1">
+<div v-show="!showCartState">
     <div v-show="step===3">
       <button class="buttonmenu" v-bind:class="clickedOn5" v-on:click="changeCategory(5)">{{ uiLabels.sideOptions }}</button>
       <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
@@ -133,7 +135,7 @@
     </div>-->
       </div>
     </div>
-    <div class="footer" v-show="footerBoolean">
+    <div class="footer" v-show="footerBoolean && step!==1 && step!==2">
       <button class="footerbutton" v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
       <br><br>
       <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>

@@ -1,5 +1,11 @@
 <template>
   <div>
+    <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
+      <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
+    </button>
+    <button v-on:click="menuPush(4)" class="buttonmenu" id="cancel">
+      <i class="fa fa-arrow-left" style="font-size:18px;"></i>
+    </button>
     <label>
       <button class="button" id="buttondesign" v-on:click="menuPush(1)"> {{ uiLabels.designBurger }}</button>
     </label>
@@ -36,7 +42,12 @@ export default {
         break;
         case 3: this.$emit('beverage')
         break;
+        case 4: this.$emit('menuPage')
+        break;
       }
+    },
+    showCart: function(){
+      this.$emit('cartClick')
     }
   }
 }
@@ -58,15 +69,29 @@ export default {
   margin: auto auto;
 }
 
+.buttonmenu {
+  width: 5em;
+  height: 5em;
+  border-radius: 1em;
+  border: 1px solid #000;
+  margin: 0.2em;
+  float: right;
+  cursor: pointer;
+}
+
 #buttondesign {
-    background-color: #ffab40ff; /* Green */
+  background-color: #ffab40ff; /* Green */
 }
 
 #buttonpopular {
-    background-color: #f9cb9cff; /* Green */
+  background-color: #f9cb9cff; /* Green */
 }
 
 #buttonrandom {
-    background-color: #fce5cdff; /* Green */
+  background-color: #fce5cdff; /* Green */
+}
+
+#cancel {
+  float: left;
 }
 </style>
