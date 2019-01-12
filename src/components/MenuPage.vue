@@ -10,6 +10,9 @@
       <button class="button" id="buttonbev" v-on:click="menuPush(3)"> {{ uiLabels.beverage }}</button>
     </label>
     <button v-on:click="menuPush(4)">Cancel order</button>
+    <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
+      <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
+    </button>
   </div>
 </template>
 <script>
@@ -40,6 +43,9 @@ export default {
         case 4: this.$emit('newPageZero')
         break;
       }
+    },
+    showCart: function(){
+      this.$emit('cartClick')
     }
   }
 }

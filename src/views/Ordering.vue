@@ -27,7 +27,7 @@
       </StartingPage>
     </div>
 
-    <div v-show="step===1">
+    <div v-show="step===1 && !showCartState">
       <MenuPage
       class="menupage"
       :ui-labels="uiLabels"
@@ -36,7 +36,8 @@
       v-on:burger="newPage(2)"
       v-on:side="newPage(3)"
       v-on:beverage="newPage(4)"
-      v-on:newPageZero="newPage(0)">
+      v-on:newPageZero="newPage(0)"
+      v-on:cartClick="showCart()">
       </MenuPage>
 
     </div>
@@ -51,7 +52,7 @@
       <button v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
     </div>
 
-<div v-show="!showCartState">
+<div v-show="!showCartState && step!==1">
     <div v-show="step===3">
       <button class="buttonmenu" v-bind:class="clickedOn5" v-on:click="changeCategory(5)">{{ uiLabels.sideOptions }}</button>
       <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
@@ -80,13 +81,6 @@
       <button v-on:click="newPage(5)">Switch to page 5</button>
     </div>
                   <!--    lägg till styling på shoppingcart      -->
-
-
-
-
-
-
-
       <div v-show ="step===5">
     <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
