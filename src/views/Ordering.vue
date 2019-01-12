@@ -339,11 +339,15 @@ export default {
     showCart: function() {
         if (this.showCartState === false) {
             this.showCartState = true;
-            this.footerBoolean = false;
-          }
+            if (this.step === 5 || this.step === 3 || this.step === 4) {
+              this.footerBoolean = false;
+            }
+        }
         else {
             this.showCartState = false;
-            this.footerBoolean = true;
+            if (this.step === 5 || this.step === 3 || this.step === 4) {
+              this.footerBoolean = true;
+            }
         }
         //console.log("click! i'm showing: "+this.showCartState)
     }
