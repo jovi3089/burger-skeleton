@@ -361,7 +361,7 @@ export default {
   max-width: 40em; /*sidan skalas om när fönstret minskas*/
   font-family: Helvetica, sans-serif;
   text-align: center;
-  margin-bottom: 20em;
+  /*margin-bottom: 20em;*/
 }
 
 

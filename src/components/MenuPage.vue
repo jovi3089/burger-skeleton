@@ -1,11 +1,14 @@
 <template>
-  <div>
+  <div class="menupage">
+    <div class="menu exitshopping">
     <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
       <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
     </button>
     <button v-on:click="menuPush(4)" class="buttonmenu" id="cancel">
       <span style="font-size:28px;"> X </span>
     </button>
+  </div>
+    <div class="menu buttons">
     <label>
       <button class="button" id="buttonburg" v-on:click="menuPush(1)"> {{ uiLabels.hamburger }}</button>
     </label>
@@ -15,6 +18,7 @@
     <label>
       <button class="button" id="buttonbev" v-on:click="menuPush(3)"> {{ uiLabels.beverage }}</button>
     </label>
+  </div>
   </div>
 </template>
 <script>
@@ -53,6 +57,27 @@ export default {
 }
 </script>
 <style scoped>
+
+.menupage {
+  height: 92vh;
+  width: 80vw;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.menu {
+  padding: 0 0 0;
+}
+
+.exitshopping {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.buttons {
+  grid-column: 1;
+  grid-row: 2;
+}
 
 .button {
   border-radius: 2em;
