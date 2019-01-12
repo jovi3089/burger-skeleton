@@ -1,10 +1,12 @@
 <template>
   <div class="ingredient">
     <div class="ingredientdesign">
-      <button class="buttondesign" v-on:click="incrementCounter">+</button><br>
-      <span class="textdesign"> {{item["ingredient_"+ lang]}}, {{item.selling_price}}:- </span><br>
+      <span class="textdesign"> {{item["ingredient_"+ lang]}} </span><br>
+      <span class="textdesign"> {{item.selling_price}}:- </span>
     <!--, {{item.stock}} pcs-->
-      <button v-on:click="decreaseCounter">-</button>
+      <br>
+      <button id="decreasebutton" v-on:click="decreaseCounter">-</button>
+      <button id="increasebutton" v-on:click="incrementCounter">+</button>
     </div>
   </div>
 </template>
@@ -42,7 +44,7 @@ export default {
 
 .ingredient {
    border: 1px solid #000;
-   border-radius: 50%;
+   border-radius: 2em;
    background-color: #a2c4c9ff;
    padding: 1em;
    /*background-image: url('~@/assets/exampleImage.jpg');*/
@@ -67,11 +69,12 @@ export default {
  }
 
  button {
-   width: 1.5em;
-   height: 1.5em;
+   width: 3.5em;
+   height: 3em;
    border: 1px solid black;
+   /*border-style: none;*/
    background-color: #d0e0e3ff;
-   border-radius: 50%;
+   border-radius: 0.7em;
    padding: 0px;
    cursor: pointer;
  }

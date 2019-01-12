@@ -77,9 +77,24 @@
     </div>
 
     <div v-show="step===4">
-      <h1>Page 3</h1>
-      <button v-on:click="newPage(2)">{{uiLabels.back}}</button>
-      <button v-on:click="newPage(5)">Switch to page 5</button>
+      <button class="buttonmenu" v-bind:class="clickedOn6" v-on:click="changeCategory(6)">{{ uiLabels.beverageOptions }}</button>
+      <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
+        <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
+      </button>
+      <p class="categoryText" v-show="!showCartState" v-if="beverageCategory===6">{{ uiLabels.chooseBev }}</p>
+      <div class="ingredients-grid">
+          <Ingredient
+            ref="ingredient"
+            v-for="item in ingredients"
+            v-if="item.category===beverageCategory"
+            v-on:increment="addToOrder(item)"
+            v-on:decrease="deleteFromOrder(item)"
+            v-on:highlight="activateDesign()"
+            :item="item"
+            :lang="lang"
+            :key="item.ingredient_id">
+          </Ingredient>
+      </div>
     </div>
                   <!--    lägg till styling på shoppingcart      -->
       <div v-show ="step===5">
@@ -193,6 +208,7 @@ export default {
       step: 0,
       burgerCategory: 4,
       sideCategory: 5,
+      beverageCategory: 6,
       categoryChanged: '',
       isActive: false,
       indexChosenIngredients: 0,
@@ -201,6 +217,7 @@ export default {
       clickedOn3: '',
       clickedOn4: '',
       clickedOn5: "greenBorder",
+      clickedOn6: "purpleBorder",
       footerBoolean: false
     }
   },
@@ -235,6 +252,9 @@ export default {
         case 5: this.clickedOn5 = "greenBorder"
         this.sideCategory = 5
         break;
+        case 6: this.clickedOn5 = "greenBorder"
+        this.beverageCategory = 6
+        break;
       }
     },
 
@@ -244,13 +264,14 @@ export default {
       this.clickedOn3 = '';
       this.clickedOn4 = '';
       this.clickedOn5 = '';
+      this.clickedOn6 = '';
     },
     activateDesign: function () {
       this.isActive = true;
       //console.log('hej');
     },
     showFooter: function () {
-      if (!this.showCartState && (this.step === 5 || this.step === 3)) {
+      if (!this.showCartState && (this.step === 5 || this.step === 3 || this.step === 4)) {
         this.footerBoolean = true;
       }
     },
@@ -336,6 +357,7 @@ export default {
   max-width: 40em; /*sidan skalas om när fönstret minskas*/
   font-family: Helvetica, sans-serif;
   text-align: center;
+  margin-bottom: 20em;
 }
 
 
@@ -411,6 +433,7 @@ template {
 }
 
 .footerbutton {
+  font-weight: bold;
   width: 90%;
   height: 4em;
   border-radius: 0.5em;
@@ -429,6 +452,10 @@ template {
 
 .greenBorder {
   border: 2px solid #93c47dff;
+}
+
+.purpleBorder {
+  border: 2px solid #c27ba0ff;
 }
 
 .cancelButton {
