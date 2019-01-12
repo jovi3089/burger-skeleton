@@ -37,7 +37,7 @@
       v-on:burger="newPage(2)"
       v-on:side="newPage(3)"
       v-on:beverage="newPage(4)"
-      v-on:newPageZero="newPage(0)"
+      v-on:newPageZero="exitOrder()"
       v-on:cartClick="showCart()">
       </MenuPage>
 
@@ -56,9 +56,10 @@
 
 <div v-show="!showCartState">
     <div v-show="step===3">
+      <button class="buttonmenu" id="exitbutton" v-on:click="cancelOrder()"><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
       <button class="buttonmenu" v-bind:class="clickedOn5" v-on:click="changeCategory(5)">{{ uiLabels.sideOptions }}</button>
       <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
-        <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
+        <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
       </button>
       <p class="categoryText" v-show="!showCartState" v-if="sideCategory===5">{{ uiLabels.chooseSide }}</p>
       <div class="ingredients-grid">
@@ -78,9 +79,10 @@
     </div>
 
     <div v-show="step===4">
+      <button class="buttonmenu" id="exitbutton" v-on:click="cancelOrder()"><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
       <button class="buttonmenu" v-bind:class="clickedOn6" v-on:click="changeCategory(6)">{{ uiLabels.beverageOptions }}</button>
       <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
-        <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
+        <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
       </button>
       <p class="categoryText" v-show="!showCartState" v-if="beverageCategory===6">{{ uiLabels.chooseBev }}</p>
       <div class="ingredients-grid">
@@ -98,13 +100,14 @@
       </div>
     </div>
                   <!--    lägg till styling på shoppingcart      -->
-      <div v-show ="step===5">
+   <div v-show ="step===5">
+    <button class="buttonmenu" id="exitbutton" v-on:click="cancelOrder()"><i class="fa fa-arrow-left" style="font-size: 20px;"></i></button>
     <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
     <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory(3)">{{ uiLabels.burgerSauce }}</button>
     <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
-      <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
+      <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
     </button>
     <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===1">{{ uiLabels.choosePatty }}</p>
     <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===2">{{ uiLabels.chooseTopping }}</p>
@@ -148,15 +151,14 @@
         :key="key">
       </OrderItem>
     </div>-->
-      </div>
+  </div>
     </div>
     <div class="footer" v-show="footerBoolean">
-      <button class="footerbutton" v-on:click="cancelOrder()">{{ uiLabels.back }}</button>
-      <br><br>
+      <br>
       <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
       <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
-          <br><button class="footerbutton" v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
-          <button class="footerbutton" v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>
+      <br><button class="footerbutton" v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
+      <button class="footerbutton" v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button><br><br>
     </div>
   </div>
 </template>
@@ -287,7 +289,7 @@ export default {
     },
     cancelOrder: function () {
       this.setToZero();
-      this.newPage(1);
+      this.newPage(2);
       this.footerBoolean = false;
     },
     addToOrder (item) {
@@ -318,7 +320,12 @@ export default {
       this.price = 0;
       this.shoppingCart = [];
     },
-
+    exitOrder: function () {
+      this.newPage(0);
+      this.price = 0;
+      this.shoppingCart = [];
+      this.totalPrice = 0;
+    },
     addToCart: function () {
       if(this.chosenIngredients.length > 0){
         this.shoppingCart.push(this.chosenIngredients);
@@ -365,8 +372,6 @@ export default {
   /*margin-bottom: 20em;*/
 }
 
-
-
 .orderItem {
   border: 1px solid black;
   background-color: white;
@@ -374,14 +379,10 @@ export default {
 }
 
 .categoryText {
-  font-size: 2.5vw;
+  font-size: 4vw;
   font-style: italic;
   font-weight: bold;
 }
-
-/*.relative {
-  position: relative;
-}*/
 
 .ingredients-grid {
  display: grid;
@@ -416,18 +417,6 @@ template {
   overflow: hidden
 }
 
-.example-panel {
-  width: 100%;
-  height: 100%;
-  max-height: 100%;
-  margin: 0;
-  padding: 0;
-  position: fixed;
-  left:0;
-  top:0;
-  z-index: -2;
-}
-
 .buttonmenu {
   width: 5em;
   height: 5em;
@@ -435,6 +424,10 @@ template {
   border: 1px solid #000;
   margin: 0.2em;
   cursor: pointer;
+}
+
+#exitbutton {
+  float: left;
 }
 
 .footerbutton {
@@ -476,6 +469,18 @@ template {
   bottom: 0;
   padding: 0.1em;
   background-color: #ccc;
+}
+
+.example-panel {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  left:0;
+  top:0;
+  z-index: -2;
 }
 
 </style>

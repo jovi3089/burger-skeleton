@@ -1,11 +1,14 @@
 <template>
-  <div>
+  <div class="hamburgerpage">
+    <div class="hamburger top">
     <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
-      <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
+      <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
     </button>
     <button v-on:click="menuPush(4)" class="buttonmenu" id="cancel">
-      <i class="fa fa-arrow-left" style="font-size:18px;"></i>
+      <i class="fa fa-arrow-left" style="font-size: 20px;"></i>
     </button>
+  </div>
+  <div class="hamburger bottom">
     <label>
       <button class="button" id="buttondesign" v-on:click="menuPush(1)"> {{ uiLabels.designBurger }}</button>
     </label>
@@ -15,6 +18,7 @@
     <label>
       <button class="button" id="buttonrandom" v-on:click="menuPush(3)"> {{ uiLabels.randomBurger }}</button>
     </label>
+  </div>
   </div>
 </template>
 <script>
@@ -53,6 +57,28 @@ export default {
 }
 </script>
 <style scoped>
+
+.hamburgerpage {
+  height: 90vh;
+  display: grid;
+  justify-content: center;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.burger {
+  padding: 0 0 0;
+}
+
+.top {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.bottom {
+  grid-column: 1;
+  grid-row: 2;
+  margin-top: 50vh;
+}
 
 .button {
   border-radius: 2em;

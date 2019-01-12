@@ -1,11 +1,11 @@
 <template>
-  <div class="menupage">
+  <div class="pagemenu">
     <div class="menu exitshopping">
     <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
-      <i class="fa fa-shopping-cart" style="font-size:18px;"></i>
+      <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
     </button>
     <button v-on:click="menuPush(4)" class="buttonmenu" id="cancel">
-      <span style="font-size:28px;"> X </span>
+      <i class="fa fa-times" style="font-size: 28px;"></i>
     </button>
   </div>
     <div class="menu buttons">
@@ -58,10 +58,10 @@ export default {
 </script>
 <style scoped>
 
-.menupage {
-  height: 92vh;
-  width: 80vw;
+.pagemenu {
+  height: 90vh;
   display: grid;
+  justify-content: center;
   grid-template-rows: repeat(2, 1fr);
 }
 
@@ -77,6 +77,7 @@ export default {
 .buttons {
   grid-column: 1;
   grid-row: 2;
+  margin-top: 50vh;
 }
 
 .button {

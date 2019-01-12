@@ -69,8 +69,8 @@ export default {
  }
 
  button {
-   width: 3.5em;
-   height: 3em;
+   width: 3em;
+   height: 2em;
    border: 1px solid black;
    /*border-style: none;*/
    background-color: #d0e0e3ff;

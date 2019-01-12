@@ -124,7 +124,8 @@ Data.prototype.markOrderServed = function (orderId) {
 Data.prototype.getKitchenCategory = function (orderId){
   var temp = 0;
   var order = this.orders[orderId].ingredients;
-  var numOfOrder = this.orders[orderId].ingredients.length;  for (var i = 0; i < numOfOrder; i++) {
+  var numOfOrder = this.orders[orderId].ingredients.length;
+  for (var i = 0; i < numOfOrder; i++) {
     for (var j = 0; j < order[i].length; j++) {
       var kitchenCategory = order[i][j].kitchenCategory;
       if (kitchenCategory > temp){

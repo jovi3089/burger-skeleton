@@ -14,7 +14,7 @@
       </div>
       <div class="shopc">
         <div>
-          {{uiLabels.totalPrice}} {{totalPrice}} kr
+          <span style="font-weight:bold">{{uiLabels.totalPrice}}</span><span> {{ totalPrice }}:-</span>
         </div>
         <br>
         <button class="footerbutton" v-on:click="placeOrder()">
