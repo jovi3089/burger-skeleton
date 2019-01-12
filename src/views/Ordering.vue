@@ -13,7 +13,7 @@
     v-show="showCartState"
     v-on:closeCart="showCart()"
     v-on:placeOrder="placeOrder()"
-    :lang="this.lang"
+    :lang="lang"
     :orders="this.shoppingCart"
     :ui-labels="uiLabels">
     </shoppingCart>
@@ -242,6 +242,7 @@ export default {
         break;
       }
     },
+
     resetCategory: function () {
       this.clickedOn1 = '';
       this.clickedOn2 = '';
