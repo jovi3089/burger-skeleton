@@ -15,6 +15,7 @@
     v-on:placeOrder="placeOrder()"
     :lang="lang"
     :orders="this.shoppingCart"
+    :totalPrice="totalPrice"
     :ui-labels="uiLabels">
     </shoppingCart>
 
