@@ -76,18 +76,21 @@ Data.prototype.addOrder = function (order) {
   this.orders[orderId].orderKitchenCategory = this.getKitchenCategory(orderId);
   this.orders[orderId].orderId = orderId;
   this.orders[orderId].status = "not-started";
-  console.log("here we go")
+  order = order.ingredients;
   var transactions = this.data[transactionsDataName];
+  let transId =  transactions[transactions.length - 1].transaction_id;
   for (let j = 0; j < order.length; j += 1) {
-    console.log("waaaaah")
+
     //find out the currently highest transaction id
-    let transId =  transactions[transactions.length - 1].transaction_id;
+
+
+
     let i = order[j];
     for (let k = 0; k < i.length; k += 1) {
       transId += 1;
       transactions.push({transaction_id: transId,
                          ingredient_id: i[k].ingredient_id,
-                         change: - 2});
+                         change: - 1});
     }
   }
     return orderId;
@@ -133,17 +136,17 @@ Data.prototype.getKitchenCategory = function (orderId){
       }
     }
   }
-    var result = temp;
-    switch (result) {
-      case 1: return "veg"
-      break;
-      case 2: return "chicken"
-      break;
-      case 3: return "fish"
-      break;
-      case 4: return "meat"
-      break;
-    }
+  var result = temp;
+  switch (result) {
+  case 1: return "veg"
+  break;
+  case 2: return "chicken"
+  break;
+  case 3: return "fish"
+  break;
+  case 4: return "meat"
+  break;
+  }
 }
 
 module.exports = Data;
