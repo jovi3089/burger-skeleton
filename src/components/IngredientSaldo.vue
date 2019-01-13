@@ -13,6 +13,7 @@
           :key="item.ingredient_id"
           v-if="item.category===1">
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
+            {{item}}
           </div>
         </div>
         <div class="title B">
@@ -127,7 +128,7 @@ export default {
       return this.isSwedish;
     }
   }*/
-  }, 
+  },
 }
 </script>
 
