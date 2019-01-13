@@ -113,6 +113,7 @@
     <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===2">{{ uiLabels.chooseTopping }}</p>
     <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===4">{{ uiLabels.chooseBread }}</p>
     <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===3">{{ uiLabels.chooseSauce }}</p>
+    <div class="ingredients grid5">
     <div class="ingredients-grid">
         <Ingredient
           ref="ingredient"
@@ -126,6 +127,7 @@
           :key="item.ingredient_id">
         </Ingredient>
     </div>
+  </div>
 
     <!--<IngredientPage
       ref="ingredient"
@@ -369,7 +371,20 @@ export default {
   max-width: 40em; /*sidan skalas om när fönstret minskas*/
   font-family: Helvetica, sans-serif;
   text-align: center;
+  display: grid;
+  justify-content: center;
+  grid-template-rows: repeat(2, 1fr);
   /*margin-bottom: 20em;*/
+}
+
+.ingredients {
+  padding: 0 0 0;
+  width: 100%;
+}
+
+.grid5 {
+  grid-column: 1;
+  grid-row: 2;
 }
 
 .orderItem {
@@ -379,7 +394,7 @@ export default {
 }
 
 .categoryText {
-  font-size: 4vw;
+  font-size: 3vw;
   font-style: italic;
   font-weight: bold;
 }
@@ -432,9 +447,9 @@ template {
 
 .footerbutton {
   font-weight: bold;
-  width: 90%;
+  width: 60%;
   height: 4em;
-  border-radius: 0.5em;
+  border-radius: 1em;
   border: 1px solid #000;
   margin: 0.1em;
   cursor: pointer;
