@@ -55,5 +55,6 @@
   "addToCart" : "Lägg till kundkorg",
   "shoppingCartContent" : "Din beställning",
   "shoppingCartFooter" : "Fortsätt",
-  "shoppingCartTitle" : "Kundkorg"
+  "shoppingCartTitle" : "Kundkorg",
+  "lastPage" : "Tack för din beställning!"
 }

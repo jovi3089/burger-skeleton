@@ -9,18 +9,20 @@
 
   <div id="ordering">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <shoppingCart
-    v-show="showCartState"
-    v-on:closeCart="showCart()"
-    v-on:placeOrder="placeOrder()"
-    :lang="lang"
-    :orders="shoppingCart"
-    :totalPrice="totalPrice"
-    :price="shoppingItemPrices"
-    :ui-labels="uiLabels">
-    </shoppingCart>
-
+    <transition name="slide-fade">
+      <shoppingCart
+        v-show="showCartState"
+        v-on:closeCart="showCart()"
+        v-on:placeOrder="placeOrder()"
+        :lang="lang"
+        :orders="shoppingCart"
+        :totalPrice="totalPrice"
+        :price="shoppingItemPrices"
+        :ui-labels="uiLabels">
+      </shoppingCart>
+    </transition>
     <div v-show = "step===0">
+      <button v-on:click="newPage(6)">Lol</button>
       <StartingPage
         :ui-labels="uiLabels"
         :lang="lang"
@@ -129,40 +131,23 @@
         </Ingredient>
     </div>
   </div>
-
-    <!--<IngredientPage
-      ref="ingredient"
-      v-on:addtoorder="addToOrder"
-      v-on:deletefromorder="deleteFromOrder"
-      :category="burgerCategory"
-      :ingredients="ingredients"
-      :lang="lang"
-      :ui-labels="uiLabels">
-    </IngredientPage>-->
-
-    <!--
-    <h1>{{ uiLabels.ordersInQueue }}</h1>
-    <div>
-      <OrderItem
-        class="orderItem"
-        v-for="(order, key) in orders"
-        v-if="order.status !== 'done'"
-        :order-id="key"
-        :order="order"
-        :ui-labels="uiLabels"
-        :lang="lang"
-        :key="key">
-      </OrderItem>
-    </div>-->
   </div>
+</div>
+<div id="last-page-wrapper">
+  <transition name="last-page">
+    <div v-show="step===6" class="lastPage">
+      <i id="goodbye">{{uiLabels.lastPage}}</i>
+      <button v-on:click="newPage(0)">whoa</button>
     </div>
-    <div class="footer" v-show="footerBoolean">
-      <br>
-      <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
-      <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
-      <br><button class="footerbutton" v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
-      <button class="footerbutton" v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button><br><br>
-    </div>
+  </transition>
+</div>
+  <div class="footer" v-show="footerBoolean">
+    <br>
+    <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
+    <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
+    <br><button class="footerbutton" v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
+    <button class="footerbutton" v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button><br><br>
+  </div>
   </div>
 </template>
 <script>
@@ -434,6 +419,10 @@ template {
   cursor: pointer;
 }
 
+#last-page-wrapper{
+  margin: auto;
+}
+
 #exitbutton {
   float: left;
 }
@@ -489,6 +478,47 @@ template {
   left:0;
   top:0;
   z-index: -2;
+}
+
+#goodbye{
+  padding-top: 4em;
+  font-size: xx-large;
+}
+
+.last-page-enter-active{
+    transition: all 1s ease;
+  }
+
+.last-page-leave-active{
+    transition: all .5s;
+  }
+
+.last-page-enter, .last-page-leave-to{
+    transform: translateY(600px);
+  }
+
+@keyframes lasagna {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+.slide-fade-enter-active {
+  transition: all .2s;
+}
+.slide-fade-leave-active {
+  transition: all .2s;
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(300px);
+
 }
 
 </style>

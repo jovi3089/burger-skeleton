@@ -2,15 +2,16 @@
 
 	<div v-on:click="changeIngredients()" class="bubble">
 			<!--All the ingredients should go here-->
- 			<span id="ingred">{{uiLabels.ingredients}}:</span>
 			<!-- {{order.ingredients}}
 			<span>hej</span>
 			 -->
-			<li
-			v-for="index in order.ingredients.length"
-			:key="index">
-			{{ getOrder(index)}}
-			</li>
+			<ol id="ul"
+				<li class="container"
+					v-for="index in order.ingredients.length"
+					:key="index">
+					<span id="anOrder">{{ getOrder(index) }}</span>
+				</li>
+			</ol>
 	</div>
 
 
@@ -62,9 +63,29 @@ export default {
 }
 </script>
 <style scoped>
-#ingred{
-	font-weight: bold;
+#ul{
+		margin: auto auto auto auto;
+}
 
+li {
+  display: list-item;
+  list-style-position: inside;
+}
+
+#anOrder{
+	  margin: auto auto auto auto;
+		font-size: large;
+    color: #fff;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+
+.container{
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 4px solid;
+  border-color: Black;
+  border-radius: 12px;
 }
 
 </style>

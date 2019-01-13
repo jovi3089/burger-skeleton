@@ -1,14 +1,13 @@
 <template>
   <div class="root">
     <div class="homePage" v-show = "page===0">  <!--Home page for staff -->
-
-          <StaffHomePage
-          v-on:workFlow="changePage(1)"
-          v-on:saldo="changePage(2)"
-          v-on:statistics="changePage(3)"
-          :ui-labels="uiLabels"
-          :lang="lang">
-          </StaffHomePage>
+      <StaffHomePage
+        v-on:workFlow="changePage(1)"
+        v-on:saldo="changePage(2)"
+        v-on:statistics="changePage(3)"
+        :ui-labels="uiLabels"
+        :lang="lang">
+      </StaffHomePage>
     </div>
 
     <div class="work" v-show = "page===1">  <!--Work flow for orders-->
@@ -30,7 +29,7 @@
         </div>
 
         <div class="row2 ordersToPrepare"> <!-- here's where all the new orders go -->
-          <OrderItemToPrepare                
+          <OrderItemToPrepare
             v-for="(order, key) in orders"
             v-if="order.status === 'not-started'"
             v-on:started="markStarted(key)"
