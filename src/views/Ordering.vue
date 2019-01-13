@@ -25,7 +25,8 @@
         :ui-labels="uiLabels"
         :lang="lang"
         @switchLang="switchLang"
-        v-on:orderpage="newPage(1)">
+        v-on:orderpage="newPage(1)"
+        v-on:placeOrder="placeOrder()">
       </StartingPage>
     </div>
 
@@ -34,12 +35,14 @@
       class="menupage"
       :ui-labels="uiLabels"
       :lang="lang"
-      :totalPrice="totalPrice"
       v-on:burger="newPage(2)"
       v-on:side="newPage(3)"
       v-on:beverage="newPage(4)"
       v-on:newPageZero="exitOrder()"
-      v-on:cartClick="showCart()">
+      v-on:cartClick="showCart()"
+      v-on:placeOrder="placeOrder()"
+      :totalPrice="totalPrice"
+      :burgerAmount="burgerAmount">
       </MenuPage>
 
     </div>
@@ -51,7 +54,9 @@
       :lang="lang"
       v-on:menuPage="newPage(1)"
       v-on:designBurger="newPage(5)"
-      v-on:cartClick="showCart()">
+      v-on:cartClick="showCart()"
+      :totalPrice="totalPrice"
+      :burgerAmount="burgerAmount">
       </HamburgerPage>
     </div>
 
@@ -161,7 +166,7 @@
       <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
       <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
       <br><button class="footerbutton" v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
-      <button class="footerbutton" v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button><br><br>
+      <!--<button class="footerbutton" v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>--><br>
     </div>
   </div>
 </template>
@@ -207,6 +212,7 @@ export default {
       shoppingCart: [],
       showCartState: false,
       shoppingItemPrices: [],
+      burgerAmount: 0,
 
   //=============================
       totalPrice: 0,
@@ -324,17 +330,20 @@ export default {
       this.price = 0;
       this.totalPrice = 0;
       this.shoppingCart = [];
+      this.burgerAmount = 0;
     },
     exitOrder: function () {
       this.newPage(0);
       this.price = 0;
       this.shoppingCart = [];
       this.totalPrice = 0;
+      this.burgerAmount = 0;
     },
     addToCart: function () {
       if(this.chosenIngredients.length > 0){
         this.shoppingCart.push(this.chosenIngredients);
         this.shoppingItemPrices.push(this.price);
+        this.burgerAmount += 1;
         // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
         //this.$store.state.socket.emit('order', {order: order});
         //set all counters to 0. Notice the use of $refs
