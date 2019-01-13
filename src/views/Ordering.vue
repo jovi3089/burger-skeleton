@@ -14,8 +14,9 @@
     v-on:closeCart="showCart()"
     v-on:placeOrder="placeOrder()"
     :lang="lang"
-    :orders="this.shoppingCart"
+    :orders="shoppingCart"
     :totalPrice="totalPrice"
+    :price="shoppingItemPrices"
     :ui-labels="uiLabels">
     </shoppingCart>
 
@@ -205,6 +206,7 @@ export default {
   //=====Shopping cart===========
       shoppingCart: [],
       showCartState: false,
+      shoppingItemPrices: [],
 
   //=============================
       totalPrice: 0,
@@ -320,6 +322,7 @@ export default {
       console.log("emitting 'order' object");
 
       this.price = 0;
+      this.totalPrice = 0;
       this.shoppingCart = [];
     },
     exitOrder: function () {
@@ -331,6 +334,7 @@ export default {
     addToCart: function () {
       if(this.chosenIngredients.length > 0){
         this.shoppingCart.push(this.chosenIngredients);
+        this.shoppingItemPrices.push(this.price);
         // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
         //this.$store.state.socket.emit('order', {order: order});
         //set all counters to 0. Notice the use of $refs
@@ -373,18 +377,20 @@ export default {
   text-align: center;
   display: grid;
   justify-content: center;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
   /*margin-bottom: 20em;*/
 }
 
 .ingredients {
   padding: 0 0 0;
   width: 100%;
+  overflow-y: scroll;
 }
 
 .grid5 {
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 1;
 }
 
 .orderItem {
@@ -403,19 +409,6 @@ export default {
  display: grid;
  grid-template-columns: repeat(auto-fit, 7em);
  grid-gap: 1em;
-}
-
-.grid-wrapper {
-  display: inline-block;
-  vertical-align: top;
-  grid-template-columns: auto auto auto auto;/*repeat(auto-fit, 9em);*/
-  margin: auto auto;
-  grid-gap: 1em;
-  color: #fff;
-  border-radius: 50%;
-  font-size: 100%;
-  width: 75px;
-  height: 75px;
 }
 
 .menupage {
