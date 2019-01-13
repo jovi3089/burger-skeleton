@@ -27,7 +27,8 @@
         :ui-labels="uiLabels"
         :lang="lang"
         @switchLang="switchLang"
-        v-on:orderpage="newPage(1)">
+        v-on:orderpage="newPage(1)"
+        v-on:placeOrder="placeOrder()">
       </StartingPage>
     </div>
 
@@ -36,12 +37,14 @@
       class="menupage"
       :ui-labels="uiLabels"
       :lang="lang"
-      :totalPrice="totalPrice"
       v-on:burger="newPage(2)"
       v-on:side="newPage(3)"
       v-on:beverage="newPage(4)"
       v-on:newPageZero="exitOrder()"
-      v-on:cartClick="showCart()">
+      v-on:cartClick="showCart()"
+      v-on:placeOrder="placeOrder()"
+      :totalPrice="totalPrice"
+      :burgerAmount="burgerAmount">
       </MenuPage>
 
     </div>
@@ -53,19 +56,21 @@
       :lang="lang"
       v-on:menuPage="newPage(1)"
       v-on:designBurger="newPage(5)"
-      v-on:cartClick="showCart()">
+      v-on:cartClick="showCart()"
+      :totalPrice="totalPrice"
+      :burgerAmount="burgerAmount">
       </HamburgerPage>
     </div>
 
-<div v-show="!showCartState">
-    <div v-show="step===3">
-      <button class="buttonmenu" id="exitbutton" v-on:click="cancelOrder()"><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
-      <button class="buttonmenu" v-bind:class="clickedOn5" v-on:click="changeCategory(5)">{{ uiLabels.sideOptions }}</button>
-      <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
-        <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
-      </button>
-      <p class="categoryText" v-show="!showCartState" v-if="sideCategory===5">{{ uiLabels.chooseSide }}</p>
-      <div class="ingredients-grid">
+    <div v-show="!showCartState">
+      <div v-show="step===3">
+        <button class="buttonmenu" id="exitbutton" v-on:click="cancelOrder()"><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
+        <button class="buttonmenu" v-bind:class="clickedOn5" v-on:click="changeCategory(5)">{{ uiLabels.sideOptions }}</button>
+        <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
+          <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
+        </button>
+        <p class="categoryText" v-show="!showCartState" v-if="sideCategory===5">{{ uiLabels.chooseSide }}</p>
+        <div class="ingredients-grid">
           <Ingredient
             ref="ingredient"
             v-for="item in ingredients"
@@ -77,78 +82,78 @@
             :lang="lang"
             :key="item.ingredient_id">
           </Ingredient>
+        </div>
+        <!--<button v-on:click="newPage(4)">Switch to page 4</button>-->
       </div>
-      <!--<button v-on:click="newPage(4)">Switch to page 4</button>-->
-    </div>
 
-    <div v-show="step===4">
-      <button class="buttonmenu" id="exitbutton" v-on:click="cancelOrder()"><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
-      <button class="buttonmenu" v-bind:class="clickedOn6" v-on:click="changeCategory(6)">{{ uiLabels.beverageOptions }}</button>
+      <div v-show="step===4">
+        <button class="buttonmenu" id="exitbutton" v-on:click="cancelOrder()"><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
+        <button class="buttonmenu" v-bind:class="clickedOn6" v-on:click="changeCategory(6)">{{ uiLabels.beverageOptions }}</button>
+        <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
+          <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
+        </button>
+        <p class="categoryText" v-show="!showCartState" v-if="beverageCategory===6">{{ uiLabels.chooseBev }}</p>
+        <div class="ingredients-grid">
+            <Ingredient
+              ref="ingredient"
+              v-for="item in ingredients"
+              v-if="item.category===beverageCategory"
+              v-on:increment="addToOrder(item)"
+              v-on:decrease="deleteFromOrder(item)"
+              v-on:highlight="activateDesign()"
+              :item="item"
+              :lang="lang"
+              :key="item.ingredient_id">
+            </Ingredient>
+        </div>
+      </div>
+                      <!--    lägg till styling på shoppingcart      -->
+     <div v-show ="step===5">
+      <button class="buttonmenu" id="exitbutton" v-on:click="cancelOrder()"><i class="fa fa-arrow-left" style="font-size: 20px;"></i></button>
+      <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
+      <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
+      <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
+      <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory(3)">{{ uiLabels.burgerSauce }}</button>
       <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
         <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
       </button>
-      <p class="categoryText" v-show="!showCartState" v-if="beverageCategory===6">{{ uiLabels.chooseBev }}</p>
-      <div class="ingredients-grid">
-          <Ingredient
-            ref="ingredient"
-            v-for="item in ingredients"
-            v-if="item.category===beverageCategory"
-            v-on:increment="addToOrder(item)"
-            v-on:decrease="deleteFromOrder(item)"
-            v-on:highlight="activateDesign()"
-            :item="item"
-            :lang="lang"
-            :key="item.ingredient_id">
-          </Ingredient>
+      <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===1">{{ uiLabels.choosePatty }}</p>
+      <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===2">{{ uiLabels.chooseTopping }}</p>
+      <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===4">{{ uiLabels.chooseBread }}</p>
+      <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===3">{{ uiLabels.chooseSauce }}</p>
+        <div class="ingredients grid5">
+          <div class="ingredients-grid">
+              <Ingredient
+                ref="ingredient"
+                v-for="item in ingredients"
+                v-if="item.category===burgerCategory"
+                v-on:increment="addToOrder(item)"
+                v-on:decrease="deleteFromOrder(item)"
+                v-on:highlight="activateDesign()"
+                :item="item"
+                :lang="lang"
+                :key="item.ingredient_id">
+              </Ingredient>
+          </div>
       </div>
     </div>
-                  <!--    lägg till styling på shoppingcart      -->
-   <div v-show ="step===5">
-    <button class="buttonmenu" id="exitbutton" v-on:click="cancelOrder()"><i class="fa fa-arrow-left" style="font-size: 20px;"></i></button>
-    <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
-    <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
-    <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
-    <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory(3)">{{ uiLabels.burgerSauce }}</button>
-    <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
-      <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
-    </button>
-    <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===1">{{ uiLabels.choosePatty }}</p>
-    <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===2">{{ uiLabels.chooseTopping }}</p>
-    <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===4">{{ uiLabels.chooseBread }}</p>
-    <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===3">{{ uiLabels.chooseSauce }}</p>
-    <div class="ingredients grid5">
-    <div class="ingredients-grid">
-        <Ingredient
-          ref="ingredient"
-          v-for="item in ingredients"
-          v-if="item.category===burgerCategory"
-          v-on:increment="addToOrder(item)"
-          v-on:decrease="deleteFromOrder(item)"
-          v-on:highlight="activateDesign()"
-          :item="item"
-          :lang="lang"
-          :key="item.ingredient_id">
-        </Ingredient>
-    </div>
   </div>
+  <div id="last-page-wrapper">
+    <transition name="last-page">
+      <div v-show="step===6" class="lastPage">
+        <i id="goodbye">{{uiLabels.lastPage}}</i>
+        <button v-on:click="newPage(0)">whoa</button>
+      </div>
+    </transition>
   </div>
-</div>
-<div id="last-page-wrapper">
-  <transition name="last-page">
-    <div v-show="step===6" class="lastPage">
-      <i id="goodbye">{{uiLabels.lastPage}}</i>
-      <button v-on:click="newPage(0)">whoa</button>
-    </div>
-  </transition>
-</div>
   <div class="footer" v-show="footerBoolean">
     <br>
     <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
     <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
     <br><button class="footerbutton" v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
-    <button class="footerbutton" v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button><br><br>
+    <!--<button class="footerbutton" v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>--><br>
   </div>
-  </div>
+</div>
 </template>
 <script>
 
@@ -192,6 +197,7 @@ export default {
       shoppingCart: [],
       showCartState: false,
       shoppingItemPrices: [],
+      burgerAmount: 0,
 
   //=============================
       totalPrice: 0,
@@ -309,17 +315,20 @@ export default {
       this.price = 0;
       this.totalPrice = 0;
       this.shoppingCart = [];
+      this.burgerAmount = 0;
     },
     exitOrder: function () {
       this.newPage(0);
       this.price = 0;
       this.shoppingCart = [];
       this.totalPrice = 0;
+      this.burgerAmount = 0;
     },
     addToCart: function () {
       if(this.chosenIngredients.length > 0){
         this.shoppingCart.push(this.chosenIngredients);
         this.shoppingItemPrices.push(this.price);
+        this.burgerAmount += 1;
         // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
         //this.$store.state.socket.emit('order', {order: order});
         //set all counters to 0. Notice the use of $refs

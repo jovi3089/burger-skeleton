@@ -56,14 +56,11 @@ export default{
         this.$emit('placeOrder');
       },
       getPrice: function (ind) {
-        console.log('hej');
         var orderPrice = this.price[ind];
-        console.log(this.price);
         return orderPrice;
       },
       getOrder: function(ind) {
         var numOfItems = this.orders[ind-1].length;
-        console.log(numOfItems);
         var order = this.orders[ind-1];
         var ans = "";
         for (var i = 0; i < numOfItems; i++) {
