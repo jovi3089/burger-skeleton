@@ -89,11 +89,14 @@
     </div>
 
     <div v-show = "page===3">  <!--Product statistics -->
-      <StatisticsPage
-      :ingred="ingredients"
+
+      <Statistics
+      :orders="orders"
+      :ingredients="ingredients"
+      :ui-labels="uiLabels"
       :lang="lang"
       >
-      </StatisticsPage>
+      </Statistics>
       <label>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <button id="backButton" v-on:click="changePage(0)">
@@ -112,6 +115,7 @@ import OrderItemDone from '@/components/OrderItemDone.vue'
 import StaffHomePage from '@/components/StaffHomePage.vue'
 import Timer from '@/components/Timer.vue'
 import IngredientSaldo from '@/components/IngredientSaldo.vue'
+import Statistics from '@/components/Statistics.vue'
 
 
 
@@ -127,7 +131,8 @@ export default {
     OrderItemDone,
     StaffHomePage,
     Timer,
-    IngredientSaldo
+    IngredientSaldo,
+    Statistics
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen
