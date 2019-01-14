@@ -69,11 +69,14 @@ export default {
  }
 
  .textdesign {
-   word-wrap: break-word;
    text-align: center;
  }
 
  .text {
+   max-width: 6.5em;
+   overflow-wrap: break-word;
+   word-wrap: break-word;
+   hyphens: auto;
    grid-row: 1;
    font-weight: bold;
  }
