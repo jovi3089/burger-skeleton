@@ -378,10 +378,12 @@ export default {
 </script>
 <style scoped>
 /* CSS: scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
+body{
+}
+
 #ordering {
   margin:auto;
   max-width: 40em; /*sidan skalas om när fönstret minskas*/
-  font-family: Helvetica, sans-serif;
   text-align: center;
   display: grid;
   justify-content: center;

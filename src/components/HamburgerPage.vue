@@ -102,6 +102,7 @@ export default {
   text-align: center;
   text-decoration: none;
   font-weight: bold;
+  font-family: inherit;
   display: block;
   /*font-size: 16px;*/
   margin: auto auto;

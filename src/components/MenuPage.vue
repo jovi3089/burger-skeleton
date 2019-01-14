@@ -106,6 +106,7 @@ export default {
   text-align: center;
   text-decoration: none;
   font-size: 2em;
+  font-family: inherit;
   display: block;
   /*font-size: 16px;*/
   margin: 0.1em;
@@ -126,7 +127,6 @@ export default {
   .buttonmenu{
     font-size: 4em;
   }
-
   .button{
     font-size: 3.5em;
   }

@@ -6,8 +6,11 @@
         <button id = "engButton" class = "langbutton" v-on:click="$emit('switchLang')"
         :disabled = "isEng(lang)" v-bind:style="{borderColor: computedEngBorderColor}"><img src = "@/assets/UnionJack.jpg"></button>
       </div>
+      <div class = "wrappalicious">
+
       <div class = "wrapper">
         <button id = "toorderpagebutton" v-on:click="toOrderPage"> {{ uiLabels.toOrderPage }}</button>
+      </div>
       </div>
   </div>
 </template>
@@ -83,6 +86,7 @@ export default {
   display: flex;
   justify-content: center;
   height: 80%;
+
 }
 
 .langwrapper{
@@ -138,6 +142,7 @@ export default {
   font-weight: bold;
   font-size: 2em;
   margin-top: 50%;
+  font-family: inherit;
 }
 
   /*transition: 0.5s ease;
