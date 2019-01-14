@@ -21,8 +21,9 @@
         :ui-labels="uiLabels">
       </shoppingCart>
     </transition>
+
     <div v-show = "step===0">
-      <button v-on:click="newPage(6)">Lol</button>
+      <button v-on:click="newPage(9)">Lol</button>
       <StartingPage
         :ui-labels="uiLabels"
         :lang="lang"
@@ -56,6 +57,8 @@
       :lang="lang"
       v-on:menuPage="newPage(1)"
       v-on:designBurger="newPage(5)"
+      v-on:popularBurger="newPage(6)"
+      v-on:randomBurger="newPage(7)"
       v-on:cartClick="showCart()"
       :totalPrice="totalPrice"
       :burgerAmount="burgerAmount">
@@ -137,10 +140,30 @@
           </div>
       </div>
     </div>
+
+  <div v-show="step===6">
+   <popularBurgerPage
+     class="menupage"
+     :ui-labels="uiLabels"
+     :lang="lang"
+     v-on:menuPage="newPage(2)"
+     >
+   </popularBurgerPage>
+ </div>
+
+ <div v-show="step===7">
+   <randomBurgerPage
+     class="menupage"
+     :ui-labels="uiLabels"
+     :lang="lang"
+     v-on:menuPage="newPage(2)"
+     >
+   </randomBurgerPage>
+ </div>
   </div>
   <div id="last-page-wrapper">
     <transition name="last-page">
-      <div v-show="step===6" class="lastPage">
+      <div v-show="step===9" class="lastPage">
         <i id="goodbye">{{uiLabels.lastPage}}</i>
         <button v-on:click="newPage(0)">whoa</button>
       </div>
@@ -167,12 +190,12 @@ import StartingPage from '@/components/StartingPage.vue'
 import MenuPage from '@/components/MenuPage.vue'
 import HamburgerPage from '@/components/HamburgerPage.vue'
 import DesignPage from '@/components/DesignPage.vue'
+import popularBurgerPage from '@/components/popularBurgerPage.vue'
+import randomBurgerPage from '@/components/randomBurgerPage.vue'
 import shoppingCart from '@/components/shoppingCart.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
-
-
 
 /* instead of defining a Vue instance, export default allows the only
 necessary Vue instance (found in main.js) to import your data and methods */
@@ -186,6 +209,8 @@ export default {
     MenuPage,
     HamburgerPage,
     DesignPage,
+    popularBurgerPage,
+    randomBurgerPage,
     shoppingCart
   },
   mixins: [sharedVueStuff], // include stuff that is used in both

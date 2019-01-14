@@ -56,5 +56,6 @@
   "shoppingCartContent" : "Your order",
   "shoppingCartFooter" : "Continue",
   "shoppingCartTitle" : "Shopping cart",
-  "lastPage" : "Thank you for your order!"
+  "lastPage" : "Thank you for your order!",
+  "ourMostPopularBurgers" : "Our most popular burgers"
 }

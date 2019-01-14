@@ -35,7 +35,7 @@ export default {
     burgerAmount: Number,
     totalPrice: Number
   },
-  data: function () {
+  data: function (){
     return {
       hamburger: "Hamburgare",
       sides: "Tillbehör",
