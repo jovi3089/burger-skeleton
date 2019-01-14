@@ -16,7 +16,7 @@
         v-for="index in orders.length"
         :key="index">
           <dt style="font-weight:bold">
-            <button class="remove-burg">
+            <button class="remove-burg" v-on:click="removeBurg(index)">
               <i class="fa fa-times fa-2x"></i>
             </button> {{uiLabels.hamburger}} {{index}}: <span class="cart-price">{{getPrice(index-1)}}:-</span>
           </dt>
@@ -68,6 +68,11 @@ export default{
       getPrice: function (ind) {
         var orderPrice = this.price[ind];
         return orderPrice;
+      },
+      removeBurg: function (ind) {
+        this.orders.splice(ind-1,1);
+        this.price.splice(ind-1,1);
+        this.$emit('removeBurg');
       },
       getOrder: function(ind) {
         var numOfItems = this.orders[ind-1].length;

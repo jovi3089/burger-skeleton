@@ -14,6 +14,7 @@
         v-show="showCartState"
         v-on:closeCart="showCart()"
         v-on:placeOrder="placeOrder()"
+        v-on:removeBurg="removeBurg()"
         :lang="lang"
         :orders="shoppingCart"
         :totalPrice="totalPrice"
@@ -387,8 +388,7 @@ export default {
       this.resetCategory();
       this.restartMode();
      },
-
-    showCart: function() {
+    showCart: function () {
       if (this.showCartState === false && (this.step !== 1 || this.step !== 2)) {
         this.showCartState = true;
         if (this.step === 5 || this.step === 3 || this.step === 4) {
@@ -402,6 +402,13 @@ export default {
           }
       }
         //console.log("click! i'm showing: "+this.showCartState)
+    },
+    removeBurg: function () {
+      this.totalPrice = 0;
+      for (var i = 0; i < this.shoppingCart.length; i++) {
+        this.totalPrice += this.shoppingItemPrices[i];
+      }
+      this.burgerAmount = this.shoppingCart.length;
     }
   }
 }
