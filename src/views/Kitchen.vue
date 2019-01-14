@@ -30,7 +30,7 @@
         </div>
 
         <div class="row2 ordersToPrepare"> <!-- here's where all the new orders go -->
-          <OrderItemToPrepare                
+          <OrderItemToPrepare
             v-for="(order, key) in orders"
             v-if="order.status === 'not-started'"
             v-on:started="markStarted(key)"
@@ -90,6 +90,14 @@
     </div>
 
     <div v-show = "page===3">  <!--Product statistics -->
+      <Statistics
+      :orders="orders"
+      :ingredients="ingredients"
+      :ui-labels="uiLabels"
+      :lang="lang"
+      >
+      </Statistics>
+
       <label>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <button id="backButton" v-on:click="changePage(0)">
@@ -110,6 +118,7 @@ import OrderItemDone from '@/components/OrderItemDone.vue'
 import StaffHomePage from '@/components/StaffHomePage.vue'
 import Timer from '@/components/Timer.vue'
 import IngredientSaldo from '@/components/IngredientSaldo.vue'
+import Statistics from '@/components/Statistics.vue'
 
 
 
@@ -125,7 +134,8 @@ export default {
     OrderItemDone,
     StaffHomePage,
     Timer,
-    IngredientSaldo
+    IngredientSaldo,
+    Statistics
   },
   mixins: [sharedVueStuff], // include stuff that is used in both
                             //the ordering system and the kitchen

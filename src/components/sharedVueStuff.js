@@ -16,6 +16,7 @@ var sharedVueStuff = {
       this.orders = data.orders;
       this.uiLabels = data.uiLabels;
       this.ingredients = data.ingredients; //<-- kanske här
+      console.log(this.ingredients);
     }.bind(this));
 
     this.$store.state.socket.on('switchLang', function (data) {
@@ -23,10 +24,6 @@ var sharedVueStuff = {
     }.bind(this));
 
     this.$store.state.socket.on('currentQueue', function (data) {
-      console.log("===============================================");
-      console.log("================== i mixin: ===================");
-      console.log("===============================================");
-      console.log("data is of type: " + typeof data);
       this.orders = data.orders;
       if (typeof data.ingredients !== 'undefined') {
         this.ingredients = data.ingredients;
