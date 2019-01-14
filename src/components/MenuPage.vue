@@ -49,7 +49,6 @@ export default {
     uiLabels: Object,
     lang: String,
     step: Number,
-
     burgerAmount: Number,
     totalPrice: Number
   },
@@ -83,8 +82,8 @@ export default {
     showNumber: function () {
       return this.burgerAmount !== 0;
     },
-    doTheThing(): function (){
-
+    doTheThing: function (){
+      return this.burgerAmount > 0;
     }
   }
 }
@@ -221,10 +220,12 @@ export default {
 }
 
 .flash-the-number-enter-active{
-  transition: all 0.5s;
+  transition: all 1s;
 }
 
-.flash-the-number-leave-active{}
+.flash-the-number-leave-active{
+  transition: all 1s;
+}
 
 .flash-the-number-enter, .flash-the-number-leave-to{
   transform: scale(10);
