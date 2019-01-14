@@ -1,10 +1,7 @@
-<template> <!--sätter massa ### för ord som inte ännu är i ui_lang-->
+<template>
   <div class="root">
     <div class="shopwrapper">
       <div class="shopa">
-        <!-- <button class="buttonmenu" id="cancel-button">
-          <i class="fa fa-times fa-2x"></i>
-        </button> -->
           <div id="title-span">{{uiLabels.shoppingCartContent}}</div>
           <button class="buttonmenu" id="the-close-button" v-on:click="close()">
             <i class="fa fa-shopping-cart fa-1x"></i>
@@ -24,12 +21,12 @@
         </dl>
       </div>
       <div class="shopc">
-        <div>
-          <span style="font-weight:bold">{{uiLabels.totalPrice}} {{ totalPrice }}:-</span>
+        <div id = "price">
+          <span>{{uiLabels.totalPrice}} {{ totalPrice }}:-</span>
         </div>
         <br>
         <button class="footerbutton" v-on:click="placeOrder()">
-          <div>{{uiLabels.placeOrder}}</div> <i class="fa fa-arrow-right fa-2x"></i>
+          <div>{{uiLabels.placeOrder}}</div> <i class="fa fa-arrow-right fa-1x"></i>
         </button>
         <br>
       </div>
@@ -107,7 +104,7 @@ export default{
 </script>
 <style scoped>
 .root{
-  height: 75vh;
+  height: 73vh;
   width: 100%;
 }
 .shopwrapper {
@@ -119,7 +116,7 @@ export default{
   display: grid;
   justify-content: center;
   grid-template-columns: 100%;
-  grid-template-rows: 19% 95% 19%;
+  grid-template-rows: 20% 96% 20%;
   padding: 0 0 0 0;
 }
 
@@ -157,6 +154,12 @@ export default{
   justify-content: center;
   background-color: lightgrey;
 }
+
+#price{
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
 .footerbutton {
   width: 12em;
   height: 4em;
@@ -166,6 +169,7 @@ export default{
   cursor: pointer;
   font-weight: bold;
   font-family: inherit;
+  font-size: 1em;
 }
 
 .buttonmenu {
@@ -178,12 +182,6 @@ export default{
   cursor: pointer;
   grid-column: 2;
   font-size: 2em;
-}
-
-@media screen and (min-width: 600px){
-    .shopwrapper{
-      width: 90%;
-    }
 }
 
 #the-close-button{
@@ -208,7 +206,7 @@ export default{
 }
 
 #title-span{
-  font-size: large;
+  font-size: 1.8em;
   margin-top: auto;
   grid-column: 1;
   margin: auto auto;
@@ -232,6 +230,16 @@ dt {
   color: #e06666ff;
   background-color: lightgrey;
   border-style: none;
+}
+
+@media screen and (min-width: 600px){
+  .root{
+    height: 73vh;
+  }
+  .shopwrapper{
+    width: 90%;
+    font-size: 1.8em;
+  }
 }
 
 </style>
