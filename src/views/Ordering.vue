@@ -23,7 +23,6 @@
     </transition>
 
     <div v-show = "step===0">
-      <button v-on:click="newPage(9)">Lol</button>
       <StartingPage
         :ui-labels="uiLabels"
         :lang="lang"
@@ -340,6 +339,10 @@ export default {
 
       this.$store.state.socket.emit('order', order);
       console.log("emitting 'order' object");
+      if(this.shoppingCart.length > 0){
+        this.showCart();
+        this.newPage(6);
+      }
 
       this.price = 0;
       this.totalPrice = 0;
