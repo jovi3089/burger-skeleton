@@ -1,8 +1,8 @@
 <template>
   <div class="pagemenu">
     <div class="menu exitshopping">
-    <button class="updateCart" v-on:click="showCart" id="shop-button">
-      <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
+    <button class="buttonmenu" v-on:click="showCart" id="shop-button">
+      <i class="fa fa-shopping-cart fa-1x"></i>
     </button>
 
     <div class="updateCart" id="new-burger" v-show="showNumber()">
@@ -13,7 +13,7 @@
       <b>{{uiLabels.placeOrder}}: </b> <span>{{totalPrice}}:-</span>
     </button>
     <button v-on:click="menuPush(4)" class="buttonmenu" id="cancel">
-      <i class="fa fa-times" style="font-size: 28px;"></i>
+      <i class="fa fa-times fa-1x"></i>
     </button>
   </div>
     <div class="menu buttons">
@@ -78,7 +78,7 @@ export default {
   height: 90vh;
   display: grid;
   justify-content: center;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: 20% 80%);
 }
 
 .menu {
@@ -93,32 +93,43 @@ export default {
 .buttons {
   grid-column: 1;
   grid-row: 2;
-  margin-top: 50vh;
+  margin-top: 0;
 }
 
 .button {
-  border-radius: 2em;
+  border-radius: 0.7em;
   border: 1px solid #000;
-  width: 25em;
-  height: 5em;
+  width: 10em;
+  height: 2em;
   color: black;
   /*padding: 15px 32px;*/
   text-align: center;
   text-decoration: none;
-  font-weight: bold;
+  font-size: 2em;
   display: block;
   /*font-size: 16px;*/
-  margin: auto auto;
+  margin: 0.1em;
 }
 
 .buttonmenu {
-  width: 5em;
-  height: 5em;
-  border-radius: 1em;
+  width: 2em;
+  height: 2em;
+  font-size: 2em;
+  border-radius: 0.4em;
   border: 1px solid #000;
   margin: 0.2em;
   float: right;
   cursor: pointer;
+}
+
+@media screen and (min-width: 600px){
+  .buttonmenu{
+    font-size: 4em;
+  }
+
+  .button{
+    font-size: 3.5em;
+  }
 }
 
 .updateCart {
@@ -126,11 +137,6 @@ export default {
 }
 
 #shop-button {
-  width: 5em;
-  height: 5em;
-  border-radius: 1em;
-  border: 1px solid #000;
-  margin: 0.2em;
   cursor: pointer;
   float: right;
   position: relative;
