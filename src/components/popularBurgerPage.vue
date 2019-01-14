@@ -4,7 +4,7 @@
     <div class = "container">
       <p class = "numberOfPopularity one">(#1)<p/>
       <p class = "displayPopularBurger first">(most popular burger)<p/>
-      <button class = "burgerButton firstButton">select/order</button>
+      <button class = "burgerButton firstButton">select/order{{idSeparate(534501)}}</button>
       <p class = "numberOfPopularity two">(#2)<p/>
       <p class = "displayPopularBurger second">(second most popular burger)<p/>
       <button class = "burgerButton secondButton">select/order</button>
@@ -26,7 +26,31 @@ export default {
   props: {
     uiLabels: Object,
     lang: String,
+    burgerCombos: Object,
+    ingredients: Array,
     step: Number,
+  },
+  watch: {
+    burgerCombos: function (){
+      console.log("popBurPage: wow burgerCombos förändrades!!!!")
+      //när burgerCombos förändras.
+    }
+  },
+  methods: {
+    idSeparate: function(aThing){
+      //var idString = "534501"; // 53 45 01
+      var idString = aThing+"";
+      var idArray = idString.split("");
+      var slicedArray = [];
+      var joinedIdArray = [];
+      var result = [];
+      for (let i = 0; i < idString.length; i = i +2) {
+        slicedArray.push(idArray.slice(0+i, 2+i));
+        joinedIdArray.push(slicedArray[i/2].join());
+        result[i/2] = joinedIdArray[i/2].replace(/,/g,"");
+      }
+      return result;
+    }
   }
 }
 </script>

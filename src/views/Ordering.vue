@@ -140,6 +140,8 @@
    <popularBurgerPage
      class="menupage"
      :ui-labels="uiLabels"
+     :burgerCombos="burgerCombos"
+     :ingredients="ingredients"
      :lang="lang"
      v-on:menuPage="newPage(2)"
      >

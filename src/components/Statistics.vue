@@ -73,7 +73,7 @@
 export default {
   name: 'Statistics',
   props: {
-    orders: Object,
+    orders: Object, //från shared
     ingredients: Array,
     uiLabels: Object,
     lang: String
@@ -92,6 +92,7 @@ export default {
       this.sauces = this.sortData(this.sauces);
       this.breads = this.sortData(this.breads);
       console.log("watched");
+      this.$store.state.socket.emit('combo', this.pattys)
     }
   },
   data: function () {
