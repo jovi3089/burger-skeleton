@@ -15,7 +15,11 @@
         <dl
         v-for="index in orders.length"
         :key="index">
-          <dt style="font-weight:bold">Hamburger {{index}}: <span class="cart-price">{{getPrice(index-1)}}:-</span></dt>
+          <dt style="font-weight:bold">
+            <button class="remove-burg">
+              <i class="fa fa-times fa-2x"></i>
+            </button> {{uiLabels.hamburger}} {{index}}: <span class="cart-price">{{getPrice(index-1)}}:-</span>
+          </dt>
           <dd><span class="cart-order">{{getOrder(index)}}</span></dd>
         </dl>
       </div>
@@ -199,16 +203,21 @@ export default{
 }
 
 dt {
-  padding-left: 3em;
+  padding-left: 1em;
 }
 
 .cart-order {
-  padding-right: 2em;
+  padding-right: 3em;
 }
 
 .cart-price {
   float: right;
   padding-right: 1em;
+}
+
+.remove-burg {
+  float: left;
+  color: #ea9999ff;
 }
 
 </style>
