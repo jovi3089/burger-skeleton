@@ -304,16 +304,22 @@ export default {
     cancelOrder: function (toPage) {
       this.setToZero();
       this.resetCategory();
+      this.restartMode();
+      this.footerBoolean = false;
       switch (toPage) {
         case 1: this.newPage(1)
         break;
         case 2: this.newPage(2)
         break;
       }
+    },
+    restartMode: function () {
       this.clickedOn1 = "orangeBorder";
       this.clickedOn5 = "greenBorder";
       this.clickedOn6 = "purpleBorder";
-      this.footerBoolean = false;
+      this.burgerCategory = 4;
+      this.sideCategory = 5;
+      this.beverageCategory = 6;
     },
     addToOrder (item) {
       this.chosenIngredients.push(item);
@@ -375,7 +381,7 @@ export default {
         this.footerBoolean = false;
       }
       this.resetCategory();
-      this.clickedOn1 = "orangeBorder";
+      this.restartMode();
      },
 
     showCart: function() {

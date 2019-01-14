@@ -32,10 +32,14 @@
       </button>
     </label>
     <label>
-      <button class="button" id="buttonpopular" v-on:click="menuPush(2)"> {{ uiLabels.popularBurger }}</button>
+      <button class="button" id="buttonpopular" v-on:click="menuPush(2)">
+        <div class="button-font">{{ uiLabels.popularBurger }}</div>
+      </button>
     </label>
     <label>
-      <button class="button" id="buttonrandom" v-on:click="menuPush(3)"> {{ uiLabels.randomBurger }}</button>
+      <button class="button" id="buttonrandom" v-on:click="menuPush(3)">
+        <div class="button-font">{{ uiLabels.randomBurger }}</div>
+      </button>
     </label>
   </div>
   </div>
@@ -119,6 +123,7 @@ export default {
   width: 10em;
   height: 2em;
   color: black;
+  font-size: 2em;
   /*padding: 15px 32px;*/
   text-align: center;
   text-decoration: none;
@@ -128,8 +133,9 @@ export default {
 }
 
 .button-font {
-  font-size: 1em;
+  font-size: 0.8em;
 }
+
 
 .buttonmenu {
   width: 2em;

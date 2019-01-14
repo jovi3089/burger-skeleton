@@ -26,13 +26,19 @@
 </div>
   <div>
     <label>
-      <button class="button" id="buttonburg" v-on:click="menuPush(1)"> {{ uiLabels.hamburger }}</button>
+      <button class="button" id="buttonburg" v-on:click="menuPush(1)">
+        <div class="button-font">{{ uiLabels.hamburger }}</div>
+      </button>
     </label>
     <label>
-      <button class="button" id="buttonside" v-on:click="menuPush(2)"> {{ uiLabels.sides }}</button>
+      <button class="button" id="buttonside" v-on:click="menuPush(2)">
+        <div class="button-font">{{ uiLabels.sides }}</div>
+      </button>
     </label>
     <label>
-      <button class="button" id="buttonbev" v-on:click="menuPush(3)"> {{ uiLabels.beverage }}</button>
+      <button class="button" id="buttonbev" v-on:click="menuPush(3)">
+        <div class="button-font">{{ uiLabels.beverage }}</div>
+      </button>
     </label>
   </div>
   </div>
@@ -131,6 +137,10 @@ export default {
   margin: auto auto;
 }
 
+.button-font {
+  font-size: 0.8em;
+}
+
 .buttonmenu {
   width: 2em;
   height: 2em;
@@ -147,7 +157,7 @@ export default {
   }
 
   .button{
-    font-size: 3.5em;
+    font-size: 2em;
   }
 }
 
