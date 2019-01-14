@@ -7,10 +7,13 @@
     </button>
   </div>
 <div class="menu updateshopping">
-    <div class="updateCart" id="new-burger" v-show="showNumber()">
-      <div class="number-style">{{burgerAmount}}</div>
-    </div>
-
+    <transition name="flash-the-number">
+      <div v-show="doTheThing()">
+        <div class="updateCart" id="new-burger" v-show="showNumber()">
+          <div class="number-style">{{burgerAmount}}</div>
+        </div>
+      </div>
+    </transition>
     <button class="buttonmenu" id="invisible-button" v-show="!showNumber()">
     </button>
 
@@ -44,6 +47,7 @@ export default {
     uiLabels: Object,
     lang: String,
     step: Number,
+    
     burgerAmount: Number,
     totalPrice: Number
   },
@@ -76,6 +80,9 @@ export default {
     },
     showNumber: function () {
       return this.burgerAmount !== 0;
+    },
+    doTheThing(): function (){
+
     }
   }
 }
@@ -210,6 +217,16 @@ export default {
 .place-text {
   font-weight: bold;
   font-size: 0.5em;
+}
+
+.flash-the-number-enter-active{
+  transition: all 0.5s;
+}
+
+.flash-the-number-leave-active{}
+
+.flash-the-number-enter, .flash-the-number-leave-to{
+  transform: scale(10);
 }
 
 </style>
