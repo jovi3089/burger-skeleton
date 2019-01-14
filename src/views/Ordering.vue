@@ -23,7 +23,6 @@
     </transition>
 
     <div v-show = "step===0">
-      <button v-on:click="newPage(9)">Lol</button>
       <StartingPage
         :ui-labels="uiLabels"
         :lang="lang"
