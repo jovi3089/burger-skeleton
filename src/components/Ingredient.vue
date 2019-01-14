@@ -50,8 +50,9 @@ export default {
    /*background-image: url('~@/assets/exampleImage.jpg');*/
    color: black;
    margin: auto auto;
-   width: 5em;
-   height: 5em;
+   font-size: 0.8em;
+   width: 6.5em;
+   height: 6.5em;
    display: flex;
    flex-wrap: wrap;
    flex-direction: column;
@@ -59,7 +60,6 @@ export default {
  }
 
  .textdesign {
-   font-size: 0.8em;
    word-wrap: break-word;
    text-align: center;
    margin: auto;
@@ -67,6 +67,12 @@ export default {
 
  .ingredientdesign {
  }
+
+@media screen and (min-width: 600px){
+  .ingredient{
+    font-size: 1.2em;
+  }
+}
 
  button {
    width: 3em;

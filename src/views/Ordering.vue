@@ -111,7 +111,7 @@
                       <!--    lägg till styling på shoppingcart      -->
      <div v-show ="step===5">
        <div class="category-buttons">
-        <button class="buttonmenu exitbutton" v-on:click="cancelOrder(2)"><i class="fa fa-arrow-left" style="font-size: 20px;"></i></button>
+        <button class="buttonmenu exitbutton" v-on:click="cancelOrder(2)"><i class="fa fa-arrow-left fa-2x"></i></button>
         <button class="buttonmenu button-one" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
         <button class="buttonmenu button-two" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
         <button class="buttonmenu button-three" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
@@ -549,6 +549,13 @@ template {
 }
 
 @media screen and (min-width: 600px){
+   .ingredients-grid{
+     grid-template-columns: repeat(4, 11em);
+   }
+  .buttonmenu{
+    font-size: 1.5em;
+  }
+
   .footer{
     font-size: 1.9em;
   }

@@ -19,7 +19,7 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Lato');
 body{
   margin: 0 0 0 0;
- font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 /*
 body {
