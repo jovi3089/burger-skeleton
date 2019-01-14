@@ -1,14 +1,13 @@
 <template>
   <div class="root">
     <div class="homePage" v-show = "page===0">  <!--Home page for staff -->
-
-          <StaffHomePage
-          v-on:workFlow="changePage(1)"
-          v-on:saldo="changePage(2)"
-          v-on:statistics="changePage(3)"
-          :ui-labels="uiLabels"
-          :lang="lang">
-          </StaffHomePage>
+      <StaffHomePage
+        v-on:workFlow="changePage(1)"
+        v-on:saldo="changePage(2)"
+        v-on:statistics="changePage(3)"
+        :ui-labels="uiLabels"
+        :lang="lang">
+      </StaffHomePage>
     </div>
 
     <div class="work" v-show = "page===1">  <!--Work flow for orders-->
@@ -90,6 +89,7 @@
     </div>
 
     <div v-show = "page===3">  <!--Product statistics -->
+
       <Statistics
       :orders="orders"
       :ingredients="ingredients"
@@ -97,7 +97,6 @@
       :lang="lang"
       >
       </Statistics>
-
       <label>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <button id="backButton" v-on:click="changePage(0)">
@@ -105,8 +104,6 @@
         </button>
       </label>
     </div>
-
-
 
   </div>
 </template>

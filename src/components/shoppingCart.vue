@@ -6,15 +6,16 @@
       </div>
 
       <div class="shopb">
-        <li
+        <dl
         v-for="index in orders.length"
         :key="index">
-          {{getOrder(index)}}
-        </li>
+          <dt style="font-weight:bold">Hamburger {{index}}: <span class="cart-price">{{getPrice(index-1)}}:-</span></dt>
+          <dd><span class="cart-order">{{getOrder(index)}}</span></dd>
+        </dl>
       </div>
       <div class="shopc">
         <div>
-          <span style="font-weight:bold">{{uiLabels.totalPrice}}</span><span> {{ totalPrice }}:-</span>
+          <span style="font-weight:bold">{{uiLabels.totalPrice}} {{ totalPrice }}:-</span>
         </div>
         <br>
         <button class="footerbutton" v-on:click="placeOrder()">
@@ -39,7 +40,8 @@ export default{
       lang: String,
       orderId: String,
       totalPrice: Number,
-      orders: Array
+      orders: Array,
+      price: Array
     },
     data: function () {
     return {
@@ -53,9 +55,12 @@ export default{
       placeOrder: function(){
         this.$emit('placeOrder');
       },
+      getPrice: function (ind) {
+        var orderPrice = this.price[ind];
+        return orderPrice;
+      },
       getOrder: function(ind) {
         var numOfItems = this.orders[ind-1].length;
-        console.log(numOfItems);
         var order = this.orders[ind-1];
         var ans = "";
         for (var i = 0; i < numOfItems; i++) {
@@ -72,20 +77,21 @@ export default{
           else{
             switch(this.lang){
               case "en":
-                ans = ans + ", " + order[i].ingredient_en
+                ans = ans + " + " + order[i].ingredient_en
               break;
               case "sv":
-                ans = ans + ", " + order[i].ingredient_sv
+                ans = ans + " + " + order[i].ingredient_sv
               break;
             }
           }
         }
         return ans;
-      },
-    },
+      }
+    }
 }
 </script>
 <style scoped>
+
 .root{
   height: 92vh;
   width: 100%;
@@ -147,4 +153,18 @@ export default{
   cursor: pointer;
   font-weight: bold;
 }
+
+dt {
+  padding-left: 3em;
+}
+
+.cart-order {
+  padding-right: 2em;
+}
+
+.cart-price {
+  float: right;
+  padding-right: 1em;
+}
+
 </style>

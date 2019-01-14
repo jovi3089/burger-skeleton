@@ -1,8 +1,12 @@
 <template>
   <div class="hamburgerpage">
     <div class="hamburger top">
-    <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
+    <button class="updateCart" v-on:click="showCart" id="shop-button">
       <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
+    </button>
+    <div class="updateCart" id="new-burger" v-show="showNumber()"><div class="number-style">{{burgerAmount}}</div></div>
+    <button class="buttonmenu" id="order-button" v-show="showNumber()" v-on:click="placeOrder()">
+      <b>{{uiLabels.placeOrder}}: </b> <span>{{totalPrice}}:-</span>
     </button>
     <button v-on:click="menuPush(4)" class="buttonmenu" id="cancel">
       <i class="fa fa-arrow-left" style="font-size: 20px;"></i>
@@ -27,7 +31,9 @@ export default {
   props: {
     uiLabels: Object,
     lang: String,
-    step: Number
+    step: Number,
+    burgerAmount: Number,
+    totalPrice: Number
   },
   data: function () {
     return {
@@ -42,16 +48,22 @@ export default {
       switch (menuChoice) {
         case 1: this.$emit('designBurger')
         break;
-        case 2: this.$emit('side')
+        case 2: this.$emit('popularBurger')
         break;
-        case 3: this.$emit('beverage')
+        case 3: this.$emit('randomBurger')
         break;
         case 4: this.$emit('menuPage')
         break;
       }
     },
+    placeOrder: function(){
+      this.$emit('placeOrder');
+    },
     showCart: function(){
       this.$emit('cartClick')
+    },
+    showNumber: function () {
+      return this.burgerAmount !== 0;
     }
   }
 }
@@ -101,8 +113,40 @@ export default {
   border-radius: 1em;
   border: 1px solid #000;
   margin: 0.2em;
-  float: right;
   cursor: pointer;
+}
+
+.updateCart {
+  position: absolute;
+}
+
+#shop-button {
+  width: 5em;
+  height: 5em;
+  border-radius: 1em;
+  border: 1px solid #000;
+  margin: 0.2em;
+  cursor: pointer;
+  float: right;
+  position: relative;
+  z-index: 1;
+}
+
+#new-burger {
+  z-index: 1;
+  margin-left: 13.5em;
+  margin-top: 2.6em;
+  border: 1px solid #000;
+  border-radius: 50%;
+  background-color: #ea9999ff;
+  width: 1.2em;
+  height: 1.2em;
+  text-align: center;
+}
+
+.number-style {
+  color: black;
+  font-size: 12pt;
 }
 
 #buttondesign {
@@ -120,4 +164,10 @@ export default {
 #cancel {
   float: left;
 }
+
+#order-button {
+  background: #93c47dff;
+  width: 14em;
+}
+
 </style>

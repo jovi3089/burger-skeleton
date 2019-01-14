@@ -9,49 +9,57 @@
       </div>
         <div class="list a">
           <div
-          v-for="(number, key) in breads"
+          v-for="item in breads"
           >
-            <p>{{findProduct(key)}}: {{number}}</p>
+            <p>{{findProduct(item[0])}}: {{item[1]}}</p>
           </div>
         </div>
         <div class="title B">
           <p class="headerCategory">{{uiLabels.burgerPatty}}</p>
         </div>
         <div class="list b">
-          <div>
-            <p>{{ingredients}}</p>
+          <div
+          v-for="item in pattys"
+          >
+            <p>{{findProduct(item[0])}}: {{item[1]}}</p>
           </div>
         </div>
         <div class="title C">
           <p class="headerCategory">{{uiLabels.burgerTopping}}</p>
         </div>
         <div class="list c">
-          <div>
-            <p>produkt</p>
+          <div
+          v-for="item in toppings"
+          >
+            <p>{{findProduct(item[0])}}: {{item[1]}}</p>
           </div>
         </div>
         <div class="title D">
           <p class="headerCategory">{{uiLabels.burgerSauce}}</p>
         </div>
         <div class="list d">
-          <div>
-            <p>hellu</p>
+          <div
+          v-for="item in sauces">
+            <p>{{findProduct(item[0])}}: {{item[1]}}</p>
           </div>
         </div>
         <div class="title E">
           <p class="headerCategory">{{uiLabels.sideOptions}}</p>
         </div>
         <div class="list e">
-          <div>
-            <p>hellu</p>
+          <div
+          v-for="item in sides"
+          >
+            <p>{{findProduct(item[0])}}: {{item[1]}}</p>
           </div>
         </div>
         <div class="title F">
           <p class="headerCategory">{{uiLabels.statisticsCombo}}</p>
         </div>
         <div class="list f">
-          <div>
-            <p>produkt</p>
+          <div
+          v-for="order in orders">
+            <p>{{order}}</p>
           <!--<div v-if="this.containsInfo===true">
             <p>descendCategories();</p></div>
               {{descArray}}-->
@@ -70,36 +78,150 @@ export default {
     uiLabels: Object,
     lang: String
   },
-
+  watch: {
+    orders: function () {
+      this.resetData();
+      var obj = this.orders;
+      this.pattysCount(obj);
+      this.toppingsCount(obj);
+      this.saucesCount(obj);
+      this.breadCount(obj);
+      this.sidesCount(obj);
+      this.pattys = this.sortData(this.pattys);
+      this.toppings = this.sortData(this.toppings);
+      this.sauces = this.sortData(this.sauces);
+      this.breads = this.sortData(this.breads);
+      console.log("watched");
+    }
+  },
   data: function () {
     //keys represent ingredients_id, value is number represented in orders
     return {
-      pattys: {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0},
-      toppings: {11: 0, 12: 0, 13: 0, 14: 0, 15: 0, 16: 0, 17: 0, 18: 0, 19: 0, 20: 0,
-                 21: 0, 22: 0, 23: 0, 24: 0, 25: 0, 26: 0, 27: 0, 28: 0, 29: 0, 30: 0,
-                 31: 0, 32: 0, 33: 0, 34: 0},
-      sauces: {35: 0, 36: 0, 37: 0, 38: 0, 39: 0,40: 0, 41: 0, 42: 0, 43: 0, 44: 0,
-               45: 0, 46: 0, 47: 0, 48: 0, 49: 0},
-      breads: {50: 0, 51: 0, 52: 0, 53: 0},
-      sides: {54: 0, 55: 0, 56: 0},
+      pattys: [[1, 0], [2, 0], [3, 1], [4, 0], [5, 0], [6, 0], [7, 0], [8, 0], [9, 0], [10, 0]],
+      toppings: [[11, 0], [12, 0], [13, 1], [14, 0], [15, 0], [16, 0], [17, 0], [18, 0], [19, 0], [20, 0],
+                 [21, 0], [22, 0], [23, 0], [24, 0], [25, 0], [26, 0], [27, 0], [28, 0], [29, 0], [30, 0],
+                 [31, 0], [32, 0], [33, 0], [34, 0]],
+      sauces: [[35, 0], [36, 0], [37, 1], [38, 0], [39, 0], [40, 0], [41, 0], [42, 0], [43, 0], [44, 0],
+               [45, 0], [46, 0], [47, 0], [48, 0], [49, 0]],
+      breads: [[50, 0], [51, 1], [52, 0], [53, 0]],
+      sides: [[54, 0], [55, 0], [56, 0]],
       combos: {}
     }
   },
 
-  methods:{
+  methods: {
     findProduct: function (id) {
-      console.log("id: ");
-      console.log(id);
-      console.log("this.ingredients.length: ");
-      console.log(this.ingredients.length);
       for (var i = 0; i < this.ingredients.length; i++) {
-        console.log("this.ingredients[i].ingredient_id: ");
-        console.log(this.ingredients[i].ingredient_id);
         if (parseInt(this.ingredients[i].ingredient_id) === parseInt(id)) {
           var ans = this.ingredients[i].ingredient_en;
           return ans;
         }
       }
+    },
+    sortData: function(data) {
+      data.sort(function(first, second) {
+        return second[1] - first[1];
+      });
+      return data;
+    },
+    pattysCount: function (orders) {
+      var i = 0;
+      for (var key in orders) {
+        i += i;
+        var oneOrder = orders[key].ingredients;
+        for (var i = 0; i < oneOrder.length; i++) {
+          var orderInOrder = oneOrder[i];
+          for (var ind in orderInOrder) {
+            if(orderInOrder[ind].category === 1){
+              var index = this.findIndex(orderInOrder[ind].ingredient_id, this.pattys);
+              this.pattys[index][1] = this.pattys[index][1] + 1;
+            }
+          }
+        }
+      }
+    },
+    toppingsCount: function (orders) {
+      var i = 0;
+      for (var key in orders) {
+        i += i;
+        var oneOrder = orders[key].ingredients;
+        for (var i = 0; i < oneOrder.length; i++) {
+          var orderInOrder = oneOrder[i];
+          for (var ind in orderInOrder) {
+            if(orderInOrder[ind].category === 2){
+              var index = this.findIndex(orderInOrder[ind].ingredient_id, this.toppings);
+              this.toppings[index][1] = this.toppings[index][1] + 1;
+            }
+          }
+        }
+      }
+    },
+    saucesCount: function (orders) {
+      var i = 0;
+      for (var key in orders) {
+        i += i;
+        var oneOrder = orders[key].ingredients;
+        for (var i = 0; i < oneOrder.length; i++) {
+          var orderInOrder = oneOrder[i];
+          for (var ind in orderInOrder) {
+            if(orderInOrder[ind].category === 3){
+              var index = this.findIndex(orderInOrder[ind].ingredient_id, this.sauces);
+              this.sauces[index][1] = this.sauces[index][1] + 1;
+            }
+          }
+        }
+      }
+    },
+    breadCount: function (orders) {
+      var i = 0;
+      for (var key in orders) {
+        i += i;
+        var oneOrder = orders[key].ingredients;
+        for (var i = 0; i < oneOrder.length; i++) {
+          var orderInOrder = oneOrder[i];
+          for (var ind in orderInOrder) {
+            if(orderInOrder[ind].category === 4){
+              var index = this.findIndex(orderInOrder[ind].ingredient_id, this.breads);
+              this.breads[index][1] = this.breads[index][1] + 1;
+            }
+          }
+        }
+      }
+    },
+    sidesCount: function (orders) {
+      var i = 0;
+      for (var key in orders) {
+        i += i;
+        var oneOrder = orders[key].ingredients;
+        for (var i = 0; i < oneOrder.length; i++) {
+          var orderInOrder = oneOrder[i];
+          for (var ind in orderInOrder) {
+            if(orderInOrder[ind].category === 5){
+              var index = this.findIndex(orderInOrder[ind].ingredient_id, this.sides);
+              this.sides[index][1] = this.sides[index][1] + 1;
+            }
+          }
+        }
+      }
+    },
+    findIndex: function (id, array) {
+      for (var i = 0; i <array.length; i++) {
+        if (array[i][0] === id) {
+          return i;
+        }
+      }
+    },
+    resetData: function () {
+      this.pattys = [[1, 0], [2, 0], [3, 1], [4, 0], [5, 0], [6, 0], [7, 0], [8, 0], [9, 0], [10, 0]];
+      this.toppings = [[11, 0], [12, 0], [13, 1], [14, 0], [15, 0], [16, 0], [17, 0], [18, 0], [19, 0], [20, 0],
+                 [21, 0], [22, 0], [23, 0], [24, 0], [25, 0], [26, 0], [27, 0], [28, 0], [29, 0], [30, 0],
+                 [31, 0], [32, 0], [33, 0], [34, 0]];
+      this.sauces = [[35, 0], [36, 0], [37, 1], [38, 0], [39, 0], [40, 0], [41, 0], [42, 0], [43, 0], [44, 0],
+               [45, 0], [46, 0], [47, 0], [48, 0], [49, 0]];
+      this.breads = [[50, 0], [51, 1], [52, 0], [53, 0]];
+      this.sides = [[54, 0], [55, 0], [56, 0]];
+      this.combos = {};
+
     }
   }
 }

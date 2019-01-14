@@ -56,5 +56,7 @@
   "shoppingCartContent" : "Din beställning",
   "shoppingCartFooter" : "Fortsätt",
   "shoppingCartTitle" : "Kundkorg",
-  "statisticsCombo": "Kombinitiaoner"
+  "statisticsCombo": "Kombinitiaoner",
+  "ourMostPopularBurgers": "Våra mest populära burgare",
+  "lastPage" : "Tack för din beställning!"
 }

@@ -82,11 +82,13 @@ export default {
 .wrapper{
   display: flex;
   justify-content: center;
+  height: 80%;
 }
 
 .langwrapper{
   display: flex;
   flex-direction: row-reverse;
+  height: 20%;
 }
 
 
