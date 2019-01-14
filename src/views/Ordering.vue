@@ -155,7 +155,7 @@
      >
    </randomBurgerPage>
  </div>
-  </div>
+
   <div id="last-page-wrapper">
     <transition name="last-page">
       <div v-show="step===9" class="lastPage">
@@ -163,6 +163,7 @@
         <button v-on:click="newPage(0)">whoa</button>
       </div>
     </transition>
+  </div>
   </div>
   <div class="footer" v-show="footerBoolean">
     <span>{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
@@ -247,7 +248,7 @@ export default {
     newPage: function(toPage){
       this.step = toPage;
       this.showFooter();
-      if(toPage === 0){
+      if(toPage === 0 || toPage === 9){
         this.setToZero();
       }
     },
@@ -287,7 +288,8 @@ export default {
       //console.log('hej');
     },
     showFooter: function () {
-      if (!this.showCartState && (this.step === 5 || this.step === 3 || this.step === 4)) {
+      if (!this.showCartState && (this.step === 5 || this.step === 3 ||
+         this.step === 4)) {
         this.footerBoolean = true;
       }
     },
@@ -343,8 +345,11 @@ export default {
       };
 
       this.$store.state.socket.emit('order', order);
-      console.log("emitting 'order' object");
-      if(this.shoppingCart.length > 0){
+
+      if (this.shoppingCart.length > 0 && !this.showCartState) {
+        this.newPage(9);
+      }
+      else if (this.shoppingCart.length > 0) {
         this.showCart();
         this.newPage(9);
       }
@@ -384,18 +389,18 @@ export default {
      },
 
     showCart: function() {
-        if (this.showCartState === false) {
-            this.showCartState = true;
-            if (this.step === 5 || this.step === 3 || this.step === 4){
-              this.footerBoolean = false;
-            }
+      if (this.showCartState === false && (this.step !== 1 || this.step !== 2)) {
+        this.showCartState = true;
+        if (this.step === 5 || this.step === 3 || this.step === 4) {
+          this.footerBoolean = false;
         }
-        else {
-            this.showCartState = false;
-            if (this.step === 5 || this.step === 3 || this.step === 4){
+      }
+      else {
+        this.showCartState = false;
+          if (this.step === 5 || this.step === 3 || this.step === 4){
               this.footerBoolean = true;
-            }
-        }
+          }
+      }
         //console.log("click! i'm showing: "+this.showCartState)
     }
   }
