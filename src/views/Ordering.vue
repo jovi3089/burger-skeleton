@@ -551,6 +551,7 @@ template {
   border: 1px solid #000;
   margin-top: -1em;
   cursor: pointer;
+  font-family: inherit;
 }
 
 @media screen and (min-width: 600px){
