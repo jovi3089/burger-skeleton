@@ -217,7 +217,9 @@ dt {
 
 .remove-burg {
   float: left;
-  color: #ea9999ff;
+  color: #e06666ff;
+  background-color: lightgrey;
+  border-style: none;
 }
 
 </style>
