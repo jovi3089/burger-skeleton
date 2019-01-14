@@ -157,7 +157,7 @@ export default {
   }
 
   .button{
-    font-size: 2em;
+    font-size: 3.5em;
   }
 }
 
