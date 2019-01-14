@@ -414,6 +414,7 @@ body{
   justify-content: center;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 22vh;
+  font-family: inherit;
 }
 
 .ordering-pages {
@@ -471,6 +472,7 @@ template {
   border: 1px solid #000;
   margin: 0.2em;
   cursor: pointer;
+  font-family: inherit;
 }
 
 .button-one {
@@ -533,15 +535,13 @@ template {
   bottom: 0;
   padding: 0.1em;
   background-color: #ccc;
-  font-weight: bold;
   font-size: 1.1em;
 }
 
 .footerbutton {
-  font-weight: bold;
   font-size: 1em;
   width: 60%;
-  height: 4em;
+  height: 3em;
   border-radius: 1em;
   border: 1px solid #000;
   margin-top: -1em;

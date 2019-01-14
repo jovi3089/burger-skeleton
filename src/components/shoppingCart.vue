@@ -5,7 +5,7 @@
         <!-- <button class="buttonmenu" id="cancel-button">
           <i class="fa fa-times fa-2x"></i>
         </button> -->
-          <span id="title-span">{{uiLabels.shoppingCartContent}}</span>
+          <div id="title-span">{{uiLabels.shoppingCartContent}}</div>
           <button class="buttonmenu" id="the-close-button" v-on:click="close()">
             <i class="fa fa-shopping-cart fa-2x"></i>
           </button>
@@ -108,6 +108,7 @@ export default{
   height: 100%;
   width: 100%;
   display: grid;
+  justify-content: center;
   grid-template-columns: 100%;
   grid-template-rows: auto 80% auto;
   padding: 0 0 0 0;
@@ -120,6 +121,9 @@ export default{
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  display: grid;
+  grid-template-columns: 2fr;
+  grid-template-rows: 1fr;
 }
 .shopb{
   grid-column: 1;
@@ -144,11 +148,12 @@ export default{
 .footerbutton {
   width: 12em;
   height: 4em;
-  border-radius: 0.5em;
+  border-radius: 0.8em;
   border: 1px solid #000;
   margin: 0.5em;
   cursor: pointer;
   font-weight: bold;
+  font-family: inherit;
 }
 
 .buttonmenu {
@@ -159,6 +164,7 @@ export default{
   margin: 0.2em;
   margin-right: 4em;
   cursor: pointer;
+  grid-column: 2;
 }
 
 #the-close-button{
@@ -185,6 +191,8 @@ export default{
 #title-span{
   font-size: large;
   margin-top: auto;
+  grid-column: 1;
+  margin: auto auto;
 }
 
 dt {
