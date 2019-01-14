@@ -93,6 +93,8 @@ export default {
   display: flex;
   flex-direction: row-reverse;
   height: 20%;
+  margin-right: 5px;
+  margin-top: 5px;
 }
 
 
@@ -143,6 +145,13 @@ export default {
   font-size: 2em;
   margin-top: 50%;
   font-family: inherit;
+}
+
+@media screen and (min-width: 600px){
+  #toorderpagebutton{
+    font-size: 4em;
+    margin-top: 40%;
+  }
 }
 
   /*transition: 0.5s ease;
