@@ -341,7 +341,7 @@ export default {
       console.log("emitting 'order' object");
       if(this.shoppingCart.length > 0){
         this.showCart();
-        this.newPage(6);
+        this.newPage(9);
       }
 
       this.price = 0;
