@@ -23,7 +23,7 @@ export default {
   props: {
     uiLabels: Object,
     lang: String,
-    step: Number,
+    step: Number
   },
 
   data: function () {
