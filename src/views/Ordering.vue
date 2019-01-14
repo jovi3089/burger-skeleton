@@ -422,6 +422,12 @@ body{
   font-family: inherit;
 }
 
+@media screen and (max-height:99vh){
+  #ordering{
+    background-color: blue;
+  }
+}
+
 .ordering-pages {
   grid-column: 1;
   grid-row: 1;
