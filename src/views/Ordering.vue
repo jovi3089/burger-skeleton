@@ -426,6 +426,7 @@ body{
 }
 
 #ordering {
+  background-color: lightgrey;
   margin:auto;
   max-width: 40em; /*sidan skalas om när fönstret minskas*/
   text-align: center;
