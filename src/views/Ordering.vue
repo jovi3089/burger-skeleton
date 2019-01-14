@@ -65,13 +65,10 @@
       </HamburgerPage>
     </div>
 
-    <div v-show="!showCartState">
+    <div class="ordering-pages" v-show="!showCartState">
       <div v-show="step===3">
         <button class="buttonmenu" id="exitbutton" v-on:click="cancelOrder()"><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
         <button class="buttonmenu" v-bind:class="clickedOn5" v-on:click="changeCategory(5)">{{ uiLabels.sideOptions }}</button>
-        <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
-          <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
-        </button>
         <p class="categoryText" v-show="!showCartState" v-if="sideCategory===5">{{ uiLabels.chooseSide }}</p>
         <div class="ingredients-grid">
           <Ingredient
@@ -92,9 +89,6 @@
       <div v-show="step===4">
         <button class="buttonmenu" id="exitbutton" v-on:click="cancelOrder()"><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
         <button class="buttonmenu" v-bind:class="clickedOn6" v-on:click="changeCategory(6)">{{ uiLabels.beverageOptions }}</button>
-        <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
-          <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
-        </button>
         <p class="categoryText" v-show="!showCartState" v-if="beverageCategory===6">{{ uiLabels.chooseBev }}</p>
         <div class="ingredients-grid">
             <Ingredient
@@ -117,29 +111,24 @@
       <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
       <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
       <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory(3)">{{ uiLabels.burgerSauce }}</button>
-      <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
-        <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
-      </button>
       <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===1">{{ uiLabels.choosePatty }}</p>
       <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===2">{{ uiLabels.chooseTopping }}</p>
       <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===4">{{ uiLabels.chooseBread }}</p>
       <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===3">{{ uiLabels.chooseSauce }}</p>
-        <div class="ingredients grid5">
-          <div class="ingredients-grid">
-              <Ingredient
-                ref="ingredient"
-                v-for="item in ingredients"
-                v-if="item.category===burgerCategory"
-                v-on:increment="addToOrder(item)"
-                v-on:decrease="deleteFromOrder(item)"
-                v-on:highlight="activateDesign()"
-                :item="item"
-                :lang="lang"
-                :key="item.ingredient_id">
-              </Ingredient>
-          </div>
+        <div class="ingredients-grid">
+          <Ingredient
+          ref="ingredient"
+          v-for="item in ingredients"
+          v-if="item.category===burgerCategory"
+          v-on:increment="addToOrder(item)"
+          v-on:decrease="deleteFromOrder(item)"
+          v-on:highlight="activateDesign()"
+          :item="item"
+          :lang="lang"
+          :key="item.ingredient_id">
+          </Ingredient>
+        </div>
       </div>
-    </div>
 
   <div v-show="step===6">
    <popularBurgerPage
@@ -397,19 +386,14 @@ export default {
   display: grid;
   justify-content: center;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  /*margin-bottom: 20em;*/
+  grid-template-rows: 1fr 22vh;
 }
 
-.ingredients {
-  padding: 0 0 0;
-  width: 100%;
-  overflow-y: scroll;
-}
-
-.grid5 {
+.ordering-pages {
   grid-column: 1;
   grid-row: 1;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
 }
 
 .orderItem {
@@ -427,7 +411,8 @@ export default {
 .ingredients-grid {
  display: grid;
  grid-template-columns: repeat(auto-fit, 7em);
- grid-gap: 1em;
+ grid-gap: 0.5em;
+ justify-content: center;
 }
 
 .menupage {
@@ -496,6 +481,7 @@ template {
 .footer {
   position: fixed;
   width: 100%;
+  height: 20vh;
   left: 0;
   bottom: 0;
   padding: 0.1em;
@@ -504,7 +490,7 @@ template {
 
 .example-panel {
   width: 100%;
-  height: 100%;
+  height: 10em;
   max-height: 100%;
   margin: 0;
   padding: 0;
