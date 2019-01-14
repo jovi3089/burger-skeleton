@@ -25,7 +25,7 @@
         </div>
         <br>
         <button class="footerbutton" v-on:click="placeOrder()">
-          {{uiLabels.placeOrder}} <i class="fa fa-arrow-right fa-2x"></i>
+          <div>{{uiLabels.placeOrder}}</div> <i class="fa fa-arrow-right fa-2x"></i>
         </button>
         <br>
       </div>

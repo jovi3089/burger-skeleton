@@ -165,9 +165,8 @@
     </transition>
   </div>
   <div class="footer" v-show="footerBoolean">
-    <br>
-    <span style="font-weight:bold">{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
-    <span style="font-weight:bold">{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
+    <span>{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
+    <span>{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
     <br><button class="footerbutton" v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
     <!--<button class="footerbutton" v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>--><br>
   </div>
@@ -304,16 +303,22 @@ export default {
     cancelOrder: function (toPage) {
       this.setToZero();
       this.resetCategory();
+      this.restartMode();
+      this.footerBoolean = false;
       switch (toPage) {
         case 1: this.newPage(1)
         break;
         case 2: this.newPage(2)
         break;
       }
+    },
+    restartMode: function () {
       this.clickedOn1 = "orangeBorder";
       this.clickedOn5 = "greenBorder";
       this.clickedOn6 = "purpleBorder";
-      this.footerBoolean = false;
+      this.burgerCategory = 4;
+      this.sideCategory = 5;
+      this.beverageCategory = 6;
     },
     addToOrder (item) {
       this.chosenIngredients.push(item);
@@ -375,19 +380,19 @@ export default {
         this.footerBoolean = false;
       }
       this.resetCategory();
-      this.clickedOn1 = "orangeBorder";
+      this.restartMode();
      },
 
     showCart: function() {
         if (this.showCartState === false) {
             this.showCartState = true;
-            if (this.step === 5 || this.step === 3 || this.step === 4) {
+            if (this.step === 5 || this.step === 3 || this.step === 4){
               this.footerBoolean = false;
             }
         }
         else {
             this.showCartState = false;
-            if (this.step === 5 || this.step === 3 || this.step === 4) {
+            if (this.step === 5 || this.step === 3 || this.step === 4){
               this.footerBoolean = true;
             }
         }
@@ -398,10 +403,12 @@ export default {
 </script>
 <style scoped>
 /* CSS: scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
+body{
+}
+
 #ordering {
   margin:auto;
   max-width: 40em; /*sidan skalas om när fönstret minskas*/
-  font-family: Helvetica, sans-serif;
   text-align: center;
   display: grid;
   justify-content: center;
@@ -496,16 +503,6 @@ template {
   margin: auto;
 }
 
-.footerbutton {
-  font-weight: bold;
-  width: 60%;
-  height: 4em;
-  border-radius: 1em;
-  border: 1px solid #000;
-  margin: 0.1em;
-  cursor: pointer;
-}
-
 .buttonmenu:hover {
   background-color: #d0e0e3ff;
 }
@@ -536,18 +533,30 @@ template {
   bottom: 0;
   padding: 0.1em;
   background-color: #ccc;
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
-.example-panel {
-  width: 100%;
-  height: 10em;
-  max-height: 100%;
-  margin: 0;
-  padding: 0;
-  position: fixed;
-  left:0;
-  top:0;
-  z-index: -2;
+.footerbutton {
+  font-weight: bold;
+  font-size: 1em;
+  width: 60%;
+  height: 4em;
+  border-radius: 1em;
+  border: 1px solid #000;
+  margin-top: -1em;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 600px){
+  .footer{
+    font-size: 1.9em;
+  }
+  .footerbutton{
+    font-size: 1em;
+    height: 2.9em;
+    margin-top: -3em;
+  }
 }
 
 #goodbye{
