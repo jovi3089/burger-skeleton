@@ -577,7 +577,7 @@ template {
   grid-row: 2;
   overflow-y: scroll;
   height: 3em;
-  padding-bottom: 0.5em;
+  padding-bottom: 0.6em;
 }
 
 ::-webkit-scrollbar {
@@ -600,7 +600,8 @@ template {
   grid-column: 1;
   grid-row: 3;
   font-weight: bold;
-  margin-bottom: 0.5em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
 }
 
 .press {
