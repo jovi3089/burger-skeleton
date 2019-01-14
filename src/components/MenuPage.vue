@@ -1,22 +1,30 @@
 <template>
-  <div class="pagemenu">
-    <div class="menu exitshopping">
+  <div>
+    <div class="pagemenu">
+    <div class="menu seeshopping">
     <button class="buttonmenu" v-on:click="showCart" id="shop-button">
       <i class="fa fa-shopping-cart fa-1x"></i>
     </button>
-
+  </div>
+<div class="menu updateshopping">
     <div class="updateCart" id="new-burger" v-show="showNumber()">
       <div class="number-style">{{burgerAmount}}</div>
     </div>
 
-    <button class="buttonmenu" id="order-button" v-show="showNumber()" v-on:click="placeOrder()">
-      <b>{{uiLabels.placeOrder}}: </b> <span>{{totalPrice}}:-</span>
+    <button class="buttonmenu" id="invisible-button" v-show="!showNumber()">
     </button>
+
+    <button class="buttonmenu" id="order-button" v-show="showNumber()" v-on:click="placeOrder()">
+      <div class="place-text">{{uiLabels.placeOrder}}: {{totalPrice}}:-</div>
+    </button>
+  </div>
+<div class="menu exitshopping">
     <button v-on:click="menuPush(4)" class="buttonmenu" id="cancel">
       <i class="fa fa-times fa-1x"></i>
     </button>
   </div>
-    <div class="menu buttons">
+</div>
+  <div>
     <label>
       <button class="button" id="buttonburg" v-on:click="menuPush(1)"> {{ uiLabels.hamburger }}</button>
     </label>
@@ -75,14 +83,16 @@ export default {
 <style scoped>
 
 .pagemenu {
-  height: 90vh;
+  height: 50vh;
   display: grid;
   justify-content: center;
-  grid-template-rows: 20% 80%);
+  grid-template-columns: 3fr;
+  grid-template-rows: 1fr;
 }
 
 .menu {
-  padding: 0 0 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .exitshopping {
@@ -90,11 +100,21 @@ export default {
   grid-row: 1;
 }
 
-.buttons {
+.updateshopping {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.seeshopping {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+/*.buttons {
   grid-column: 1;
   grid-row: 2;
   margin-top: 0;
-}
+}*/
 
 .button {
   border-radius: 0.7em;
@@ -108,7 +128,7 @@ export default {
   font-size: 2em;
   display: block;
   /*font-size: 16px;*/
-  margin: 0.1em;
+  margin: auto auto;
 }
 
 .buttonmenu {
@@ -117,8 +137,7 @@ export default {
   font-size: 2em;
   border-radius: 0.4em;
   border: 1px solid #000;
-  margin: 0.2em;
-  float: right;
+  margin: 0.1em;
   cursor: pointer;
 }
 
@@ -137,16 +156,16 @@ export default {
 }
 
 #shop-button {
-  cursor: pointer;
   float: right;
+  cursor: pointer;
   position: relative;
   z-index: 1;
 }
 
 #new-burger {
   z-index: 1;
-  margin-left: 13.5em;
-  margin-top: 2.6em;
+  margin-left: 16.7em;
+  margin-top: 3.4em;
   border: 1px solid #000;
   border-radius: 50%;
   background-color: #ea9999ff;
@@ -179,7 +198,18 @@ export default {
 
 #order-button {
   background: #93c47dff;
-  width: 14em;
+  width: 6em;
+}
+
+#invisible-button {
+  background: #fff;
+  width: 6em;
+  border-style: none;
+}
+
+.place-text {
+  font-weight: bold;
+  font-size: 0.5em;
 }
 
 </style>

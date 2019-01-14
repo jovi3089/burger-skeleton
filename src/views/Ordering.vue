@@ -60,6 +60,7 @@
       v-on:popularBurger="newPage(6)"
       v-on:randomBurger="newPage(7)"
       v-on:cartClick="showCart()"
+      v-on:placeOrder="placeOrder()"
       :totalPrice="totalPrice"
       :burgerAmount="burgerAmount">
       </HamburgerPage>
