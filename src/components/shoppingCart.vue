@@ -101,9 +101,8 @@ export default{
 }
 </script>
 <style scoped>
-
 .root{
-  height: 90vh;
+  height: 75vh;
   width: 100%;
 }
 .shopwrapper {
@@ -114,9 +113,10 @@ export default{
   display: grid;
   justify-content: center;
   grid-template-columns: 100%;
-  grid-template-rows: auto 80% auto;
+  grid-template-rows: 18% 95% 20%;
   padding: 0 0 0 0;
 }
+
 .shopa{
   grid-column: 1;
   grid-row: 1;
