@@ -2,7 +2,13 @@
   <div class="root">
     <div class="shopwrapper">
       <div class="shopa">
-          {{uiLabels.shoppingCartContent}}
+        <!-- <button class="buttonmenu" id="cancel-button">
+          <i class="fa fa-times fa-2x"></i>
+        </button> -->
+          <span id="title-span">{{uiLabels.shoppingCartContent}}</span>
+          <button class="buttonmenu" id="the-close-button" v-on:click="close()">
+            <i class="fa fa-shopping-cart fa-2x"></i>
+          </button>
       </div>
 
       <div class="shopb">
@@ -19,12 +25,9 @@
         </div>
         <br>
         <button class="footerbutton" v-on:click="placeOrder()">
-          {{uiLabels.placeOrder}}
+          {{uiLabels.placeOrder}} <i class="fa fa-arrow-right fa-2x"></i>
         </button>
         <br>
-        <button id="the-close-button" v-on:click="close()">
-          {{uiLabels.closeCart}}
-        </button>
       </div>
     </div>
   </div>
@@ -51,6 +54,9 @@ export default{
     methods: {
       close: function(){
         this.$emit('closeCart');
+      },
+      cancelOrder: function(){
+        this.$emit('cancelOrder')
       },
       placeOrder: function(){
         this.$emit('placeOrder');
@@ -93,10 +99,12 @@ export default{
 <style scoped>
 
 .root{
-  height: 92vh;
+  height: 90vh;
   width: 100%;
 }
 .shopwrapper {
+  padding-top: 2em;
+  padding-bottom: 2em;
   height: 100%;
   width: 100%;
   display: grid;
@@ -109,7 +117,6 @@ export default{
   grid-row: 1;
   border: 2px solid #a2c4c9ff;
   border-radius: 0.5em;
-  display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
@@ -144,14 +151,40 @@ export default{
   font-weight: bold;
 }
 
+.buttonmenu {
+  width: 5em;
+  height: 5em;
+  border-radius: 1em;
+  border: 1px solid #000;
+  margin: 0.2em;
+  margin-right: 4em;
+  cursor: pointer;
+}
+
 #the-close-button{
-  width: 12em;
+  background: #e5e5e5;
+  -webkit-box-shadow: inset 0px 0px 5px #000000;
+     -moz-box-shadow: inset 0px 0px 5px #000000;
+          box-shadow: inset 0px 0px 5px #000000;
+             outline: none;
+               float: right;
+         margin-left: auto
+  /* width:  4em;
   height: 4em;
   border-radius: 0.5em;
   border: 1px solid #000;
   margin: 0.5em;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: bold; */
+}
+
+#cancel-button{
+  float: left;
+}
+
+#title-span{
+  font-size: large;
+  margin-top: auto;
 }
 
 dt {

@@ -23,7 +23,6 @@
     </transition>
 
     <div v-show = "step===0">
-      <button v-on:click="newPage(9)">Lol</button>
       <StartingPage
         :ui-labels="uiLabels"
         :lang="lang"
@@ -60,18 +59,18 @@
       v-on:popularBurger="newPage(6)"
       v-on:randomBurger="newPage(7)"
       v-on:cartClick="showCart()"
+      v-on:placeOrder="placeOrder()"
       :totalPrice="totalPrice"
       :burgerAmount="burgerAmount">
       </HamburgerPage>
     </div>
 
-    <div v-show="!showCartState">
+    <div class="ordering-pages" v-show="!showCartState">
       <div v-show="step===3">
-        <button class="buttonmenu" id="exitbutton" v-on:click="cancelOrder()"><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
-        <button class="buttonmenu" v-bind:class="clickedOn5" v-on:click="changeCategory(5)">{{ uiLabels.sideOptions }}</button>
-        <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
-          <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
-        </button>
+        <div class="category-buttons">
+          <button class="buttonmenu exitbutton" id="exitbutton" v-on:click="cancelOrder(1)"><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
+          <button class="buttonmenu button-one" v-bind:class="clickedOn5" v-on:click="changeCategory(5)">{{ uiLabels.sideOptions }}</button>
+        </div>
         <p class="categoryText" v-show="!showCartState" v-if="sideCategory===5">{{ uiLabels.chooseSide }}</p>
         <div class="ingredients-grid">
           <Ingredient
@@ -90,11 +89,10 @@
       </div>
 
       <div v-show="step===4">
-        <button class="buttonmenu" id="exitbutton" v-on:click="cancelOrder()"><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
-        <button class="buttonmenu" v-bind:class="clickedOn6" v-on:click="changeCategory(6)">{{ uiLabels.beverageOptions }}</button>
-        <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
-          <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
-        </button>
+        <div class="category-buttons">
+          <button class="buttonmenu exitbutton" id="exitbutton" v-on:click="cancelOrder(1)"><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
+          <button class="buttonmenu button-one" v-bind:class="clickedOn6" v-on:click="changeCategory(6)">{{ uiLabels.beverageOptions }}</button>
+        </div>
         <p class="categoryText" v-show="!showCartState" v-if="beverageCategory===6">{{ uiLabels.chooseBev }}</p>
         <div class="ingredients-grid">
             <Ingredient
@@ -112,34 +110,31 @@
       </div>
                       <!--    lägg till styling på shoppingcart      -->
      <div v-show ="step===5">
-      <button class="buttonmenu" id="exitbutton" v-on:click="cancelOrder()"><i class="fa fa-arrow-left" style="font-size: 20px;"></i></button>
-      <button class="buttonmenu" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
-      <button class="buttonmenu" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
-      <button class="buttonmenu" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
-      <button class="buttonmenu" v-bind:class="clickedOn4" v-on:click="changeCategory(3)">{{ uiLabels.burgerSauce }}</button>
-      <button class="buttonmenu" v-on:click="showCart" id="shoppingCart">
-        <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
-      </button>
+       <div class="category-buttons">
+        <button class="buttonmenu exitbutton" v-on:click="cancelOrder(2)"><i class="fa fa-arrow-left" style="font-size: 20px;"></i></button>
+        <button class="buttonmenu button-one" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
+        <button class="buttonmenu button-two" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
+        <button class="buttonmenu button-three" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
+        <button class="buttonmenu button-four" v-bind:class="clickedOn4" v-on:click="changeCategory(3)">{{ uiLabels.burgerSauce }}</button>
+      </div>
       <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===1">{{ uiLabels.choosePatty }}</p>
       <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===2">{{ uiLabels.chooseTopping }}</p>
       <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===4">{{ uiLabels.chooseBread }}</p>
       <p class="categoryText" v-show="!showCartState" v-if="burgerCategory===3">{{ uiLabels.chooseSauce }}</p>
-        <div class="ingredients grid5">
-          <div class="ingredients-grid">
-              <Ingredient
-                ref="ingredient"
-                v-for="item in ingredients"
-                v-if="item.category===burgerCategory"
-                v-on:increment="addToOrder(item)"
-                v-on:decrease="deleteFromOrder(item)"
-                v-on:highlight="activateDesign()"
-                :item="item"
-                :lang="lang"
-                :key="item.ingredient_id">
-              </Ingredient>
-          </div>
+        <div class="ingredients-grid">
+          <Ingredient
+          ref="ingredient"
+          v-for="item in ingredients"
+          v-if="item.category===burgerCategory"
+          v-on:increment="addToOrder(item)"
+          v-on:decrease="deleteFromOrder(item)"
+          v-on:highlight="activateDesign()"
+          :item="item"
+          :lang="lang"
+          :key="item.ingredient_id">
+          </Ingredient>
+        </div>
       </div>
-    </div>
 
   <div v-show="step===6">
    <popularBurgerPage
@@ -275,12 +270,11 @@ export default {
         case 5: this.clickedOn5 = "greenBorder"
         this.sideCategory = 5
         break;
-        case 6: this.clickedOn5 = "greenBorder"
+        case 6: this.clickedOn6 = "purpleBorder"
         this.beverageCategory = 6
         break;
       }
     },
-
     resetCategory: function () {
       this.clickedOn1 = '';
       this.clickedOn2 = '';
@@ -307,9 +301,18 @@ export default {
       this.chosenIngredients = [];
       this.shoppingCart.items = [];
     },
-    cancelOrder: function () {
+    cancelOrder: function (toPage) {
       this.setToZero();
-      this.newPage(2);
+      this.resetCategory();
+      switch (toPage) {
+        case 1: this.newPage(1)
+        break;
+        case 2: this.newPage(2)
+        break;
+      }
+      this.clickedOn1 = "orangeBorder";
+      this.clickedOn5 = "greenBorder";
+      this.clickedOn6 = "purpleBorder";
       this.footerBoolean = false;
     },
     addToOrder (item) {
@@ -336,6 +339,10 @@ export default {
 
       this.$store.state.socket.emit('order', order);
       console.log("emitting 'order' object");
+      if(this.shoppingCart.length > 0){
+        this.showCart();
+        this.newPage(9);
+      }
 
       this.price = 0;
       this.totalPrice = 0;
@@ -367,6 +374,8 @@ export default {
         this.newPage(1);
         this.footerBoolean = false;
       }
+      this.resetCategory();
+      this.clickedOn1 = "orangeBorder";
      },
 
     showCart: function() {
@@ -397,19 +406,14 @@ export default {
   display: grid;
   justify-content: center;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  /*margin-bottom: 20em;*/
+  grid-template-rows: 1fr 22vh;
 }
 
-.ingredients {
-  padding: 0 0 0;
-  width: 100%;
-  overflow-y: scroll;
-}
-
-.grid5 {
+.ordering-pages {
   grid-column: 1;
   grid-row: 1;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
 }
 
 .orderItem {
@@ -427,7 +431,8 @@ export default {
 .ingredients-grid {
  display: grid;
  grid-template-columns: repeat(auto-fit, 7em);
- grid-gap: 1em;
+ grid-gap: 0.5em;
+ justify-content: center;
 }
 
 .menupage {
@@ -444,6 +449,14 @@ template {
   overflow: hidden
 }
 
+.category-buttons {
+  display: grid;
+  justify-content: center;
+  padding-top: 1em;
+  grid-column: 5fr;
+  grid-row: 1fr;
+}
+
 .buttonmenu {
   width: 5em;
   height: 5em;
@@ -453,12 +466,34 @@ template {
   cursor: pointer;
 }
 
-#last-page-wrapper{
-  margin: auto;
+.button-one {
+  grid-column: 2;
+  grid-row: 1;
 }
 
-#exitbutton {
+.button-two {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.button-three {
+  grid-column: 4;
+  grid-row: 1;
+}
+
+.button-four {
+  grid-column: 5;
+  grid-row: 1;
+}
+
+.exitbutton {
+  grid-column: 1;
+  grid-row: 1;
   float: left;
+}
+
+#last-page-wrapper{
+  margin: auto;
 }
 
 .footerbutton {
@@ -496,6 +531,7 @@ template {
 .footer {
   position: fixed;
   width: 100%;
+  height: 20vh;
   left: 0;
   bottom: 0;
   padding: 0.1em;
@@ -504,7 +540,7 @@ template {
 
 .example-panel {
   width: 100%;
-  height: 100%;
+  height: 10em;
   max-height: 100%;
   margin: 0;
   padding: 0;
