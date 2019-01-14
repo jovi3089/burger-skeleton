@@ -4,7 +4,11 @@
     <button class="updateCart" v-on:click="showCart" id="shop-button">
       <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
     </button>
-    <div class="updateCart" id="new-burger" v-show="showNumber()"><div class="number-style">{{burgerAmount}}</div></div>
+
+    <div class="updateCart" id="new-burger" v-show="showNumber()">
+      <div class="number-style">{{burgerAmount}}</div>
+    </div>
+
     <button class="buttonmenu" id="order-button" v-show="showNumber()" v-on:click="placeOrder()">
       <b>{{uiLabels.placeOrder}}: </b> <span>{{totalPrice}}:-</span>
     </button>
