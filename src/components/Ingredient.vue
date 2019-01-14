@@ -1,13 +1,15 @@
 <template>
   <div class="ingredient">
     <div class="ingredientdesign">
-      <span class="textdesign"> {{item["ingredient_"+ lang]}} </span><br>
-      <span class="textdesign"> {{item.selling_price}}:- </span>
+      <div class="textdesign text"> {{item["ingredient_"+ lang]}} </div>
+      <div class="textdesign price"> {{item.selling_price}}:- </div>
+
     <!--, {{item.stock}} pcs-->
-      <br>
-      <button id="decreasebutton" v-on:click="decreaseCounter">-</button>
-      <button id="increasebutton" v-on:click="incrementCounter">+</button>
-    </div>
+      <div class="decrincr-buttons">
+        <button id="decreasebutton" v-on:click="decreaseCounter">-</button>
+        <button id="increasebutton" v-on:click="incrementCounter">+</button>
+      </div>
+</div>
   </div>
 </template>
 <script>
@@ -49,34 +51,65 @@ export default {
    padding: 1em;
    /*background-image: url('~@/assets/exampleImage.jpg');*/
    color: black;
-   margin: auto auto;
-   width: 5em;
-   height: 5em;
-   display: flex;
+
+   font-size: 0.8em;
+   width: 6.5em;
+   height: 6.5em;
+   /*display: flex;
    flex-wrap: wrap;
    flex-direction: column;
-   justify-content: center;
- }
-
- .textdesign {
-   font-size: 0.8em;
-   word-wrap: break-word;
-   text-align: center;
-   margin: auto;
+   justify-content: center;*/
  }
 
  .ingredientdesign {
+   display: grid;
+   grid-template-rows: repeat(auto-fit, 4em);
+   /*grid-template-columns: 1fr;
+   grid-template-rows: 3fr;*/
  }
+
+ .textdesign {
+   text-align: center;
+ }
+
+ .text {
+   max-width: 6.5em;
+   overflow-wrap: break-word;
+   word-wrap: break-word;
+   hyphens: auto;
+   grid-row: 1;
+   font-weight: bold;
+ }
+
+ .price {
+   grid-row: 2;
+ }
+
+ .decrinc-buttons {
+   grid-row: 3;
+ }
+
+@media screen and (min-width: 600px){
+  .ingredient{
+    font-size: 1.2em;
+  }
+}
 
  button {
    width: 3em;
    height: 2em;
    border: 1px solid black;
-   /*border-style: none;*/
-   background-color: #d0e0e3ff;
    border-radius: 0.7em;
    padding: 0px;
    cursor: pointer;
+ }
+
+ #decreasebutton {
+   background-color: #ea9999ff;
+ }
+
+ #increasebutton {
+   background-color: #93c47dff;
  }
 
  button:hover {

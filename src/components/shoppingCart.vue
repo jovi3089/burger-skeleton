@@ -1,13 +1,10 @@
-<template> <!--sätter massa ### för ord som inte ännu är i ui_lang-->
+<template>
   <div class="root">
     <div class="shopwrapper">
       <div class="shopa">
-        <!-- <button class="buttonmenu" id="cancel-button">
-          <i class="fa fa-times fa-2x"></i>
-        </button> -->
-          <span id="title-span">{{uiLabels.shoppingCartContent}}</span>
+          <div id="title-span">{{uiLabels.shoppingCartContent}}</div>
           <button class="buttonmenu" id="the-close-button" v-on:click="close()">
-            <i class="fa fa-shopping-cart fa-2x"></i>
+            <i class="fa fa-shopping-cart fa-1x"></i>
           </button>
       </div>
 
@@ -15,17 +12,21 @@
         <dl
         v-for="index in orders.length"
         :key="index">
-          <dt style="font-weight:bold">Hamburger {{index}}: <span class="cart-price">{{getPrice(index-1)}}:-</span></dt>
+          <dt style="font-weight:bold">
+            <button class="remove-burg" v-on:click="removeBurg(index)">
+              <i class="fa fa-times fa-2x"></i>
+            </button> {{uiLabels.hamburger}} {{index}}: <span class="cart-price">{{getPrice(index-1)}}:-</span>
+          </dt>
           <dd><span class="cart-order">{{getOrder(index)}}</span></dd>
         </dl>
       </div>
       <div class="shopc">
-        <div>
-          <span style="font-weight:bold">{{uiLabels.totalPrice}} {{ totalPrice }}:-</span>
+        <div id = "price">
+          <span>{{uiLabels.totalPrice}} {{ totalPrice }}:-</span>
         </div>
         <br>
         <button class="footerbutton" v-on:click="placeOrder()">
-          <div>{{uiLabels.placeOrder}}</div> <i class="fa fa-arrow-right fa-2x"></i>
+          <div>{{uiLabels.placeOrder}}</div> <i class="fa fa-arrow-right fa-1x"></i>
         </button>
         <br>
       </div>
@@ -65,6 +66,11 @@ export default{
         var orderPrice = this.price[ind];
         return orderPrice;
       },
+      removeBurg: function (ind) {
+        this.orders.splice(ind-1,1);
+        this.price.splice(ind-1,1);
+        this.$emit('removeBurg');
+      },
       getOrder: function(ind) {
         var numOfItems = this.orders[ind-1].length;
         var order = this.orders[ind-1];
@@ -97,21 +103,23 @@ export default{
 }
 </script>
 <style scoped>
-
 .root{
-  height: 90vh;
+  height: 73vh;
   width: 100%;
 }
 .shopwrapper {
   padding-top: 2em;
   padding-bottom: 2em;
   height: 100%;
-  width: 100%;
+  width: 80%;
+  margin-left: 20%;
   display: grid;
+  justify-content: center;
   grid-template-columns: 100%;
-  grid-template-rows: auto 80% auto;
+  grid-template-rows: 20% 96% 20%;
   padding: 0 0 0 0;
 }
+
 .shopa{
   grid-column: 1;
   grid-row: 1;
@@ -120,6 +128,10 @@ export default{
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  display: grid;
+  grid-template-columns: 2fr;
+  grid-template-rows: 1fr;
+  background-color: lightgrey;
 }
 .shopb{
   grid-column: 1;
@@ -130,6 +142,7 @@ export default{
   align-items: flex-start;
   justify-content: flex-start;
   overflow-y: scroll;
+  background-color: lightgrey;
 }
 .shopc{
   grid-column: 1;
@@ -139,26 +152,36 @@ export default{
   display: flex;
   align-items: center;
   justify-content: center;
-
+  background-color: lightgrey;
 }
+
+#price{
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
 .footerbutton {
   width: 12em;
   height: 4em;
-  border-radius: 0.5em;
+  border-radius: 0.8em;
   border: 1px solid #000;
   margin: 0.5em;
   cursor: pointer;
   font-weight: bold;
+  font-family: inherit;
+  font-size: 1em;
 }
 
 .buttonmenu {
-  width: 5em;
-  height: 5em;
-  border-radius: 1em;
+  width: 2em;
+  height: 2em;
+  border-radius: 0.4em;
   border: 1px solid #000;
   margin: 0.2em;
-  margin-right: 4em;
+  margin-right: 0.5em;
   cursor: pointer;
+  grid-column: 2;
+  font-size: 2em;
 }
 
 #the-close-button{
@@ -183,21 +206,40 @@ export default{
 }
 
 #title-span{
-  font-size: large;
+  font-size: 1.8em;
   margin-top: auto;
+  grid-column: 1;
+  margin: auto auto;
 }
 
 dt {
-  padding-left: 3em;
+  padding-left: 1em;
 }
 
 .cart-order {
-  padding-right: 2em;
+  padding-right: 3em;
 }
 
 .cart-price {
   float: right;
   padding-right: 1em;
+}
+
+.remove-burg {
+  float: left;
+  color: #e06666ff;
+  background-color: lightgrey;
+  border-style: none;
+}
+
+@media screen and (min-width: 600px){
+  .root{
+    height: 73vh;
+  }
+  .shopwrapper{
+    width: 90%;
+    font-size: 1.8em;
+  }
 }
 
 </style>

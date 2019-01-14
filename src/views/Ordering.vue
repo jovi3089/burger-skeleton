@@ -14,6 +14,7 @@
         v-show="showCartState"
         v-on:closeCart="showCart()"
         v-on:placeOrder="placeOrder()"
+        v-on:removeBurg="removeBurg()"
         :lang="lang"
         :orders="shoppingCart"
         :totalPrice="totalPrice"
@@ -111,7 +112,7 @@
                       <!--    lägg till styling på shoppingcart      -->
      <div v-show ="step===5">
        <div class="category-buttons">
-        <button class="buttonmenu exitbutton" v-on:click="cancelOrder(2)"><i class="fa fa-arrow-left" style="font-size: 20px;"></i></button>
+        <button class="buttonmenu exitbutton" v-on:click="cancelOrder(2)"><i class="fa fa-arrow-left fa-2x"></i></button>
         <button class="buttonmenu button-one" v-bind:class="clickedOn1" v-on:click="changeCategory(4)">{{ uiLabels.burgerBread }}</button>
         <button class="buttonmenu button-two" v-bind:class="clickedOn2" v-on:click="changeCategory(1)">{{ uiLabels.burgerPatty }}</button>
         <button class="buttonmenu button-three" v-bind:class="clickedOn3" v-on:click="changeCategory(2)">{{ uiLabels.burgerTopping }}</button>
@@ -157,7 +158,7 @@
      >
    </randomBurgerPage>
  </div>
-  </div>
+
   <div id="last-page-wrapper">
     <transition name="last-page">
       <div v-show="step===9" class="lastPage">
@@ -166,10 +167,15 @@
       </div>
     </transition>
   </div>
+  </div>
   <div class="footer" v-show="footerBoolean">
-    <span>{{ uiLabels.order }}: </span><span>{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</span><br>
-    <span>{{ uiLabels.totalPrice}} </span> <span>{{ price }}:-</span><br>
-    <br><button class="footerbutton" v-on:click="addToCart()">{{ uiLabels.addToCart }}</button><br>
+    <div class="footerwrap text-one">{{ uiLabels.order }}: </div>
+    <div class="footerwrap text-two">{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</div>
+    <div class="footerwrap text-three">{{ uiLabels.totalPrice}} <span style="font-weight:normal">{{ price }}:-</span></div>
+    <div class="footerwrap press">
+      <button id="footerbutton" v-on:click="addToCart()">{{ uiLabels.addToCart }}</button>
+    </div>
+
     <!--<button class="footerbutton" v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>--><br>
   </div>
 </div>
@@ -249,7 +255,7 @@ export default {
     newPage: function(toPage){
       this.step = toPage;
       this.showFooter();
-      if(toPage === 0){
+      if(toPage === 0 || toPage === 9){
         this.setToZero();
       }
     },
@@ -289,7 +295,8 @@ export default {
       //console.log('hej');
     },
     showFooter: function () {
-      if (!this.showCartState && (this.step === 5 || this.step === 3 || this.step === 4)) {
+      if (!this.showCartState && (this.step === 5 || this.step === 3 ||
+         this.step === 4)) {
         this.footerBoolean = true;
       }
     },
@@ -345,8 +352,11 @@ export default {
       };
 
       this.$store.state.socket.emit('order', order);
-      console.log("emitting 'order' object");
-      if(this.shoppingCart.length > 0){
+
+      if (this.shoppingCart.length > 0 && !this.showCartState) {
+        this.newPage(9);
+      }
+      else if (this.shoppingCart.length > 0) {
         this.showCart();
         this.newPage(9);
       }
@@ -384,21 +394,27 @@ export default {
       this.resetCategory();
       this.restartMode();
      },
-
-    showCart: function() {
-        if (this.showCartState === false) {
-            this.showCartState = true;
-            if (this.step === 5 || this.step === 3 || this.step === 4){
-              this.footerBoolean = false;
-            }
+    showCart: function () {
+      if (this.showCartState === false && (this.step !== 1 || this.step !== 2)) {
+        this.showCartState = true;
+        if (this.step === 5 || this.step === 3 || this.step === 4) {
+          this.footerBoolean = false;
         }
-        else {
-            this.showCartState = false;
-            if (this.step === 5 || this.step === 3 || this.step === 4){
+      }
+      else {
+        this.showCartState = false;
+          if (this.step === 5 || this.step === 3 || this.step === 4){
               this.footerBoolean = true;
-            }
-        }
+          }
+      }
         //console.log("click! i'm showing: "+this.showCartState)
+    },
+    removeBurg: function () {
+      this.totalPrice = 0;
+      for (var i = 0; i < this.shoppingCart.length; i++) {
+        this.totalPrice += this.shoppingItemPrices[i];
+      }
+      this.burgerAmount = this.shoppingCart.length;
     }
   }
 }
@@ -415,7 +431,14 @@ body{
   display: grid;
   justify-content: center;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 22vh;
+  grid-template-rows: 1fr 27vh;
+  font-family: inherit;
+}
+
+@media screen and (max-height:99vh){
+  #ordering{
+    background-color: blue;
+  }
 }
 
 .ordering-pages {
@@ -473,6 +496,7 @@ template {
   border: 1px solid #000;
   margin: 0.2em;
   cursor: pointer;
+  font-family: inherit;
 }
 
 .button-one {
@@ -530,29 +554,83 @@ template {
 .footer {
   position: fixed;
   width: 100%;
-  height: 20vh;
+  height: 25vh;
   left: 0;
   bottom: 0;
-  padding: 0.1em;
   background-color: #ccc;
-  font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1em;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fit, 4fr);
 }
 
-.footerbutton {
+.footerwrap {
+  text-align: center;
+}
+
+.text-one {
+  grid-column: 1;
+  grid-row: 1;
   font-weight: bold;
+}
+
+.text-two {
+  grid-column: 1;
+  grid-row: 2;
+  overflow-y: scroll;
+  height: 3em;
+  padding-bottom: 0.6em;
+}
+
+::-webkit-scrollbar {
+  width: 1em;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.text-three {
+  grid-column: 1;
+  grid-row: 3;
+  font-weight: bold;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+
+.press {
+  grid-column: 1;
+  grid-row: 4;
+}
+
+#footerbutton {
   font-size: 1em;
   width: 60%;
-  height: 4em;
+  height: 2.5em;
   border-radius: 1em;
   border: 1px solid #000;
-  margin-top: -1em;
   cursor: pointer;
+  font-family: inherit;
 }
 
 @media screen and (min-width: 600px){
+   .ingredients-grid{
+     grid-template-columns: repeat(4, 11em);
+   }
+  .buttonmenu{
+    font-size: 1.5em;
+  }
+
   .footer{
-    font-size: 1.9em;
+    font-size: 1.7em;
   }
   .footerbutton{
     font-size: 1em;

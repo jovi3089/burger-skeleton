@@ -97,7 +97,7 @@ export default {
 <style scoped>
 
 .pagemenu {
-  height: 50vh;
+  height: 40vh;
   display: grid;
   justify-content: center;
   grid-template-columns: 3fr;
@@ -158,6 +158,7 @@ export default {
   border: 1px solid #000;
   margin: 0.1em;
   cursor: pointer;
+  font-family: inherit;
 }
 
 @media screen and (min-width: 600px){
@@ -227,6 +228,7 @@ export default {
 .place-text {
   font-weight: bold;
   font-size: 0.5em;
+  font-family: inherit;
 }
 
 .flash-the-number-enter-active{
