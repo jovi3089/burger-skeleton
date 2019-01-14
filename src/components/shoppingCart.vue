@@ -105,7 +105,8 @@ export default{
   padding-top: 2em;
   padding-bottom: 2em;
   height: 100%;
-  width: 100%;
+  width: 80%;
+  margin-left: 20%;
   display: grid;
   justify-content: center;
   grid-template-columns: 100%;
@@ -124,6 +125,7 @@ export default{
   display: grid;
   grid-template-columns: 2fr;
   grid-template-rows: 1fr;
+  background-color: lightgrey;
 }
 .shopb{
   grid-column: 1;
@@ -134,6 +136,7 @@ export default{
   align-items: flex-start;
   justify-content: flex-start;
   overflow-y: scroll;
+  background-color: lightgrey;
 }
 .shopc{
   grid-column: 1;
@@ -143,7 +146,7 @@ export default{
   display: flex;
   align-items: center;
   justify-content: center;
-
+  background-color: lightgrey;
 }
 .footerbutton {
   width: 12em;
