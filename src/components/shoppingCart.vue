@@ -7,7 +7,7 @@
         </button> -->
           <div id="title-span">{{uiLabels.shoppingCartContent}}</div>
           <button class="buttonmenu" id="the-close-button" v-on:click="close()">
-            <i class="fa fa-shopping-cart fa-2x"></i>
+            <i class="fa fa-shopping-cart fa-1x"></i>
           </button>
       </div>
 
@@ -119,7 +119,7 @@ export default{
   display: grid;
   justify-content: center;
   grid-template-columns: 100%;
-  grid-template-rows: 18% 95% 20%;
+  grid-template-rows: 19% 95% 19%;
   padding: 0 0 0 0;
 }
 
@@ -169,14 +169,21 @@ export default{
 }
 
 .buttonmenu {
-  width: 5em;
-  height: 5em;
-  border-radius: 1em;
+  width: 2em;
+  height: 2em;
+  border-radius: 0.4em;
   border: 1px solid #000;
   margin: 0.2em;
-  margin-right: 4em;
+  margin-right: 0.5em;
   cursor: pointer;
   grid-column: 2;
+  font-size: 2em;
+}
+
+@media screen and (min-width: 600px){
+    .shopwrapper{
+      width: 90%;
+    }
 }
 
 #the-close-button{
