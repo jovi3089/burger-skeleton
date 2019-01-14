@@ -4,6 +4,9 @@
     <div class="menu seeshopping">
     <button class="buttonmenu" v-on:click="showCart" id="shop-button">
       <i class="fa fa-shopping-cart fa-1x"></i>
+      <div class="updateCart" id="new-burger" v-show="showNumber()">
+        <div class="number-style">{{burgerAmount}}</div>
+      </div>
     </button>
   </div>
 <div class="menu updateshopping">
@@ -14,13 +17,12 @@
         </div>
       </div>
     </transition>
-    <button class="buttonmenu" id="invisible-button" v-show="!showNumber()">
-    </button>
 
     <button class="buttonmenu" id="order-button" v-show="showNumber()" v-on:click="placeOrder()">
       <div class="place-text">{{uiLabels.placeOrder}}: {{totalPrice}}:-</div>
     </button>
   </div>
+
 <div class="menu exitshopping">
     <button v-on:click="menuPush(4)" class="buttonmenu" id="cancel">
       <i class="fa fa-times fa-1x"></i>
@@ -47,7 +49,7 @@ export default {
     uiLabels: Object,
     lang: String,
     step: Number,
-    
+
     burgerAmount: Number,
     totalPrice: Number
   },
@@ -171,19 +173,18 @@ export default {
 
 #new-burger {
   z-index: 1;
-  margin-left: 16.7em;
-  margin-top: 3.4em;
   border: 1px solid #000;
   border-radius: 50%;
   background-color: #ea9999ff;
-  width: 1.2em;
-  height: 1.2em;
+  width: 0.7em;
+  height: 0.7em;
   text-align: center;
+  left: -0.3em;
 }
 
 .number-style {
   color: black;
-  font-size: 12pt;
+  font-size: 0.5em;
 }
 
 #buttonburg {
