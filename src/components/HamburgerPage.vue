@@ -1,26 +1,45 @@
 <template>
-  <div class="hamburgerpage">
-    <div class="hamburger top">
-    <button class="updateCart" v-on:click="showCart" id="shop-button">
-      <i class="fa fa-shopping-cart" style="font-size: 25px;"></i>
-    </button>
-    <div class="updateCart" id="new-burger" v-show="showNumber()"><div class="number-style">{{burgerAmount}}</div></div>
-    <button class="buttonmenu" id="order-button" v-show="showNumber()" v-on:click="placeOrder()">
-      <b>{{uiLabels.placeOrder}}: </b> <span>{{totalPrice}}:-</span>
-    </button>
-    <button v-on:click="menuPush(4)" class="buttonmenu" id="cancel">
-      <i class="fa fa-arrow-left" style="font-size: 20px;"></i>
+  <div>
+    <div class="hamburgerpage">
+    <div class="menu seeshopping">
+    <button class="buttonmenu" v-on:click="showCart" id="shop-button">
+      <i class="fa fa-shopping-cart fa-1x"></i>
+      <div class="updateCart" id="new-burger" v-show="showNumber()">
+        <div class="number-style">{{burgerAmount}}</div>
+      </div>
     </button>
   </div>
-  <div class="hamburger bottom">
+
+  <div class="menu updateshopping">
+    <button class="buttonmenu" id="invisible-button" v-show="!showNumber()">
+    </button>
+
+    <button class="buttonmenu" id="order-button" v-show="showNumber()" v-on:click="placeOrder()">
+      <div class="place-text">{{uiLabels.placeOrder}}: {{totalPrice}}:-</div>
+    </button>
+  </div>
+
+  <div class="menu exitshopping">
+    <button v-on:click="menuPush(4)" class="buttonmenu" id="cancel">
+      <i class="fa fa-arrow-left fa-1x"></i>
+    </button>
+  </div>
+</div>
+  <div>
     <label>
-      <button class="button" id="buttondesign" v-on:click="menuPush(1)"> {{ uiLabels.designBurger }}</button>
+      <button class="button" id="buttondesign" v-on:click="menuPush(1)">
+        <div class="button-font">{{ uiLabels.designBurger }}</div>
+      </button>
     </label>
     <label>
-      <button class="button" id="buttonpopular" v-on:click="menuPush(2)"> {{ uiLabels.popularBurger }}</button>
+      <button class="button" id="buttonpopular" v-on:click="menuPush(2)">
+        <div class="button-font">{{ uiLabels.popularBurger }}</div>
+      </button>
     </label>
     <label>
-      <button class="button" id="buttonrandom" v-on:click="menuPush(3)"> {{ uiLabels.randomBurger }}</button>
+      <button class="button" id="buttonrandom" v-on:click="menuPush(3)">
+        <div class="button-font">{{ uiLabels.randomBurger }}</div>
+      </button>
     </label>
   </div>
   </div>
@@ -71,33 +90,40 @@ export default {
 <style scoped>
 
 .hamburgerpage {
-  height: 90vh;
+  height: 50vh;
   display: grid;
   justify-content: center;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 3fr;
+  grid-template-rows: 1fr;
 }
 
-.burger {
-  padding: 0 0 0;
+.menu {
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.top {
+.exitshopping {
   grid-column: 1;
   grid-row: 1;
 }
 
-.bottom {
-  grid-column: 1;
-  grid-row: 2;
-  margin-top: 50vh;
+.updateshopping {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.seeshopping {
+  grid-column: 3;
+  grid-row: 1;
 }
 
 .button {
-  border-radius: 2em;
+  border-radius: 0.7em;
   border: 1px solid #000;
-  width: 25em;
-  height: 5em;
+  width: 10em;
+  height: 2em;
   color: black;
+  font-size: 2em;
   /*padding: 15px 32px;*/
   text-align: center;
   text-decoration: none;
@@ -108,13 +134,29 @@ export default {
   margin: auto auto;
 }
 
+.button-font {
+  font-size: 0.8em;
+}
+
+
 .buttonmenu {
-  width: 5em;
-  height: 5em;
-  border-radius: 1em;
+  width: 2em;
+  height: 2em;
+  font-size: 2em;
+  border-radius: 0.4em;
   border: 1px solid #000;
-  margin: 0.2em;
+  margin: 0.1em;
   cursor: pointer;
+}
+
+@media screen and (min-width: 600px){
+  .buttonmenu{
+    font-size: 4em;
+  }
+
+  .button{
+    font-size: 3.5em;
+  }
 }
 
 .updateCart {
@@ -122,11 +164,6 @@ export default {
 }
 
 #shop-button {
-  width: 5em;
-  height: 5em;
-  border-radius: 1em;
-  border: 1px solid #000;
-  margin: 0.2em;
   cursor: pointer;
   float: right;
   position: relative;
@@ -135,19 +172,18 @@ export default {
 
 #new-burger {
   z-index: 1;
-  margin-left: 13.5em;
-  margin-top: 2.6em;
   border: 1px solid #000;
   border-radius: 50%;
   background-color: #ea9999ff;
-  width: 1.2em;
-  height: 1.2em;
+  width: 0.7em;
+  height: 0.7em;
   text-align: center;
+  left: -0.3em;
 }
 
 .number-style {
   color: black;
-  font-size: 12pt;
+  font-size: 0.5em;
 }
 
 #buttondesign {
@@ -168,7 +204,18 @@ export default {
 
 #order-button {
   background: #93c47dff;
-  width: 14em;
+  width: 6em;
+}
+
+#invisible-button {
+  background: #fff;
+  width: 6em;
+  border-style: none;
+}
+
+.place-text {
+  font-weight: bold;
+  font-size: 0.5em;
 }
 
 </style>
