@@ -577,14 +577,31 @@ template {
   grid-row: 2;
   overflow-y: scroll;
   height: 3em;
-  padding-bottom: 0.5em;
+  padding-bottom: 0.6em;
+}
+
+::-webkit-scrollbar {
+  width: 1em;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .text-three {
   grid-column: 1;
   grid-row: 3;
   font-weight: bold;
-  margin-bottom: 0.5em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
 }
 
 .press {
