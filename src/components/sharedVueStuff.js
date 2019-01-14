@@ -16,7 +16,7 @@ var sharedVueStuff = {
     this.$store.state.socket.on('initialize', function (data) {
       this.orders = data.orders;
       this.uiLabels = data.uiLabels;
-      this.burgerCombos = {1: 0, 2: 0, 3: 0};
+      this.burgerCombos = {1: 1, 2: 1, 3: 1};
       console.log("created: " +  this.burgerCombos[1])
       this.ingredients = data.ingredients; //<-- kanske här
       console.log(this.ingredients);
@@ -34,9 +34,9 @@ var sharedVueStuff = {
     }.bind(this));
 
     this.$store.state.socket.on('updateCombo', function(combo){
-      console.log("i shared combo: "+ combo);
+      //console.log("i shared combo: "+ combo);
       var obj = this.burgerCombos;
-      console.log("i shared bcombo: " + obj);
+      //console.log("i shared bcombo: " + obj);
       this.burgerCombos[1] = 534501//combo[0]; nolla innan ental Fullkornsbrioche m senap och bönburgare
       this.burgerCombos[2] = combo[1]; //
       this.burgerCombos[3] = combo[2];

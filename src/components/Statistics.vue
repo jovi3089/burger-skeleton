@@ -59,7 +59,7 @@
         <div class="list f">
           <div
           v-for="order in orders">
-            <p>{{order}}</p>
+          <!--  här ska det vara annat!  -->
           <!--<div v-if="this.containsInfo===true">
             <p>descendCategories();</p></div>
               {{descArray}}-->
