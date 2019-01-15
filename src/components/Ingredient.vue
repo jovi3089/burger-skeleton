@@ -47,7 +47,7 @@ export default {
 .ingredient {
    border: 1px solid #d0e0e3ff;
    border-radius: 2em;
-   background-color: #a2c4c9ff;
+   background-color: #abe2ecff; /*#a2c4c9ff;*/
    padding: 1em 1em 1em 1em;
    /*background-image: url('~@/assets/exampleImage.jpg');*/
    color: black;
@@ -116,12 +116,12 @@ export default {
 
  #increasebutton {
    background-color: #93c47dff; /* Green */
-   border:1px solid #93c47dff;/*#ffad41;*/
-   background-image: -webkit-linear-gradient(top, #b6d7a8ff, #6aa84fff);
-   background-image: -moz-linear-gradient(top, #b6d7a8ff, #6aa84fff);
-   background-image: -ms-linear-gradient(top, #b6d7a8ff, #6aa84fff);
-   background-image: -o-linear-gradient(top, #b6d7a8ff, #6aa84fff);
-   background-image: linear-gradient(to bottom, #b6d7a8ff, #6aa84fff);
+   border:1px solid #91bb79ff;/*#ffad41;*/
+   background-image: -webkit-linear-gradient(top, #addf90ff, #91bb79ff);
+   background-image: -moz-linear-gradient(top, #addf90ff, #91bb79ff);
+   background-image: -ms-linear-gradient(top, #addf90ff, #91bb79ff);
+   background-image: -o-linear-gradient(top, #addf90ff, #91bb79ff);
+   background-image: linear-gradient(to bottom, #addf90ff, #91bb79ff);
    border-radius: 0em 0.7em 0.7em 0em;
  }
 

@@ -157,7 +157,7 @@ export default {
   margin: 0.1em;
   cursor: pointer;
   font-family: inherit;
-  border: 1px solid #cacaca;
+  border: 1px solid #c9beb6ff;
   background-image: -webkit-linear-gradient(top, #efe2d9, #c9beb6ff);/*#E6E6E6, #CCCCCC*/
   background-image: -moz-linear-gradient(top, #efe2d9, #c9beb6ff);
   background-image: -ms-linear-gradient(top, #efe2d9, #c9beb6ff);
@@ -212,12 +212,12 @@ export default {
 
 #order-button {
   background-color: #93c47dff; /* Green */
-  border:1px solid #93c47dff;/*#ffad41;*/
-  background-image: -webkit-linear-gradient(top, #b6d7a8ff, #6aa84fff);
-  background-image: -moz-linear-gradient(top, #b6d7a8ff, #6aa84fff);
-  background-image: -ms-linear-gradient(top, #b6d7a8ff, #6aa84fff);
-  background-image: -o-linear-gradient(top, #b6d7a8ff, #6aa84fff);
-  background-image: linear-gradient(to bottom, #b6d7a8ff, #6aa84fff);
+  border:1px solid #91bb79ff;/*#ffad41;*/
+  background-image: -webkit-linear-gradient(top, #addf90ff, #91bb79ff);
+  background-image: -moz-linear-gradient(top, #addf90ff, #91bb79ff);
+  background-image: -ms-linear-gradient(top, #addf90ff, #91bb79ff);
+  background-image: -o-linear-gradient(top, #addf90ff, #91bb79ff);
+  background-image: linear-gradient(to bottom, #addf90ff, #91bb79ff);
   width: 6em;
 }
 

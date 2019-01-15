@@ -31,14 +31,14 @@ export default {
       isSwedish: false,
       isEnglish: false,
       sweBorderColor: "#a2c4c9ff",
-      engBorderColor: "#00FF00"
+      engBorderColor: "#91bb79ff"
     };
   },
 
   computed: {
     computedSweBorderColor: function(){
         if (this.isSwedish){
-          this.sweBorderColor = "#00FF00";
+          this.sweBorderColor = "#91bb79ff";
         }
         else {
           this.sweBorderColor = "#a2c4c9ff";
@@ -48,7 +48,7 @@ export default {
 
     computedEngBorderColor: function(){
       if (this.isEnglish){
-        this.engBorderColor = "#00FF00";
+        this.engBorderColor = "#91bb79ff";
       }
       else {
         this.engBorderColor = "#a2c4c9ff";
@@ -126,7 +126,6 @@ export default {
   border-width: 20px;
   background-color: #a2c4c9ff;
   color: black;
-  opacity: 0.8;
   font-weight: bold;
   font-size: 1em;
 }
