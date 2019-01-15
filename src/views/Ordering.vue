@@ -70,8 +70,8 @@
 
       <div class="cart-popup" v-show="showPopUp">
           <div class="popup-content" id="popup-shade" v-show="showPopUp">
-            <div class="pricetext" id="popup-text">Din bag är tom</div>
-              <button class="close-button" v-on:click="closePopUp()">Gå till meny</button>
+            <div class="pricetext" id="popup-text">{{uiLabels.emptyOrder}}</div>
+              <button class="close-button" v-on:click="closePopUp()">{{uiLabels.backToOrder}}</button>
           </div>
         </div>
 
@@ -608,7 +608,7 @@ template {
   height: 25vh;
   left: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #b7b7b7ff;
   font-size: 1em;
   display: grid;
   grid-template-columns: 1fr;
