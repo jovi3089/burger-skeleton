@@ -18,9 +18,14 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Lato');
-body{
+body {
   margin: 0 0 0 0;
+  height: 100vh;
   font-family: 'Montserrat';
+  background-size: 200% 200%;
+  background-color: #f7f7f7;
+  /*animation: Gradient 20s linear infinite;
+  background: radial-gradient(white, #f7f7f7);*/
 }
 /*
 body {
@@ -28,7 +33,7 @@ body {
   background-size: 200% 200%;
   animation: Gradient 20s linear infinite;
   margin: 0;
-}
+}*/
 
 @keyframes Gradient {
   0% {
@@ -49,5 +54,6 @@ body {
   100% {
     background-position: 10% 10%
   }
-}*/
+}
+
 </style>

@@ -132,7 +132,6 @@ export default {
 
 .button {
   border-radius: 0.7em;
-  border: 1px solid #000;
   width: 10em;
   height: 2em;
   color: black;
@@ -155,10 +154,15 @@ export default {
   height: 2em;
   font-size: 2em;
   border-radius: 0.4em;
-  border: 1px solid #000;
   margin: 0.1em;
   cursor: pointer;
   font-family: inherit;
+  border: 1px solid #cacaca;
+  background-image: -webkit-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: -moz-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: -ms-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: -o-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: linear-gradient(to bottom, #E6E6E6, #CCCCCC);
 }
 
 @media screen and (min-width: 600px){
@@ -197,18 +201,6 @@ export default {
   font-size: 0.5em;
 }
 
-#buttonburg {
-  background-color: #ffab40ff; /* Green */
-}
-
-#buttonside {
-  background-color: #93c47dff; /* Green */
-}
-
-#buttonbev {
-  background-color: #c27ba0ff; /* Green */
-}
-
 #cancel {
   float: left;
   font-weight: normal;
@@ -220,7 +212,7 @@ export default {
 }
 
 #invisible-button {
-  background: #fff;
+  background: none;
   width: 6em;
   border-style: none;
 }
@@ -241,6 +233,60 @@ export default {
 
 .flash-the-number-enter, .flash-the-number-leave-to{
   transform: scale(10);
+}
+
+#buttonburg {
+  border:1px solid #ffab40ff;
+  background-image: -webkit-linear-gradient(top, #ffc579, #fb9d23);
+  background-image: -moz-linear-gradient(top, #ffc579, #fb9d23);
+  background-image: -ms-linear-gradient(top, #ffc579, #fb9d23);
+  background-image: -o-linear-gradient(top, #ffc579, #fb9d23);
+  background-image: linear-gradient(to bottom, #ffc579, #fb9d23);
+}
+
+#buttonside {
+  background-color: #93c47dff; /* Green */
+  border:1px solid #93c47dff;/*#ffad41;*/
+  background-image: -webkit-linear-gradient(top, #b6d7a8ff, #6aa84fff);
+  background-image: -moz-linear-gradient(top, #b6d7a8ff, #6aa84fff);
+  background-image: -ms-linear-gradient(top, #b6d7a8ff, #6aa84fff);
+  background-image: -o-linear-gradient(top, #b6d7a8ff, #6aa84fff);
+  background-image: linear-gradient(to bottom, #b6d7a8ff, #6aa84fff);
+}
+
+#buttonbev {
+  background-color: #c27ba0ff; /* Green */
+  border:1px solid #c27ba0ff;/*#ffad41;*/
+  background-image: -webkit-linear-gradient(top, #d5a6bdff, #a64d79ff);
+  background-image: -moz-linear-gradient(top, #d5a6bdff, #a64d79ff);
+  background-image: -ms-linear-gradient(top, #d5a6bdff, #a64d79ff);
+  background-image: -o-linear-gradient(top, #d5a6bdff, #a64d79ff);
+  background-image: linear-gradient(to bottom, #d5a6bdff, #a64d79ff);
+}
+
+.button_example{
+ border: 1px solid #ffad41;
+ border-radius: 0.7em;
+ width: 10em;
+ height: 2em;
+ padding: 10px 10px 10px 10px;
+ color: #000;
+
+ background-image: -webkit-linear-gradient(top, #ffc579, #fb9d23);
+ background-image: -moz-linear-gradient(top, #ffc579, #fb9d23);
+ background-image: -ms-linear-gradient(top, #ffc579, #fb9d23);
+ background-image: -o-linear-gradient(top, #ffc579, #fb9d23);
+ background-image: linear-gradient(to bottom, #ffc579, #fb9d23);
+}
+
+.button_example:hover{
+ border:1px solid #ff9913;
+ background-color: #ffaf46;
+ background-image: -webkit-linear-gradient(top, #ffaf46, #e78404);
+ background-image: -moz-linear-gradient(top, #ffaf46, #e78404);
+ background-image: -ms-linear-gradient(top, #ffaf46, #e78404);
+ background-image: -o-linear-gradient(top, #ffaf46, #e78404);
+ background-image: linear-gradient(to bottom, #ffaf46, #e78404);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#ffaf46, endColorstr=#e78404);
 }
 
 </style>
