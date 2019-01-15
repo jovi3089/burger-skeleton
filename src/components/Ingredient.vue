@@ -51,10 +51,9 @@ export default {
    padding: 1em 1em 1em 1em;
    /*background-image: url('~@/assets/exampleImage.jpg');*/
    color: black;
-
    font-size: 0.8em;
    width: 6.5em;
-   height: 6.5em;
+   height: 7em;
    /*display: flex;
    flex-wrap: wrap;
    flex-direction: column;
@@ -89,19 +88,29 @@ export default {
    grid-row: 3;
  }
 
-@media screen and (min-width: 600px){
-  .ingredient{
-    font-size: 1.2em;
-  }
-}
-
  button {
    width: 3.1em;
    height: 2.3em;
+   font-weight: bold;
    border: 1px solid black;
    padding: 0px;
    cursor: pointer;
  }
+
+@media screen and (min-width: 600px){
+  .ingredient{
+    font-size: 1.3em;
+  }
+
+  button{
+    font-weight: bold;
+    font-size: 1em;
+    width: 3em;
+    height: 2em;
+  }
+}
+
+
 
  #decreasebutton {
    background-color: #93c47dff; /* Green */
