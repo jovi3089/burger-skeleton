@@ -135,8 +135,7 @@ export default {
   width: 78vw;
   height: 30vh;
   border-radius: 1em;
-  color: red;
-  opacity: 0.8;
+  color: black;
   font-weight: bold;
   font-size: 2em;
   margin-top: 60%;
