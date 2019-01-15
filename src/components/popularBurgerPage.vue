@@ -6,11 +6,11 @@
       <p class = "displayPopularBurger first">(most popular burger):<br> {{decodeNicely(burgerCombos[1])}}<p/>
       <button class = "burgerButton firstButton">select/order:<br> {{decodeNicely(burgerCombos[1])}}</button>
       <p class = "numberOfPopularity two">(#2)<p/>
-      <p class = "displayPopularBurger second">(second most popular burger)<p/>
-      <button class = "burgerButton secondButton">select/order</button>
+      <p class = "displayPopularBurger second">(second most popular burger):<br> {{decodeNicely(burgerCombos[2])}}<p/>
+      <button class = "burgerButton secondButton">select/order:<br> {{decodeNicely(burgerCombos[2])}}</button>
       <p class = "numberOfPopularity three">(#3)<p/>
-      <p class = "displayPopularBurger third">(third most popular burger)<p/>
-      <button class = "burgerButton thirdButton">select/order</button>
+      <p class = "displayPopularBurger third">(third most popular burger):<br> {{decodeNicely(burgerCombos[3])}}<p/>
+      <button class = "burgerButton thirdButton">select/order:<br> {{decodeNicely(burgerCombos[3])}}</button>
     </div>
     <button v-on:click="$emit('menuPage')" class="buttonmenu" id="back">
       <i class="fa fa-arrow-left" style="font-size: 20px;"></i>

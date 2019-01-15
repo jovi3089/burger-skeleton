@@ -58,12 +58,14 @@
         </div>
         <div class="list f">
           <div
-          v-for="order in orders">
+          v-for="item in combos">
           <!--  här ska det vara annat!  -->
           <!--<div v-if="this.containsInfo===true">
             <p>descendCategories();</p></div>
               {{descArray}}-->
+              <p>{{findCombo(item[0])}}: {{item[1]}}</p>
           </div>
+
         </div>
     </div>
   </div>
@@ -87,12 +89,14 @@ export default {
       this.saucesCount(obj);
       this.breadCount(obj);
       this.sidesCount(obj);
+      this.combosCount(obj);
       this.pattys = this.sortData(this.pattys);
       this.toppings = this.sortData(this.toppings);
       this.sauces = this.sortData(this.sauces);
       this.breads = this.sortData(this.breads);
-      console.log("watched");
-      this.$store.state.socket.emit('combo', this.pattys)
+      this.combos = this.sortData(this.combos);
+      var top3Combos = this.getTop3(this.combos);
+      this.$store.state.socket.emit('combo', top3Combos);
     }
   },
   data: function () {
@@ -106,7 +110,7 @@ export default {
                [45, 0], [46, 0], [47, 0], [48, 0], [49, 0]],
       breads: [[50, 0], [51, 1], [52, 0], [53, 0]],
       sides: [[54, 0], [55, 0], [56, 0]],
-      combos: []
+      combos: [[50021237, 1], [51021345, 4], [11, 1], [12, 3]]
     }
   },
 
@@ -119,11 +123,27 @@ export default {
         }
       }
     },
+    findCombo: function (id) {
+      var numOfIngreds = (id.toString().length)/2;
+      var ans = "";
+      id = id.toString();
+      for (var i = 0; i < numOfIngreds*2; i = i+2) {
+        var temp = id.substring(i, i+2);
+        if (temp[0] === "0") {
+          temp = temp[1];
+        }
+        var temp2 = this.findProduct(parseInt(temp));
+        ans = ans + temp2 + ", ";
+      }
+      ans = ans.slice(0, ans.length - 2)
+      return ans;
+    },
     sortData: function(data) {
-      data.sort(function(first, second) {
+      var ans = data;
+      ans.sort(function(first, second) {
         return second[1] - first[1];
       });
-      return data;
+      return ans;
     },
     pattysCount: function (orders) {
       var i = 0;
@@ -205,23 +225,68 @@ export default {
         }
       }
     },
+    combosCount: function (orders) {
+      var i = 0;
+      for (var key in orders) {
+        i += i;
+        var oneOrder = orders[key].ingredients;
+        for (var i = 0; i < oneOrder.length; i++) {
+          var orderInOrder = oneOrder[i];
+          var id = this.getCombosId(orderInOrder);
+          var index = this.findIndex(id, this.combos);
+          if(typeof index === "number"){
+            this.combos[index][1] = this.combos[index][1] + 1;
+          }
+          else{
+            var newCombo = [id, 1];
+            this.combos.push(newCombo);
+          }
+        }
+      }
+    },
     findIndex: function (id, array) {
       for (var i = 0; i <array.length; i++) {
         if (array[i][0] === id) {
           return i;
         }
       }
+      return false;
+    },
+    getCombosId: function (subOrder) {
+      var ans = "";
+      if (subOrder.length != 0) {
+        for (var index in subOrder ) {
+          var id = subOrder[index].ingredient_id;
+          if (id < 10) {
+            id = id.toString();
+            id = "0" + id;
+          }
+          ans = ans + id;
+        }
+        ans = parseInt(ans);
+        return ans;
+      }
+      else{
+        return 1;
+      }
+    },
+    getTop3: function (array) {
+      var ans = [0, 0, 0];
+      ans[0] = this.combos[0][0];
+      ans[1] = this.combos[1][0];
+      ans[2] = this.combos[2][0];
+      return ans;
     },
     resetData: function () {
-      this.pattys = [[1, 0], [2, 0], [3, 1], [4, 0], [5, 0], [6, 0], [7, 0], [8, 0], [9, 0], [10, 0]];
-      this.toppings = [[11, 0], [12, 0], [13, 1], [14, 0], [15, 0], [16, 0], [17, 0], [18, 0], [19, 0], [20, 0],
+      this.pattys = [[1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0], [8, 0], [9, 0], [10, 0]];
+      this.toppings = [[11, 0], [12, 0], [13, 0], [14, 0], [15, 0], [16, 0], [17, 0], [18, 0], [19, 0], [20, 0],
                  [21, 0], [22, 0], [23, 0], [24, 0], [25, 0], [26, 0], [27, 0], [28, 0], [29, 0], [30, 0],
                  [31, 0], [32, 0], [33, 0], [34, 0]];
-      this.sauces = [[35, 0], [36, 0], [37, 1], [38, 0], [39, 0], [40, 0], [41, 0], [42, 0], [43, 0], [44, 0],
+      this.sauces = [[35, 0], [36, 0], [37, 0], [38, 0], [39, 0], [40, 0], [41, 0], [42, 0], [43, 0], [44, 0],
                [45, 0], [46, 0], [47, 0], [48, 0], [49, 0]];
-      this.breads = [[50, 0], [51, 1], [52, 0], [53, 0]];
+      this.breads = [[50, 0], [51, 0], [52, 0], [53, 0]];
       this.sides = [[54, 0], [55, 0], [56, 0]];
-      this.combos = {};
+      this.combos = [[50021237, 1], [51021345, 4], [11, 1], [12, 3]];
 
     }
   }
