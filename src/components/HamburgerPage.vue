@@ -119,7 +119,6 @@ export default {
 
 .button {
   border-radius: 0.7em;
-  border: 1px solid #000;
   width: 10em;
   height: 2em;
   color: black;
@@ -143,10 +142,15 @@ export default {
   height: 2em;
   font-size: 2em;
   border-radius: 0.4em;
-  border: 1px solid #000;
   margin: 0.1em;
   cursor: pointer;
   font-family: inherit;
+  border: 1px solid #cacaca;
+  background-image: -webkit-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: -moz-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: -ms-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: -o-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: linear-gradient(to bottom, #E6E6E6, #CCCCCC);
 }
 
 @media screen and (min-width: 600px){
@@ -188,14 +192,32 @@ export default {
 
 #buttondesign {
   background-color: #ffab40ff; /* Green */
+  border:1px solid #ffab40ff;
+  background-image: -webkit-linear-gradient(top, #ffc579, #fb9d23);
+  background-image: -moz-linear-gradient(top, #ffc579, #fb9d23);
+  background-image: -ms-linear-gradient(top, #ffc579, #fb9d23);
+  background-image: -o-linear-gradient(top, #ffc579, #fb9d23);
+  background-image: linear-gradient(to bottom, #ffc579, #fb9d23);
 }
 
 #buttonpopular {
   background-color: #f9cb9cff; /* Green */
+  border:1px solid #f9cb9cff;
+  background-image: -webkit-linear-gradient(top, #fce5cdff,#f6b26bff);
+  background-image: -moz-linear-gradient(top, #fce5cdff, #f6b26bff);
+  background-image: -ms-linear-gradient(top, #fce5cdff, #f6b26bff);
+  background-image: -o-linear-gradient(top, #fce5cdff, #f6b26bff);
+  background-image: linear-gradient(to bottom, #fce5cdff, #f6b26bff);
 }
 
 #buttonrandom {
   background-color: #fce5cdff; /* Green */
+  border:1px solid #fce5cdff;
+  background-image: -webkit-linear-gradient(top, #fff,#f9cb9cff);
+  background-image: -moz-linear-gradient(top, #fff, #f9cb9cff);
+  background-image: -ms-linear-gradient(top, #fff, #f9cb9cff);
+  background-image: -o-linear-gradient(top, #fff, #f9cb9cff);
+  background-image: linear-gradient(to bottom, #fff, #f9cb9cff);
 }
 
 #cancel {
@@ -208,7 +230,7 @@ export default {
 }
 
 #invisible-button {
-  background: #fff;
+  background: none;
   width: 6em;
   border-style: none;
 }

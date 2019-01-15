@@ -9,7 +9,7 @@
       <div class = "wrappalicious">
 
       <div class = "wrapper">
-        <button id = "toorderpagebutton" v-on:click="toOrderPage"> {{ uiLabels.toOrderPage }}</button>
+        <button class="toorderpagebutton" v-on:click="toOrderPage"> {{ uiLabels.toOrderPage }}</button>
       </div>
       </div>
   </div>
@@ -132,19 +132,23 @@ export default {
   font-size: 1em;
 }
 
-#toorderpagebutton{
+.toorderpagebutton {
   position: relative;
   width: 78vw;
   height: 30vh;
-  border: 1px solid #000;
   border-radius: 1em;
-  background-color: #a2c4c9ff;
   color: black;
   opacity: 0.8;
   font-weight: bold;
   font-size: 2em;
   margin-top: 50%;
   font-family: inherit;
+  border: 1px solid #9dbec3ff;
+  background-image: -webkit-linear-gradient(top, #d0e0e3ff, #76a5afff);
+  background-image: -moz-linear-gradient(top, #d0e0e3ff, #76a5afff);
+  background-image: -ms-linear-gradient(top, #d0e0e3ff, #76a5afff);
+  background-image: -o-linear-gradient(top, #d0e0e3ff, #76a5afff);
+  background-image: linear-gradient(to bottom, #d0e0e3ff, #76a5afff);
 }
 
 @media screen and (min-width: 600px){
