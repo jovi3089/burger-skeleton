@@ -295,6 +295,7 @@ export default {
 
 .popular-burgers {
   display: grid;
+  height: 5em;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(6, 1fr);
 }
@@ -314,6 +315,7 @@ export default {
 .second {
   grid-column: 1;
   grid-row: 2;
+  margin-bottom: 1em;
 }
 
 .third {
@@ -327,6 +329,7 @@ export default {
 .fourth {
   grid-column: 1;
   grid-row: 4;
+  margin-bottom: 1em;
 }
 
 .fifth {
@@ -340,11 +343,12 @@ export default {
 .sixth {
   grid-column: 1;
   grid-row: 6;
+  margin-bottom: 1em;
 }
 
 .popular-text {
   color: black;
-  opacity: 1;
+  font-size: 1em;
 }
 
 .popular-symbol {
@@ -360,6 +364,22 @@ export default {
 
   .button{
     font-size: 3.5em;
+  }
+
+  .popular-text {
+    font-size: 2em;
+  }
+
+  .first {
+    height: 8em;
+  }
+
+  .third {
+    height: 8em;
+  }
+
+  .fifth {
+    height: 8em;
   }
 }
 
