@@ -49,7 +49,7 @@ export default {
       else {
         return time + "";
       }
-    }
+    },
   },
 }
 </script>
