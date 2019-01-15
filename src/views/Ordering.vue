@@ -67,6 +67,14 @@
     </div>
 
     <div class="ordering-pages" v-show="!showCartState">
+
+      <div class="cart-popup" v-show="showPopUp">
+          <div class="popup-content" id="popup-shade" v-show="showPopUp">
+            <div class="pricetext" id="popup-text">Din bag är tom</div>
+              <button class="close-button" v-on:click="closePopUp()">Gå till meny</button>
+          </div>
+        </div>
+
       <div v-show="step===3">
         <div class="category-buttons">
           <button class="buttonmenu exitbutton" id="exitbutton" v-on:click="cancelOrder(1)"><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
@@ -253,7 +261,8 @@ export default {
       clickedOn4: '',
       clickedOn5: "greenBorder",
       clickedOn6: "purpleBorder",
-      footerBoolean: false
+      footerBoolean: false,
+      showPopUp: false
     }
   },
   created: function () {
@@ -386,7 +395,7 @@ export default {
       this.burgerAmount = 0;
     },
     addToCart: function () {
-      if(this.chosenIngredients.length > 0){
+      if(this.chosenIngredients.length > 0) {
         this.shoppingCart.push(this.chosenIngredients);
         this.shoppingItemPrices.push(this.price);
         this.burgerAmount += 1;
@@ -402,6 +411,9 @@ export default {
         this.price = 0;
         this.newPage(1);
         this.footerBoolean = false;
+      }
+      else {
+        this.showPopUp = true;
       }
       this.resetCategory();
       this.restartMode();
@@ -444,6 +456,10 @@ export default {
         this.price += this.ingredients[parseInt(temp)-1].selling_price;
       }
       this.addToCart();
+    },
+    closePopUp: function () {
+      this.showPopUp = false;
+      this.newPage(5);
     }
 
   }
@@ -468,6 +484,10 @@ body{
 @media screen and (max-height:99vh){
   #ordering{
     background-color: blue;
+  }
+
+  .cart-popup {
+    font-size: 1.8em;
   }
 }
 
@@ -745,7 +765,47 @@ template {
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateX(300px);
+}
 
+.cart-popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  /*opacity: 0;
+  visibility: hidden;*/
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  /*padding: 1rem 1.5rem;*/
+  width: 48%;
+  height: 5em;
+  border-radius: 1.5em;
+  box-shadow: 10px 10px 60px #555;
+}
+
+#popup-text {
+  padding-top: 2em;
+  padding-bottom: 1.2em;
+}
+
+.close-button {
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.8em;
+  background-color: darkgray;
+  border-style: none;
+}
+
+.close-button:hover {
+  background-color: darkgray;
 }
 
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div class="root">
-    <div class="modal" v-show="showPopUp">
-        <div class="modal-content" id="popup-shade" v-show="showPopUp">
-          <div class="pricetext" id="modal-text">Din bag är tom</div>
+    <div class="cart-popup" v-show="showPopUp">
+        <div class="popup-content" id="popup-shade" v-show="showPopUp">
+          <div class="pricetext" id="popup-text">Din bag är tom</div>
             <button class="close-button" v-on:click="close()">Gå till meny</button>
         </div>
       </div>
@@ -272,12 +272,12 @@ dt {
     font-size: 1.8em;
   }
 
-  .modal {
+  .cart-popup {
     font-size: 1.8em;
   }
 }
 
-.modal {
+.cart-popup {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -288,7 +288,7 @@ dt {
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
 
-.modal-content {
+.popup-content {
   position: absolute;
   top: 50%;
   left: 52%;
@@ -301,16 +301,12 @@ dt {
   box-shadow: 10px 10px 60px #555;
 }
 
-#modal-text {
+#popup-text {
   padding-top: 2em;
   padding-bottom: 1.2em;
 }
 
 .close-button {
-  /*float: right;
-  border-radius: 50%;
-  width: 1.4rem;
-  line-height: 1.4rem;*/
   text-align: center;
   cursor: pointer;
   font-size: 0.8em;
