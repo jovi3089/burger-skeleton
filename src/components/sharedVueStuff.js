@@ -37,9 +37,12 @@ var sharedVueStuff = {
       //console.log("i shared combo: "+ combo);
       var obj = this.burgerCombos;
       //console.log("i shared bcombo: " + obj);
-      this.burgerCombos[1] = 534501//combo[0]; nolla innan ental Fullkornsbrioche m senap och bönburgare
+      this.burgerCombos[1] = combo[0]//combo[0]; nolla innan ental Fullkornsbrioche m senap och bönburgare
       this.burgerCombos[2] = combo[1]; //
       this.burgerCombos[3] = combo[2];
+      console.log("sharedVueStuff combo[1]: ");
+      console.log(combo[1]);
+
     }.bind(this))
 
   },
