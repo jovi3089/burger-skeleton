@@ -4,23 +4,19 @@
     <div class="menu seeshopping">
     <button class="buttonmenu" v-on:click="showCart" id="shop-button">
       <i class="fa fa-shopping-cart fa-1x"></i>
-      <div class="updateCart" id="new-burger" v-show="showNumber()">
-        <div class="number-style">{{burgerAmount}}</div>
-      </div>
+      <transition name="flash-the-number">
+        <div v-show="doTheThing()">
+          <div class="updateCart" id="new-burger" v-show="showNumber()">
+            <div class="number-style">{{burgerAmount}}</div>
+          </div>
+        </div>
+      </transition>
     </button>
   </div>
 <div class="menu updateshopping">
 
   <button class="buttonmenu" id="invisible-button" v-show="!showNumber()">
   </button>
-
-    <transition name="flash-the-number">
-      <div v-show="doTheThing()">
-        <div class="updateCart" id="new-burger" v-show="showNumber()">
-          <div class="number-style">{{burgerAmount}}</div>
-        </div>
-      </div>
-    </transition>
 
     <button class="buttonmenu" id="order-button" v-show="showNumber()" v-on:click="placeOrder()">
       <div class="place-text">{{uiLabels.placeOrder}}: {{totalPrice}}:-</div>
