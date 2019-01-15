@@ -64,7 +64,7 @@
         </div>
         <div class="list f">
           <div
-          v-for="item in ingredients"
+          v-for="item in ingredientsInOrder"
           :key="item.ingredient_id"
           v-if="item.category===6">
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
@@ -87,47 +87,24 @@ export default {
 
   data: function () {
     return {
-      containsInfo: false,
+
     };
+  },
+  computed: {
+    ingredientsInOrder: function() {
+        var ans = this.sortStock(this.ingredients);
+        return ans;
+    }
   },
 
   methods:{
-    descendCategories: function(){
-      //var descArray = [];
-      for (var i=0; i < ingredients.length; i++){
-      /*  if (this.ingred[i].stock < this.ingred[i+1]){
-          descArray = this.ingred[i]
-        }
-        else {
-          descArray = this.ingred[i+1
-        }*/
-        descArray = this.ingredients[i].stock;
+    sortStock: function (array){
+      for (var i = 0; i < array.length; i++) {
+        array[i]
       }
-    },
-
-    descendFunction: function(){
-      var descendArray = [];
-      for (var i=0; i < ingredients.length; i++){
-
-
-       this.ingredients[i].stock;
-
-      }
-      descendArray.reverse();
-    },
-
-    /*isFilled: function(lang) {
-      for(var prop in ingred) {
-              if(obj.hasOwnProperty(prop))
-                  return false;
-      if (lang === "sv"){
-        this.isSwedish = true;
-        this.isEnglish = false;
-      }
-      return this.isSwedish;
     }
-  }*/
-  },
+
+  }
 }
 </script>
 
