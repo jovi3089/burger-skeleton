@@ -362,12 +362,12 @@ export default {
 
       if (this.shoppingCart.length > 0 && !this.showCartState) {
         this.newPage(9);
-        setTimeout(() => this.newPage(0), 1000000);
+        setTimeout(() => this.newPage(0), 6000);
       }
       else if (this.shoppingCart.length > 0) {
         this.showCart();
         this.newPage(9);
-        setTimeout(() => this.newPage(0), 1000000);
+        setTimeout(() => this.newPage(0), 6000);
       }
 
       this.price = 0;
