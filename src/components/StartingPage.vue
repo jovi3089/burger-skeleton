@@ -126,7 +126,6 @@ export default {
   border-width: 20px;
   background-color: #a2c4c9ff;
   color: black;
-  opacity: 0.8;
   font-weight: bold;
   font-size: 1em;
 }
@@ -137,7 +136,6 @@ export default {
   height: 30vh;
   border-radius: 1em;
   color: black;
-  opacity: 0.8;
   font-weight: bold;
   font-size: 2em;
   margin-top: 60%;

@@ -309,9 +309,11 @@ dt {
 .close-button {
   text-align: center;
   cursor: pointer;
-  font-size: 0.8em;
+  font-size: 1.2em;
   background-color: darkgray;
   border-style: none;
+  border-radius: 0.5em;
+  padding: 0.3em;
 }
 
 .close-button:hover {
