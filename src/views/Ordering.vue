@@ -70,8 +70,8 @@
 
       <div class="cart-popup" v-show="showPopUp">
           <div class="popup-content" id="popup-shade" v-show="showPopUp">
-            <div class="pricetext" id="popup-text">Din bag är tom</div>
-              <button class="close-button" v-on:click="closePopUp()">Gå till meny</button>
+            <div class="pricetext" id="popup-text">{{uiLabels.emptyOrder}}</div>
+              <button class="close-button" v-on:click="closePopUp()">{{uiLabels.backToOrder}}</button>
           </div>
         </div>
 
@@ -175,7 +175,6 @@
       <i id="goodbye" >{{uiLabels.lastPage}}</i>
     </div>
   </transition>
-  <!--Linux e semst-->
     <br>
     <br>
   <transition name = "payment-message">
@@ -609,7 +608,7 @@ template {
   height: 25vh;
   left: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #c9beb6ff; /*#b7b7b7ff;*/
   font-size: 1em;
   display: grid;
   grid-template-columns: 1fr;
@@ -634,6 +633,7 @@ template {
   overflow-y: scroll;
   height: 3em;
   padding-bottom: 0.6em;
+  background-color: #e5d8cfff;
 }
 
 ::-webkit-scrollbar {
@@ -672,12 +672,12 @@ template {
   border-radius: 1em;
   cursor: pointer;
   font-family: inherit;
-  border: 1px solid #cacaca;
-  background-image: -webkit-linear-gradient(top, #E6E6E6, #CCCCCC);
-  background-image: -moz-linear-gradient(top, #E6E6E6, #CCCCCC);
-  background-image: -ms-linear-gradient(top, #E6E6E6, #CCCCCC);
-  background-image: -o-linear-gradient(top, #E6E6E6, #CCCCCC);
-  background-image: linear-gradient(to bottom, #E6E6E6, #CCCCCC);
+  border: 1px solid #bfb4acff;
+  background-image: -webkit-linear-gradient(top, #efe2d9, #bfb4acff);/*#E6E6E6, #CCCCCC*/
+  background-image: -moz-linear-gradient(top, #efe2d9, #bfb4acff);
+  background-image: -ms-linear-gradient(top, #efe2d9, #bfb4acff);
+  background-image: -o-linear-gradient(top, #efe2d9, #bfb4acff);
+  background-image: linear-gradient(to bottom, #efe2d9, #bfb4acff);
 }
 
 .lastPage{

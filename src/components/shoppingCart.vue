@@ -2,8 +2,8 @@
   <div class="root">
     <div class="cart-popup" v-show="showPopUp">
         <div class="popup-content" id="popup-shade" v-show="showPopUp">
-          <div class="pricetext" id="popup-text">Din bag är tom</div>
-            <button class="close-button" v-on:click="close()">Gå till meny</button>
+          <div class="pricetext" id="popup-text">{{uiLabels.emptyShopping}}</div>
+            <button class="close-button" v-on:click="close()">{{uiLabels.goToMenu}}</button>
         </div>
       </div>
     <div class="shopwrapper">
@@ -309,9 +309,11 @@ dt {
 .close-button {
   text-align: center;
   cursor: pointer;
-  font-size: 0.8em;
+  font-size: 1.2em;
   background-color: darkgray;
   border-style: none;
+  border-radius: 0.5em;
+  padding: 0.3em;
 }
 
 .close-button:hover {
