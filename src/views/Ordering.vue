@@ -539,6 +539,7 @@ template {
 }
 
 .buttonmenu {
+  margin-top: 0.2em;
   width: 5em;
   height: 5em;
   border-radius: 1em;
@@ -570,6 +571,11 @@ template {
 .exitbutton {
   grid-column: 1;
   grid-row: 1;
+  margin-right: 0.25em;
+  font-size: 1em;
+  width: 4em;
+  height: 4em;
+  border-radius: 0.8em;
 }
 
 .beveragesidebuttons {
@@ -604,34 +610,6 @@ template {
   padding-left: 0.3em;
   font-size: 1.0em;
   border-radius: 0.8em;
-}
-
-@media screen and (min-width: 600px) {
-  .beveragesidebuttons {
-    width: 2em;
-    height: 2em;
-    border-radius: 0.4em;
-    font-size: 4em;
-    margin-top: 0.1em;
-  }
-  .backbutton {
-    margin-right: 6.3em;
-  }
-  .beverageside {
-    position: relative;
-    left:0.1em;
-    margin-top: 0.19em;
-    width: 4em;
-    height: 4em;
-    padding-right: 3.3em;
-    padding-left: 0.3em;
-    font-size: 2.0em;
-    border-radius: 0.8em;
-  }
-
-  .categoryText {
-    font-size: 2em;
-  }
 }
 
 .buttonmenu:hover {
@@ -864,6 +842,43 @@ template {
 
 .close-button:hover {
   background-color: darkgray;
+}
+
+
+@media screen and (min-width: 600px) {
+  .beveragesidebuttons {
+    width: 2em;
+    height: 2em;
+    border-radius: 0.4em;
+    font-size: 4em;
+    margin-top: 0.1em;
+  }
+  .backbutton {
+    margin-right: 6.3em;
+  }
+  .beverageside {
+    position: relative;
+    left:0.1em;
+    margin-top: 0.19em;
+    width: 4em;
+    height: 4em;
+    padding-right: 3.3em;
+    padding-left: 0.3em;
+    font-size: 2.0em;
+    border-radius: 0.8em;
+  }
+
+  .categoryText {
+    font-size: 2em;
+  }
+
+  .exitbutton {
+    font-size: 2em;
+    margin-right: 1.8em;
+    width: 4em;
+    height: 4em;
+    border-radius: 0.8em;
+  }
 }
 
 </style>
