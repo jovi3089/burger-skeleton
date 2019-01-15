@@ -40,8 +40,10 @@ var sharedVueStuff = {
       this.burgerCombos[1] = combo[0]//combo[0]; nolla innan ental Fullkornsbrioche m senap och bönburgare
       this.burgerCombos[2] = combo[1]; //
       this.burgerCombos[3] = combo[2];
-      console.log("sharedVueStuff combo[1]: ");
-      console.log(combo[1]);
+      console.log("sharedVueStuff this.burgerCombos: ");
+      console.log(this.burgerCombos[1]);
+      console.log(this.burgerCombos[2]);
+      console.log(this.burgerCombos[3]);
 
     }.bind(this))
 

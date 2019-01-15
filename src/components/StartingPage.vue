@@ -93,18 +93,17 @@ export default {
   display: flex;
   flex-direction: row-reverse;
   height: 20%;
-  margin-right: 5px;
-  margin-top: 5px;
+  margin-right: 0.4em;
+  margin-top: 0.4em;
 }
-
 
 #sweButton img{
   display: block;
   position: relative;
   height: 8.5vh;
   width: 27vw;
-  left: -20px;
-  top: -15px;
+  left: -21px;
+  top: -16px;
   border-radius: 20px;
 }
 
@@ -113,8 +112,8 @@ export default {
   position: relative;
   height: 8.5vh;
   width: 27vw;
-  left: -20px;
-  top: -15px;
+  left: -21px;
+  top: -16px;
   border-radius: 20px;
 }
 
@@ -141,7 +140,7 @@ export default {
   opacity: 0.8;
   font-weight: bold;
   font-size: 2em;
-  margin-top: 50%;
+  margin-top: 60%;
   font-family: inherit;
   border: 1px solid #9dbec3ff;
   background-image: -webkit-linear-gradient(top, #d0e0e3ff, #76a5afff);
@@ -152,9 +151,18 @@ export default {
 }
 
 @media screen and (min-width: 600px){
-  #toorderpagebutton{
-    font-size: 4em;
-    margin-top: 40%;
+  .toorderpagebutton{
+    font-size: 3.5em;
+    margin-top: 50%;
+  }
+
+  #engButton img{
+    left: -16px;
+    top: -14px;
+  }
+  #sweButton img{
+    left: -16px;
+    top: -14px;
   }
 }
 

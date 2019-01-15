@@ -145,6 +145,9 @@
      :ingredients="ingredients"
      :lang="lang"
      v-on:menuPage="newPage(2)"
+     v-on:firstChoice="addPopularChoice(1)"
+     v-on:secondChoice="addPopularChoice(2)"
+     v-on:thirdChoice="addPopularChoice(3)"
      >
    </popularBurgerPage>
  </div>
@@ -158,14 +161,21 @@
      >
    </randomBurgerPage>
  </div>
+ <div v-show="step===9" class="lastPage">
+  <transition name="thank-you">
+    <div v-show="step===9">
+      <i id="goodbye" >{{uiLabels.lastPage}}</i>
+    </div>
+  </transition>
+    <br>
+    <br>
+  <transition name = "payment-message">
+    <div v-show="step===9">
+      <i id="payment" >{{uiLabels.paymentMessage}}</i>
+    </div>
+  </transition>
+</div>
 
-    <transition name="last-page">
-        <div v-show="step===9" class="lastPage">
-            <i id="goodbye"  >{{uiLabels.lastPage}}</i>
-            <!-- <button v-on:click="newPage(0)">
-            </button> -->
-        </div>
-    </transition>
 
   </div>
   <div class="footer" v-show="footerBoolean">
@@ -417,7 +427,25 @@ export default {
         this.totalPrice += this.shoppingItemPrices[i];
       }
       this.burgerAmount = this.shoppingCart.length;
+    },
+    addPopularChoice: function(key) {
+      var comboId = this.burgerCombos[key];
+      var numOfIngreds = (comboId.toString().length)/2;
+      var id = comboId.toString();
+      for (var i = 0; i < numOfIngreds*2; i = i+2) {
+        var temp = id.substring(i, i+2);
+        if (temp[0] === "0") {
+          temp = temp[1];
+        }
+
+        console.log("temp: ");
+        console.log(temp);
+        this.chosenIngredients.push(this.ingredients[parseInt(temp)-1])
+        this.price += this.ingredients[parseInt(temp)-1].selling_price;
+      }
+      this.addToCart();
     }
+
   }
 }
 </script>
@@ -630,12 +658,17 @@ template {
 }
 
 .lastPage{
-  margin-top: 75%;
+  margin-top: 69%;
 }
 
 #goodbye{
   font-size: 2em;
-  font-family: inherit;
+}
+
+#payment{
+  font-size: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 @media screen and (min-width: 600px){
@@ -656,25 +689,40 @@ template {
   }
 
   .lastPage{
-    margin-top: 70%;
+    margin-top: 60%;
   }
 
   #goodbye{
     font-size: 4em;
   }
+
+  #payment{
+    font-size: 2em;
+  }
 }
 
-.last-page-enter-active{
+.thank-you-enter-active{
     transition: all 1s ease;
   }
-
-.last-page-leave-active{
-    transition: all .5s;
-  }
-
-.last-page-enter, .last-page-leave-to{
+.thank-you-enter{
     transform: translateY(600px);
   }
+
+.payment-message-enter-active{
+    opacity: 1;
+    transition: all 2s ease 1s;
+}
+.payment-message-enter{
+    opacity: 0;
+}
+
+.payment-message:hover{
+    opacity: 0.5;
+    transition: opacity, 3s, ease, 1s;
+    color: #333;
+  background-color: #fff;
+}
+
 
 @keyframes lasagna {
   from {
