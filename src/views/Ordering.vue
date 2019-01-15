@@ -175,6 +175,7 @@
       <i id="goodbye" >{{uiLabels.lastPage}}</i>
     </div>
   </transition>
+  <!--Linux e semst-->
     <br>
     <br>
   <transition name = "payment-message">
@@ -483,7 +484,6 @@ body{
 
 @media screen and (max-height:99vh){
   #ordering{
-    background-color: blue;
   }
 
   .cart-popup {

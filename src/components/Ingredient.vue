@@ -48,7 +48,7 @@ export default {
    border: 1px solid #d0e0e3ff;
    border-radius: 2em;
    background-color: #a2c4c9ff;
-   padding: 1em;
+   padding: 1em 1em 1em 1em;
    /*background-image: url('~@/assets/exampleImage.jpg');*/
    color: black;
 
@@ -97,7 +97,7 @@ export default {
 }
 
  button {
-   width: 3.7em;
+   width: 3.1em;
    height: 2.3em;
    border: 1px solid black;
    padding: 0px;
