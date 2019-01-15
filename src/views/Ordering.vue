@@ -145,6 +145,9 @@
      :ingredients="ingredients"
      :lang="lang"
      v-on:menuPage="newPage(2)"
+     v-on:firstChoice="addPopularChoice(1)"
+     v-on:secondChoice="addPopularChoice(2)"
+     v-on:thirdChoice="addPopularChoice(3)"
      >
    </popularBurgerPage>
  </div>
@@ -416,7 +419,12 @@ export default {
         this.totalPrice += this.shoppingItemPrices[i];
       }
       this.burgerAmount = this.shoppingCart.length;
+    },
+    addPopularChoice: function(key) {
+      var comboId = burgerCombos[key];
+      console.log(comboId);
     }
+
   }
 }
 </script>
