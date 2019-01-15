@@ -422,8 +422,21 @@ export default {
       this.burgerAmount = this.shoppingCart.length;
     },
     addPopularChoice: function(key) {
-      var comboId = burgerCombos[key];
-      console.log(comboId);
+      var comboId = this.burgerCombos[key];
+      var numOfIngreds = (comboId.toString().length)/2;
+      var id = comboId.toString();
+      for (var i = 0; i < numOfIngreds*2; i = i+2) {
+        var temp = id.substring(i, i+2);
+        if (temp[0] === "0") {
+          temp = temp[1];
+        }
+
+        console.log("temp: ");
+        console.log(temp);
+        this.chosenIngredients.push(this.ingredients[parseInt(temp)-1])
+        this.price += this.ingredients[parseInt(temp)-1].selling_price;
+      }
+      this.addToCart();
     }
 
   }
