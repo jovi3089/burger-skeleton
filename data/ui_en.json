@@ -58,5 +58,6 @@
   "shoppingCartTitle" : "Shopping cart",
   "statisticsCombo": "Combinations",
   "lastPage" : "Thank you for your order!",
-  "ourMostPopularBurgers" : "Our most popular burgers"
+  "ourMostPopularBurgers" : "Our most popular burgers",
+  "paymentMessage": "You're now being forwarded to our payment system"
 }
