@@ -77,8 +77,8 @@
 
       <div v-show="step===3">
         <div class="category-buttons">
-          <button class="buttonmenu exitbutton" id="exitbutton" v-on:click="cancelOrder(1)"><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
-          <button class="buttonmenu button-one" v-bind:class="clickedOn5" v-on:click="changeCategory(5)">{{ uiLabels.sideOptions }}</button>
+          <button class="beveragesidebuttons backbutton" id="exitbutton" v-on:click="cancelOrder(1)"><i class="fa fa-arrow-left fa-1x"></i></button>
+          <button class="beveragesidebuttons beverageside" v-bind:class="clickedOn5" v-on:click="changeCategory(5)">{{ uiLabels.sideOptions }}</button>
         </div>
         <p class="categoryText" v-show="!showCartState" v-if="sideCategory===5">{{ uiLabels.chooseSide }}</p>
         <div class="ingredients-grid">
@@ -99,8 +99,8 @@
 
       <div v-show="step===4">
         <div class="category-buttons">
-          <button class="buttonmenu exitbutton" id="exitbutton" v-on:click="cancelOrder(1)"><i class="fa fa-arrow-left" style="font-size: 25px;"></i></button>
-          <button class="buttonmenu button-one" v-bind:class="clickedOn6" v-on:click="changeCategory(6)">{{ uiLabels.beverageOptions }}</button>
+          <button class="beveragesidebuttons backbutton" id="exitbutton" v-on:click="cancelOrder(1)"><i class="fa fa-arrow-left fa-1x"></i></button>
+          <button class="beveragesidebuttons beverageside" v-bind:class="clickedOn6" v-on:click="changeCategory(6)">{{ uiLabels.beverageOptions }}</button>
         </div>
         <p class="categoryText" v-show="!showCartState" v-if="beverageCategory===6">{{ uiLabels.chooseBev }}</p>
         <div class="ingredients-grid">
@@ -156,7 +156,8 @@
      v-on:firstChoice="addPopularChoice(1)"
      v-on:secondChoice="addPopularChoice(2)"
      v-on:thirdChoice="addPopularChoice(3)"
-     >
+     v-on:cartClick="showCart()"
+     :burgerAmount="burgerAmount">
    </popularBurgerPage>
  </div>
 
@@ -170,18 +171,21 @@
    </randomBurgerPage>
  </div>
  <div v-show="step===9" class="lastPage">
-  <transition name="thank-you">
-    <div v-show="step===9">
-      <i id="goodbye" >{{uiLabels.lastPage}}</i>
-    </div>
-  </transition>
-    <br>
-    <br>
-  <transition name = "payment-message">
-    <div v-show="step===9">
-      <i id="payment" >{{uiLabels.paymentMessage}}</i>
-    </div>
-  </transition>
+   <div id = "lastPageWrapper" v-show="step===9">
+    <transition name="thank-you">
+
+        <div v-show="step===9">
+          <i id="goodbye" >{{uiLabels.lastPage}}</i>
+        </div>
+      </transition>
+        <br>
+        <br>
+      <transition name = "payment-message">
+        <div v-show="step===9">
+          <i id="payment" >{{uiLabels.paymentMessage}}</i>
+        </div>
+    </transition>
+  </div>
 </div>
 
 
@@ -374,12 +378,12 @@ export default {
 
       if (this.shoppingCart.length > 0 && !this.showCartState) {
         this.newPage(9);
-        setTimeout(() => this.newPage(0), 6000);
+        setTimeout(() => this.newPage(0), 100000);
       }
       else if (this.shoppingCart.length > 0) {
         this.showCart();
         this.newPage(9);
-        setTimeout(() => this.newPage(0), 6000);
+        setTimeout(() => this.newPage(0), 100000);
       }
 
       this.price = 0;
@@ -504,7 +508,7 @@ body{
 }
 
 .categoryText {
-  font-size: 3vw;
+  font-size: 1.2em;
   font-style: italic;
   font-weight: bold;
 }
@@ -534,49 +538,82 @@ template {
   display: grid;
   justify-content: center;
   padding-top: 1em;
-  grid-column: 5fr;
+  grid-column: 3fr;
   grid-row: 1fr;
 }
 
 .buttonmenu {
+  margin-top: 0.2em;
   width: 5em;
   height: 5em;
   border-radius: 1em;
-  margin: 0.2em;
   cursor: pointer;
   font-family: inherit;
   border: 1px solid #cacaca;
-  background-image: -webkit-linear-gradient(top, #E6E6E6, #CCCCCC);
-  background-image: -moz-linear-gradient(top, #E6E6E6, #CCCCCC);
-  background-image: -ms-linear-gradient(top, #E6E6E6, #CCCCCC);
-  background-image: -o-linear-gradient(top, #E6E6E6, #CCCCCC);
-  background-image: linear-gradient(to bottom, #E6E6E6, #CCCCCC);
+  background-image: -webkit-linear-gradient(top, #efe2d9, #c9beb6ff);
+  background-image: -moz-linear-gradient(top, #efe2d9, #c9beb6ff);
+  background-image: -ms-linear-gradient(top, #efe2d9, #c9beb6ff);
+  background-image: -o-linear-gradient(top, #efe2d9, #c9beb6ff);
+  background-image: linear-gradient(to bottom, #efe2d9, #c9beb6ff);
 }
-
 .button-one {
   grid-column: 2;
   grid-row: 1;
 }
-
 .button-two {
   grid-column: 3;
   grid-row: 1;
 }
-
 .button-three {
   grid-column: 4;
   grid-row: 1;
 }
-
 .button-four {
   grid-column: 5;
   grid-row: 1;
 }
-
 .exitbutton {
   grid-column: 1;
   grid-row: 1;
-  float: left;
+  margin-right: 0.25em;
+  font-size: 1em;
+  width: 4em;
+  height: 4em;
+  border-radius: 0.8em;
+}
+
+.beveragesidebuttons {
+  width: 2em;
+  height: 2em;
+  border-radius: 0.4em;
+  font-size: 2em;
+  margin-top: 0.1em;
+  cursor: pointer;
+  font-family: inherit;
+  border: 1px solid #cacaca;
+  background-image: -webkit-linear-gradient(top, #efe2d9, #c9beb6ff);
+  background-image: -moz-linear-gradient(top, #efe2d9, #c9beb6ff);
+  background-image: -ms-linear-gradient(top, #efe2d9, #c9beb6ff);
+  background-image: -o-linear-gradient(top, #efe2d9, #c9beb6ff);
+  background-image: linear-gradient(to bottom, #efe2d9, #c9beb6ff);
+}
+.backbutton {
+  grid-column: 1;
+  grid-row: 1;
+  margin-right: 6.4em;
+}
+.beverageside {
+  position: relative;
+  left:0.1em;
+  margin-top: 0.19em;
+  grid-column: 2;
+  grid-row: 1;
+  width: 4em;
+  height: 4em;
+  padding-right: 3.3em;
+  padding-left: 0.3em;
+  font-size: 1.0em;
+  border-radius: 0.8em;
 }
 
 .buttonmenu:hover {
@@ -584,15 +621,15 @@ template {
 }
 
 .orangeBorder {
-  border: 2px solid #ffab40;
+  border: 0.3em solid #ffab40;
 }
 
 .greenBorder {
-  border: 2px solid #93c47dff;
+  border: 0.3em solid #93c47dff;
 }
 
 .purpleBorder {
-  border: 2px solid #c27ba0ff;
+  border: 0.3em solid #c27ba0ff;
 }
 
 .cancelButton {
@@ -681,17 +718,25 @@ template {
 }
 
 .lastPage{
-  margin-top: 69%;
+  margin-top: 40%;
+}
+
+#lastPageWrapper{
+  background-color: #c9beb6ff;
+  border-radius: 2em;
+  padding-bottom: 3em;
 }
 
 #goodbye{
-  font-size: 2em;
+  font-size: 4em;
+  font-weight: bold;
+  color: white;
 }
 
 #payment{
-  font-size: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
+  font-size: 1.5em;
+  color: black;
+  font-weight: normal;
 }
 
 @media screen and (min-width: 600px){
@@ -703,20 +748,20 @@ template {
   }
 
   .footer{
-    font-size: 1.5em;
+    font-size: 1.6em;
   }
   .footerbutton{
-    font-size: 0.8em;
-    height: 2.9em;
+    font-size: 1em;
+    height: 2.6em;
     margin-bottom: 1em;
   }
 
   .lastPage{
-    margin-top: 60%;
+    margin-top: 40%;
   }
 
   #goodbye{
-    font-size: 4em;
+    font-size: 6em;
   }
 
   #payment{
@@ -809,6 +854,43 @@ template {
 
 .close-button:hover {
   background-color: darkgray;
+}
+
+
+@media screen and (min-width: 600px) {
+  .beveragesidebuttons {
+    width: 2em;
+    height: 2em;
+    border-radius: 0.4em;
+    font-size: 4em;
+    margin-top: 0.1em;
+  }
+  .backbutton {
+    margin-right: 6.3em;
+  }
+  .beverageside {
+    position: relative;
+    left:0.1em;
+    margin-top: 0.19em;
+    width: 4em;
+    height: 4em;
+    padding-right: 3.3em;
+    padding-left: 0.3em;
+    font-size: 2.0em;
+    border-radius: 0.8em;
+  }
+
+  .categoryText {
+    font-size: 2em;
+  }
+
+  .exitbutton {
+    font-size: 2em;
+    margin-right: 1.8em;
+    width: 4em;
+    height: 4em;
+    border-radius: 0.8em;
+  }
 }
 
 </style>

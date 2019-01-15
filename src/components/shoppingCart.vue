@@ -139,7 +139,7 @@ export default{
 .shopa{
   grid-column: 1;
   grid-row: 1;
-  border: 2px solid #a2c4c9ff;
+  border: 2px solid #d9ecff;
   border-radius: 0.5em;
   align-items: center;
   justify-content: center;
@@ -147,28 +147,28 @@ export default{
   display: grid;
   grid-template-columns: 2fr;
   grid-template-rows: 1fr;
-  background-color: #eeeeeeff;
+  background-color: #c9beb6ff;
 }
 .shopb{
   grid-column: 1;
   grid-row: 2;
-  border: 2px solid #a2c4c9ff;
+  border: 2px solid #d9ecff;
   border-radius: 15px;
   display: block;
   align-items: flex-start;
   justify-content: flex-start;
   overflow-y: scroll;
-  background-color: #eeeeeeff;
+  background-color: #c9beb6ff;
 }
 .shopc{
   grid-column: 1;
   grid-row: 3;
-  border: 2px solid #a2c4c9ff;
+  border: 2px solid #d9ecff;
   border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #eeeeeeff;
+  background-color: #c9beb6ff;
 }
 
 .pricetext {
@@ -185,28 +185,33 @@ export default{
   font-weight: bold;
   font-family: inherit;
   font-size: 1em;
-  border: 1px solid #cacaca;
-  background-image: -webkit-linear-gradient(top, #E6E6E6, #CCCCCC);
-  background-image: -moz-linear-gradient(top, #E6E6E6, #CCCCCC);
-  background-image: -ms-linear-gradient(top, #E6E6E6, #CCCCCC);
-  background-image: -o-linear-gradient(top, #E6E6E6, #CCCCCC);
-  background-image: linear-gradient(to bottom, #E6E6E6, #CCCCCC);
+  border: 1px solid #bfb4acff;
+  background-image: -webkit-linear-gradient(top, #efe2d9, #bfb4acff);/*#E6E6E6, #CCCCCC*/
+  background-image: -moz-linear-gradient(top, #efe2d9, #bfb4acff);
+  background-image: -ms-linear-gradient(top, #efe2d9, #bfb4acff);
+  background-image: -o-linear-gradient(top, #efe2d9, #bfb4acff);
+  background-image: linear-gradient(to bottom, #efe2d9, #bfb4acff);
 }
 
 .buttonmenu {
   width: 2em;
   height: 2em;
   border-radius: 0.4em;
-  border: 1px solid #000;
   margin: 0.2em;
   margin-right: 0.5em;
   cursor: pointer;
   grid-column: 2;
   font-size: 2em;
+  border: 1px solid #c9beb6ff;
+  background-image: -webkit-linear-gradient(top, #efe2d9, #c9beb6ff);/*#E6E6E6, #CCCCCC*/
+  background-image: -moz-linear-gradient(top, #efe2d9, #c9beb6ff);
+  background-image: -ms-linear-gradient(top, #efe2d9, #c9beb6ff);
+  background-image: -o-linear-gradient(top, #efe2d9, #c9beb6ff);
+  background-image: linear-gradient(to bottom, #efe2d9, #c9beb6ff);
 }
 
 #the-close-button{
-  background: #e5e5e5;
+
   -webkit-box-shadow: inset 0px 0px 5px #000000;
      -moz-box-shadow: inset 0px 0px 5px #000000;
           box-shadow: inset 0px 0px 5px #000000;

@@ -51,10 +51,9 @@ export default {
    padding: 1em 1em 1em 1em;
    /*background-image: url('~@/assets/exampleImage.jpg');*/
    color: black;
-
    font-size: 0.8em;
    width: 6.5em;
-   height: 6.5em;
+   height: 7em;
    /*display: flex;
    flex-wrap: wrap;
    flex-direction: column;
@@ -78,7 +77,6 @@ export default {
    word-wrap: break-word;
    hyphens: auto;
    grid-row: 1;
-   font-weight: bold;
  }
 
  .price {
@@ -90,27 +88,38 @@ export default {
    grid-row: 3;
  }
 
-@media screen and (min-width: 600px){
-  .ingredient{
-    font-size: 1.2em;
-  }
-}
-
  button {
    width: 3.1em;
    height: 2.3em;
+   font-weight: bold;
    border: 1px solid black;
    padding: 0px;
    cursor: pointer;
  }
 
+@media screen and (min-width: 600px){
+  .ingredient{
+    font-size: 1.3em;
+  }
+
+  button{
+    font-weight: bold;
+    font-size: 1em;
+    width: 3em;
+    height: 2em;
+  }
+}
+
+
+
  #decreasebutton {
-   border:1px solid #ea9999ff;/*#ffad41;*/
-   background-image: -webkit-linear-gradient(top, #ea9999ff, #e06666ff);
-   background-image: -moz-linear-gradient(top, #ea9999ff, #e06666ff);
-   background-image: -ms-linear-gradient(top, #ea9999ff, #e06666ff);
-   background-image: -o-linear-gradient(top, #ea9999ff, #e06666ff);
-   background-image: linear-gradient(to bottom, #ea9999ff, #e06666ff);
+   background-color: #93c47dff; /* Green */
+   border:1px solid #9e665a; /*#93c47dff;/*#ffad41;*/
+   background-image: -webkit-linear-gradient(top, #d98c7bff, #b93822); /*#6aa84fff #b6d7a8ff*/
+   background-image: -moz-linear-gradient(top, #d98c7bff,#b93822);
+   background-image: -ms-linear-gradient(top, #d98c7bff, #b93822);
+   background-image: -o-linear-gradient(top, #d98c7bff, #b93822);
+   background-image: linear-gradient(to bottom, #d98c7bff, #b93822);
    border-radius: 0.7em 0em 0em 0.7em;
  }
 
