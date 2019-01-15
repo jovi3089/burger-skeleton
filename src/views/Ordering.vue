@@ -621,15 +621,15 @@ template {
 }
 
 .orangeBorder {
-  border: 0.3em solid #ffab40;
+  border: 0.3em solid #eabc33ff;
 }
 
 .greenBorder {
-  border: 0.3em solid #93c47dff;
+  border: 0.3em solid #f8c07eff;
 }
 
 .purpleBorder {
-  border: 0.3em solid #c27ba0ff;
+  border: 0.3em solid #d98c7bff;
 }
 
 .cancelButton {
