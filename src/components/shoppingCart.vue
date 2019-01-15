@@ -1,5 +1,11 @@
 <template> <!--sätter massa ### för ord som inte ännu är i ui_lang-->
   <div class="root">
+    <div class="modal" v-show="showPopUp">
+        <div class="modal-content" v-show="showPopUp">
+            <span class="close-button" v-on:click="showPopUp()">&times;</span>
+            <h1>Hello, I am a modal!</h1>
+        </div>
+      </div>
     <div class="shopwrapper">
       <div class="shopa">
         <!-- <button class="buttonmenu" id="cancel-button">
@@ -52,7 +58,8 @@ export default{
     },
     data: function () {
     return {
-      orderDisplay: []
+      orderDisplay: [],
+      showPopUp: false
     };
   },
     methods: {
@@ -63,7 +70,12 @@ export default{
         this.$emit('cancelOrder')
       },
       placeOrder: function(){
-        this.$emit('placeOrder');
+        if (this.orders.length > 0) {
+          this.$emit('placeOrder');
+        }
+        else {
+          this.showPopUp = true;
+        }
       },
       getPrice: function (ind) {
         var orderPrice = this.price[ind];
@@ -101,6 +113,9 @@ export default{
           }
         }
         return ans;
+      },
+      closePopUp: function () {
+        this.showPopUp = false;
       }
     }
 }
@@ -233,5 +248,48 @@ dt {
   background-color: lightgrey;
   border-style: none;
 }
+
+.modal {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1.1);
+        transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    }
+    .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: black;
+        padding: 1rem 1.5rem;
+        width: 24rem;
+        border-radius: 0.5rem;
+    }
+    .close-button {
+        float: right;
+        width: 1.5rem;
+        line-height: 1.5rem;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 0.25rem;
+        background-color: lightgray;
+    }
+    .close-button:hover {
+        background-color: darkgray;
+    }
+    .show-modal {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1.0);
+        transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+    }
+
+
 
 </style>
