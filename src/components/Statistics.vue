@@ -10,6 +10,7 @@
         <div class="list a">
           <div
           v-for="item in breads"
+          :key="item[0]"
           >
             <p>{{findProduct(item[0])}}: {{item[1]}}</p>
           </div>
@@ -20,6 +21,7 @@
         <div class="list b">
           <div
           v-for="item in pattys"
+          :key="item[0]"
           >
             <p>{{findProduct(item[0])}}: {{item[1]}}</p>
           </div>
@@ -30,6 +32,7 @@
         <div class="list c">
           <div
           v-for="item in toppings"
+          :key="item[0]"
           >
             <p>{{findProduct(item[0])}}: {{item[1]}}</p>
           </div>
@@ -39,7 +42,9 @@
         </div>
         <div class="list d">
           <div
-          v-for="item in sauces">
+          v-for="item in sauces"
+          :key="item[0]"
+          >
             <p>{{findProduct(item[0])}}: {{item[1]}}</p>
           </div>
         </div>
@@ -49,6 +54,7 @@
         <div class="list e">
           <div
           v-for="item in sides"
+          :key="item[0]"
           >
             <p>{{findProduct(item[0])}}: {{item[1]}}</p>
           </div>
@@ -58,11 +64,9 @@
         </div>
         <div class="list f">
           <div
-          v-for="item in combos">
-          <!--  här ska det vara annat!  -->
-          <!--<div v-if="this.containsInfo===true">
-            <p>descendCategories();</p></div>
-              {{descArray}}-->
+          v-for="item in combos"
+          :key="item[0]"
+          >
               <p>{{findCombo(item[0])}}: {{item[1]}}</p>
           </div>
 
@@ -104,14 +108,14 @@ export default {
     //keys represent ingredients_id, value is number represented in orders
     return {
       pattys: [[1, 0], [2, 0], [3, 1], [4, 0], [5, 0], [6, 0], [7, 0], [8, 0], [9, 0], [10, 0]],
-      toppings: [[11, 0], [12, 0], [13, 1], [14, 0], [15, 0], [16, 0], [17, 0], [18, 0], [19, 0], [20, 0],
+      toppings: [[11, 0], [12, 0], [13, 0], [14, 0], [15, 0], [16, 0], [17, 0], [18, 0], [19, 0], [20, 0],
                  [21, 0], [22, 0], [23, 0], [24, 0], [25, 0], [26, 0], [27, 0], [28, 0], [29, 0], [30, 0],
                  [31, 0], [32, 0], [33, 0], [34, 0]],
-      sauces: [[35, 0], [36, 0], [37, 1], [38, 0], [39, 0], [40, 0], [41, 0], [42, 0], [43, 0], [44, 0],
+      sauces: [[35, 0], [36, 0], [37, 0], [38, 0], [39, 0], [40, 0], [41, 0], [42, 0], [43, 0], [44, 0],
                [45, 0], [46, 0], [47, 0], [48, 0], [49, 0]],
-      breads: [[50, 0], [51, 1], [52, 0], [53, 0]],
+      breads: [[50, 0], [51, 0], [52, 0], [53, 0]],
       sides: [[54, 0], [55, 0], [56, 0]],
-      combos: [[50021237, 1], [51021345, 4], [11, 1], [12, 3]]
+      combos: []
     }
   },
 
@@ -147,9 +151,7 @@ export default {
       return ans;
     },
     pattysCount: function (orders) {
-      var i = 0;
       for (var key in orders) {
-        i += i;
         var oneOrder = orders[key].ingredients;
         for (var i = 0; i < oneOrder.length; i++) {
           var orderInOrder = oneOrder[i];
@@ -163,9 +165,7 @@ export default {
       }
     },
     toppingsCount: function (orders) {
-      var i = 0;
       for (var key in orders) {
-        i += i;
         var oneOrder = orders[key].ingredients;
         for (var i = 0; i < oneOrder.length; i++) {
           var orderInOrder = oneOrder[i];
@@ -179,9 +179,7 @@ export default {
       }
     },
     saucesCount: function (orders) {
-      var i = 0;
       for (var key in orders) {
-        i += i;
         var oneOrder = orders[key].ingredients;
         for (var i = 0; i < oneOrder.length; i++) {
           var orderInOrder = oneOrder[i];
@@ -195,9 +193,7 @@ export default {
       }
     },
     breadCount: function (orders) {
-      var i = 0;
       for (var key in orders) {
-        i += i;
         var oneOrder = orders[key].ingredients;
         for (var i = 0; i < oneOrder.length; i++) {
           var orderInOrder = oneOrder[i];
@@ -211,9 +207,7 @@ export default {
       }
     },
     sidesCount: function (orders) {
-      var i = 0;
       for (var key in orders) {
-        i += i;
         var oneOrder = orders[key].ingredients;
         for (var i = 0; i < oneOrder.length; i++) {
           var orderInOrder = oneOrder[i];
@@ -227,9 +221,7 @@ export default {
       }
     },
     combosCount: function (orders) {
-      var i = 0;
       for (var key in orders) {
-        i += i;
         var oneOrder = orders[key].ingredients;
         for (var i = 0; i < oneOrder.length; i++) {
           var orderInOrder = oneOrder[i];
@@ -258,7 +250,7 @@ export default {
       if (subOrder.length != 0) {
         for (var index in subOrder ) {
           var id = subOrder[index].ingredient_id;
-          if (id < 10) {
+          if (parseInt(id) < 10) {
             id = id.toString();
             id = "0" + id;
           }
@@ -273,9 +265,9 @@ export default {
     },
     getTop3: function (array) {
       var ans = [0, 0, 0];
-      ans[0] = this.combos[0][0];
-      ans[1] = this.combos[1][0];
-      ans[2] = this.combos[2][0];
+      ans[0] = array[0][0];
+      ans[1] = array[1][0];
+      ans[2] = array[2][0];
       return ans;
     },
     resetData: function () {
@@ -287,7 +279,7 @@ export default {
                [45, 0], [46, 0], [47, 0], [48, 0], [49, 0]];
       this.breads = [[50, 0], [51, 0], [52, 0], [53, 0]];
       this.sides = [[54, 0], [55, 0], [56, 0]];
-      this.combos = [[50021237, 1], [51021345, 4], [11, 1], [12, 3]];
+      this.combos = [];
 
     }
   }
