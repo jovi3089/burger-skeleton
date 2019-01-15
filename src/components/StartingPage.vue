@@ -31,14 +31,14 @@ export default {
       isSwedish: false,
       isEnglish: false,
       sweBorderColor: "#a2c4c9ff",
-      engBorderColor: "#2abb00ff"
+      engBorderColor: "#6aa84fff"
     };
   },
-
+  
   computed: {
     computedSweBorderColor: function(){
         if (this.isSwedish){
-          this.sweBorderColor = "#2abb00ff";
+          this.sweBorderColor = "#6aa84fff";
         }
         else {
           this.sweBorderColor = "#a2c4c9ff";
@@ -48,7 +48,7 @@ export default {
 
     computedEngBorderColor: function(){
       if (this.isEnglish){
-        this.engBorderColor = "#2abb00ff";
+        this.engBorderColor = "#6aa84fff";
       }
       else {
         this.engBorderColor = "#a2c4c9ff";

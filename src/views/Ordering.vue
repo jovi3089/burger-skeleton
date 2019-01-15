@@ -171,18 +171,21 @@
    </randomBurgerPage>
  </div>
  <div v-show="step===9" class="lastPage">
-  <transition name="thank-you">
-    <div v-show="step===9">
-      <i id="goodbye" >{{uiLabels.lastPage}}</i>
-    </div>
-  </transition>
-    <br>
-    <br>
-  <transition name = "payment-message">
-    <div v-show="step===9">
-      <i id="payment" >{{uiLabels.paymentMessage}}</i>
-    </div>
-  </transition>
+   <div id = "lastPageWrapper" v-show="step===9">
+    <transition name="thank-you">
+
+        <div v-show="step===9">
+          <i id="goodbye" >{{uiLabels.lastPage}}</i>
+        </div>
+      </transition>
+        <br>
+        <br>
+      <transition name = "payment-message">
+        <div v-show="step===9">
+          <i id="payment" >{{uiLabels.paymentMessage}}</i>
+        </div>
+    </transition>
+  </div>
 </div>
 
 
@@ -375,12 +378,12 @@ export default {
 
       if (this.shoppingCart.length > 0 && !this.showCartState) {
         this.newPage(9);
-        setTimeout(() => this.newPage(0), 6000);
+        setTimeout(() => this.newPage(0), 100000);
       }
       else if (this.shoppingCart.length > 0) {
         this.showCart();
         this.newPage(9);
-        setTimeout(() => this.newPage(0), 6000);
+        setTimeout(() => this.newPage(0), 100000);
       }
 
       this.price = 0;
@@ -715,17 +718,25 @@ template {
 }
 
 .lastPage{
-  margin-top: 69%;
+  margin-top: 40%;
+}
+
+#lastPageWrapper{
+  background-color: #c9beb6ff;
+  border-radius: 2em;
+  padding-bottom: 3em;
 }
 
 #goodbye{
-  font-size: 2em;
+  font-size: 4em;
+  font-weight: bold;
+  color: white;
 }
 
 #payment{
-  font-size: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
+  font-size: 1.5em;
+  color: black;
+  font-weight: normal;
 }
 
 @media screen and (min-width: 600px){
@@ -746,11 +757,11 @@ template {
   }
 
   .lastPage{
-    margin-top: 60%;
+    margin-top: 40%;
   }
 
   #goodbye{
-    font-size: 4em;
+    font-size: 6em;
   }
 
   #payment{
