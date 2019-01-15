@@ -10,8 +10,13 @@
     </button>
   </div>
 <div class="menu updateshopping">
-    <button class="buttonmenu" id="invisible-button" v-show="!showNumber()">
-    </button>
+    <transition name="flash-the-number">
+      <div v-show="doTheThing()">
+        <div class="updateCart" id="new-burger" v-show="showNumber()">
+          <div class="number-style">{{burgerAmount}}</div>
+        </div>
+      </div>
+    </transition>
 
     <button class="buttonmenu" id="order-button" v-show="showNumber()" v-on:click="placeOrder()">
       <div class="place-text">{{uiLabels.placeOrder}}: {{totalPrice}}:-</div>
@@ -82,6 +87,9 @@ export default {
     },
     showNumber: function () {
       return this.burgerAmount !== 0;
+    },
+    doTheThing: function (){
+      return this.burgerAmount > 0;
     }
   }
 }
@@ -221,6 +229,18 @@ export default {
   font-weight: bold;
   font-size: 0.5em;
   font-family: inherit;
+}
+
+.flash-the-number-enter-active{
+  transition: all 1s;
+}
+
+.flash-the-number-leave-active{
+  transition: all 1s;
+}
+
+.flash-the-number-enter, .flash-the-number-leave-to{
+  transform: scale(10);
 }
 
 </style>

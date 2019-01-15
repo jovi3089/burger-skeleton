@@ -59,7 +59,7 @@
         <div class="list f">
           <div
           v-for="order in orders">
-            <p>{{order}}</p>
+          <!--  här ska det vara annat!  -->
           <!--<div v-if="this.containsInfo===true">
             <p>descendCategories();</p></div>
               {{descArray}}-->
@@ -73,7 +73,7 @@
 export default {
   name: 'Statistics',
   props: {
-    orders: Object,
+    orders: Object, //från shared
     ingredients: Array,
     uiLabels: Object,
     lang: String
@@ -92,6 +92,7 @@ export default {
       this.sauces = this.sortData(this.sauces);
       this.breads = this.sortData(this.breads);
       console.log("watched");
+      this.$store.state.socket.emit('combo', this.pattys)
     }
   },
   data: function () {

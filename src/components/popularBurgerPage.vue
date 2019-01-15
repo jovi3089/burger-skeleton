@@ -3,8 +3,8 @@
     <p id = "title">{{uiLabels.ourMostPopularBurgers}}<p/>
     <div class = "container">
       <p class = "numberOfPopularity one">(#1)<p/>
-      <p class = "displayPopularBurger first">(most popular burger)<p/>
-      <button class = "burgerButton firstButton">select/order</button>
+      <p class = "displayPopularBurger first">(most popular burger):<br> {{decodeNicely(burgerCombos[1])}}<p/>
+      <button class = "burgerButton firstButton">select/order:<br> {{decodeNicely(burgerCombos[1])}}</button>
       <p class = "numberOfPopularity two">(#2)<p/>
       <p class = "displayPopularBurger second">(second most popular burger)<p/>
       <button class = "burgerButton secondButton">select/order</button>
@@ -26,7 +26,61 @@ export default {
   props: {
     uiLabels: Object,
     lang: String,
+    burgerCombos: Object,
+    ingredients: Array,
     step: Number,
+  },
+  watch: {
+    burgerCombos: function (){
+      //console.log("popBurPage: wow burgerCombos förändrades!!!!")
+      //när burgerCombos förändras.
+    },
+  },
+  methods: {
+    decodeNicely(ingredId){
+      var decodedUgly = this.decoder(ingredId);
+      return decodedUgly.join(",");
+    },
+    decoder: function(ingredientId){
+      if(ingredientId !== 0){
+        var ingredientNames = [];
+        var idSep = this.idSeparate(ingredientId)
+        //console.log("decoder() idSep: " + idSep);
+        for(let i = 0; i<idSep.length; i++){
+          let name = this.getIngredient(idSep[i])
+          //console.log("~~~~~~~~~~varv i decoder~~~~~~~~~~~~")
+          ingredientNames.push(name);
+        }
+        //console.log("ingredienserna är: "+ingredientNames.join(", "))
+        return ingredientNames;
+      }
+    },
+    getIngredient: function(ingredientCode){
+      let id = parseInt(ingredientCode);
+      let ing = this.ingredients;
+      //console.log(ing);
+      //console.log("getIngredient() parseInt(ingredCode): " + id);
+      for(let i = 0; i<ing.length; i++){
+          if(id === ing[i].ingredient_id){
+            //console.log("yey "+ ing[i].ingredient_en)
+            return(ing[i].ingredient_en)
+          }
+        }
+    },
+    idSeparate: function(aThing){
+      //var idString = "534501"; // 53 45 01
+      var idString = aThing+"";
+      var idArray = idString.split("");
+      var slicedArray = [];
+      var joinedIdArray = [];
+      var result = [];
+      for (let i = 0; i < idString.length; i = i +2) {
+        slicedArray.push(idArray.slice(0+i, 2+i));
+        joinedIdArray.push(slicedArray[i/2].join());
+        result[i/2] = joinedIdArray[i/2].replace(/,/g,"");
+      }
+      return result;
+    }
   }
 }
 </script>

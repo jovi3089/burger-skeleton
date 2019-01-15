@@ -141,6 +141,8 @@
    <popularBurgerPage
      class="menupage"
      :ui-labels="uiLabels"
+     :burgerCombos="burgerCombos"
+     :ingredients="ingredients"
      :lang="lang"
      v-on:menuPage="newPage(2)"
      >
@@ -159,10 +161,11 @@
 
   <div id="last-page-wrapper">
     <transition name="last-page">
-      <div v-show="step===9" class="lastPage">
-        <i id="goodbye">{{uiLabels.lastPage}}</i>
-        <button v-on:click="newPage(0)">whoa</button>
-      </div>
+        <div v-show="step===9" class="lastPage">
+          <!-- <button v-on:click="newPage(0)">
+          </button> -->
+            <i id="goodbye" v-on:click="newPage(0)">{{uiLabels.lastPage}}</i>
+        </div>
     </transition>
   </div>
   </div>
