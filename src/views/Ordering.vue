@@ -175,7 +175,6 @@
       <i id="goodbye" >{{uiLabels.lastPage}}</i>
     </div>
   </transition>
-  <!--Linux e semst-->
     <br>
     <br>
   <transition name = "payment-message">
