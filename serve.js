@@ -40,7 +40,7 @@ io.on('connection', function (socket) {
   socket.on('pageReady', function() {
     socket.emit('initialize', { orders: data.getAllOrders(),
                             uiLabels: data.getUILabels(),
-                            ingredients: data.getIngredients() });
+                            ingredients: data.getIngredients()});
   });
   // When someone orders something
   socket.on('order', function (order) {
@@ -53,15 +53,15 @@ io.on('connection', function (socket) {
     //}
     //var orderIdAndName = data.addOrder(order);
     // send updated info to all connected clients, note the use of io instead of socket
-    console.log("===============================================");
-    console.log("================== i serve.js: ================");
-    console.log("===============================================");
-    console.log("burgeridandname: "+burgerIdAndName);
+    // console.log("===============================================");
+    // console.log("================== i serve.js: ================");
+    // console.log("===============================================");
+    // console.log("burgeridandname: "+burgerIdAndName);
 
     socket.emit('orderNumber', burgerIdAndName);
 
-    console.log("orders: getallorders(): "+data.getAllOrders());
-    console.log("orders: getIngredients(): "+data.getIngredients());
+    // console.log("orders: getallorders(): "+data.getAllOrders());
+    // console.log("orders: getIngredients(): "+data.getIngredients());
     io.emit('currentQueue', { orders: data.getAllOrders(),
                          ingredients: data.getIngredients() });
   });
@@ -94,6 +94,11 @@ io.on('connection', function (socket) {
     data.changeStock(item, saldo);
     io.emit('currentQueue', {ingredients: data.getIngredients() });
   });
+
+  socket.on('combo', function (combo){
+    console.log("combo: "+ combo);
+    io.emit('updateCombo', combo)
+  })
 });
 
 const port = 8080;

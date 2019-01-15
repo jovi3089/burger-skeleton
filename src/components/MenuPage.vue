@@ -4,20 +4,25 @@
     <div class="menu seeshopping">
     <button class="buttonmenu" v-on:click="showCart" id="shop-button">
       <i class="fa fa-shopping-cart fa-1x"></i>
+      <div class="updateCart" id="new-burger" v-show="showNumber()">
+        <div class="number-style">{{burgerAmount}}</div>
+      </div>
     </button>
   </div>
 <div class="menu updateshopping">
-    <div class="updateCart" id="new-burger" v-show="showNumber()">
-      <div class="number-style">{{burgerAmount}}</div>
-    </div>
-
-    <button class="buttonmenu" id="invisible-button" v-show="!showNumber()">
-    </button>
+    <transition name="flash-the-number">
+      <div v-show="doTheThing()">
+        <div class="updateCart" id="new-burger" v-show="showNumber()">
+          <div class="number-style">{{burgerAmount}}</div>
+        </div>
+      </div>
+    </transition>
 
     <button class="buttonmenu" id="order-button" v-show="showNumber()" v-on:click="placeOrder()">
       <div class="place-text">{{uiLabels.placeOrder}}: {{totalPrice}}:-</div>
     </button>
   </div>
+
 <div class="menu exitshopping">
     <button v-on:click="menuPush(4)" class="buttonmenu" id="cancel">
       <i class="fa fa-times fa-1x"></i>
@@ -26,13 +31,19 @@
 </div>
   <div>
     <label>
-      <button class="button" id="buttonburg" v-on:click="menuPush(1)"> {{ uiLabels.hamburger }}</button>
+      <button class="button" id="buttonburg" v-on:click="menuPush(1)">
+        <div class="button-font">{{ uiLabels.hamburger }}</div>
+      </button>
     </label>
     <label>
-      <button class="button" id="buttonside" v-on:click="menuPush(2)"> {{ uiLabels.sides }}</button>
+      <button class="button" id="buttonside" v-on:click="menuPush(2)">
+        <div class="button-font">{{ uiLabels.sides }}</div>
+      </button>
     </label>
     <label>
-      <button class="button" id="buttonbev" v-on:click="menuPush(3)"> {{ uiLabels.beverage }}</button>
+      <button class="button" id="buttonbev" v-on:click="menuPush(3)">
+        <div class="button-font">{{ uiLabels.beverage }}</div>
+      </button>
     </label>
   </div>
   </div>
@@ -76,6 +87,9 @@ export default {
     },
     showNumber: function () {
       return this.burgerAmount !== 0;
+    },
+    doTheThing: function (){
+      return this.burgerAmount > 0;
     }
   }
 }
@@ -83,7 +97,7 @@ export default {
 <style scoped>
 
 .pagemenu {
-  height: 50vh;
+  height: 40vh;
   display: grid;
   justify-content: center;
   grid-template-columns: 3fr;
@@ -126,9 +140,14 @@ export default {
   text-align: center;
   text-decoration: none;
   font-size: 2em;
+  font-family: inherit;
   display: block;
   /*font-size: 16px;*/
   margin: auto auto;
+}
+
+.button-font {
+  font-size: 0.8em;
 }
 
 .buttonmenu {
@@ -139,13 +158,13 @@ export default {
   border: 1px solid #000;
   margin: 0.1em;
   cursor: pointer;
+  font-family: inherit;
 }
 
 @media screen and (min-width: 600px){
   .buttonmenu{
     font-size: 4em;
   }
-
   .button{
     font-size: 3.5em;
   }
@@ -164,19 +183,18 @@ export default {
 
 #new-burger {
   z-index: 1;
-  margin-left: 16.7em;
-  margin-top: 3.4em;
   border: 1px solid #000;
   border-radius: 50%;
   background-color: #ea9999ff;
-  width: 1.2em;
-  height: 1.2em;
+  width: 0.7em;
+  height: 0.7em;
   text-align: center;
+  left: -0.3em;
 }
 
 .number-style {
   color: black;
-  font-size: 12pt;
+  font-size: 0.5em;
 }
 
 #buttonburg {
@@ -210,6 +228,19 @@ export default {
 .place-text {
   font-weight: bold;
   font-size: 0.5em;
+  font-family: inherit;
+}
+
+.flash-the-number-enter-active{
+  transition: all 1s;
+}
+
+.flash-the-number-leave-active{
+  transition: all 1s;
+}
+
+.flash-the-number-enter, .flash-the-number-leave-to{
+  transform: scale(10);
 }
 
 </style>

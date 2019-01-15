@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <router-view/>
   </div>
 </template>
@@ -16,9 +17,10 @@ export default {
 </script>
 
 <style>
-
+@import url('https://fonts.googleapis.com/css?family=Lato');
 body{
   margin: 0 0 0 0;
+  font-family: 'Montserrat';
 }
 /*
 body {
