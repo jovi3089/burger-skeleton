@@ -94,6 +94,7 @@ export default {
       this.toppings = this.sortData(this.toppings);
       this.sauces = this.sortData(this.sauces);
       this.breads = this.sortData(this.breads);
+      this.sides = this.sortData(this.sides);
       this.combos = this.sortData(this.combos);
       var top3Combos = this.getTop3(this.combos);
       this.$store.state.socket.emit('combo', top3Combos);

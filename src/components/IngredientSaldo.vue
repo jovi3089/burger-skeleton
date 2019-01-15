@@ -64,7 +64,7 @@
         </div>
         <div class="list f">
           <div
-          v-for="item in ingredients"
+          v-for="item in ingredientsInOrder"
           :key="item.ingredient_id"
           v-if="item.category===6">
             <p>{{item["ingredient_"+ lang]}}: {{item.stock}} pcs</p>
@@ -87,8 +87,13 @@ export default {
 
   data: function () {
     return {
-      containsInfo: false,
+
     };
+  },
+  computed: {
+    ingredientsInOrder: function() {
+        return this.ingredients;
+    }
   },
 
   methods:{

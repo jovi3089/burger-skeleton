@@ -2,8 +2,10 @@
   <div class = "popularBurgerPage">
     <p id = "title">{{uiLabels.ourMostPopularBurgers}}<p/>
     <div class = "container">
-      <p class = "numberOfPopularity one">(#1)<p/>
-      <p class = "displayPopularBurger first">(most popular burger):<br> {{decodeNicely(burgerCombos[1])}}<p/>
+      <div class="numberOfPopularity">
+        #1
+      </div>
+      <p class = "displayPopularBurger first">Most popular burger:<br> {{decodeNicely(burgerCombos[1])}}<p/>
       <button class = "burgerButton firstButton"
       v-on:click="$emit('firstChoice')"
       >
