@@ -156,7 +156,8 @@
      v-on:firstChoice="addPopularChoice(1)"
      v-on:secondChoice="addPopularChoice(2)"
      v-on:thirdChoice="addPopularChoice(3)"
-     >
+     v-on:cartClick="showCart()"
+     :burgerAmount="burgerAmount">
    </popularBurgerPage>
  </div>
 

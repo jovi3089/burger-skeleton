@@ -192,12 +192,13 @@ export default {
   height: 0.7em;
   text-align: center;
   left: -0.3em;
-  border:1px solid #ea9999ff;/*#ffad41;*/
-  background-image: -webkit-linear-gradient(top, #ea9999ff, #e06666ff);
-  background-image: -moz-linear-gradient(top, #ea9999ff, #e06666ff);
-  background-image: -ms-linear-gradient(top, #ea9999ff, #e06666ff);
-  background-image: -o-linear-gradient(top, #ea9999ff, #e06666ff);
-  background-image: linear-gradient(to bottom, #ea9999ff, #e06666ff);
+  background-color: #93c47dff; /* Green */
+  border:1px solid #9e665a; /*#93c47dff;/*#ffad41;*/
+  background-image: -webkit-linear-gradient(top, #d98c7bff, #b93822); /*#6aa84fff #b6d7a8ff*/
+  background-image: -moz-linear-gradient(top, #d98c7bff,#b93822);
+  background-image: -ms-linear-gradient(top, #d98c7bff, #b93822);
+  background-image: -o-linear-gradient(top, #d98c7bff, #b93822);
+  background-image: linear-gradient(to bottom, #d98c7bff, #b93822);
 }
 
 .number-style {
@@ -212,12 +213,12 @@ export default {
 
 #order-button {
   background-color: #93c47dff; /* Green */
-  border:1px solid #91bb79ff;/*#ffad41;*/
-  background-image: -webkit-linear-gradient(top, #addf90ff, #91bb79ff);
-  background-image: -moz-linear-gradient(top, #addf90ff, #91bb79ff);
-  background-image: -ms-linear-gradient(top, #addf90ff, #91bb79ff);
-  background-image: -o-linear-gradient(top, #addf90ff, #91bb79ff);
-  background-image: linear-gradient(to bottom, #addf90ff, #91bb79ff);
+  border:1px solid #6aa84fff;/*#ffad41;*/
+  background-image: -webkit-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: -moz-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: -ms-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: -o-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: linear-gradient(to bottom, #addf90ff, #6aa84fff);
   width: 6em;
 }
 

@@ -140,12 +140,12 @@ export default {
   font-size: 2em;
   margin-top: 60%;
   font-family: inherit;
-  border: 1px solid #9dbec3ff;
-  background-image: -webkit-linear-gradient(top, #d0e0e3ff, #76a5afff);
-  background-image: -moz-linear-gradient(top, #d0e0e3ff, #76a5afff);
-  background-image: -ms-linear-gradient(top, #d0e0e3ff, #76a5afff);
-  background-image: -o-linear-gradient(top, #d0e0e3ff, #76a5afff);
-  background-image: linear-gradient(to bottom, #d0e0e3ff, #76a5afff);
+  border: 1px solid #84afb7ff;
+  background-image: -webkit-linear-gradient(top, #abe2ecff, #84afb7ff);
+  background-image: -moz-linear-gradient(top, #abe2ecff, #84afb7ff);
+  background-image: -ms-linear-gradient(top, #abe2ecff, #84afb7ff);
+  background-image: -o-linear-gradient(top, #abe2ecff, #84afb7ff);
+  background-image: linear-gradient(to bottom, #abe2ecff, #84afb7ff);
 }
 
 @media screen and (min-width: 600px){
