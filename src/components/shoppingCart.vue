@@ -1,5 +1,11 @@
 <template>
   <div class="root">
+    <div class="modal" v-show="showPopUp">
+        <div class="modal-content" v-show="showPopUp">
+            <span class="close-button" v-on:click="showPopUp()">&times;</span>
+            <h1>Hello, I am a modal!</h1>
+        </div>
+      </div>
     <div class="shopwrapper">
       <div class="shopa">
           <div id="title-span">{{uiLabels.shoppingCartContent}}</div>
@@ -49,7 +55,8 @@ export default{
     },
     data: function () {
     return {
-      orderDisplay: []
+      orderDisplay: [],
+      showPopUp: false
     };
   },
     methods: {
@@ -60,7 +67,12 @@ export default{
         this.$emit('cancelOrder')
       },
       placeOrder: function(){
-        this.$emit('placeOrder');
+        if (this.orders.length > 0) {
+          this.$emit('placeOrder');
+        }
+        else {
+          this.showPopUp = true;
+        }
       },
       getPrice: function (ind) {
         var orderPrice = this.price[ind];
@@ -98,6 +110,9 @@ export default{
           }
         }
         return ans;
+      },
+      closePopUp: function () {
+        this.showPopUp = false;
       }
     }
 }

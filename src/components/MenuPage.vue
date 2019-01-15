@@ -10,6 +10,10 @@
     </button>
   </div>
 <div class="menu updateshopping">
+
+  <button class="buttonmenu" id="invisible-button" v-show="!showNumber()">
+  </button>
+
     <transition name="flash-the-number">
       <div v-show="doTheThing()">
         <div class="updateCart" id="new-burger" v-show="showNumber()">
