@@ -483,7 +483,6 @@ body{
 
 @media screen and (max-height:99vh){
   #ordering{
-    background-color: blue;
   }
 
   .cart-popup {
