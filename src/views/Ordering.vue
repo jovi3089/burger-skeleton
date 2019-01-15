@@ -604,15 +604,17 @@ template {
 
 .footer {
   position: fixed;
+  border-top: 0.5px solid darkgray;
   width: 100%;
   height: 25vh;
   left: 0;
   bottom: 0;
-  background-color: #999999ff;
+  background-color: #ccc;
   font-size: 1em;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(auto-fit, 4fr);
+  box-shadow: 0px -0.3px 30px darkgray;
 }
 
 .footerwrap {
@@ -623,6 +625,7 @@ template {
   grid-column: 1;
   grid-row: 1;
   font-weight: bold;
+  padding-top: 0.5em;
 }
 
 .text-two {
@@ -700,12 +703,12 @@ template {
   }
 
   .footer{
-    font-size: 1.7em;
+    font-size: 1.5em;
   }
   .footerbutton{
-    font-size: 1em;
+    font-size: 0.8em;
     height: 2.9em;
-    margin-top: -3em;
+    margin-bottom: 1em;
   }
 
   .lastPage{
