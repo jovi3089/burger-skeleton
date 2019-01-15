@@ -59,5 +59,14 @@
   "statisticsCombo": "Combinations",
   "lastPage" : "Thank you for your order!",
   "ourMostPopularBurgers" : "Our most popular burgers",
-  "paymentMessage": "You're now being forwarded to our payment system"
+  "paymentMessage": "You're now being forwarded to our payment system",
+
+
+
+
+
+  "backToOrder" : "Continue with order",
+  "emptyOrder" : "Your order is empty",
+  "emptyShopping" : "Your cart is empty",
+  "goToMenu" : "Go to menu"
 }

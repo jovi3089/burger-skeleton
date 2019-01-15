@@ -23,9 +23,13 @@ body {
   height: 100vh;
   font-family: 'Montserrat';
   background-size: 200% 200%;
-  background-color: #f7f7f7;
+  background: linear-gradient(135deg, #a08f7b 21px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px),
+linear-gradient(225deg, #a08f7b 21px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px)0 64px;
+background-color:#a08f7b;
+background-size: 64px 128px;
+  /*background-color: #f7f7f7;*/
   /*animation: Gradient 20s linear infinite;
-  background: radial-gradient(white, #f7f7f7);*/
+  background: radial-gradient(lightgrey, #f7f7f7);*/
 }
 /*
 body {
