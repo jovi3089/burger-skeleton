@@ -181,12 +181,13 @@ export default {
   height: 0.7em;
   text-align: center;
   left: -0.3em; /* Green */
-  border:1px solid #ea9999ff;/*#ffad41;*/
-  background-image: -webkit-linear-gradient(top, #ea9999ff, #e06666ff);
-  background-image: -moz-linear-gradient(top, #ea9999ff, #e06666ff);
-  background-image: -ms-linear-gradient(top, #ea9999ff, #e06666ff);
-  background-image: -o-linear-gradient(top, #ea9999ff, #e06666ff);
-  background-image: linear-gradient(to bottom, #ea9999ff, #e06666ff);
+  background-color: #93c47dff; /* Green */
+  border:1px solid #9e665a; /*#93c47dff;/*#ffad41;*/
+  background-image: -webkit-linear-gradient(top, #d98c7bff, #b93822); /*#6aa84fff #b6d7a8ff*/
+  background-image: -moz-linear-gradient(top, #d98c7bff,#b93822);
+  background-image: -ms-linear-gradient(top, #d98c7bff, #b93822);
+  background-image: -o-linear-gradient(top, #d98c7bff, #b93822);
+  background-image: linear-gradient(to bottom, #d98c7bff, #b93822);
 }
 
 .number-style {
@@ -195,23 +196,22 @@ export default {
 }
 
 #buttondesign {
-  background-color: #ffab40ff; /* Green */
-  border:1px solid #ffab40ff;
-  background-image: -webkit-linear-gradient(top, #ffc579, #fb9d23);
-  background-image: -moz-linear-gradient(top, #ffc579, #fb9d23);
-  background-image: -ms-linear-gradient(top, #ffc579, #fb9d23);
-  background-image: -o-linear-gradient(top, #ffc579, #fb9d23);
-  background-image: linear-gradient(to bottom, #ffc579, #fb9d23);
+  border:1px solid #b49128;
+  background-image: -webkit-linear-gradient(top, #eabc33ff, #a68524ff); /*#ffc579 #fb9d23*/
+  background-image: -moz-linear-gradient(top, #eabc33ff, #a68524ff);
+  background-image: -ms-linear-gradient(top, #eabc33ff, #a68524ff);
+  background-image: -o-linear-gradient(top, #eabc33ff, #a68524ff);
+  background-image: linear-gradient(to bottom, #eabc33ff, #a68524ff);
 }
 
 #buttonpopular {
   background-color: #f9cb9cff; /* Green */
-  border:1px solid #f9cb9cff;
-  background-image: -webkit-linear-gradient(top, #fce5cdff,#f6b26bff);
-  background-image: -moz-linear-gradient(top, #fce5cdff, #f6b26bff);
-  background-image: -ms-linear-gradient(top, #fce5cdff, #f6b26bff);
-  background-image: -o-linear-gradient(top, #fce5cdff, #f6b26bff);
-  background-image: linear-gradient(to bottom, #fce5cdff, #f6b26bff);
+  border:1px solid #cda42cff;
+  background-image: -webkit-linear-gradient(top, #f8c736ff,#cda42cff);
+  background-image: -moz-linear-gradient(top, #f8c736ff, #cda42cff);
+  background-image: -ms-linear-gradient(top, #f8c736ff, #cda42cff);
+  background-image: -o-linear-gradient(top, #f8c736ff, #cda42cff);
+  background-image: linear-gradient(to bottom, #f8c736ff, #cda42cff);
 }
 
 #buttonrandom {
@@ -230,12 +230,12 @@ export default {
 
 #order-button {
   background-color: #93c47dff; /* Green */
-  border:1px solid #93c47dff;/*#ffad41;*/
-  background-image: -webkit-linear-gradient(top, #b6d7a8ff, #6aa84fff);
-  background-image: -moz-linear-gradient(top, #b6d7a8ff, #6aa84fff);
-  background-image: -ms-linear-gradient(top, #b6d7a8ff, #6aa84fff);
-  background-image: -o-linear-gradient(top, #b6d7a8ff, #6aa84fff);
-  background-image: linear-gradient(to bottom, #b6d7a8ff, #6aa84fff);
+  border:1px solid #6aa84fff;/*#ffad41;*/
+  background-image: -webkit-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: -moz-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: -ms-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: -o-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: linear-gradient(to bottom, #addf90ff, #6aa84fff);
   width: 6em;
 }
 
