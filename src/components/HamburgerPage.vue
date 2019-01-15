@@ -137,7 +137,6 @@ export default {
   font-size: 0.8em;
 }
 
-
 .buttonmenu {
   width: 2em;
   height: 2em;

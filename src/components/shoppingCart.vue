@@ -1,9 +1,9 @@
 <template>
   <div class="root">
     <div class="modal" v-show="showPopUp">
-        <div class="modal-content" v-show="showPopUp">
-            <span class="close-button" v-on:click="showPopUp()">&times;</span>
-            <h1>Hello, I am a modal!</h1>
+        <div class="modal-content" id="popup-shade" v-show="showPopUp">
+          <div class="pricetext" id="modal-text">Din bag är tom</div>
+            <button class="close-button" v-on:click="close()">Gå till meny</button>
         </div>
       </div>
     <div class="shopwrapper">
@@ -27,7 +27,7 @@
         </dl>
       </div>
       <div class="shopc">
-        <div id = "price">
+        <div class="pricetext">
           <span>{{uiLabels.totalPrice}} {{ totalPrice }}:-</span>
         </div>
         <br>
@@ -60,13 +60,14 @@ export default{
     };
   },
     methods: {
-      close: function(){
+      close: function() {
+        this.showPopUp = false;
         this.$emit('closeCart');
       },
-      cancelOrder: function(){
+      cancelOrder: function() {
         this.$emit('cancelOrder')
       },
-      placeOrder: function(){
+      placeOrder: function() {
         if (this.orders.length > 0) {
           this.$emit('placeOrder');
         }
@@ -170,9 +171,9 @@ export default{
   background-color: lightgrey;
 }
 
-#price{
+.pricetext {
   font-weight: bold;
-  font-size: 1.3em;
+  font-size: 1em;
 }
 
 .footerbutton {
@@ -206,7 +207,7 @@ export default{
           box-shadow: inset 0px 0px 5px #000000;
              outline: none;
                float: right;
-         margin-left: auto
+         margin-left: auto;
   /* width:  4em;
   height: 4em;
   border-radius: 0.5em;
@@ -215,6 +216,16 @@ export default{
   cursor: pointer;
   font-weight: bold; */
 }
+
+/*#popup-shade {
+  background: #e5e5e5;
+  -webkit-box-shadow: outset 0px 0px 8px #000000;
+     -moz-box-shadow: outset 0px 0px 8px #000000;
+          box-shadow: outset 0px 0px 8px #000000;
+             outline: none;
+               float: right;
+         margin-left: auto;
+}*/
 
 #cancel-button{
   float: left;
@@ -248,13 +259,62 @@ dt {
 }
 
 @media screen and (min-width: 600px){
-  .root{
+  .root {
     height: 73vh;
   }
-  .shopwrapper{
+  .shopwrapper {
     width: 90%;
     font-size: 1.8em;
   }
+
+  .modal {
+    font-size: 1.8em;
+  }
+}
+
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  /*opacity: 0;
+  visibility: hidden;*/
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 52%;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  /*padding: 1rem 1.5rem;*/
+  width: 48%;
+  height: 5em;
+  border-radius: 1.5em;
+  box-shadow: 10px 10px 60px #555;
+}
+
+#modal-text {
+  padding-top: 2em;
+  padding-bottom: 1.2em;
+}
+
+.close-button {
+  /*float: right;
+  border-radius: 50%;
+  width: 1.4rem;
+  line-height: 1.4rem;*/
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.8em;
+  background-color: darkgray;
+  border-style: none;
+}
+
+.close-button:hover {
+  background-color: darkgray;
 }
 
 </style>

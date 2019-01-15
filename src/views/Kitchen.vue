@@ -117,8 +117,6 @@ import Timer from '@/components/Timer.vue'
 import IngredientSaldo from '@/components/IngredientSaldo.vue'
 import Statistics from '@/components/Statistics.vue'
 
-
-
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
 

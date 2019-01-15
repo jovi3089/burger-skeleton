@@ -162,15 +162,14 @@
    </randomBurgerPage>
  </div>
 
-  <div id="last-page-wrapper">
     <transition name="last-page">
         <div v-show="step===9" class="lastPage">
-          <!-- <button v-on:click="newPage(0)">
-          </button> -->
-            <i id="goodbye" v-on:click="newPage(0)">{{uiLabels.lastPage}}</i>
+            <i id="goodbye"  >{{uiLabels.lastPage}}</i>
+            <!-- <button v-on:click="newPage(0)">
+            </button> -->
         </div>
     </transition>
-  </div>
+
   </div>
   <div class="footer" v-show="footerBoolean">
     <div class="footerwrap text-one">{{ uiLabels.order }}: </div>
@@ -359,10 +358,12 @@ export default {
 
       if (this.shoppingCart.length > 0 && !this.showCartState) {
         this.newPage(9);
+        setTimeout(() => this.newPage(0), 6000);
       }
       else if (this.shoppingCart.length > 0) {
         this.showCart();
         this.newPage(9);
+        setTimeout(() => this.newPage(0), 6000);
       }
 
       this.price = 0;
@@ -534,10 +535,6 @@ template {
   float: left;
 }
 
-#last-page-wrapper{
-  margin: auto;
-}
-
 .buttonmenu:hover {
   background-color: #d0e0e3ff;
 }
@@ -630,6 +627,15 @@ template {
   font-family: inherit;
 }
 
+.lastPage{
+  margin-top: 75%;
+}
+
+#goodbye{
+  font-size: 2em;
+  font-family: inherit;
+}
+
 @media screen and (min-width: 600px){
    .ingredients-grid{
      grid-template-columns: repeat(4, 11em);
@@ -646,11 +652,14 @@ template {
     height: 2.9em;
     margin-top: -3em;
   }
-}
 
-#goodbye{
-  padding-top: 4em;
-  font-size: xx-large;
+  .lastPage{
+    margin-top: 70%;
+  }
+
+  #goodbye{
+    font-size: 4em;
+  }
 }
 
 .last-page-enter-active{
