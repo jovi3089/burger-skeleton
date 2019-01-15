@@ -147,7 +147,7 @@ export default{
   display: grid;
   grid-template-columns: 2fr;
   grid-template-rows: 1fr;
-  background-color: lightgrey;
+  background-color: #eeeeeeff;
 }
 .shopb{
   grid-column: 1;
@@ -158,7 +158,7 @@ export default{
   align-items: flex-start;
   justify-content: flex-start;
   overflow-y: scroll;
-  background-color: lightgrey;
+  background-color: #eeeeeeff;
 }
 .shopc{
   grid-column: 1;
@@ -168,7 +168,7 @@ export default{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: lightgrey;
+  background-color: #eeeeeeff;
 }
 
 .pricetext {
@@ -180,12 +180,17 @@ export default{
   width: 12em;
   height: 4em;
   border-radius: 0.8em;
-  border: 1px solid #000;
   margin: 0.5em;
   cursor: pointer;
   font-weight: bold;
   font-family: inherit;
   font-size: 1em;
+  border: 1px solid #cacaca;
+  background-image: -webkit-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: -moz-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: -ms-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: -o-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: linear-gradient(to bottom, #E6E6E6, #CCCCCC);
 }
 
 .buttonmenu {

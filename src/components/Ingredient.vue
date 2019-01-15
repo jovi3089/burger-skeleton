@@ -45,7 +45,7 @@ export default {
 <style scoped>
 
 .ingredient {
-   border: 1px solid #000;
+   border: 1px solid #d0e0e3ff;
    border-radius: 2em;
    background-color: #a2c4c9ff;
    padding: 1em;
@@ -83,6 +83,7 @@ export default {
 
  .price {
    grid-row: 2;
+   margin-top: 0;
  }
 
  .decrinc-buttons {
@@ -96,20 +97,32 @@ export default {
 }
 
  button {
-   width: 3em;
-   height: 2em;
+   width: 3.7em;
+   height: 2.3em;
    border: 1px solid black;
-   border-radius: 0.7em;
    padding: 0px;
    cursor: pointer;
  }
 
  #decreasebutton {
-   background-color: #ea9999ff;
+   border:1px solid #ea9999ff;/*#ffad41;*/
+   background-image: -webkit-linear-gradient(top, #ea9999ff, #e06666ff);
+   background-image: -moz-linear-gradient(top, #ea9999ff, #e06666ff);
+   background-image: -ms-linear-gradient(top, #ea9999ff, #e06666ff);
+   background-image: -o-linear-gradient(top, #ea9999ff, #e06666ff);
+   background-image: linear-gradient(to bottom, #ea9999ff, #e06666ff);
+   border-radius: 0.7em 0em 0em 0.7em;
  }
 
  #increasebutton {
-   background-color: #93c47dff;
+   background-color: #93c47dff; /* Green */
+   border:1px solid #93c47dff;/*#ffad41;*/
+   background-image: -webkit-linear-gradient(top, #b6d7a8ff, #6aa84fff);
+   background-image: -moz-linear-gradient(top, #b6d7a8ff, #6aa84fff);
+   background-image: -ms-linear-gradient(top, #b6d7a8ff, #6aa84fff);
+   background-image: -o-linear-gradient(top, #b6d7a8ff, #6aa84fff);
+   background-image: linear-gradient(to bottom, #b6d7a8ff, #6aa84fff);
+   border-radius: 0em 0.7em 0.7em 0em;
  }
 
  button:hover {

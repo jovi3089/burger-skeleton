@@ -175,13 +175,18 @@ export default {
 
 #new-burger {
   z-index: 1;
-  border: 1px solid #000;
   border-radius: 50%;
   background-color: #ea9999ff;
   width: 0.7em;
   height: 0.7em;
   text-align: center;
-  left: -0.3em;
+  left: -0.3em; /* Green */
+  border:1px solid #ea9999ff;/*#ffad41;*/
+  background-image: -webkit-linear-gradient(top, #ea9999ff, #e06666ff);
+  background-image: -moz-linear-gradient(top, #ea9999ff, #e06666ff);
+  background-image: -ms-linear-gradient(top, #ea9999ff, #e06666ff);
+  background-image: -o-linear-gradient(top, #ea9999ff, #e06666ff);
+  background-image: linear-gradient(to bottom, #ea9999ff, #e06666ff);
 }
 
 .number-style {
@@ -224,7 +229,13 @@ export default {
 }
 
 #order-button {
-  background: #93c47dff;
+  background-color: #93c47dff; /* Green */
+  border:1px solid #93c47dff;/*#ffad41;*/
+  background-image: -webkit-linear-gradient(top, #b6d7a8ff, #6aa84fff);
+  background-image: -moz-linear-gradient(top, #b6d7a8ff, #6aa84fff);
+  background-image: -ms-linear-gradient(top, #b6d7a8ff, #6aa84fff);
+  background-image: -o-linear-gradient(top, #b6d7a8ff, #6aa84fff);
+  background-image: linear-gradient(to bottom, #b6d7a8ff, #6aa84fff);
   width: 6em;
 }
 

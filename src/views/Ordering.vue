@@ -173,7 +173,7 @@
     <div class="footerwrap text-two">{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(' + ') }}</div>
     <div class="footerwrap text-three">{{ uiLabels.totalPrice}} <span style="font-weight:normal">{{ price }}:-</span></div>
     <div class="footerwrap press">
-      <button id="footerbutton" v-on:click="addToCart()">{{ uiLabels.addToCart }}</button>
+      <button class="footerbutton" v-on:click="addToCart()">{{ uiLabels.addToCart }}</button>
     </div>
 
     <!--<button class="footerbutton" v-on:click="placeOrder()"> {{ uiLabels.placeOrder }}  </button>--><br>
@@ -331,7 +331,7 @@ export default {
     },
     addToOrder (item) {
       this.chosenIngredients.push(item);
-      this.price += +item.selling_price;
+      this.price += item.selling_price;
     },
     deleteFromOrder (item) {
       if (this.price > 0) {
@@ -495,10 +495,15 @@ template {
   width: 5em;
   height: 5em;
   border-radius: 1em;
-  border: 1px solid #000;
   margin: 0.2em;
   cursor: pointer;
   font-family: inherit;
+  border: 1px solid #cacaca;
+  background-image: -webkit-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: -moz-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: -ms-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: -o-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: linear-gradient(to bottom, #E6E6E6, #CCCCCC);
 }
 
 .button-one {
@@ -555,7 +560,7 @@ template {
   height: 25vh;
   left: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #999999ff;
   font-size: 1em;
   display: grid;
   grid-template-columns: 1fr;
@@ -609,14 +614,19 @@ template {
   grid-row: 4;
 }
 
-#footerbutton {
+.footerbutton {
   font-size: 1em;
   width: 60%;
   height: 2.5em;
   border-radius: 1em;
-  border: 1px solid #000;
   cursor: pointer;
   font-family: inherit;
+  border: 1px solid #cacaca;
+  background-image: -webkit-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: -moz-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: -ms-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: -o-linear-gradient(top, #E6E6E6, #CCCCCC);
+  background-image: linear-gradient(to bottom, #E6E6E6, #CCCCCC);
 }
 
 .lastPage{
