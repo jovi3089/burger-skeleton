@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="startingpage">
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet">
       <div class = "langwrapper">
         <button id = "sweButton" class = "langbutton" v-on:click="$emit('switchLang')"
         :disabled = "isSwe(lang)" v-bind:style="{borderColor: computedSweBorderColor}" ><img src = "@/assets/SvenskaFlaggan.jpg"></button>
@@ -34,7 +35,7 @@ export default {
       engBorderColor: "#6aa84fff"
     };
   },
-  
+
   computed: {
     computedSweBorderColor: function(){
         if (this.isSwedish){
@@ -82,6 +83,10 @@ export default {
 </script>
 
 <style scoped>
+
+.startingpage {
+}
+
 .wrapper{
   display: flex;
   justify-content: center;

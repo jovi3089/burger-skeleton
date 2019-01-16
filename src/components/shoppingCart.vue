@@ -264,7 +264,7 @@ dt {
 .remove-burg {
   float: left;
   color: #e06666ff;
-  background-color: lightgrey;
+  background-color: #c9beb6ff;
   border-style: none;
 }
 
@@ -315,10 +315,16 @@ dt {
   text-align: center;
   cursor: pointer;
   font-size: 1.2em;
-  background-color: darkgray;
   border-style: none;
   border-radius: 0.5em;
   padding: 0.3em;
+  background-color: #93c47dff; /* Green */
+  border:1px solid #6aa84fff;/*#ffad41;*/
+  background-image: -webkit-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: -moz-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: -ms-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: -o-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: linear-gradient(to bottom, #addf90ff, #6aa84fff);
 }
 
 .close-button:hover {
