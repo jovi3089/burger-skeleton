@@ -892,6 +892,10 @@ template {
     font-size: 2em;
   }
 
+  .cart-popup {
+    font-size: 1.8em;
+  }
+
 }
 
 </style>
