@@ -98,7 +98,7 @@ export default {
   font-size: 2.2em;
   font-style: italic;
   position: relative;
-  margin-top: 2em;
+  margin-top: 2.8em;
   text-align: center;
   line-height: 1.4em;
 }
