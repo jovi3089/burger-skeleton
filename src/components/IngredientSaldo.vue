@@ -99,9 +99,19 @@ export default {
 
   methods:{
     sortStock: function (array){
-      for (var i = 0; i < array.length; i++) {
-        array[i]
+      var len = array.length;
+      for(var i = 0; i < len; i++){
+        var minIdx = i;
+        for(var  j = i+1; j<len; j++){
+           if(array[j].stock<array[minIdx].stock){
+              minIdx = j;
+           }
+        }
+        var temp = array[i];
+        array[i] = array[minIdx];
+        array[minIdx] = temp;
       }
+      return array;
     }
 
   }
