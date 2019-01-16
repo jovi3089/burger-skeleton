@@ -829,7 +829,7 @@ template {
 .popup-content {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 52%;
   background-color: white;
   transform: translate(-50%, -50%);
   /*padding: 1rem 1.5rem;*/
@@ -847,9 +847,17 @@ template {
 .close-button {
   text-align: center;
   cursor: pointer;
-  font-size: 0.8em;
-  background-color: darkgray;
+  font-size: 1em;
   border-style: none;
+  border-radius: 0.5em;
+  padding: 0.3em;
+  background-color: #93c47dff; /* Green */
+  border:1px solid #6aa84fff;/*#ffad41;*/
+  background-image: -webkit-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: -moz-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: -ms-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: -o-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: linear-gradient(to bottom, #addf90ff, #6aa84fff);
 }
 
 .close-button:hover {
@@ -884,13 +892,6 @@ template {
     font-size: 2em;
   }
 
-  .exitbutton {
-    font-size: 2em;
-    margin-right: 1.8em;
-    width: 4em;
-    height: 4em;
-    border-radius: 0.8em;
-  }
 }
 
 </style>

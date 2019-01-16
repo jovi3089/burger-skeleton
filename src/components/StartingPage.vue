@@ -95,11 +95,12 @@ export default {
 
 .logga {
   font-family: 'Bungee Shade';/*'Bungee Shade';*/
-  font-size: 3em;
+  font-size: 2.2em;
   font-style: italic;
   position: relative;
   margin-top: 2em;
   text-align: center;
+  line-height: 1.4em;
 }
 
 .wrapper{
