@@ -463,9 +463,8 @@ export default {
     },
     closePopUp: function () {
       this.showPopUp = false;
-      this.newPage(5);
+      this.newPage(this.step);
     }
-
   }
 }
 </script>
