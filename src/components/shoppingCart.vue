@@ -21,7 +21,7 @@
           <dt style="font-weight:bold">
             <button class="remove-burg" v-on:click="removeBurg(index)">
               <i class="fa fa-times fa-2x"></i>
-            </button> {{uiLabels.hamburger}} {{index}}: <span class="cart-price">{{getPrice(index-1)}}:-</span>
+            </button> {{uiLabels.choice}} {{index}}: <span class="cart-price">{{getPrice(index-1)}}:-</span>
           </dt>
           <dd><span class="cart-order">{{getOrder(index)}}</span></dd>
         </dl>

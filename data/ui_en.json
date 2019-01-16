@@ -60,11 +60,7 @@
   "lastPage" : "Thank you for your order!",
   "ourMostPopularBurgers" : "Our most popular burgers",
   "paymentMessage": "You're now being forwarded to our payment system",
-
-
-
-
-
+  "choice" : "Choice",
   "backToOrder" : "Continue with order",
   "emptyOrder" : "Your order is empty",
   "emptyShopping" : "Your cart is empty",

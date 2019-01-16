@@ -60,13 +60,9 @@
   "lastPage" : "Tack för din beställning!",
   "ourMostPopularBurgers": "Våra mest populära burgare",
   "paymentMessage": "Du skickas nu vidare till betalningen",
-
-
-
-
-
-    "backToOrder" : "Fortsätt med beställning",
-    "emptyOrder" : "Din beställning är tom",
-    "emptyShopping" : "Din varukorg är tom",
-    "goToMenu" : "Gå till meny"
+  "choice" : "Val",
+  "backToOrder" : "Fortsätt med beställning",
+  "emptyOrder" : "Din beställning är tom",
+  "emptyShopping" : "Din varukorg är tom",
+  "goToMenu" : "Gå till meny"
 }
