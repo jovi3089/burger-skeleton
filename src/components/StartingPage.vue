@@ -1,6 +1,9 @@
 <template>
   <div class="startingpage">
-    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Bungee Shade' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Bungee Inline' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Bungee Outline' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Racing Sans One' rel='stylesheet'>
       <div class = "langwrapper">
         <button id = "sweButton" class = "langbutton" v-on:click="$emit('switchLang')"
         :disabled = "isSwe(lang)" v-bind:style="{borderColor: computedSweBorderColor}" ><img src = "@/assets/SvenskaFlaggan.jpg"></button>
@@ -10,8 +13,11 @@
       <div class = "wrappalicious">
 
       <div class = "wrapper">
+        <div>
+<div class="logga">CRAFTY BURGERS</div>
         <button class="toorderpagebutton" v-on:click="toOrderPage"> {{ uiLabels.toOrderPage }}</button>
       </div>
+    </div>
       </div>
   </div>
 </template>
@@ -87,6 +93,15 @@ export default {
 .startingpage {
 }
 
+.logga {
+  font-family: 'Bungee Shade';/*'Bungee Shade';*/
+  font-size: 3em;
+  font-style: italic;
+  position: relative;
+  margin-top: 2em;
+  text-align: center;
+}
+
 .wrapper{
   display: flex;
   justify-content: center;
@@ -143,7 +158,7 @@ export default {
   color: black;
   font-weight: bold;
   font-size: 2em;
-  margin-top: 60%;
+  /*margin-top: 30%; 60%;*/
   font-family: inherit;
   border: 1px solid #84afb7ff;
   background-image: -webkit-linear-gradient(top, #abe2ecff, #84afb7ff);
@@ -156,7 +171,13 @@ export default {
 @media screen and (min-width: 600px){
   .toorderpagebutton{
     font-size: 3.5em;
-    margin-top: 50%;
+    margin-top: 0%;
+  }
+
+  .logga {
+    margin-top: 1em;
+    font-size: 6em;
+    bottom: 0;
   }
 
   #engButton img{
