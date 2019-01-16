@@ -1,5 +1,11 @@
 <template>
   <div>
+    <div class="cart-popup" v-show="showPopUp">
+        <div class="popup-content" id="popup-shade" v-show="showPopUp">
+          <div id="popup-text">Under construction<br>Just like studium</div>
+            <button class="close-button" v-on:click="closePopUp()">Go back</button>
+        </div>
+      </div>
     <div class="hamburgerpage">
     <div class="menu seeshopping">
     <button class="buttonmenu" v-on:click="showCart" id="shop-button">
@@ -59,7 +65,8 @@ export default {
       hamburger: "Hamburgare",
       sides: "Tillbehör",
       beverage: "Dryck",
-      nextStep: ''
+      nextStep: '',
+      showPopUp: false
     };
   },
   methods: {
@@ -69,7 +76,7 @@ export default {
         break;
         case 2: this.$emit('popularBurger')
         break;
-        case 3: this.$emit('randomBurger')
+        case 3: this.showPopUp = true;
         break;
         case 4: this.$emit('menuPage')
         break;
@@ -83,6 +90,10 @@ export default {
     },
     showNumber: function () {
       return this.burgerAmount !== 0;
+    },
+    closePopUp: function () {
+      this.showPopUp = false;
+      this.newPage(2);
     }
   }
 }
@@ -160,6 +171,10 @@ export default {
   .button{
     font-size: 3.5em;
   }
+
+  .cart-popup {
+    font-size: 1.8em;
+  }
 }
 
 .updateCart {
@@ -207,21 +222,21 @@ export default {
 #buttonpopular {
   background-color: #f9cb9cff; /* Green */
   border:1px solid #cda42cff;
-  background-image: -webkit-linear-gradient(top, #f8c736ff,#cda42cff);
-  background-image: -moz-linear-gradient(top, #f8c736ff, #cda42cff);
-  background-image: -ms-linear-gradient(top, #f8c736ff, #cda42cff);
-  background-image: -o-linear-gradient(top, #f8c736ff, #cda42cff);
-  background-image: linear-gradient(to bottom, #f8c736ff, #cda42cff);
+  background-image: -webkit-linear-gradient(top,#ffcc37ff,#d5ab2eff);
+  background-image: -moz-linear-gradient(top, #ffcc37ff, #d5ab2eff);
+  background-image: -ms-linear-gradient(top, #ffcc37ff, #d5ab2eff);
+  background-image: -o-linear-gradient(top, #ffcc37ff, #d5ab2eff);
+  background-image: linear-gradient(to bottom,#ffcc37ff, #d5ab2eff);
 }
 
 #buttonrandom {
   background-color: #fce5cdff; /* Green */
-  border:1px solid #fce5cdff;
-  background-image: -webkit-linear-gradient(top, #fff,#f9cb9cff);
-  background-image: -moz-linear-gradient(top, #fff, #f9cb9cff);
-  background-image: -ms-linear-gradient(top, #fff, #f9cb9cff);
-  background-image: -o-linear-gradient(top, #fff, #f9cb9cff);
-  background-image: linear-gradient(to bottom, #fff, #f9cb9cff);
+  border:1px solid #d1af42ff;
+  background-image: -webkit-linear-gradient(top, #ffe75fff,#d1af42ff);
+  background-image: -moz-linear-gradient(top, #ffe75fff,#d1af42ff);
+  background-image: -ms-linear-gradient(top, #ffe75fff, #d1af42ff);
+  background-image: -o-linear-gradient(top, #ffe75fff, #d1af42ff);
+  background-image: linear-gradient(to bottom, #ffe75fff, #d1af42ff);
 }
 
 #cancel {
@@ -249,6 +264,56 @@ export default {
   font-weight: bold;
   font-size: 0.5em;
   font-family: inherit;
+}
+
+.cart-popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  /*opacity: 0;
+  visibility: hidden;*/
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.popup-content {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  /*padding: 1rem 1.5rem;*/
+  width: 48%;
+  height: 5em;
+  border-radius: 1.5em;
+  box-shadow: 10px 10px 60px #555;
+}
+
+#popup-text {
+  padding-top: 1.2em;
+  padding-bottom: 0.4em;
+  font-size: 1em;
+}
+
+.close-button {
+  text-align: center;
+  cursor: pointer;
+  font-size: 1.2em;
+  border-style: none;
+  border-radius: 0.5em;
+  padding: 0.3em;
+  background-color: #93c47dff; /* Green */
+  border:1px solid #6aa84fff;/*#ffad41;*/
+  background-image: -webkit-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: -moz-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: -ms-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: -o-linear-gradient(top, #addf90ff, #6aa84fff);
+  background-image: linear-gradient(to bottom, #addf90ff, #6aa84fff);
+}
+
+.close-button:hover {
+  background-color: darkgray;
 }
 
 </style>
