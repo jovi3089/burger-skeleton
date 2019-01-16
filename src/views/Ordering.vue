@@ -378,12 +378,12 @@ export default {
 
       if (this.shoppingCart.length > 0 && !this.showCartState) {
         this.newPage(9);
-        setTimeout(() => this.newPage(0), 100000);
+        setTimeout(() => this.newPage(0), 6000);
       }
       else if (this.shoppingCart.length > 0) {
         this.showCart();
         this.newPage(9);
-        setTimeout(() => this.newPage(0), 100000);
+        setTimeout(() => this.newPage(0), 6000);
       }
 
       this.price = 0;
@@ -608,8 +608,8 @@ template {
   margin-top: 0.19em;
   grid-column: 2;
   grid-row: 1;
-  width: 4em;
-  height: 4em;
+  width: 4.2em;
+  height: 4.2em;
   padding-right: 3.3em;
   padding-left: 0.3em;
   font-size: 1.0em;
@@ -621,15 +621,15 @@ template {
 }
 
 .orangeBorder {
-  border: 0.3em solid #ffab40;
+  border: 0.3em solid #eabc33ff;
 }
 
 .greenBorder {
-  border: 0.3em solid #93c47dff;
+  border: 0.3em solid #f8c07eff;
 }
 
 .purpleBorder {
-  border: 0.3em solid #c27ba0ff;
+  border: 0.3em solid #d98c7bff;
 }
 
 .cancelButton {
